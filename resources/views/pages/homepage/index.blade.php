@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('content')
-    <div class="img-shortInfo bg-gradient-to-b from-blue-800 to-blue-600 flex flex-wrap justify-center align-items-center pt-16 pb-28">
+    <section class="img-shortInfo flex flex-wrap justify-center align-items-center bg-gradient-to-b from-blue-800 to-blue-600 pt-16 pb-28 rounded-b-[60%] sm:rounded-b-[30%]">
         <div class="shortInfo self-center m-5" style="width: 30rem">
             <div class="titlePage">
                 <h1 class="text-white text-2xl font-bold">
@@ -36,13 +36,13 @@
                 <img src="assets/img/main/126465066756.jpg" alt="img1" class="object-cover object-center w-full h-96 rounded-lg hidden">
             </div>
         </div>
-    </div>
+    </section>
     
-    <div class="shortcutGoto mt-16">
+    <section class="shortcutGoto mt-16">
         <div class="titleS text-center text-blue-800 font-bold">
             <h2>Silahkan Jelajahi Informasi Lebih Lanjut</h2>
         </div>
-        <div class="contShortcut mt-6 flex flex-wrap justify-center align-items-center gap-16">
+        <div class="contShortcut mt-12 flex flex-wrap justify-center align-items-center gap-16">
             <div class="bg-white drop-shadow-xl p-8 w-72 text-center rounded-lg">
                 <div class="theImg flex justify-center align-items-center mb-6">
                     <img src="assets/img/icon/target.png" alt="" class="w-32 object-contain">
@@ -72,7 +72,62 @@
                 <p class="mt-5 text-sm text-gray-500">Jelajahi koleksi foto dari berbagai kegiatan dan momen sekolah yang berharga</p>
             </div>
         </div>
-    </div>
+    </section>
+    
+    <section class="principle mt-32 flex flex-wrap justify-center align-items-center gap-[75px]">
+        <div class="photo-principle my-auto">
+            <div class="img-pri relative p-4 w-[280px] h-[400px]">
+                <div class="blur-effect absolute w-[250px] h-[370px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#AFAFAF]" 
+                    style="background: linear-gradient(30deg, rgba(255, 255, 255, 0.00) 50%, rgba(255, 255, 255, 0.00) 85.94%, #FFF 95.31%, #FFF 100%), linear-gradient(331deg, rgba(255, 255, 255, 0.00) 50%, rgba(255, 255, 255, 0.00) 85.56%, #FFF 94.83%, #FFF 99.47%), linear-gradient(0deg, rgba(255, 255, 255, 0.00) 50%, rgba(255, 255, 255, 0.00) 50%, rgba(255, 255, 255, 0.00) 94.88%, #FFF 100%), linear-gradient(90deg, rgba(255, 255, 255, 0.00) 50%, rgba(255, 255, 255, 0.00) 50.01%, rgba(255, 255, 255, 0.00) 94.88%, #FFF 100%), linear-gradient(270deg, rgba(255, 255, 255, 0.00) 50%, rgba(255, 255, 255, 0.00) 50%, rgba(255, 255, 255, 0.00) 94.88%, #FFF 100%), linear-gradient(209deg, rgba(255, 255, 255, 0.00) 50%, rgba(255, 255, 255, 0.00) 50.01%, #FFF 87.5%, #FFF 100%), linear-gradient(151deg, rgba(255, 255, 255, 0.00) 50%, rgba(255, 255, 255, 0.88) 83.33%, #FFF 89.56%, #FFF 100%);"></div>
+                <img src="assets/img/main/126465066756.jpg" class="object-center object-cover w-full h-full" alt="">
+            </div>
+        </div>
+        <div class="quote-principle align-self-center self-center p-4 w-[800px] h-[600px] shadow-xl rounded-xl relative ">
+            <div class="icon-quote absolute left-[8%] top-[8%] -translate-x-[8%] -translate-y-[8%]">
+                <img src="assets/img/icon/quote.png" class="w-[75px] h-[75px]" alt="">
+            </div>
+            <div class="quote mt-32 self-center w-3/4 h-1/2 mx-auto text-[26px] p-2">
+                <p>Lorem ipsum dolor amet</p>
+            </div>
+            <div class="detail-person w-3/4 mt-8 mx-auto">
+                <div class="name-person text-[26px] text-[#4f4f4f]">
+                    <strong>Name person</strong>
+                </div>
+                <div class="position-person text-[20px] text-[#808080]">
+                    Kepala Sekolah
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <hr class="my-32 mx-auto bg-black/40 h-1 w-[95%]">
+    
+    <section class="statisticSchool bg-[#0000FF] text-white uppercase p-8">
+        <div class="titleStatistics text-center self-center">
+            <h2 class="text-3xl font-bold">Statistik</h2>
+            <p class="text-center text-sm font-bold text-white/60 mt-0 relative after:absolute after:border-b after:border-white/60 after:w-8 after:h-1 after:left-1/2 after:bottom-0 after:-translate-x-1/2 after:-translate-y-0">2023</p>
+        </div>
+        <div class="listStatistics mt-8 flex flex-wrap justify-center align-items-center gap-20 sm:flex-wrap">
+            <div class="totalStudents text-center">
+                <h3 class="text-3xl font-bold">100</h3>
+                <p class="text-xs text-white/60 mt-2 relative after:absolute after:border-b after:border-white/60 after:w-8 after:h-1 after:left-1/2 after:bottom-0 after:-translate-x-1/2 after:-translate-y-0">Siswa</p>
+            </div>
+            <div class="totalTeachers text-center">
+                <h3 class="text-3xl font-bold">100</h3>
+                <p class="text-xs text-white/60 mt-2 relative after:absolute after:border-b after:border-white/60 after:w-8 after:h-1 after:left-1/2 after:bottom-0 after:-translate-x-1/2 after:-translate-y-0">Pendidik</p>
+            </div>
+            <div class="totalStaffs text-center">
+                <h3 class="text-3xl font-bold">100</h3>
+                <p class="text-xs text-white/60 mt-2 relative after:absolute after:border-b after:border-white/60 after:w-8 after:h-1 after:left-1/2 after:bottom-0 after:-translate-x-1/2 after:-translate-y-0">Tenaga Kependidikan</p>
+            </div>
+            <div class="totalInfrastructure text-center">
+                <h3 class="text-3xl font-bold">100</h3>
+                <p class="text-xs text-white/60 mt-2 relative after:absolute after:border-b after:border-white/60 after:w-8 after:h-1 after:left-1/2 after:bottom-0 after:-translate-x-1/2 after:-translate-y-0">Sarana Prasarana</p>
+            </div>
+        </div>
+    </section>
+    
+    <hr class="my-32 mx-auto bg-black/40 h-1 w-[95%]">
 @endsection
 @section('custom-script')
     <script src="assets/js/homepage/slidePhoto.js"></script>
