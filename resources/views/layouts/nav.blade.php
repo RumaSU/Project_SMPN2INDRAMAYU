@@ -68,7 +68,7 @@
             <img src="assets/img/icon/three_dots.svg" alt="">
         </button>
     </div>
-    <div class="navigation-wrap fixed top-4 right-4 w-full max-w-xs bg-white rounded-lg shadow-lg p-6 text-base font-semibold text-black dark:highlight-white/5 z-[10] lg:hidden hidden">
+    <div class="navigation-wrap fixed top-12 right-4 w-full max-w-xs bg-white rounded-lg shadow-lg p-6 text-base font-semibold text-black dark:highlight-white/5 z-[10] lg:hidden hidden">
         <button id="tglClsBtn-navWrapper" type="button" class="absolute top-5 right-5 w-8 h-8 flex items-center justify-center text-slate-500 hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300 z-[11]">
             <span class="sr-only">Close navigation</span>
             <img src="assets/img/icon/close-lights.svg" alt="">
