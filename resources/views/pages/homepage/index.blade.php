@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.main.main')
 @section('content')
     <section class="img-shortInfo flex flex-wrap justify-center align-items-center bg-gradient-to-b from-blue-800 to-blue-600 pt-16 pb-28 rounded-b-[30%] md:rounded-b-[45%] lg:rounded-b-[60%]">
         <div class="shortInfo self-center m-5" style="width: 30rem">

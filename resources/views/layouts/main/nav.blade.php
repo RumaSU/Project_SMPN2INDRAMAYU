@@ -1,5 +1,5 @@
 <div class="logImageSchool-navRight flex justify-between align-items-center px-12 py-5">
-    <a href="" class="gotoHomepage">
+    <a href="/" class="gotoHomepage">
         <div class="image-Logoschool flex justify-center align-items-center gap-2">
             <div class="image self-center">
                 <img src="assets/img/main/example-image.jpg" alt="" class="w-11">
@@ -14,7 +14,7 @@
         <ul class="flex flex-column align-items-center justify-between gap-4 text-black font-bold group">
             <li class="relative group">
                 <div class="gotoHome">
-                    <a href="" class="py-1.5 px-4">Beranda</a>
+                    <a href="/" class="py-1.5 px-4">Beranda</a>
                 </div>
             </li>
             <li class="relative group">
@@ -57,7 +57,7 @@
             </li>
             <li class="relative group">
                 <div class="gotoLogin">
-                    <a href="" class="py-1.5 px-4">Login</a>
+                    <a href="/login" class="py-1.5 px-4">Login</a>
                 </div>
             </li>
         </ul>

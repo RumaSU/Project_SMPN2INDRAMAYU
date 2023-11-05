@@ -12,16 +12,16 @@
 </head>
 <body>
     <header>
-        @include('layouts.header')
+        @include('layouts.main.header')
     </header>
     <nav>
-        @include('layouts.nav')
+        @include('layouts.main.nav')
     </nav>
     <main>
         @yield('content')
     </main>
     <footer class="mt-10">
-        @include('layouts.footer')
+        @include('layouts.main.footer')
     </footer>
     
     <script src="assets/js/main/nav.js"></script>
