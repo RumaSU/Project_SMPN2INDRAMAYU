@@ -7,7 +7,7 @@
                 </div>
                 <div class="textNameSchool flex flex-col justify-center align-items-center">
                     <p class="text-base text-blue-700 font-bold -my-1 p-0">SMP NEGERI 2 INDRAMAYU</p>
-                    <p class="text-sm font-bold -my-1 p-0">INDRAMAYU - JAWA BARAT</p>
+                    <p class="text-sm text-black font-bold -my-1 p-0">INDRAMAYU - JAWA BARAT</p>
                 </div>
             </div>
         </a>
