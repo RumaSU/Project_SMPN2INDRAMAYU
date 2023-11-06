@@ -20,9 +20,9 @@
     <main>
         @yield('content')
     </main>
-    <footer class="mt-10">
+    {{-- <footer class="mt-10">
         @include('layouts.main.footer')
-    </footer>
+    </footer> --}}
     
     <script src="assets/js/main/nav.js"></script>
     @yield('custom-script')

@@ -1,0 +1,23 @@
+.show-content {
+    left: 50%;
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(-50%);
+    transition: left .4s, visibility .4s, opacity .4s, transform 0.4s;
+}
+
+.hide-content-l {
+    left: -100%;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: left .4s, visibility .4s, opacity .4s, transform 0.4s;
+}
+
+.hide-content-r {
+    left: 200%;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateX(-200%);
+    transition: left .4s, visibility .4s, opacity .4s, transform 0.4s;
+}

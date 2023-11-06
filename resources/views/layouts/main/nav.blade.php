@@ -4,7 +4,7 @@
             <div class="image self-center">
                 <img src="assets/img/main/example-image.jpg" alt="" class="w-11">
             </div>
-            <div class="textNameSchool flex flex-col justify-center align-items-center">
+            <div class="textNameSchool hidden md:flex flex-col justify-center align-items-center">
                 <p class="text-base text-blue-700 font-bold -my-1 p-0">SMP NEGERI 2 INDRAMAYU</p>
                 <p class="text-sm font-bold -my-1 p-0">INDRAMAYU - JAWA BARAT</p>
             </div>
@@ -32,7 +32,7 @@
                                 <a href="" class="hover:text-gray-400">Tenaga Kependidikan</a>
                             </div>
                             <div class="py-1">
-                                <a href="" class="hover:text-gray-400">Siswa</a>
+                                <a href="/siswa" class="hover:text-gray-400">Siswa</a>
                             </div>
                             <div class="py-1">
                                 <a href="" class="hover:text-gray-400">Osis</a>
@@ -73,14 +73,14 @@
             <span class="sr-only">Close navigation</span>
             <img src="assets/img/icon/close-lights.svg" alt="">
         </button>
-        <ul class="group space-y-4 mt-4">
+        <ul class="group space-y-4 mt-8">
             <li class="relative group">
                 <div class="gotoHome">
-                    <a href="" class="py-1.5 px-4">Beranda</a>
+                    <a href="" class="py-1.5 px-4 flex hover:bg-gray-200">Beranda</a>
                 </div>
             </li>
             <li class="relative group">
-                <div class="gotoProfile" onmouseover="showDropdown()" onmouseleave="hideDropdown()">
+                <div class="gotoProfile">
                     <a href="" class="py-1.5 px-4 group">Profil</a>
                     <div id="dropDownProfile" class="dropDownProfile">
                         <div class="text-sm font-normal ml-8 w-48 space-y-0">
