@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ClassesModelsController;
+use App\Http\Controllers\SiswaModelsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,8 +18,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('pages.homepage.index');
 });
-Route::get('/siswa', function () {
-    return view('pages.students.index');
+Route::get('/kelas', [ClassesModelsController::class, 'index']) -> name('ListClass');
+Route::post('/kelas/add/', [ClassesModelsController::class, 'store']) -> name('storeClass');
+
+Route::get('/siswa/testing', function () {
+    return view('pages.students.testing');
 });
 
 Route::get('/login', function () {

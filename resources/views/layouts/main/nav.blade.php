@@ -32,7 +32,7 @@
                                 <a href="" class="hover:text-gray-400">Tenaga Kependidikan</a>
                             </div>
                             <div class="py-1">
-                                <a href="/siswa" class="hover:text-gray-400">Siswa</a>
+                                <a href="/kelas" class="hover:text-gray-400">Siswa</a>
                             </div>
                             <div class="py-1">
                                 <a href="" class="hover:text-gray-400">Osis</a>
@@ -94,7 +94,7 @@
                                 <a href="" class="hover:text-gray-400">Tenaga Kependidikan</a>
                             </div>
                             <div class="py-1">
-                                <a href="" class="hover:text-gray-400">Siswa</a>
+                                <a href="/kelas" class="hover:text-gray-400">Siswa</a>
                             </div>
                             <div class="py-1">
                                 <a href="" class="hover:text-gray-400">Osis</a>
