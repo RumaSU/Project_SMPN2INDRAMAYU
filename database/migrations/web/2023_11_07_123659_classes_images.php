@@ -11,7 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
+        Schema::create('classes_images', function (Blueprint $table) {
+            $table->id();
+            $table->text('name_files');
+            $table->unsignedBigInteger('class_id');
+            $table->foreign('class_id')->references('id')->on('classes')->onDelete('cascade');
+            $table->timestamps();
+        });
     }
 
     /**

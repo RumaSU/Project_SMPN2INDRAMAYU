@@ -20,6 +20,10 @@ Route::get('/', function () {
 });
 Route::get('/kelas', [ClassesModelsController::class, 'index']) -> name('ListClass');
 Route::post('/kelas/add/', [ClassesModelsController::class, 'store']) -> name('storeClass');
+Route::delete('/kelas/min/{id}', [ClassesModelsController::class, 'destroy'])->name('delClass');
+
+Route::get('/kelasAjax', [ClassesModelsController::class, 'index']) -> name('ListClass');
+Route::post('/kelasAjax/add/', [ClassesModelsController::class, 'store']) -> name('storeClass');
 
 Route::get('/siswa/testing', function () {
     return view('pages.students.testing');

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('teacher_class');
             $table->string('class');
             $table->string('tag');
+            $table->text('description');
             $table->timestamps();
         });
     }
