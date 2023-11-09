@@ -4,7 +4,7 @@
 @endsection
 @section('content')
     <section class="img-students flex items-center justify-center relative text-center text-white h-96 bg-cover bg-center bg-no-repeat after:absolute after:top-0 after:left-0 after:bg-black/60 after:w-full after:h-full"
-    style="background-image: url('assets/img/main/126465066756.jpg');">
+        style="background-image: url('assets/img/main/126465066756.jpg');">
         <div class="content relative z-10 selft-center">
             <h1 class="text-4xl font-bold">Daftar Kelas</h1>
             <h2 class="text-xl">Profil/Siswa</h2>
@@ -19,26 +19,28 @@
                     Kelas
                 </button>
                 <button class="expandList p-1 float-right absolute right-0 -rotate-90 transition-all duration-300" onclick="shList(this)">
-                    <i class="bi bi-chevron-left text-4xl bi bi-chevron-bar-down"></i>
+                    <i class="bi bi-chevron-left text-4xl"></i>
                 </button>
             </div>
             <div class="list mt-6 flex flex-wrap gap-5">
-                <div class="group bg-white regular-shadow w-48 h-64 border rounded-2xl overflow-hidden relative">
-                    <div class="button-editDel absolute bg-black/40 py-1 px-4 rounded-xl z-10 -right-full top-[5%] -translate-x-[5%] translate-y-full transition-all group-hover:right-[5%] group-hover:translate-x-[5%] group-hover:top-[5%] group-hover:translate-y-[5%]">
-                        <button class="editB border border-black bg-white p-2 rounded-lg hover:bg-gray-200">
-                            <i class="bi bi-pencil"></i>
-                        </button>
-                        <button class="delB border border-black bg-white p-2 rounded-lg hover:bg-gray-200">
-                            <i class="bi bi-trash3"></i>
-                        </button>
+                @foreach ($tempClassVII as $class)
+                    <div class="group bg-white regular-shadow w-48 h-64 border rounded-2xl overflow-hidden relative">
+                        <div class="button-editDel absolute bg-black/40 py-1 px-4 rounded-xl z-10 -right-full top-[5%] -translate-x-[5%] translate-y-full transition-all group-hover:right-[5%] group-hover:translate-x-[5%] group-hover:top-[5%] group-hover:translate-y-[5%]">
+                            <button class="editB border border-black bg-white p-2 rounded-lg hover:bg-gray-200">
+                                <i class="bi bi-pencil"></i>
+                            </button>
+                            <button class="delB border border-black bg-white p-2 rounded-lg hover:bg-gray-200">
+                                <i class="bi bi-trash3"></i>
+                            </button>
+                        </div>
+                        <img src="assets/img/main/126465066756.jpg" alt="" class="supImg w-full h-full object-cover object-center relative">
+                        <a href="/kelas/testing/siswa" class="block w-full h-full absolute inset-0 group-hover:bg-black/30 transition-all">
+                            <p class="itemClass w-3/4 py-2 text-white text-center font-bold bg-blue-400 rounded-xl z-10 absolute -bottom-full left-1/2 translate-y-full -translate-x-1/2 transition-all group-hover:bottom-[5%] group-hover:-translate-y-[5%] hover:bg-cyan-500">
+                                {{ $class->tag }} {{ $class->class }}
+                            </p>
+                        </a>
                     </div>
-                    <img src="assets/img/main/126465066756.jpg" alt="" class="supImg w-full h-full object-cover object-center relative">
-                    <a href="" class="block w-full h-full absolute inset-0 group-hover:bg-black/30 transition-all">
-                        <p class="itemClass w-3/4 py-2 text-white text-center font-bold bg-blue-400 rounded-xl z-10 absolute -bottom-full left-1/2 translate-y-full -translate-x-1/2 transition-all group-hover:bottom-[5%] group-hover:-translate-y-[5%] hover:bg-cyan-500">
-                            Nama orang
-                        </p>
-                    </a>
-                </div>
+                @endforeach
                 <div class="group bg-white regular-shadow flex justify-center items-center w-48 h-64 border rounded-2xl overflow-hidden relative hover:bg-gray-500/25">
                     <div class="add-icon">
                         <i class="bi bi-plus-circle text-8xl opacity-50"></i>
@@ -59,29 +61,31 @@
                 </button>
             </div>
             <div class="list mt-6 flex flex-wrap gap-5">
-                <div class="group bg-white regular-shadow w-48 h-64 border rounded-2xl overflow-hidden relative">
-                    <div class="button-editDel absolute bg-black/40 py-1 px-4 rounded-xl z-10 -right-full top-[5%] -translate-x-[5%] translate-y-full transition-all group-hover:right-[5%] group-hover:translate-x-[5%] group-hover:top-[5%] group-hover:translate-y-[5%]">
-                        <div class="button-editDel flex gap-2 items-center absolute bg-black/40 py-1 px-4 rounded-xl z-10 -right-full top-[5%] -translate-x-[5%] translate-y-full transition-all group-hover:right-[5%] group-hover:translate-x-[5%] group-hover:top-[5%] group-hover:translate-y-[5%]">
-                            <button class="editB border border-black bg-white p-2 rounded-lg hover:bg-gray-200">
-                                <i class="bi bi-pencil"></i>
-                            </button>
-                            <form action="" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <input type="hidden" name="id" value="test">
-                                <button class="delB border border-black bg-white p-2 rounded-lg hover:bg-gray-200">
-                                    <i class="bi bi-trash3"></i>
+                @foreach ($tempClassVIII as $class)
+                    <div class="group bg-white regular-shadow w-48 h-64 border rounded-2xl overflow-hidden relative">
+                        <div class="button-editDel absolute bg-black/40 py-1 px-4 rounded-xl z-10 -right-full top-[5%] -translate-x-[5%] translate-y-full transition-all group-hover:right-[5%] group-hover:translate-x-[5%] group-hover:top-[5%] group-hover:translate-y-[5%]">
+                            <div class="button-editDel flex gap-2 items-center absolute bg-black/40 py-1 px-4 rounded-xl z-10 -right-full top-[5%] -translate-x-[5%] translate-y-full transition-all group-hover:right-[5%] group-hover:translate-x-[5%] group-hover:top-[5%] group-hover:translate-y-[5%]">
+                                <button class="editB border border-black bg-white p-2 rounded-lg hover:bg-gray-200">
+                                    <i class="bi bi-pencil"></i>
                                 </button>
-                            </form>
+                                <form action="{{ route('delClass', ['id' => $class->id]) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <input type="hidden" name="id" value="{{ $class->id }}">
+                                    <button class="delB border border-black bg-white p-2 rounded-lg hover:bg-gray-200">
+                                        <i class="bi bi-trash3"></i>
+                                    </button>
+                                </form>
+                            </div>
                         </div>
+                        <img src="assets/img/main/126465066756.jpg" alt="" class="supImg w-full h-full object-cover object-center relative">
+                        <a href="" class="block w-full h-full absolute inset-0 group-hover:bg-black/30 transition-all">
+                            <p class="itemClass w-3/4 py-2 text-white text-center font-bold bg-blue-400 rounded-xl z-10 absolute -bottom-full left-1/2 translate-y-full -translate-x-1/2 transition-all group-hover:bottom-[5%] group-hover:-translate-y-[5%] hover:bg-cyan-500">
+                                {{ $class->tag }} {{ $class->class }}
+                            </p>
+                        </a>
                     </div>
-                    <img src="assets/img/main/126465066756.jpg" alt="" class="supImg w-full h-full object-cover object-center relative">
-                    <a href="" class="block w-full h-full absolute inset-0 group-hover:bg-black/30 transition-all">
-                        <p class="itemClass w-3/4 py-2 text-white text-center font-bold bg-blue-400 rounded-xl z-10 absolute -bottom-full left-1/2 translate-y-full -translate-x-1/2 transition-all group-hover:bottom-[5%] group-hover:-translate-y-[5%] hover:bg-cyan-500">
-                            Nama Orangnya
-                        </p>
-                    </a>
-                </div>
+                @endforeach
                 <div class="group bg-white regular-shadow flex justify-center items-center w-48 h-64 border rounded-2xl overflow-hidden relative hover:bg-gray-500/25">
                     <div class="add-icon">
                         <i class="bi bi-plus-circle text-8xl opacity-50"></i>
@@ -102,27 +106,29 @@
                 </button>
             </div>
             <div class="list mt-6 flex flex-wrap gap-5">
-                <div class="group bg-white regular-shadow w-48 h-64 border rounded-2xl overflow-hidden relative">
-                    <div class="button-editDel flex gap-2 items-center absolute bg-black/40 py-1 px-4 rounded-xl z-10 -right-full top-[5%] -translate-x-[5%] translate-y-full transition-all group-hover:right-[5%] group-hover:translate-x-[5%] group-hover:top-[5%] group-hover:translate-y-[5%]">
-                        <button class="editB border border-black bg-white p-2 rounded-lg hover:bg-gray-200">
-                            <i class="bi bi-pencil"></i>
-                        </button>
-                        <form action="" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <input type="hidden" name="id" value="">
-                            <button class="delB border border-black bg-white p-2 rounded-lg hover:bg-gray-200">
-                                <i class="bi bi-trash3"></i>
+                @foreach ($tempClassIX as $class)
+                    <div class="group bg-white regular-shadow w-48 h-64 border rounded-2xl overflow-hidden relative">
+                        <div class="button-editDel flex gap-2 items-center absolute bg-black/40 py-1 px-4 rounded-xl z-10 -right-full top-[5%] -translate-x-[5%] translate-y-full transition-all group-hover:right-[5%] group-hover:translate-x-[5%] group-hover:top-[5%] group-hover:translate-y-[5%]">
+                            <button class="editB border border-black bg-white p-2 rounded-lg hover:bg-gray-200">
+                                <i class="bi bi-pencil"></i>
                             </button>
-                        </form>
+                            <form action="{{ route('delClass', ['id' => $class->id]) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <input type="hidden" name="id" value="{{ $class->id }}">
+                                <button class="delB border border-black bg-white p-2 rounded-lg hover:bg-gray-200">
+                                    <i class="bi bi-trash3"></i>
+                                </button>
+                            </form>
+                        </div>
+                        <img src="{{ asset('storage/app/public/images/' . $class->name_files) }}" alt="" class="supImg w-full h-full object-cover object-center relative">
+                        <a href="" class="block w-full h-full absolute inset-0 group-hover:bg-black/30 transition-all">
+                            <p class="itemClass w-3/4 py-2 text-white text-center font-bold bg-blue-400 rounded-xl z-10 absolute -bottom-full left-1/2 translate-y-full -translate-x-1/2 transition-all group-hover:bottom-[5%] group-hover:-translate-y-[5%] hover:bg-cyan-500">
+                                {{ $class->tag }} {{ $class->class }}
+                            </p>
+                        </a>
                     </div>
-                    <img src="test" alt="" class="supImg w-full h-full object-cover object-center relative">
-                    <a href="" class="block w-full h-full absolute inset-0 group-hover:bg-black/30 transition-all">
-                        <p class="itemClass w-3/4 py-2 text-white text-center font-bold bg-blue-400 rounded-xl z-10 absolute -bottom-full left-1/2 translate-y-full -translate-x-1/2 transition-all group-hover:bottom-[5%] group-hover:-translate-y-[5%] hover:bg-cyan-500">
-                            Nama orang
-                        </p>
-                    </a>
-                </div>
+                @endforeach
                 <div class="group bg-white regular-shadow flex justify-center items-center w-48 h-64 border rounded-2xl overflow-hidden relative hover:bg-gray-500/25">
                     <div class="add-icon">
                         <i class="bi bi-plus-circle text-8xl opacity-50"></i>

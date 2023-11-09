@@ -22,6 +22,10 @@ Route::get('/kelas', [ClassesModelsController::class, 'index']) -> name('ListCla
 Route::post('/kelas/add/', [ClassesModelsController::class, 'store']) -> name('storeClass');
 Route::delete('/kelas/min/{id}', [ClassesModelsController::class, 'destroy'])->name('delClass');
 
+Route::get('/kelas/testing/siswa', [SiswaModelsController::class, 'index']) -> name('ListStudents');
+
+Route::view('/testing', 'pages.test.index');
+
 Route::get('/kelasAjax', [ClassesModelsController::class, 'index']) -> name('ListClass');
 Route::post('/kelasAjax/add/', [ClassesModelsController::class, 'store']) -> name('storeClass');
 

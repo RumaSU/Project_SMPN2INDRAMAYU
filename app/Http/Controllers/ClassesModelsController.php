@@ -29,26 +29,26 @@ class ClassesModelsController extends Controller
             ->where('classes.tag', 'IX')
             ->orderBy('classes.class', 'asc')
             ->get();
-        
-        return view("pages.students.index", compact("tempClassVII", "tempClassVIII", "tempClassIX"));
-        
+
+        return view("pages.classes.index", compact("tempClassVII", "tempClassVIII", "tempClassIX"));
+
         // $tempClass = DB::table("classes")->select('tag')->distinct()->get();
         // $listClass = [];
-        
+
         // foreach ($tempClass as $tag) {
         //     // Mengambil data 'class' dari tabel 'classes' sesuai dengan setiap 'tag'
         //     $class = DB::table('classes')
         //                 ->where('tag', $tag->tag)
         //                 ->pluck('class')
         //                 ->toArray();
-                        
+
         //     // Menambahkan hasil ke dalam array yang dibuat
         //     $listClass[] = [
         //         'Tag' => $tag->tag,
         //         'Class' => $class,
         //     ];
         // }
-        
+
         // return view("pages.students.index", compact("listClass"));
         // SELECT classes.*, classes_images.name_files
         // FROM classes
@@ -76,7 +76,7 @@ class ClassesModelsController extends Controller
         } else {
             $imageName = 'default.jpg';
         }
-        
+
         $classes = ClassesModels::create([
             'teacher_class' => $request->teacher,
             'class' => $request->tagClass,
@@ -88,7 +88,7 @@ class ClassesModelsController extends Controller
                 'name_files' => $imageName,
                 'class_id' => $classes->id, // Atur 'class_id' sesuai dengan id kelas yang baru dibuat
             ]);
-            
+
             $classes->images()->save($classesImg);
             return redirect()->back()->with('status','Classes Added Successfully');
         } else {
