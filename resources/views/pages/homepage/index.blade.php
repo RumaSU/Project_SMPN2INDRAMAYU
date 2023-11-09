@@ -187,7 +187,7 @@
                     </div>
                 </button>
             </div>
-            <div class="contentAct-Insfra mt-12 md:px-20 border relative">
+            <div class="contentAct-Insfra mt-12 md:px-20 relative">
                 <div class="contentAct flex flex-wrap justify-between w-full space-y-6 lg:space-y-0 absolute show-content" id="contentAct">
                     <div class="descAct w-full lg:w-1/2 md:px-24 px-6">
                         <h2 class="text-xl font-bold">Beragam kegiatan menarik yang telah kami dokumentasikan selama di
