@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ChartController;
 use App\Http\Controllers\ClassesModelsController;
 use App\Http\Controllers\SiswaModelsController;
 use App\Http\Controllers\StudentsModelsController;
@@ -40,3 +41,5 @@ Route::view('/siswa', 'pages.students.index');
 Route::get('/login', function () {
     return view('pages.login.login.index');
 });
+
+Route::get('/chart', [ChartController::class, 'index']);
