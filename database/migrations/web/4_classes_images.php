@@ -11,14 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('students', function (Blueprint $table) {
+        Schema::create('classes_images', function (Blueprint $table) {
             $table->id();
-            $table->string('nis') -> unique();
-            $table->string('name');
+            $table->text('name_files');
             $table->unsignedBigInteger('class_id');
-            $table->foreign("class_id")->references("id")->on("classes")->onDelete("cascade");
-            $table->string('no_telp');
-            $table->string('alamat');
+            $table->foreign('class_id')->references('class_id')->on('classes')->onDelete('cascade');
             $table->timestamps();
         });
     }

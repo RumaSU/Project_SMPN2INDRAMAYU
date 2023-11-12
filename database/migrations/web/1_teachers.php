@@ -11,11 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('classes_images', function (Blueprint $table) {
-            $table->id();
-            $table->text('name_files');
-            $table->unsignedBigInteger('class_id');
-            $table->foreign('class_id')->references('id')->on('classes')->onDelete('cascade');
+        Schema::create('teachers', function (Blueprint $table) {
+            $table->id('teacher_id');
+            $table->string('nip') -> unique();
+            $table->string('name');
+            $table->string('status');
+            $table->string('sector');
+            $table->string('email');
+            $table->string('no_telp');
+            $table->string('adress');
             $table->timestamps();
         });
     }

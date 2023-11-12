@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\SiswaModels;
+use App\Models\StudentsModels;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
-class SiswaModelsController extends Controller
+class StudentsModelsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +14,6 @@ class SiswaModelsController extends Controller
     public function index()
     {
         return view("pages.students.index");
-
     }
 
     /**
@@ -35,7 +35,7 @@ class SiswaModelsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(SiswaModels $siswaModels)
+    public function show(StudentsModels $studentsModels)
     {
         //
     }
@@ -43,7 +43,7 @@ class SiswaModelsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(SiswaModels $siswaModels)
+    public function edit(StudentsModels $studentsModels)
     {
         //
     }
@@ -51,7 +51,7 @@ class SiswaModelsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, SiswaModels $siswaModels)
+    public function update(Request $request, StudentsModels $studentsModels)
     {
         //
     }
@@ -59,7 +59,7 @@ class SiswaModelsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(SiswaModels $siswaModels)
+    public function destroy(StudentsModels $studentsModels)
     {
         //
     }

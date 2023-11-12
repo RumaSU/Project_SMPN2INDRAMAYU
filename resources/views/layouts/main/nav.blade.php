@@ -26,7 +26,7 @@
                                 <a href="" class="hover:text-gray-400">Sekolah</a>
                             </div>
                             <div class="py-1">
-                                <a href="" class="hover:text-gray-400">Pendidik</a>
+                                <a href="/pendidik" class="hover:text-gray-400">Pendidik</a>
                             </div>
                             <div class="py-1">
                                 <a href="" class="hover:text-gray-400">Tenaga Kependidikan</a>

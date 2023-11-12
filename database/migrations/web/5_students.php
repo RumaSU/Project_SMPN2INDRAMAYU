@@ -10,12 +10,16 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-    {   
-        Schema::create('classes_students', function (Blueprint $table) {
-            $table->unsignedBigInteger('students_id');
+    {
+        Schema::create('students', function (Blueprint $table) {
+            $table->id('student_id');
+            $table->string('nis') -> unique();
+            $table->string('name');
             $table->unsignedBigInteger('class_id');
-            $table->foreign("students_id")->references("id")->on("students")->onDelete("cascade");
-            $table->foreign("class_id")->references("id")->on("classes")->onDelete("cascade");
+            $table->foreign("class_id")->references("class_id")->on("classes")->onDelete("cascade");
+            $table->string('no_telp');
+            $table->string('address');
+            $table->timestamps();
         });
     }
 

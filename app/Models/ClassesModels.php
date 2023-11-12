@@ -9,6 +9,7 @@ class ClassesModels extends Model
 {
     use HasFactory;
     protected $table = "classes";
+    protected $primaryKey = "class_id";
     protected $fillable = ['teacher_class', 'class', 'tag', 'description'];
     public function images()
     {

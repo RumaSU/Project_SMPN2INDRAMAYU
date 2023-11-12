@@ -15,17 +15,17 @@ class ClassesModelsController extends Controller
     public function index()
     {
         $tempClassVII = DB::table("classes")
-            ->join('classes_images', 'classes.id', '=', 'classes_images.class_id')
+            ->join('classes_images', 'classes.class_id', '=', 'classes_images.class_id')
             ->where('classes.tag', 'VII')
             ->orderBy('classes.class', 'asc')
             ->get();
         $tempClassVIII = DB::table("classes")
-            ->join('classes_images', 'classes.id', '=', 'classes_images.class_id')
+            ->join('classes_images', 'classes.class_id', '=', 'classes_images.class_id')
             ->where('classes.tag', 'VIII')
             ->orderBy('classes.class', 'asc')
             ->get();
         $tempClassIX = DB::table("classes")
-            ->join('classes_images', 'classes.id', '=', 'classes_images.class_id')
+            ->join('classes_images', 'classes.class_id', '=', 'classes_images.class_id')
             ->where('classes.tag', 'IX')
             ->orderBy('classes.class', 'asc')
             ->get();
@@ -78,7 +78,7 @@ class ClassesModelsController extends Controller
         }
 
         $classes = ClassesModels::create([
-            'teacher_class' => $request->teacher,
+            // 'teacher_class' => $request->teacher,
             'class' => $request->tagClass,
             'tag' => $request->classList,
             'description' => $request->desc
