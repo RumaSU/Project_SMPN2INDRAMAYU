@@ -24,7 +24,9 @@
         </div>
         <button type="submit" class="bg-[#0096FF] text-sm text-white font-bold py-3 rounded-lg " > Login </button>
     </form>
-    <p>OR</p>
+    <p class="text-center relative after:absolute after:w-1/3 after:border-b-2 after:border-gray-400 after:left-[15%] after:top-1/2 after:-translate-x-[15%] after:-translate-y-1/2 before:absolute before:w-1/3 before:border-b-2 before:border-gray-400 before:right-0 before:top-1/2 before:-translate-x-0 before:-translate-y-1/2">
+        OR
+    </p>
     <a href="" class="self-center">Forgot password</a>
 </div>
 

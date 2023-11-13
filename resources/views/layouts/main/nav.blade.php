@@ -23,7 +23,7 @@
                     <div id="dropDownProfile" class="dropDownProfile absolute w-48 -right-14 transition-all duration-400 ease-in-out z-50" style="top: -200%; visibility: hidden; opacity: 0;">
                         <div class="p-4 text-sm font-normal mt-4 w-48  border border-black rounded-md bg-white">
                             <div class="py-1 flex">
-                                <a href="" class="hover:text-gray-400">Sekolah</a>
+                                <a href="/profil" class="hover:text-gray-400">Sekolah</a>
                             </div>
                             <div class="py-1">
                                 <a href="/pendidik" class="hover:text-gray-400">Pendidik</a>
@@ -42,7 +42,7 @@
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
             </li>
             <li class="relative group">
@@ -85,7 +85,7 @@
                     <div id="dropDownProfile" class="dropDownProfile">
                         <div class="text-sm font-normal ml-8 w-48 space-y-0">
                             <div class="py-1 flex">
-                                <a href="" class="hover:text-gray-400">Sekolah</a>
+                                <a href="/profil" class="hover:text-gray-400">Sekolah</a>
                             </div>
                             <div class="py-1">
                                 <a href="" class="hover:text-gray-400">Pendidik</a>

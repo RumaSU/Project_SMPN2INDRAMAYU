@@ -22,7 +22,9 @@
                 </div>
             </div>
         </div> --}}
-        <div class="imgSch mx-auto w-72 group text-center text-xl font-bold space-y-4 absolute z-10 left-1/2 top-1/2 -translate-x-1/2">
+        {{-- <div class="justBox border-2 border-black w-72 aspect-square bg-white/50 absolute z-10 left-1/2 top-[40%] -translate-x-1/2 -translate-y-[40%]"></div> --}}
+        {{-- <div class="imgSch mx-auto w-72 group text-center text-xl font-bold absolute z-10 left-1/2 top-3/4 -translate-x-1/2 -translate-y-3/4"> --}}
+        <div class="imgSch mx-auto w-72 -mt-36 group text-center text-xl font-bold relative">
             <div class="aspect-square rounded-[100%] overflow-hidden border-4 p-2 bg-white relative">
                 <img src="assets/img/main/126465066756.jpg" alt="" class="w-full h-full object-cover object-center rounded-[100%]" onclick="openPopup('assets/img/main/126465066756.jpg')">
             </div>
@@ -32,52 +34,40 @@
                 </button>
             </div>
         </div>
-        <div class="titleProfiles mt-40 text-center font-bold">
+        <div class="titleProfiles text-center font-bold mt-12">
             <h2 class="text-4xl">SMP NEGERI 2 INDRAMAYU</h2>
             <h3 class="text-2xl">INDRAMAYU - JAWABARAT</h3>
         </div>
     </section>
-    <section class="listStudents mt-12 px-12 py-20 space-y-12">
-        <div class="title-students text-2xl flex items-center gap-6 py-4 font-bold border-b-4 border-black relative">
-            <form action="" method="POST" enctype="multipart/form-data" class="sr-only">
-                @csrf
-                <input type="file" name="fmt_Excel" id="fmtExcel" accept=".xlsx, .xls" value="" class="sr-only" onchange="openExcelPopUp(this)">
-                <button type="submit" id="sbFmtExcel" class="sr-only"></button>
-            </form>
-            <button type="button" class="btrinp-file text-sm py-2 px-6 border-2 border-gray-600 bg-gray-100 rounded-lg flex items-center hover:bg-sky-600 hover:border-sky-800" onclick="document.getElementById('fmtExcel').click()">
-                <i class="bi bi-file-earmark-arrow-up-fill mr-2 text-2xl text-sky-400"></i>
-                File
-            </button>
-            <button class="btrcr-fm text-sm text-white py-2 px-6 border-2 border-sky-600 bg-sky-400 rounded-lg flex items-center hover:bg-sky-600 hover:border-sky-800" onclick="showPopUpForm(this); addVals(this);">
-                <i class="bi bi-plus-circle mr-2 text-2xl"></i>
-                Siswa
-            </button>
-        </div>
-        <div class="list mt-6 flex flex-wrap gap-5">
-            <div class="group bg-white regular-shadow w-48 h-64 border rounded-2xl overflow-hidden relative">
-                <div class="button-editDel absolute bg-black/40 py-1 px-4 rounded-xl z-10 -right-full top-[5%] -translate-x-[5%] translate-y-full transition-all group-hover:right-[5%] group-hover:translate-x-[5%] group-hover:top-[5%] group-hover:translate-y-[5%]">
-                    <button class="editB border border-black bg-white p-2 rounded-lg hover:bg-gray-200">
+    <section class="viMi-Schools flex flex-col mt-24">
+        <div class="visiMisi border border-blac mx-auto w-1/2">
+            <div class="titleViMi w-36 py-2 px-6 bg-blue-400 text-center text-white font-bold rounded-2xl">
+                VISI MISI
+            </div>
+            <div class="visi group relative mt-6 ml-2 inline-block">
+                <div class="VisiCtn">
+                    <p class="border-2 border-gray">Lorem Ipsum Dolor Amet</p>
+                </div>
+                <div class="editVisiCtn">
+                    <button class="editB absolute z-10 top-0 right-0">
                         <i class="bi bi-pencil"></i>
                     </button>
-                    <button class="delB border border-black bg-white p-2 rounded-lg hover:bg-gray-200">
-                        <i class="bi bi-trash3"></i>
-                    </button>
-                </div>
-                <img src="assets/img/dumb/imgtemp 3.jpg" alt="" class="supImg w-full h-full object-cover object-center" onclick="openPopup('assets/img/dumb/imgtemp 3.jpg')">
-                <div class="block w-full h-full absolute inset-0 group-hover:bg-black/30 transition-all" onclick="openPopup('assets/img/dumb/imgtemp 3.jpg')">
-                    <p class="itemClass w-3/4 py-2 text-white text-center font-bold bg-blue-400 rounded-xl z-10 absolute -bottom-full left-1/2 translate-y-full -translate-x-1/2 transition-all group-hover:bottom-[5%] group-hover:-translate-y-[5%] hover:bg-cyan-500 cursor-pointer">
-                        Test
-                    </p>
                 </div>
             </div>
-            <div class="group bg-white regular-shadow flex justify-center items-center w-48 h-64 border rounded-2xl overflow-hidden relative hover:bg-gray-500/25">
-                <div class="add-icon">
-                    <i class="bi bi-plus-circle text-8xl opacity-50"></i>
-                </div>
-                <button type="button" class="btrpp-vii block w-full h-full inset-0 absolute z-10" onclick="showPopUpForm(this); addVals(this);"></button>
+            <div class="misi">
+
+            </div>
+        </div>
+        <div class="phtTeStAct border border-black">
+            <div class="phTeSt">
+                Photo
+            </div>
+            <div class="ActSch">
+                Akreditasi
             </div>
         </div>
     </section>
+    <div class="foo mb-96"></div>
     <section id="pop-upFormAdd" class="pop-upFormAdd hidden fixed w-1/2 max-h-full left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2  px-8 py-6 bg-white border border-black rounded-2xl overflow-auto z-50">
         <div class="mx-auto">
             <button id="btrpp" type="button" class="icon border border-black rounded-lg absolute top-[5%] right-[5%] -translate-x-[5%] -translate-y-[5%]" onclick="closePopUpForm(this)">

@@ -17,7 +17,7 @@
                     untuk dunia pendidikan yang lebih baik</p>
             </div>
             <div class="btnHrefQuick mt-10 flex flex-column items-center gap-12">
-                <a href=""
+                <a href="/profil"
                     class="hrefProfileSchool group bg-white  py-3 px-6 rounded-lg text-black text-sm font-bold hover:bg-white/90">
                     <p>Profil Sekolah</p>
                 </a>
