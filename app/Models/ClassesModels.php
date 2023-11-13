@@ -13,6 +13,6 @@ class ClassesModels extends Model
     protected $fillable = ['teacher_class', 'class', 'tag', 'description'];
     public function images()
     {
-        return $this->hasMany(ClassesImages::class, 'class_id', 'id');
+        return $this->hasMany(ClassesImages::class, 'class_id', 'class_id');
     }
 }

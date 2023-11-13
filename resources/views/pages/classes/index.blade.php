@@ -68,10 +68,10 @@
                                 <button class="editB border border-black bg-white p-2 rounded-lg hover:bg-gray-200">
                                     <i class="bi bi-pencil"></i>
                                 </button>
-                                <form action="{{ route('delClass', ['id' => $class->id]) }}" method="POST">
+                                <form action="{{ route('delClass', ['id' => $class->class_id]) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <input type="hidden" name="id" value="{{ $class->id }}">
+                                    <input type="hidden" name="id" value="{{ $class->class_id }}">
                                     <button class="delB border border-black bg-white p-2 rounded-lg hover:bg-gray-200">
                                         <i class="bi bi-trash3"></i>
                                     </button>
@@ -112,10 +112,10 @@
                             <button class="editB border border-black bg-white p-2 rounded-lg hover:bg-gray-200">
                                 <i class="bi bi-pencil"></i>
                             </button>
-                            <form action="{{ route('delClass', ['id' => $class->id]) }}" method="POST">
+                            <form action="{{ route('delClass', ['id' => $class->class_id]) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <input type="hidden" name="id" value="{{ $class->id }}">
+                                <input type="hidden" name="id" value="{{ $class->class_id }}">
                                 <button class="delB border border-black bg-white p-2 rounded-lg hover:bg-gray-200">
                                     <i class="bi bi-trash3"></i>
                                 </button>

@@ -86,11 +86,14 @@ class ClassesModelsController extends Controller
         if ($classes) {
             $classesImg = ClassesImages::create([
                 'name_files' => $imageName,
-                'class_id' => $classes->id, // Atur 'class_id' sesuai dengan id kelas yang baru dibuat
+                'class_id' => $classes->class_id, // Atur 'class_id' sesuai dengan id kelas yang baru dibuat
             ]);
-
-            $classes->images()->save($classesImg);
-            return redirect()->back()->with('status','Classes Added Successfully');
+            if ($classesImg) {
+                $classes->images()->save($classesImg);
+                return redirect()->back()->with('status','Classes and Images Added Successfully');
+            } else {
+                return redirect()->back()->with('status','Classes Added, Images Failed');
+            }
         } else {
             return redirect();
         }
