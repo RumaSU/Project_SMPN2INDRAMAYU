@@ -13,7 +13,7 @@
     <section class="teachers mt-12 text-center text-xl font-bold space-y-4">
         <div class="imgTe mx-auto w-72 relative group">
             <div class="aspect-square rounded-[100%] overflow-hidden border-4 p-2 relative">
-                <img src="assets/img/main/126465066756.jpg" alt="" class="w-full h-full object-cover object-center rounded-[100%]" onclick="openPopup('assets/img/main/126465066756.jpg')">
+                <img src="assets/img/main/126465066756.jpg" alt="" class="w-full h-full object-cover object-center rounded-[100%]" onclick="openPopup(this.src)">
             </div>
             <div class="editImgTe absolute right-[5%] top-[15%] -translate-x-[5%] -translate-y-[15%] opacity-0 transition-opacity group-hover:opacity-100">
                 <button class="editB border border-black bg-white p-2 rounded-lg hover:bg-gray-200">
@@ -63,8 +63,8 @@
                         <i class="bi bi-trash3"></i>
                     </button>
                 </div>
-                <img src="assets/img/dumb/imgtemp 3.jpg" alt="" class="supImg w-full h-full object-cover object-center" onclick="openPopup('assets/img/dumb/imgtemp 3.jpg')">
-                <div class="block w-full h-full absolute inset-0 group-hover:bg-black/30 transition-all" onclick="openPopup('assets/img/dumb/imgtemp 3.jpg')">
+                <img src="assets/img/dumb/imgtemp 3.jpg" alt="" class="supImg w-full h-full object-cover object-center" onclick="openPopup(this.src)">
+                <div class="block w-full h-full absolute inset-0 group-hover:bg-black/30 transition-all" onclick="openPopup(this.previousElementSibling.src)">
                     <p class="itemClass w-3/4 py-2 text-white text-center font-bold bg-blue-400 rounded-xl z-10 absolute -bottom-full left-1/2 translate-y-full -translate-x-1/2 transition-all group-hover:bottom-[5%] group-hover:-translate-y-[5%] hover:bg-cyan-500 cursor-pointer">
                         Test
                     </p>
