@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ChartController;
 use App\Http\Controllers\ClassesModelsController;
+use App\Http\Controllers\OsisModelsController;
 use App\Http\Controllers\ProfileModelsController;
 use App\Http\Controllers\SiswaModelsController;
 use App\Http\Controllers\StudentsModelsController;
@@ -41,6 +42,7 @@ Route::get('/kelas/siswa', [StudentsModelsController::class, 'index']) -> name('
 
 // Route profile
 Route::get('/profil', [ProfileModelsController::class,'index']);
+Route::get('/osis', [OsisModelsController::class,'index']);
 
 Route::view('/testing', 'pages.students.index');
 Route::view('/siswa', 'pages.students.index');

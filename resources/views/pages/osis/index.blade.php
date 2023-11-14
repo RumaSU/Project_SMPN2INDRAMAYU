@@ -3,7 +3,7 @@
 
 @endsection
 @section('content')
-    <section class="imgSchool-profiles relative">
+    <section class="imgOssool-profiles relative">
         <div class="img-profiles flex items-center justify-center relative text-center text-white h-96 bg-cover bg-center bg-no-repeat after:absolute after:top-0 after:left-0 after:bg-black/60 after:w-full after:h-full"
             style="background-image: url('assets/img/main/126465066756.jpg');">
             <div class="content relative z-10 selft-center">
@@ -24,19 +24,37 @@
         </div> --}}
         {{-- <div class="justBox border-2 border-black w-72 aspect-square bg-white/50 absolute z-10 left-1/2 top-[40%] -translate-x-1/2 -translate-y-[40%]"></div> --}}
         {{-- <div class="imgSch mx-auto w-72 group text-center text-xl font-bold absolute z-10 left-1/2 top-3/4 -translate-x-1/2 -translate-y-3/4"> --}}
-        <div class="imgSch mx-auto w-72 -mt-36 group text-center text-xl font-bold relative">
+        <div class="imgOss mx-auto w-72 -mt-36 group text-center text-xl font-bold relative">
             <div class="aspect-square rounded-[100%] overflow-hidden border-4 p-2 bg-white relative">
                 <img src="assets/img/main/126465066756.jpg" alt="" class="w-full h-full object-cover object-center rounded-[100%]" onclick="openPopup(this.src)">
             </div>
-            <div class="editimgSch absolute right-[5%] top-[15%] -translate-x-[5%] -translate-y-[15%] opacity-0 transition-opacity group-hover:opacity-100">
+            <div class="editimgOss absolute right-[5%] top-[15%] -translate-x-[5%] -translate-y-[15%] opacity-0 transition-opacity group-hover:opacity-100">
                 <button class="editB border border-black bg-white p-2 rounded-lg hover:bg-gray-200">
                     <i class="bi bi-pencil"></i>
                 </button>
             </div>
         </div>
-        <div class="titleProfiles text-center font-bold mt-12">
-            <h2 class="text-4xl">SMP NEGERI 2 INDRAMAYU</h2>
-            <h3 class="text-2xl">INDRAMAYU - JAWABARAT</h3>
+        <div class="descEks w-3/4 mx-auto text-center text-xl mt-12 relative border border-black group">
+            <p class="relative border border-black">
+                Osis adalah wadah Pembinaan Kesiswaan di sekolah untuk pengembangan minat, bakat serta potensi Peserta Didik.
+                Osis adalah wadah Pembinaan Kesiswaan di sekolah untuk pengembangan minat, bakat serta potensi Peserta Didik.
+                Osis adalah wadah Pembinaan Kesiswaan di sekolah untuk pengembangan minat, bakat serta potensi Peserta Didik.
+                Osis adalah wadah Pembinaan Kesiswaan di sekolah untuk pengembangan minat, bakat serta potensi Peserta Didik.
+                Osis adalah wadah Pembinaan Kesiswaan di sekolah untuk pengembangan minat, bakat serta potensi Peserta Didik.
+                Osis adalah wadah Pembinaan Kesiswaan di sekolah untuk pengembangan minat, bakat serta potensi Peserta Didik.
+                Osis adalah wadah Pembinaan Kesiswaan di sekolah untuk pengembangan minat, bakat serta potensi Peserta Didik.
+                Osis adalah wadah Pembinaan Kesiswaan di sekolah untuk pengembangan minat, bakat serta potensi Peserta Didik.
+                {{-- <div class="editdescCtn absolute z-10 -right-1/2 lg:right-0 -top-1/2 translate-x-[5%] lg:translate-x-0 -translate-y-1/2 invisible opacity-0 transition-all group-hover:visible group-hover:opacity-100">
+                    <button class="editB p-2 after:absolute after:w-full after:h-full after:group-hover:border-2 after:rounded-xl after:group-hover:border-sky-400 after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:blur-[1px] after:z-10">
+                        <i class="bi bi-pencil"></i>
+                    </button>
+                </div> --}}
+            </p>
+            <div class="editdescCtn absolute z-10 -right-0 lg:right-0 -top-1/4 translate-x-0 lg:translate-x-0 -translate-y-0 invisible opacity-0 transition-all group-hover:visible group-hover:opacity-100">
+                <button class="editB p-2 after:absolute after:w-full after:h-full after:group-hover:border-2 after:rounded-xl after:group-hover:border-sky-400 after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:blur-[1px] after:z-10">
+                    <i class="bi bi-pencil"></i>
+                </button>
+            </div>
         </div>
     </section>
     <section class="viMi-Schools mt-24 flex flex-col lg:flex-row items-center justify-center lg:px-48">
