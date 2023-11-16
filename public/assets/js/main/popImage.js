@@ -19,6 +19,14 @@ function closePopup() {
     const image = document.getElementById('popupImage');
     const overlayPopUp = document.getElementById('overlayPopUp');
     
+    // if(!popup.target == popup || !event.target == event) {
+    //     document.body.style.overflow = "";
+    //     overlayPopUp.classList.add('hidden');
+    //     popup.style.top = "200%";
+    //     popup.style.opacity = "0";
+    //     popup.style.visibility = "hidden";
+    // }
+    
     document.body.style.overflow = "";
     overlayPopUp.classList.add('hidden');
     popup.style.top = "200%";

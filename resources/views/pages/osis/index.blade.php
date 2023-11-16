@@ -7,7 +7,7 @@
         <div class="img-profiles flex items-center justify-center relative text-center text-white h-96 bg-cover bg-center bg-no-repeat after:absolute after:top-0 after:left-0 after:bg-black/60 after:w-full after:h-full"
             style="background-image: url('assets/img/main/126465066756.jpg');">
             <div class="content relative z-10 selft-center">
-                <h1 class="text-4xl font-bold">Profil Sekolah </h1>
+                <h1 class="text-4xl font-bold">Osis </h1>
             </div>
         </div>
         {{-- <div class="profiles text-center text-xl font-bold space-y-4 absolute z-10 left-1/2 bottom-0 -translate-x-1/2" >
@@ -34,26 +34,73 @@
                 </button>
             </div>
         </div>
-        <div class="descEks w-3/4 mx-auto text-center text-xl mt-12 relative border border-black group">
-            <p class="relative border border-black">
-                Osis adalah wadah Pembinaan Kesiswaan di sekolah untuk pengembangan minat, bakat serta potensi Peserta Didik.
-                Osis adalah wadah Pembinaan Kesiswaan di sekolah untuk pengembangan minat, bakat serta potensi Peserta Didik.
-                Osis adalah wadah Pembinaan Kesiswaan di sekolah untuk pengembangan minat, bakat serta potensi Peserta Didik.
-                Osis adalah wadah Pembinaan Kesiswaan di sekolah untuk pengembangan minat, bakat serta potensi Peserta Didik.
-                Osis adalah wadah Pembinaan Kesiswaan di sekolah untuk pengembangan minat, bakat serta potensi Peserta Didik.
-                Osis adalah wadah Pembinaan Kesiswaan di sekolah untuk pengembangan minat, bakat serta potensi Peserta Didik.
-                Osis adalah wadah Pembinaan Kesiswaan di sekolah untuk pengembangan minat, bakat serta potensi Peserta Didik.
-                Osis adalah wadah Pembinaan Kesiswaan di sekolah untuk pengembangan minat, bakat serta potensi Peserta Didik.
-                {{-- <div class="editdescCtn absolute z-10 -right-1/2 lg:right-0 -top-1/2 translate-x-[5%] lg:translate-x-0 -translate-y-1/2 invisible opacity-0 transition-all group-hover:visible group-hover:opacity-100">
-                    <button class="editB p-2 after:absolute after:w-full after:h-full after:group-hover:border-2 after:rounded-xl after:group-hover:border-sky-400 after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:blur-[1px] after:z-10">
+        <div class="descEks  mt-12 py-6 group">
+            <div class="w-3/4 mx-auto text-center text-xl relative">
+                <p class="line-clamp-6">
+                    Osis adalah wadah Pembinaan Kesiswaan di sekolah untuk pengembangan minat, bakat serta potensi Peserta Didik.
+                    Osis adalah wadah Pembinaan Kesiswaan di sekolah untuk pengembangan minat, bakat serta potensi Peserta Didik.
+                    Osis adalah wadah Pembinaan Kesiswaan di sekolah untuk pengembangan minat, bakat serta potensi Peserta Didik.
+                    Osis adalah wadah Pembinaan Kesiswaan di sekolah untuk pengembangan minat, bakat serta potensi Peserta Didik.
+                    Osis adalah wadah Pembinaan Kesiswaan di sekolah untuk pengembangan minat, bakat serta potensi Peserta Didik.
+                    Osis adalah wadah Pembinaan Kesiswaan di sekolah untuk pengembangan minat, bakat serta potensi Peserta Didik.
+                    Osis adalah wadah Pembinaan Kesiswaan di sekolah untuk pengembangan minat, bakat serta potensi Peserta Didik.
+                    Osis adalah wadah Pembinaan Kesiswaan di sekolah untuk pengembangan minat, bakat serta potensi Peserta Didik.
+                    {{-- <div class="editdescCtn absolute z-10 -right-1/2 lg:right-0 -top-1/2 translate-x-[5%] lg:translate-x-0 -translate-y-1/2 invisible opacity-0 transition-all group-hover:visible group-hover:opacity-100">
+                        <button class="editB p-2 after:absolute after:w-full after:h-full after:group-hover:border-2 after:rounded-xl after:group-hover:border-sky-400 after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:blur-[1px] after:z-10">
+                            <i class="bi bi-pencil"></i>
+                        </button>
+                    </div> --}}
+                </p>
+                <div class="editdescCtn scrollbar absolute z-10 -right-[5%] -top-0 translate-x-[5%] -translate-y-0 lg:-right-[2%] lg:-top-1/4 lg:translate-x-[2%] lg:translate-y-1/4 invisible opacity-0 transition-all group-hover:visible group-hover:opacity-100">
+                    <button class="editB p-2 relative after:absolute after:w-full after:h-full after:group-hover:border-2 after:rounded-xl after:group-hover:border-sky-400 after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:blur-[1px] after:z-10">
                         <i class="bi bi-pencil"></i>
                     </button>
-                </div> --}}
-            </p>
-            <div class="editdescCtn absolute z-10 -right-0 lg:right-0 -top-1/4 translate-x-0 lg:translate-x-0 -translate-y-0 invisible opacity-0 transition-all group-hover:visible group-hover:opacity-100">
-                <button class="editB p-2 after:absolute after:w-full after:h-full after:group-hover:border-2 after:rounded-xl after:group-hover:border-sky-400 after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:blur-[1px] after:z-10">
-                    <i class="bi bi-pencil"></i>
-                </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="principle mt-32 flex flex-wrap justify-center items-center gap-[75px]">
+        <div class="photo-principle my-auto" onclick="openPopup(this.querySelector('img').src)">
+            <div class="img-pri relative p-4 w-[280px] h-[400px]">
+                <div class="blur-effect absolute w-[250px] h-[370px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#AFAFAF]"
+                    style="background: linear-gradient(30deg, rgba(255, 255, 255, 0.00) 50%, rgba(255, 255, 255, 0.00) 85.94%, #FFF 95.31%, #FFF 100%), linear-gradient(331deg, rgba(255, 255, 255, 0.00) 50%, rgba(255, 255, 255, 0.00) 85.56%, #FFF 94.83%, #FFF 99.47%), linear-gradient(0deg, rgba(255, 255, 255, 0.00) 50%, rgba(255, 255, 255, 0.00) 50%, rgba(255, 255, 255, 0.00) 94.88%, #FFF 100%), linear-gradient(90deg, rgba(255, 255, 255, 0.00) 50%, rgba(255, 255, 255, 0.00) 50.01%, rgba(255, 255, 255, 0.00) 94.88%, #FFF 100%), linear-gradient(270deg, rgba(255, 255, 255, 0.00) 50%, rgba(255, 255, 255, 0.00) 50%, rgba(255, 255, 255, 0.00) 94.88%, #FFF 100%), linear-gradient(209deg, rgba(255, 255, 255, 0.00) 50%, rgba(255, 255, 255, 0.00) 50.01%, #FFF 87.5%, #FFF 100%), linear-gradient(151deg, rgba(255, 255, 255, 0.00) 50%, rgba(255, 255, 255, 0.88) 83.33%, #FFF 89.56%, #FFF 100%);">
+                </div>
+                <img src="assets/img/dumb/imgtemp 5.jpg" class="object-center object-cover w-full h-full" alt="">
+            </div>
+        </div>
+        <div
+            class="quote-principle align-self-center self-center p-4 w-[600px] h-[400px] lg:w-[800px] lg:h-[600px] shadow-xl rounded-xl relative ">
+            <div class="icon-quote absolute left-[8%] top-[8%] -translate-x-[8%] -translate-y-[8%]">
+                <img src="assets/img/icon/quote.png" class="w-[75px] h-[75px]" alt="">
+            </div>
+            <div
+                class="quote mt-24 lg:mt-32 w-3/4 h-1/2 mx-auto text-base lg:text-lg border-2 border-dashed border-black/40 p-4 rounded-2xl">
+                <div class="h-full flex justify-center items-center relative group">
+                    <blockquote class="line-clamp-6">
+                        Lorem ipsum dolor amet
+                        Osis adalah wadah Pembinaan Kesiswaan di sekolah untuk pengembangan minat, bakat serta potensi Peserta Didik.
+                        Osis adalah wadah Pembinaan Kesiswaan di sekolah untuk pengembangan minat, bakat serta potensi Peserta Didik.
+                        Osis adalah wadah Pembinaan Kesiswaan di sekolah untuk pengembangan minat, bakat serta potensi Peserta Didik.
+                        Osis adalah wadah Pembinaan Kesiswaan di sekolah untuk pengembangan minat, bakat serta potensi Peserta Didik.
+                        Osis adalah wadah Pembinaan Kesiswaan di sekolah untuk pengembangan minat, bakat serta potensi Peserta Didik.
+                        Osis adalah wadah Pembinaan Kesiswaan di sekolah untuk pengembangan minat, bakat serta potensi Peserta Didik.
+                        Osis adalah wadah Pembinaan Kesiswaan di sekolah untuk pengembangan minat, bakat serta potensi Peserta Didik.
+                        Osis adalah wadah Pembinaan Kesiswaan di sekolah untuk pengembangan minat, bakat serta potensi Peserta Didik.
+                    </blockquote>
+                    <div class="bSQutoe absolute top-0 right-0 -translate-y-0 -translate-x-0 hidden group-hover:block">
+                        <button type="button" class="p-2 relative after:absolute after:w-full after:h-full after:group-hover:border-2 after:rounded-xl after:group-hover:border-sky-400 after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:blur-[1px] after:z-10">
+                            <i class="bi bi-pencil"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="detail-person w-3/4 mt-8 mx-auto">
+                <div class="name-person text-[15px] lg:text-[26px] text-[#4f4f4f]">
+                    <strong>Name person</strong>
+                </div>
+                <div class="position-person text-[12px] lg:text-[16px] text-[#808080]">
+                    Pembina Osis
+                </div>
             </div>
         </div>
     </section>

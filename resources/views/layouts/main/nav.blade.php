@@ -35,7 +35,7 @@
                                 <a href="/kelas" class="hover:text-gray-400">Siswa</a>
                             </div>
                             <div class="py-1">
-                                <a href="" class="hover:text-gray-400">Osis</a>
+                                <a href="/osis" class="hover:text-gray-400">Osis</a>
                             </div>
                             <div class="py-1">
                                 <a href="" class="hover:text-gray-400">Ekstrakurikuler</a>
@@ -97,7 +97,7 @@
                                 <a href="/kelas" class="hover:text-gray-400">Siswa</a>
                             </div>
                             <div class="py-1">
-                                <a href="" class="hover:text-gray-400">Osis</a>
+                                <a href="/osis" class="hover:text-gray-400">Osis</a>
                             </div>
                             <div class="py-1">
                                 <a href="" class="hover:text-gray-400">Ekstrakurikuler</a>
