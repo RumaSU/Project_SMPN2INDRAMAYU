@@ -191,6 +191,9 @@
         </div>
     </section>
     <hr class="mt-28 mx-auto w-3/4 border-[1.5px] border-black/40 rounded-2xl">
+    <section class="mt-28">
+        
+    </section>
     <section class="mt-20">
         <div class="shrcRcEksTe relative h-96">
             <div class="img-bg flex items-center justify-center relative text-center text-white h-96 bg-cover bg-top bg-no-repeat after:absolute after:top-0 after:left-0 after:bg-blue-700/80 after:w-full after:h-full"
