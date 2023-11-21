@@ -1,0 +1,13 @@
+.phSh {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    grid-template-rows: repeat(7, minmax(0, 1fr));
+}
+
+.phSh img {
+    grid-area: 1 / 2 / 7 / 8;
+}
+
+.phSh .ActSch {
+    grid-area: 6 / 1 / 8 / 2;
+}
