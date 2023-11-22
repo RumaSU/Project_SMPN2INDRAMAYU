@@ -24,12 +24,13 @@
         @include('layouts.main.footer')
     </footer> --}}
     
-    <div id="imagePopup" class="fixed overflow-hidden z-50 w-[80%] h-[80%] bg-white rounded-md group" style="top: 200%; left:50%; transform:translate(-50%, -50%); visibility: hidden; opacity: 0; transition: all .3s ease-in-out">
+    {{-- <div id="imagePopup" class="fixed overflow-hidden z-50 w-[80%] h-[80%] bg-white rounded-md group" style="top: 200%; left:50%; transform:translate(-50%, -50%); visibility: hidden; opacity: 0; transition: all .3s ease-in-out"> --}}
+    <div id="imagePopup" class="fixed overflow-hidden z-50 w-full h-full md:w-[80%] md:h-[80%] bg-white rounded-md group" style="top: 200%; left:50%; transform:translate(-50%, -50%); visibility: hidden; opacity: 0; transition: all .3s ease-in-out">
         <div class="theDetailImagePopUp select-none">
             <div class="thTiImgPopup bg-white/[85%] absolute flex items-center w-full py-4 px-8 shadow-sm shadow-black -top-full left-0 -translate-x-0 -translate-y-0 transition-all group-hover:-top-0">
                 <div class="lTDetails w-full">
                     <div class="TimgPopUp flex items-center">
-                        <h2 class="text-2xl tracking-tighter font-bold pr-4 border-r border-black">Judul Gambar</h2>
+                        <h2 class="text-xl tracking-tighter font-bold pr-4 border-r border-black">Judul Gambar</h2>
                         <a href="" class="seeFullImage pl-4 text-xs text-blue-700">See Full Image</a>
                     </div>
                     <div class="postByImgPopup">
@@ -42,12 +43,12 @@
                 <div class="button-closeEdit flex items-center gap-4 text-xl rounded-xl text-black">
                     <div class="editB">
                         <a href="" class="flex items-center px-1 font-bold rounded-md hover:text-blue-700">
-                            <i class="bi bi-pencil-fill bg-white rounded-xl cursor-pointer"></i>
+                            <i class="bi bi-pencil-fill rounded-xl cursor-pointer"></i>
                             <p class="text-sm px-2">Edit</p>
                         </a>
                     </div>
                     <div class="close-btn" onclick="closePopup()">
-                        <i class="bi bi-x text-5xl bg-white rounded-xl cursor-pointer hover:opacity-50" onclick="closePopup()"></i>
+                        <i class="bi bi-x text-5xl rounded-xl cursor-pointer hover:opacity-50" onclick="closePopup()"></i>
                     </div>
                 </div>
             </div>
@@ -66,8 +67,8 @@
                 <i class="bi bi-chevron-right py-4 px-1 cursor-pointer relative after:absolute after:w-full after:h-full after:rounded-xl after:blur-sm after:top-0 after:left-0 after:hover:border-2 after:hover:border-sky-500 after:transition-all"></i>
             </div>
         </div>
-        <div class="mIPopup w-[70%] h-full mx-auto">
-            <img src="" alt="" id="popupImage" class="w-auto h-full m-auto">
+        <div class="mIPopup w-[90%] md:w-[70%] h-full mx-auto">
+            <img src="" alt="" id="popupImage" class="w-full h-full object-contain m-auto">
         </div>
     </div>
     <div id="overlayPopUp" class="overlayPopUp hidden w-full h-full fixed left-1/2 top-1/2 bg-black/30 -translate-x-1/2 -translate-y-1/2 z-40"></div>

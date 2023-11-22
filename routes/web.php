@@ -62,3 +62,5 @@ Route::get('/register/data', function () {
 });
 
 Route::get('/chart', [ChartController::class, 'index']);
+
+Route::view('/temp', 'pages.test.index');

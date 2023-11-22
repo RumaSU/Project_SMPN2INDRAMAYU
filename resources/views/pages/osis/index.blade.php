@@ -146,7 +146,7 @@
                         </div>
                     </div>
                     <div class="liSocmedEks">
-                        <ul class="flex items-center gap-2 text-2xl">
+                        <ul class="flex items-center gap-2 text-2xl opacity-60">
                             <li>
                                 <a href="" class="icnSocmedEks hover:opacity-50"><i class="bi bi-facebook"></i></a>
                             </li>
@@ -192,12 +192,60 @@
     </section>
     <hr class="mt-28 mx-auto w-3/4 border-[1.5px] border-black/40 rounded-2xl">
     <section class="mt-28">
-        
+        <div class="galOsis w-[85%] mx-auto">
+            <div class="tlCat-galOsis flex justify-between items-center">
+                <div class="tlGal text-2xl font-bold">
+                    <h2>Galeri</h2>
+                </div>
+                <div class="cat-galOsis flex items-center gap-6 text-2xl font-bold">
+                    <div class="actCat-galOsis flex items-center space-x-2"> 
+                        <i class="colActCat bi bi-circle-fill text-green-500"></i>
+                        <p>Kegiatan</p>
+                    </div>
+                    <div class="creCat-galOsis flex items-center space-x-2">
+                        <i class="colActCat bi bi-circle-fill text-blue-500"></i>
+                        <p>Karya</p>
+                    </div>
+                </div>
+            </div>
+            <div class="liImg-galOsis mt-12">
+                <div class="grid grid-cols-3 gap-8">
+                    <div class="contItem-imgGalOsis rounded-2xl overflow-hidden relative">
+                        <div class="colItemCat-galOsis absolute right-[2%] top-[2%] -translate-x-[2%] -translate-y-2[%]">
+                            <i class="colActCat bi bi-circle-fill text-green-500  text-2xl"></i>
+                        </div>
+                        <img src="assets/img/dumb/imgtemp 4.jpg" alt="" class="w-full h-full object-cover object-center" onclick="openPopup(this.src)">
+                        <div class="sumItem-galOsis w-[90%] px-6 py-3 h-20 rounded-xl space-y-1 bg-white absolute left-1/2 bottom-[5%] -translate-x-1/2 -translate-y-[5%]">
+                            <div class="dateItem-galOsis text-sm text-blue-600">
+                                <p class="tracking-tight">2 Agustus 2017</p>
+                            </div>
+                            <div class="tiItem-galOsis text-xl font-bold">
+                                <h3 class="line-clamp-1">Ini judul gambarnya asdada ad asdasd asd asd asd asd asd asd asd asd sa</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contItem-imgGalOsis rounded-2xl overflow-hidden relative">
+                        <div class="colItemCat-galOsis absolute right-[2%] top-[2%] -translate-x-[2%] -translate-y-2[%]">
+                            <i class="colActCat bi bi-circle-fill text-green-500  text-2xl"></i>
+                        </div>
+                        <img src="assets/img/dumb/imgtemp 4.jpg" alt="" class="w-full h-full object-cover object-center" onclick="openPopup(this.src)">
+                        <div class="sumItem-galOsis w-[90%] px-6 py-3 h-20 rounded-xl space-y-1 bg-white absolute left-1/2 bottom-[5%] -translate-x-1/2 -translate-y-[5%]">
+                            <div class="dateItem-galOsis text-sm text-blue-600">
+                                <p class="tracking-tight">2 Agustus 2017</p>
+                            </div>
+                            <div class="tiItem-galOsis text-xl font-bold">
+                                <h3 class="line-clamp-1">Ini judul gambarnya asdada ad asdasd asd asd asd asd asd asd asd asd sa</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
     <section class="mt-20">
         <div class="shrcRcEksTe relative h-96">
             <div class="img-bg flex items-center justify-center relative text-center text-white h-96 bg-cover bg-top bg-no-repeat after:absolute after:top-0 after:left-0 after:bg-blue-700/80 after:w-full after:h-full"
-                style="background-image: url('assets/img/main/126465066756.jpg');">
+                style="background-image: url('assets/img/main/vecteezy_abstract-black-and-white-pattern-like-psychedelic_.jpg');">
                 <div class="content relative z-10 self-center">
                     <div class="ctnShrc flex flex-col lg:flex-row justify-center items-center gap-8 relative z-10 text-white h-full p-12">
                         <div class="rngKl flex gap-4 justify-center items-center max-w-[450px]">
