@@ -53,4 +53,12 @@ Route::get('/login', function () {
     return view('pages.login.login.index');
 });
 
+Route::get('/register', function () {
+    return view('pages.login.register.email.index');
+});
+
+Route::get('/register/data', function () {
+    return view('pages.login.register.dataUser.index');
+});
+
 Route::get('/chart', [ChartController::class, 'index']);
