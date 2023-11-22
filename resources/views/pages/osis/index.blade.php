@@ -59,8 +59,9 @@
             </div>
         </div>
     </section>
-    <section class="principle mt-32 flex flex-wrap justify-center items-center gap-[75px]">
-        <div class="photo-principle my-auto" onclick="openPopup(this.querySelector('img').src)">
+    <hr class="mt-28 mx-auto w-[90%] border-[1.5px] border-black/40 rounded-2xl">
+    <section class="cTea mt-32 flex flex-wrap justify-center items-center gap-[75px]">
+        <div class="photo-cTea my-auto" onclick="openPopup(this.querySelector('img').src)">
             <div class="img-pri relative p-4 w-[280px] h-[400px]">
                 <div class="blur-effect absolute w-[250px] h-[370px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#AFAFAF]"
                     style="background: linear-gradient(30deg, rgba(255, 255, 255, 0.00) 50%, rgba(255, 255, 255, 0.00) 85.94%, #FFF 95.31%, #FFF 100%), linear-gradient(331deg, rgba(255, 255, 255, 0.00) 50%, rgba(255, 255, 255, 0.00) 85.56%, #FFF 94.83%, #FFF 99.47%), linear-gradient(0deg, rgba(255, 255, 255, 0.00) 50%, rgba(255, 255, 255, 0.00) 50%, rgba(255, 255, 255, 0.00) 94.88%, #FFF 100%), linear-gradient(90deg, rgba(255, 255, 255, 0.00) 50%, rgba(255, 255, 255, 0.00) 50.01%, rgba(255, 255, 255, 0.00) 94.88%, #FFF 100%), linear-gradient(270deg, rgba(255, 255, 255, 0.00) 50%, rgba(255, 255, 255, 0.00) 50%, rgba(255, 255, 255, 0.00) 94.88%, #FFF 100%), linear-gradient(209deg, rgba(255, 255, 255, 0.00) 50%, rgba(255, 255, 255, 0.00) 50.01%, #FFF 87.5%, #FFF 100%), linear-gradient(151deg, rgba(255, 255, 255, 0.00) 50%, rgba(255, 255, 255, 0.88) 83.33%, #FFF 89.56%, #FFF 100%);">
@@ -69,7 +70,7 @@
             </div>
         </div>
         <div
-            class="quote-principle align-self-center self-center p-4 w-[600px] h-[400px] lg:w-[800px] lg:h-[600px] shadow-xl rounded-xl relative ">
+            class="quote-cTea align-self-center self-center p-4 w-[600px] h-[400px] lg:w-[800px] lg:h-[600px] lg:shadow-xl rounded-xl relative ">
             <div class="icon-quote absolute left-[8%] top-[8%] -translate-x-[8%] -translate-y-[8%]">
                 <img src="assets/img/icon/quote.png" class="w-[75px] h-[75px]" alt="">
             </div>
@@ -104,107 +105,94 @@
             </div>
         </div>
     </section>
-    <section class="viMi-Schools mt-24 flex flex-col lg:flex-row items-center justify-center lg:px-48">
-        <div class="visiMisi mx-auto w-1/2">
-            <div class="titleViMi w-48 py-4 px-6 bg-blue-400 text-center text-white font-bold rounded-2xl">
-                VISI MISI
-            </div>
-            <div class="visi group relative mt-2 ml-6 inline-block">
-                <div class="VisiCtn cursor-default select-none">
-                    <p class="">Lorem Ipsum Dolor Amet</p>
-                </div>
-                <div class="editVisiCtn absolute z-10 -right-[15%] -top-1/3 translate-x-[15%] -translate-y-1/3 invisible opacity-0 transition-all group-hover:visible group-hover:opacity-100">
-                    <button class="editB px-2 py-1 after:absolute after:w-full after:h-full after:group-hover:border-2 after:rounded-xl after:group-hover:border-sky-400 after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:blur-[1px] after:z-10">
-                        <i class="bi bi-pencil"></i>
-                    </button>
-                </div>
-            </div>
-            <div class="misi mt-4 text-sm space-y-6 leading-4 select-none">
-                <div class="misi-1 relative group pl-2 flex justify-evenly items-center gap-4">
-                    <i class="bi bi-check-circle-fill text-3xl text-blue-400"></i>
-                    <p>Lorem ipsum dolor sit amet, consectur adipiscing elit, sed do eiusmod tempor incidunt ut labore et dolore magna aliqua</p>
-                    <div class="editMs1Ctn absolute z-10 -right-[5%] lg:right-0 -top-1/3 translate-x-[5%] lg:translate-x-0 -translate-y-1/3 invisible opacity-0 transition-all group-hover:visible group-hover:opacity-100">
-                        <button class="editB p-2 after:absolute after:w-full after:h-full after:group-hover:border-2 after:rounded-xl after:group-hover:border-sky-400 after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:blur-[1px] after:z-10">
-                            <i class="bi bi-pencil"></i>
-                        </button>
+    <section class="deSum-Eksl mt-24">
+        <div class="2xl:w-3/4 p-4 py-10 mx-auto bg-gray-100 2xl:rounded-xl">
+            <div class="datSumEks flex flex-col md:flex-row justify-center items-center h-full gap-6 select-none">
+                <div class="it1-leEks w-64 lg:w-54 p-6 rounded-lg hover:bg-gray-300/60">
+                    <div class="tdat relative group">
+                        <strong class="tiLeEks">Ketua</strong>
+                        <div class="pcEdDatLeEks absolute -right-[10%] -top-1/4 -translate-x-[10%] -translate-y-1/4">
+                            <button type="button" class="p-2 relative after:absolute after:w-full after:h-full after:group-hover:border-2 after:rounded-xl after:group-hover:border-sky-400 after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:blur-[1px] after:z-10">
+                                <i class="bi bi-pencil"></i>
+                            </button>
+                        </div>
                     </div>
-                </div>
-                <div class="misi-2 relative group pl-2 flex justify-evenly items-center gap-4">
-                    <i class="bi bi-check-circle-fill text-3xl text-blue-400"></i>
-                    <p>Lorem ipsum dolor sit amet, consectur adipiscing elit, sed do eiusmod tempor incidunt ut labore et dolore magna aliqua</p>
-                    <div class="editMs1Ctn absolute z-10 -right-[5%] lg:right-0 -top-1/3 translate-x-[5%] lg:translate-x-0 -translate-y-1/3 invisible opacity-0 transition-all group-hover:visible group-hover:opacity-100">
-                        <button class="editB p-2 after:absolute after:w-full after:h-full after:group-hover:border-2 after:rounded-xl after:group-hover:border-sky-400 after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:blur-[1px] after:z-10">
-                            <i class="bi bi-pencil"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="misi-3 relative group pl-2 flex justify-evenly items-center gap-4">
-                    <i class="bi bi-check-circle-fill text-3xl text-blue-400"></i>
-                    <p>Lorem ipsum dolor sit amet, consectur adipiscing elit, sed do eiusmod tempor incidunt ut labore et dolore magna aliqua</p>
-                    <div class="editMs1Ctn absolute z-10 -right-[5%] lg:right-0 -top-1/3 translate-x-[5%] lg:translate-x-0 -translate-y-1/3 invisible opacity-0 transition-all group-hover:visible group-hover:opacity-100">
-                        <button class="editB p-2 after:absolute after:w-full after:h-full after:group-hover:border-2 after:rounded-xl after:group-hover:border-sky-400 after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:blur-[1px] after:z-10">
-                            <i class="bi bi-pencil"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="misi-4 relative group pl-2 flex justify-evenly items-center gap-4">
-                    <i class="bi bi-check-circle-fill text-3xl text-blue-400"></i>
-                    <p>Lorem ipsum dolor sit amet, consectur adipiscing elit, sed do eiusmod tempor incidunt ut labore et dolore magna aliqua</p>
-                    <div class="editMs1Ctn absolute z-10 -right-[5%] lg:right-0 -top-1/3 translate-x-[5%] lg:translate-x-0 -translate-y-1/3 invisible opacity-0 transition-all group-hover:visible group-hover:opacity-100">
-                        <button class="editB p-2 after:absolute after:w-full after:h-full after:group-hover:border-2 after:rounded-xl after:group-hover:border-sky-400 after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:blur-[1px] after:z-10">
-                            <i class="bi bi-pencil"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="misi-5 relative group pl-2 flex justify-evenly items-center gap-4">
-                    <i class="bi bi-check-circle-fill text-3xl text-blue-400"></i>
-                    <p>Lorem ipsum dolor sit amet, consectur adipiscing elit, sed do eiusmod tempor incidunt ut labore et dolore magna aliqua</p>
-                    <div class="editMs1Ctn absolute z-10 -right-[5%] lg:right-0 -top-1/3 translate-x-[5%] lg:translate-x-0 -translate-y-1/3 invisible opacity-0 transition-all group-hover:visible group-hover:opacity-100">
-                        <button class="editB p-2 after:absolute after:w-full after:h-full after:group-hover:border-2 after:rounded-xl after:group-hover:border-sky-400 after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:blur-[1px] after:z-10">
-                            <i class="bi bi-pencil"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="phtShAct w-1/2 relative select-none">
-            <div class="phSh mx-auto border-gray aspect-square absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-                <img src="assets/img/main/126465066756.jpg" alt="" class="w-full h-full object-cover object-center rounded-2xl shadow-xl shadow-gray-500" onclick="openPopup(this.src)">
-                <div class="ActSch text-center flex justify-center items-center shadow-md shadow-black p-3 w-32 aspect-square bg-sky-400 rounded-2xl border absolute -left-[25%] -bottom-[12.5%] translate-x-[25%] translate-y-[12.5%]">
-                    {{-- <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"> --}}
-                    <div class="relative z-10 space-y-4 text-white">
-                        <p class="relative text-sm font-bold">Akreditasi</p>
-                        <p class="Acdts relative text-6xl font-bold">
-                            A
+                    <div class="it1-datLe ">
+                        <p class="nmeLeEks leading-4 max-w-[12rem] text-sm">
+                            @{{Muhammad Elfaz Sulton}}
                         </p>
                     </div>
-                    <i class="bi bi-award text-7xl text-sky-500 absolute left-0 top-0 -translate-x-0 -translate-y-0"></i>
+                </div>
+                <div class="it2-memEks w-64 lg:w-54 p-6 rounded-lg hover:bg-gray-300/60">
+                    <div class="tdat relative group">
+                        <strong class="tiLeEks">Anggota</strong>
+                        <div class="pcEdDatLeEks absolute -right-[10%] -top-1/4 -translate-x-[10%] -translate-y-1/4">
+                            <button type="button" class="p-2 relative after:absolute after:w-full after:h-full after:group-hover:border-2 after:rounded-xl after:group-hover:border-sky-400 after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:blur-[1px] after:z-10">
+                                <i class="bi bi-pencil"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="it2-datMem">
+                        <p class="nmeLeEks text-sm pr-6">@{{Total}} Anggota</p>
+                    </div>
+                </div>
+                <div class="it3-scmeEks w-64 lg:w-54 p-6 rounded-lg hover:bg-gray-300/60">
+                    <div class="tdat relative group">
+                        <strong class="tiLeEks">Sosial Media</strong>
+                        <div class="pcEdDatLeEks absolute left-full top-1/2 -translate-x-full -translate-y-1/2">
+                            <button type="button" class="p-2 relative after:absolute after:w-full after:h-full after:group-hover:border-2 after:rounded-xl after:group-hover:border-sky-400 after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:blur-[1px] after:z-10">
+                                <i class="bi bi-pencil"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="liSocmedEks">
+                        <ul class="flex items-center gap-2 text-2xl">
+                            <li>
+                                <a href="" class="icnSocmedEks hover:opacity-50"><i class="bi bi-facebook"></i></a>
+                            </li>
+                            <li>
+                                <a href="" class="icnSocmedEks hover:opacity-50"><i class="bi bi-instagram"></i></a>
+                            </li>
+                            <li>
+                                <a href="" class="icnSocmedEks hover:opacity-50"><i class="bi bi-twitter"></i></a>
+                            </li>
+                            <li>
+                                <a href="" class="icnSocmedEks hover:opacity-50"><i class="bi bi-tiktok"></i></a>
+                            </li>
+                            <li>
+                                <a href="" class="icnSocmedEks hover:opacity-50"><i class="bi bi-youtube"></i></a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
     <hr class="mt-28 mx-auto w-3/4 border-[1.5px] border-black/40 rounded-2xl">
-    <section class="mt-12">
-        <div class="flex justify-center items-center gap-24">
-            <div class="npsnSch flex gap-4">
-                <div class="imgIcP w-20">
-                    <img src="assets/img/icon/pen.png" alt="">
+    <section class="mt-8">
+        <div class="strOrg px-24">
+            <div class="chrt-stcOrgEks">
+                <div class="titleChrt">
+                    <div class="tSct w-fit py-3 px-6 bg-blue-400 rounded-xl text-white font-bold text-2xl">
+                        <h2>Struktur Organisasi</h2>
+                    </div>
                 </div>
-                <div class="dctnNpsn max-w-[11rem] flex flex-col justify-between">
-                    <p class="text-xl font-bold"> 20216018 </p>
-                    <p class="text-xs leading-3">Nomor Pokok Sekolah Nasional (NPSN)</p>
-                </div>
-            </div>
-            <div class="arSch flex gap-4">
-                <div class="imgIcLr w-20">
-                    <img src="assets/img/icon/layer.png" alt="">
-                </div>
-                <div class="dctnAr max-w-[11rem] flex flex-col justify-between">
-                    <p class="text-xl font-bold"> 1000 m<sup>2</sup> </p>
-                    <p class="text-xs leading-3">Luas Tanah</p>
+                <div class="chrtImg p-4">
+                    <div class="theChrtImg mx-auto aspect-square max-w-4xl rounded-2xl relative">
+                        <img src="assets/img/dumb/imgtemp 1.jpg" alt="" class="w-auto h-full object-cover object-center rounded-2xl" onclick="openPopup(this.src)">
+                        <div class="pcEdDatLeEks absolute left-[102%] -top-[2%] -translate-x-[102%] translate-y-[2%] z-10">
+                            <button type="button" class="p-2 bg-white rounded-xl border border-black hover:border-transparent relative after:absolute after:w-full after:h-full after:hover:border-2 after:rounded-xl after:hover:border-sky-400 after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:blur-[1px] after:z-10">
+                                <i class="bi bi-pencil text-2xl"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+    </section>
+    <hr class="mt-28 mx-auto w-3/4 border-[1.5px] border-black/40 rounded-2xl">
+    <section class="mt-28">
+        
     </section>
     <section class="mt-20">
         <div class="shrcRcEksTe relative h-96">
@@ -246,187 +234,6 @@
                                     <i class="bi bi-arrow-right hidden lg:block text-4xl transition-all absolute right-[10%] top-1/2 -translate-x-[10%] -translate-y-1/2 group-hover:right-0 group-hover:-translate-x-0"></i>
                                 </a>
                                 <p class="text-sm leading-4 line-clamp-2">Melalui Kualifikasi dan memiliki sertifikat sesuai bidangnya.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="mt-20">
-        <div class="strOrg px-24 flex flex-col lg:flex-row items-center">
-            <div class="chrt-fTeSt mt-12 w-1/2">
-                <div class="titleSct">
-                    <div class="tSct w-fit py-3 px-6 bg-blue-400 rounded-xl text-white font-bold">
-                        <p>Struktur Organisasi</p>
-                    </div>
-                </div>
-                <div class="chrtImg p-4">
-                    <div class="theChrtImg mx-auto aspect-square overflow-hidden max-w-4xl rounded-2xl relative">
-                        <img src="assets/img/dumb/imgtemp 1.jpg" alt="" class="w-full h-full object-cover object-center" onclick="openPopup(this.src)">                        
-                    </div>
-                </div>
-            </div>
-            <div class="fTeStImg p-4 w-1/2">
-                <div class="thefImg mx-auto aspect-square overflow-hidden max-w-2xl rounded-2xl relative float-right">
-                    <img src="assets/img/dumb/imgtemp 2.jpg" alt="" class="w-full h-full object-cover object-center" onclick="openPopup(this.src)">                   
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="mt-24 bg-gray-200 p-20">
-        <div class="mgSch">
-            <div class="tiDscMg">
-                <div class="ctnTiDscMg flex justify-between items-center">
-                    <div class="tiMg text-7xl w-1/3 font-bold">
-                        <h2>Manajemen Sekolah</h2>
-                    </div>
-                    <div class="dscMg">
-                        <div class="ctnDscMg text-lg max-w-[40rem]">
-                            <p>
-                                Dibalik semua kegiatan sekolah dan menjalankan fungsinya, terdapat tim yang solid mengatur terlaksananya kegiatan tersebut.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="liMgSch mt-44 border border-black relative p-6">
-                <div class="btnCLCR">
-
-                </div>
-                <div class="swpItmMg flex justify-between absolute space-x-6 border border-black w-full left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 overflow-hidden">
-                    <div class="mgItems1 w-56">
-                        <div class="imgItmMg">
-                            <div class="thImgItm aspect-[3.5/4] overflow-hidden">
-                                <img src="assets/img/dumb/imgtemp 3.jpg" alt="" class="w-full h-full object-cover object-center" onclick="openPopup(this.src)">
-                            </div>
-                        </div>
-                        <div class="nJItm">
-                            <div class="nmItm">
-                                <strong>Nama</strong>
-                            </div>
-                            <div class="jbItm">
-                                <p>Jabatannya</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mgItems1 w-56">
-                        <div class="imgItmMg">
-                            <div class="thImgItm aspect-[3.5/4] overflow-hidden">
-                                <img src="assets/img/dumb/imgtemp 3.jpg" alt="" class="w-full h-full object-cover object-center" onclick="openPopup(this.src)">
-                            </div>
-                        </div>
-                        <div class="nJItm">
-                            <div class="nmItm">
-                                <strong>Nama</strong>
-                            </div>
-                            <div class="jbItm">
-                                <p>Jabatannya</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mgItems1 w-56">
-                        <div class="imgItmMg">
-                            <div class="thImgItm aspect-[3.5/4] overflow-hidden">
-                                <img src="assets/img/dumb/imgtemp 3.jpg" alt="" class="w-full h-full object-cover object-center" onclick="openPopup(this.src)">
-                            </div>
-                        </div>
-                        <div class="nJItm">
-                            <div class="nmItm">
-                                <strong>Nama</strong>
-                            </div>
-                            <div class="jbItm">
-                                <p>Jabatannya</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mgItems1 w-56">
-                        <div class="imgItmMg">
-                            <div class="thImgItm aspect-[3.5/4] overflow-hidden">
-                                <img src="assets/img/dumb/imgtemp 3.jpg" alt="" class="w-full h-full object-cover object-center" onclick="openPopup(this.src)">
-                            </div>
-                        </div>
-                        <div class="nJItm">
-                            <div class="nmItm">
-                                <strong>Nama</strong>
-                            </div>
-                            <div class="jbItm">
-                                <p>Jabatannya</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mgItems1 w-56">
-                        <div class="imgItmMg">
-                            <div class="thImgItm aspect-[3.5/4] overflow-hidden">
-                                <img src="assets/img/dumb/imgtemp 3.jpg" alt="" class="w-full h-full object-cover object-center" onclick="openPopup(this.src)">
-                            </div>
-                        </div>
-                        <div class="nJItm">
-                            <div class="nmItm">
-                                <strong>Nama</strong>
-                            </div>
-                            <div class="jbItm">
-                                <p>Jabatannya</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mgItems1 w-56">
-                        <div class="imgItmMg">
-                            <div class="thImgItm aspect-[3.5/4] overflow-hidden">
-                                <img src="assets/img/dumb/imgtemp 3.jpg" alt="" class="w-full h-full object-cover object-center" onclick="openPopup(this.src)">
-                            </div>
-                        </div>
-                        <div class="nJItm">
-                            <div class="nmItm">
-                                <strong>Nama</strong>
-                            </div>
-                            <div class="jbItm">
-                                <p>Jabatannya</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mgItems1 w-56">
-                        <div class="imgItmMg">
-                            <div class="thImgItm aspect-[3.5/4] overflow-hidden">
-                                <img src="assets/img/dumb/imgtemp 3.jpg" alt="" class="w-full h-full object-cover object-center" onclick="openPopup(this.src)">
-                            </div>
-                        </div>
-                        <div class="nJItm">
-                            <div class="nmItm">
-                                <strong>Nama</strong>
-                            </div>
-                            <div class="jbItm">
-                                <p>Jabatannya</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mgItems1 w-56">
-                        <div class="imgItmMg">
-                            <div class="thImgItm aspect-[3.5/4] overflow-hidden">
-                                <img src="assets/img/dumb/imgtemp 3.jpg" alt="" class="w-full h-full object-cover object-center" onclick="openPopup(this.src)">
-                            </div>
-                        </div>
-                        <div class="nJItm">
-                            <div class="nmItm">
-                                <strong>Nama</strong>
-                            </div>
-                            <div class="jbItm">
-                                <p>Jabatannya</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mgItems1 w-56">
-                        <div class="imgItmMg">
-                            <div class="thImgItm aspect-[3.5/4] overflow-hidden">
-                                <img src="assets/img/dumb/imgtemp 3.jpg" alt="" class="w-full h-full object-cover object-center" onclick="openPopup(this.src)">
-                            </div>
-                        </div>
-                        <div class="nJItm">
-                            <div class="nmItm">
-                                <strong>Nama</strong>
-                            </div>
-                            <div class="jbItm">
-                                <p>Jabatannya</p>
                             </div>
                         </div>
                     </div>
@@ -485,19 +292,6 @@
             </form>
         </div>
     </section>
-    <div id="confInpExcForm" class="flex flex-col justify-center items-center gap-[10%] fixed text-center overflow-hidden z-50 p-6 w-full h-full lg:w-1/3 lg:h-1/3 bg-white border border-black rounded-3xl aspect-square" style="top: 200%; left:50%; transform:translate(-50%, -50%); visibility: hidden; opacity: 0; transition: all .3s ease-in-out">
-        <div class="close-btn absolute py-1 px-4 rounded-xl z-10 right-[2%] top-[5%] -translate-x-[2%] -translate-y-[5%]" onclick="closeExcelPopUp()">
-            <i class="bi bi-x-circle-fill p-2 text-red-600 bg-white border border-black rounded-xl cursor-pointer" onclick="closeExcelPopUp()"></i>
-        </div>
-        <h1 class="text-lg 2xl:text-2xl font-bold">Konfirmasi Upload File</h1>
-        <p class="line-clamp-1 overflow-hidden overflow-ellipsis max-w-[80%]">
-            File : <label for="fmtExcel" id="labsFmtExcel" class="cursor-pointer font-bold px-4 py-2 transition duration-300 ease-in-out relative after:absolute after:w-full after:h-full after:border-2 after:rounded-xl after:border-transparent after:hover:border-sky-400 after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:blur-[1px] after:z-10">text.xlsx</label>
-        </p>
-        <div class="btnCaSb flex items-center gap-6">
-            <button type="button" class="text-sm py-2 px-6 border-2 border-gray-600 bg-gray-100 rounded-lg flex items-center hover:bg-sky-600 hover:border-sky-800" onclick="closeExcelPopUp()">Cancel</button>
-            <button type="button" class="text-sm text-white py-2 px-6 border-2 border-sky-600 bg-sky-400 rounded-lg flex items-center hover:bg-sky-600 hover:border-sky-800" onclick="document.getElementById('sbFmtExcel').click()">Submit</button>
-        </div>
-    </div>
 @endsection
 @section('custom-script')
     <script src="assets/js/students/formsInpExcel.js"></script>

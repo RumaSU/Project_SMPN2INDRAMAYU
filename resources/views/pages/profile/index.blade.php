@@ -1,6 +1,6 @@
 @extends('layouts.main.main')
 @section('link-rel')
-
+    <link rel="stylesheet" href="assets/css/profil/photoSH.css">
 @endsection
 @section('content')
     <section class="imgSchool-profiles relative">
@@ -39,81 +39,85 @@
             <h3 class="text-2xl">INDRAMAYU - JAWABARAT</h3>
         </div>
     </section>
-    <section class="viMi-Schools mt-24 flex flex-col lg:flex-row items-center justify-center lg:px-48">
-        <div class="visiMisi mx-auto w-1/2">
-            <div class="titleViMi w-48 py-4 px-6 bg-blue-400 text-center text-white font-bold rounded-2xl">
-                VISI MISI
+    <section class="viMi-Schools mt-24">
+        <div class="flex flex-col lg:flex-row items-center justify-center lg:px-48 space-y-16 lg:space-y-0 relative">
+            <div class="visiMisi mx-auto lg:w-1/2 h-auto">
+                <div class="titleViMi w-48 py-4 px-6 bg-blue-400 text-center text-white font-bold rounded-2xl">
+                    VISI MISI
+                </div>
+                <div class="visi group relative mt-2 ml-6 inline-block">
+                    <div class="VisiCtn cursor-default select-none">
+                        <p class="">Lorem Ipsum Dolor Amet</p>
+                    </div>
+                    <div class="editVisiCtn absolute z-10 -right-[15%] -top-1/3 translate-x-[15%] -translate-y-1/3 invisible opacity-0 transition-all group-hover:visible group-hover:opacity-100">
+                        <button class="editB px-2 py-1 after:absolute after:w-full after:h-full after:group-hover:border-2 after:rounded-xl after:group-hover:border-sky-400 after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:blur-[1px] after:z-10">
+                            <i class="bi bi-pencil"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="misi mt-4 text-sm space-y-6 leading-4 select-none">
+                    <div class="misi-1 relative group pl-2 flex justify-evenly items-center gap-4">
+                        <i class="bi bi-check-circle-fill text-3xl text-blue-400"></i>
+                        <p>Lorem ipsum dolor sit amet, consectur adipiscing elit, sed do eiusmod tempor incidunt ut labore et dolore magna aliqua</p>
+                        <div class="editMs1Ctn absolute z-10 -right-[5%] lg:right-0 -top-1/3 translate-x-[5%] lg:translate-x-0 -translate-y-1/3 invisible opacity-0 transition-all group-hover:visible group-hover:opacity-100">
+                            <button class="editB p-2 after:absolute after:w-full after:h-full after:group-hover:border-2 after:rounded-xl after:group-hover:border-sky-400 after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:blur-[1px] after:z-10">
+                                <i class="bi bi-pencil"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="misi-2 relative group pl-2 flex justify-evenly items-center gap-4">
+                        <i class="bi bi-check-circle-fill text-3xl text-blue-400"></i>
+                        <p>Lorem ipsum dolor sit amet, consectur adipiscing elit, sed do eiusmod tempor incidunt ut labore et dolore magna aliqua</p>
+                        <div class="editMs1Ctn absolute z-10 -right-[5%] lg:right-0 -top-1/3 translate-x-[5%] lg:translate-x-0 -translate-y-1/3 invisible opacity-0 transition-all group-hover:visible group-hover:opacity-100">
+                            <button class="editB p-2 after:absolute after:w-full after:h-full after:group-hover:border-2 after:rounded-xl after:group-hover:border-sky-400 after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:blur-[1px] after:z-10">
+                                <i class="bi bi-pencil"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="misi-3 relative group pl-2 flex justify-evenly items-center gap-4">
+                        <i class="bi bi-check-circle-fill text-3xl text-blue-400"></i>
+                        <p>Lorem ipsum dolor sit amet, consectur adipiscing elit, sed do eiusmod tempor incidunt ut labore et dolore magna aliqua</p>
+                        <div class="editMs1Ctn absolute z-10 -right-[5%] lg:right-0 -top-1/3 translate-x-[5%] lg:translate-x-0 -translate-y-1/3 invisible opacity-0 transition-all group-hover:visible group-hover:opacity-100">
+                            <button class="editB p-2 after:absolute after:w-full after:h-full after:group-hover:border-2 after:rounded-xl after:group-hover:border-sky-400 after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:blur-[1px] after:z-10">
+                                <i class="bi bi-pencil"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="misi-4 relative group pl-2 flex justify-evenly items-center gap-4">
+                        <i class="bi bi-check-circle-fill text-3xl text-blue-400"></i>
+                        <p>Lorem ipsum dolor sit amet, consectur adipiscing elit, sed do eiusmod tempor incidunt ut labore et dolore magna aliqua</p>
+                        <div class="editMs1Ctn absolute z-10 -right-[5%] lg:right-0 -top-1/3 translate-x-[5%] lg:translate-x-0 -translate-y-1/3 invisible opacity-0 transition-all group-hover:visible group-hover:opacity-100">
+                            <button class="editB p-2 after:absolute after:w-full after:h-full after:group-hover:border-2 after:rounded-xl after:group-hover:border-sky-400 after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:blur-[1px] after:z-10">
+                                <i class="bi bi-pencil"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="misi-5 relative group pl-2 flex justify-evenly items-center gap-4">
+                        <i class="bi bi-check-circle-fill text-3xl text-blue-400"></i>
+                        <p>Lorem ipsum dolor sit amet, consectur adipiscing elit, sed do eiusmod tempor incidunt ut labore et dolore magna aliqua</p>
+                        <div class="editMs1Ctn absolute z-10 -right-[5%] lg:right-0 -top-1/3 translate-x-[5%] lg:translate-x-0 -translate-y-1/3 invisible opacity-0 transition-all group-hover:visible group-hover:opacity-100">
+                            <button class="editB p-2 after:absolute after:w-full after:h-full after:group-hover:border-2 after:rounded-xl after:group-hover:border-sky-400 after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:blur-[1px] after:z-10">
+                                <i class="bi bi-pencil"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="visi group relative mt-2 ml-6 inline-block">
-                <div class="VisiCtn cursor-default select-none">
-                    <p class="">Lorem Ipsum Dolor Amet</p>
-                </div>
-                <div class="editVisiCtn absolute z-10 -right-[15%] -top-1/3 translate-x-[15%] -translate-y-1/3 invisible opacity-0 transition-all group-hover:visible group-hover:opacity-100">
-                    <button class="editB px-2 py-1 after:absolute after:w-full after:h-full after:group-hover:border-2 after:rounded-xl after:group-hover:border-sky-400 after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:blur-[1px] after:z-10">
-                        <i class="bi bi-pencil"></i>
-                    </button>
-                </div>
-            </div>
-            <div class="misi mt-4 text-sm space-y-6 leading-4 select-none">
-                <div class="misi-1 relative group pl-2 flex justify-evenly items-center gap-4">
-                    <i class="bi bi-check-circle-fill text-3xl text-blue-400"></i>
-                    <p>Lorem ipsum dolor sit amet, consectur adipiscing elit, sed do eiusmod tempor incidunt ut labore et dolore magna aliqua</p>
-                    <div class="editMs1Ctn absolute z-10 -right-[5%] lg:right-0 -top-1/3 translate-x-[5%] lg:translate-x-0 -translate-y-1/3 invisible opacity-0 transition-all group-hover:visible group-hover:opacity-100">
-                        <button class="editB p-2 after:absolute after:w-full after:h-full after:group-hover:border-2 after:rounded-xl after:group-hover:border-sky-400 after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:blur-[1px] after:z-10">
-                            <i class="bi bi-pencil"></i>
-                        </button>
+            <div class="phtShAct w-1/2 relative select-none">
+                {{-- <div class="phSh mx-auto border border-black aspect-square absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"> --}}
+                <div class="phSh ml-8 aspect-square w-96">
+                    <img src="assets/img/main/126465066756.jpg" alt="" class="w-full h-full object-cover object-center rounded-2xl shadow-xl shadow-gray-500" onclick="openPopup(this.src)">
+                    {{-- <div class="ActSch text-center flex justify-center items-center shadow-md shadow-black p-3 w-32 aspect-square bg-sky-400 rounded-2xl border absolute -left-[25%] -bottom-[12.5%] translate-x-[25%] translate-y-[12.5%]"> --}}
+                    <div class="ActSch text-center flex justify-center items-center shadow-md shadow-black w-32 border border-black aspect-square bg-sky-400 rounded-2xl relative">
+                        {{-- <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"> --}}
+                        <div class="relative z-10 space-y-4 text-white">
+                            <p class="relative text-sm font-bold">Akreditasi</p>
+                            <p class="Acdts relative text-6xl font-bold">
+                                A
+                            </p>
+                        </div>
+                        <i class="bi bi-award text-7xl text-sky-500 absolute left-0 top-0 -translate-x-0 -translate-y-0"></i>
                     </div>
-                </div>
-                <div class="misi-2 relative group pl-2 flex justify-evenly items-center gap-4">
-                    <i class="bi bi-check-circle-fill text-3xl text-blue-400"></i>
-                    <p>Lorem ipsum dolor sit amet, consectur adipiscing elit, sed do eiusmod tempor incidunt ut labore et dolore magna aliqua</p>
-                    <div class="editMs1Ctn absolute z-10 -right-[5%] lg:right-0 -top-1/3 translate-x-[5%] lg:translate-x-0 -translate-y-1/3 invisible opacity-0 transition-all group-hover:visible group-hover:opacity-100">
-                        <button class="editB p-2 after:absolute after:w-full after:h-full after:group-hover:border-2 after:rounded-xl after:group-hover:border-sky-400 after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:blur-[1px] after:z-10">
-                            <i class="bi bi-pencil"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="misi-3 relative group pl-2 flex justify-evenly items-center gap-4">
-                    <i class="bi bi-check-circle-fill text-3xl text-blue-400"></i>
-                    <p>Lorem ipsum dolor sit amet, consectur adipiscing elit, sed do eiusmod tempor incidunt ut labore et dolore magna aliqua</p>
-                    <div class="editMs1Ctn absolute z-10 -right-[5%] lg:right-0 -top-1/3 translate-x-[5%] lg:translate-x-0 -translate-y-1/3 invisible opacity-0 transition-all group-hover:visible group-hover:opacity-100">
-                        <button class="editB p-2 after:absolute after:w-full after:h-full after:group-hover:border-2 after:rounded-xl after:group-hover:border-sky-400 after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:blur-[1px] after:z-10">
-                            <i class="bi bi-pencil"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="misi-4 relative group pl-2 flex justify-evenly items-center gap-4">
-                    <i class="bi bi-check-circle-fill text-3xl text-blue-400"></i>
-                    <p>Lorem ipsum dolor sit amet, consectur adipiscing elit, sed do eiusmod tempor incidunt ut labore et dolore magna aliqua</p>
-                    <div class="editMs1Ctn absolute z-10 -right-[5%] lg:right-0 -top-1/3 translate-x-[5%] lg:translate-x-0 -translate-y-1/3 invisible opacity-0 transition-all group-hover:visible group-hover:opacity-100">
-                        <button class="editB p-2 after:absolute after:w-full after:h-full after:group-hover:border-2 after:rounded-xl after:group-hover:border-sky-400 after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:blur-[1px] after:z-10">
-                            <i class="bi bi-pencil"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="misi-5 relative group pl-2 flex justify-evenly items-center gap-4">
-                    <i class="bi bi-check-circle-fill text-3xl text-blue-400"></i>
-                    <p>Lorem ipsum dolor sit amet, consectur adipiscing elit, sed do eiusmod tempor incidunt ut labore et dolore magna aliqua</p>
-                    <div class="editMs1Ctn absolute z-10 -right-[5%] lg:right-0 -top-1/3 translate-x-[5%] lg:translate-x-0 -translate-y-1/3 invisible opacity-0 transition-all group-hover:visible group-hover:opacity-100">
-                        <button class="editB p-2 after:absolute after:w-full after:h-full after:group-hover:border-2 after:rounded-xl after:group-hover:border-sky-400 after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:blur-[1px] after:z-10">
-                            <i class="bi bi-pencil"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="phtShAct w-1/2 relative select-none">
-            <div class="phSh mx-auto border-gray aspect-square absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-                <img src="assets/img/main/126465066756.jpg" alt="" class="w-full h-full object-cover object-center rounded-2xl shadow-xl shadow-gray-500" onclick="openPopup(this.src)">
-                <div class="ActSch text-center flex justify-center items-center shadow-md shadow-black p-3 w-32 aspect-square bg-sky-400 rounded-2xl border absolute -left-[25%] -bottom-[12.5%] translate-x-[25%] translate-y-[12.5%]">
-                    {{-- <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"> --}}
-                    <div class="relative z-10 space-y-4 text-white">
-                        <p class="relative text-sm font-bold">Akreditasi</p>
-                        <p class="Acdts relative text-6xl font-bold">
-                            A
-                        </p>
-                    </div>
-                    <i class="bi bi-award text-7xl text-sky-500 absolute left-0 top-0 -translate-x-0 -translate-y-0"></i>
                 </div>
             </div>
         </div>

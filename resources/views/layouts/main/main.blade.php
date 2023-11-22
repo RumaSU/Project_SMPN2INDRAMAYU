@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @vite('resources/css/app.css')
     <link rel="stylesheet" href="assets/bootstrap-icons/bootstrap-icons.min.css">
+    <link rel="icon" href="assets/img/main/example-image.jpg" type="image/x-icon">
     <title>@yield('title')</title>
     @yield('link-rel')
 </head>
@@ -23,16 +24,51 @@
         @include('layouts.main.footer')
     </footer> --}}
     
-    <div id="imagePopup" class="fixed overflow-hidden z-50 p-6 w-[80%] h-[80%] bg-white border border-black rounded-3xl" style="top: 200%; left:50%; transform:translate(-50%, -50%); visibility: hidden; opacity: 0; transition: all .3s ease-in-out">
-        <div class="button-closeEdit flex gap-4 text-xl md:text-2xl absolute py-1 px-4 rounded-xl z-10 right-[2%] top-[5%] -translate-x-[2%] -translate-y-[5%]">
-            <div class="editB">
-                <i class="bi bi-pencil-fill p-2 text-black bg-white border border-black rounded-xl cursor-pointer"></i>
+    <div id="imagePopup" class="fixed overflow-hidden z-50 w-[80%] h-[80%] bg-white rounded-md group" style="top: 200%; left:50%; transform:translate(-50%, -50%); visibility: hidden; opacity: 0; transition: all .3s ease-in-out">
+        <div class="theDetailImagePopUp select-none">
+            <div class="thTiImgPopup bg-white/[85%] absolute flex items-center w-full py-4 px-8 shadow-sm shadow-black -top-full left-0 -translate-x-0 -translate-y-0 transition-all group-hover:-top-0">
+                <div class="lTDetails w-full">
+                    <div class="TimgPopUp flex items-center">
+                        <h2 class="text-2xl tracking-tighter font-bold pr-4 border-r border-black">Judul Gambar</h2>
+                        <a href="" class="seeFullImage pl-4 text-xs text-blue-700">See Full Image</a>
+                    </div>
+                    <div class="postByImgPopup">
+                        <div class="iconUserBy flex items-center gap-3">
+                            <i class="bi bi-person-circle text-lg"></i>
+                            <p class="text-sm">Posted by <a href="" class="text-blue-700" >@{{Person}}</a> in  <a href="" class="text-blue-700" >@{{Where post}}</a> </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="button-closeEdit flex items-center gap-4 text-xl rounded-xl text-black">
+                    <div class="editB">
+                        <a href="" class="flex items-center px-1 font-bold rounded-md hover:text-blue-700">
+                            <i class="bi bi-pencil-fill bg-white rounded-xl cursor-pointer"></i>
+                            <p class="text-sm px-2">Edit</p>
+                        </a>
+                    </div>
+                    <div class="close-btn" onclick="closePopup()">
+                        <i class="bi bi-x text-5xl bg-white rounded-xl cursor-pointer hover:opacity-50" onclick="closePopup()"></i>
+                    </div>
+                </div>
             </div>
-            <div class="close-btn" onclick="closePopup()">
-                <i class="bi bi-x-circle-fill p-2 text-red-600 bg-white border border-black rounded-xl cursor-pointer" onclick="closePopup()"></i>
+            {{-- <div class="tgFooImgPopup absolute w-full py-2 px-8 shadow-sm shadow-black border border-black bottom-0 left-0 -translate-x-0 -translate-y-0">
+                <div class="buLRImgPopup">
+
+                </div>
+                <h1>Test</h1>
+            </div> --}}
+        </div>
+        <div class="bNrBImagePopup text-4xl">
+            <div class="btnChvLeft absolute transition-all -left-full top-1/2 -translate-x-0 -translate-y-1/2 group-hover:left-4">
+                <i class="bi bi-chevron-left py-4 px-1 cursor-pointer relative after:absolute after:w-full after:h-full after:rounded-xl after:blur-sm after:top-0 after:left-0 after:hover:border-2 after:hover:border-sky-500 after:transition-all"></i>
+            </div>
+            <div class="btnChvRight absolute transition-all -right-full top-1/2 -translate-x-0 -translate-y-1/2 group-hover:right-4">
+                <i class="bi bi-chevron-right py-4 px-1 cursor-pointer relative after:absolute after:w-full after:h-full after:rounded-xl after:blur-sm after:top-0 after:left-0 after:hover:border-2 after:hover:border-sky-500 after:transition-all"></i>
             </div>
         </div>
-        <img src="" alt="" id="popupImage" class="w-full h-full object-contain object-center rounded-xl">
+        <div class="mIPopup w-[70%] h-full mx-auto">
+            <img src="" alt="" id="popupImage" class="w-auto h-full m-auto">
+        </div>
     </div>
     <div id="overlayPopUp" class="overlayPopUp hidden w-full h-full fixed left-1/2 top-1/2 bg-black/30 -translate-x-1/2 -translate-y-1/2 z-40"></div>
     
