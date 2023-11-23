@@ -57,9 +57,30 @@ Route::get('/register', function () {
     return view('pages.login.register.email.index');
 });
 
-Route::get('/register/data', function () {
+Route::POST('/register/data', function () {
     return view('pages.login.register.dataUser.index');
 });
+
+Route::get('/login/error', function () {
+    return view('pages.login.exception.sameNisNip.index');
+});
+
+Route::get('/login/error/email', function () {
+    return view('pages.login.exception.sameEmail.index');
+});
+
+Route::get('/login/resetPass', function () {
+    return view('pages.login.resetPass.resetPass.index');
+});
+
+Route::get('/newPass', function () {
+    return view('pages.login.resetPass.newPass.index');
+});
+
+Route::get('/register/waitSignUp', function () {
+    return view('pages.login.register.waitSignUp.index');
+});
+Route::view('/temp/newPass', 'pages.test.testNewPass');
 
 Route::get('/chart', [ChartController::class, 'index']);
 

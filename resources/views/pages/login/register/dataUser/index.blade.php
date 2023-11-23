@@ -22,23 +22,23 @@
             </div>
             <input type="noTelp" id="noTelp" name="noTelp" class=" w-full py-2 px-1 border border-[#CED4DA]" >
         </div>
-        <button type="submit" class="bg-[#0096FF] text-sm text-white font-bold py-3 rounded-lg " > Sign Up </button>
+        <button type="submit" class="bg-[#0096FF] text-sm text-white font-bold py-2 rounded-lg " > Sign Up </button>
     </form>
-    <div class="divide-or flex justify-center items-center p-3 gap-3 mt-6">
+    <div class="divide-or flex justify-center items-center p-3 gap-3 mt-3">
         <hr class="border border-black w-1/2  ">
         <p class="text-center text-xs ">
             OR
         </p>
         <hr class="border border-black w-1/2 ">
     </div>
-    <p class="text-center my-6 text-xs">
-        <a href="/login">
-            cancel ?
+    <p class="text-center my-3 text-xs">
+        <a href="/register">
+            Cancel?
         </a>
     </p>
 </div>
 
 @endsection
 @section('custom-script')
-    
+
 @endsection
