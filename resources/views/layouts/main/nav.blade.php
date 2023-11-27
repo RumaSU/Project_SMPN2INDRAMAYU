@@ -2,7 +2,7 @@
     <a href="/" class="gotoHomepage">
         <div class="image-Logoschool flex justify-center align-items-center gap-2">
             <div class="image self-center">
-                <img src="assets/img/main/example-image.jpg" alt="" class="w-11">
+                <img src="{{asset('assets/img/main/example-image.jpg')}}" alt="" class="w-11">
             </div>
             <div class="textNameSchool hidden md:flex flex-col justify-center align-items-center">
                 <p class="text-base text-blue-700 font-bold -my-1 p-0">SMP NEGERI 2 INDRAMAYU</p>
@@ -65,13 +65,13 @@
     <div class="ml-2 -my-1 flex lg:hidden">
         <button id="tglBtn-navWrapper" type="button" class="text-slate-500 w-8 h-8 flex items-center justify-center self-center hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300">
             <span class="sr-only"></span>
-            <img src="assets/img/icon/three_dots.svg" alt="">
+            <img src="{{asset('assets/img/icon/three_dots.svg')}}" alt="">
         </button>
     </div>
     <div class="navigation-wrap fixed top-12 right-4 w-full max-w-xs bg-white rounded-lg shadow-lg p-6 text-base font-semibold text-black dark:highlight-white/5 z-[10] lg:hidden hidden">
         <button id="tglClsBtn-navWrapper" type="button" class="absolute top-5 right-5 w-8 h-8 flex items-center justify-center text-slate-500 hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300 z-[11]">
             <span class="sr-only">Close navigation</span>
-            <img src="assets/img/icon/close-lights.svg" alt="">
+            <img src="{{asset('assets/img/icon/close-lights.svg')}}" alt="">
         </button>
         <ul class="group space-y-4 mt-8">
             <li class="relative group">

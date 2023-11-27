@@ -85,3 +85,4 @@ Route::view('/temp/newPass', 'pages.test.testNewPass');
 Route::get('/chart', [ChartController::class, 'index']);
 
 Route::view('/temp', 'pages.test.index');
+Route::view('/slideshow', 'pages.test.slideShow');
