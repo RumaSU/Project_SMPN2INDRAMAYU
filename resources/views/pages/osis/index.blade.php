@@ -24,7 +24,7 @@
         </div> --}}
         {{-- <div class="justBox border-2 border-black w-72 aspect-square bg-white/50 absolute z-10 left-1/2 top-[40%] -translate-x-1/2 -translate-y-[40%]"></div> --}}
         {{-- <div class="imgSch mx-auto w-72 group text-center text-xl font-bold absolute z-10 left-1/2 top-3/4 -translate-x-1/2 -translate-y-3/4"> --}}
-        <div class="imgOss mx-auto w-72 -mt-36 group text-center text-xl font-bold relative">
+        <div class="imgOss transition-all mx-auto w-52 lg:w-72 -mt-36 group text-center text-xl font-bold relative">
             <div class="aspect-square rounded-[100%] overflow-hidden border-4 p-2 bg-white relative">
                 <img src="assets/img/main/126465066756.jpg" alt="" class="w-full h-full object-cover object-center rounded-[100%]" onclick="openPopup(this.src)">
             </div>
@@ -34,8 +34,8 @@
                 </button>
             </div>
         </div>
-        <div class="descEks  mt-12 py-6 group">
-            <div class="w-3/4 mx-auto text-center text-xl relative">
+        <div class="descEks p-6 group">
+            <div class="w-full lg:w-3/4 transition-all md mx-auto text-center text-sm md:text-lg relative">
                 <p class="line-clamp-6">
                     Osis adalah wadah Pembinaan Kesiswaan di sekolah untuk pengembangan minat, bakat serta potensi Peserta Didik.
                     Osis adalah wadah Pembinaan Kesiswaan di sekolah untuk pengembangan minat, bakat serta potensi Peserta Didik.
@@ -51,7 +51,7 @@
                         </button>
                     </div> --}}
                 </p>
-                <div class="editdescCtn scrollbar absolute z-10 -right-[5%] -top-0 translate-x-[5%] -translate-y-0 lg:-right-[2%] lg:-top-1/4 lg:translate-x-[2%] lg:translate-y-1/4 invisible opacity-0 transition-all group-hover:visible group-hover:opacity-100">
+                <div class="editdescCtn scrollbar absolute z-10 -right-[2%] -top-1/4 translate-x-[2%] translate-y-1/4 lg:-right-[2%] lg:-top-1/4 lg:translate-x-[2%] lg:translate-y-1/4 invisible opacity-0 transition-all group-hover:visible group-hover:opacity-100">
                     <button class="editB p-2 relative after:absolute after:w-full after:h-full after:group-hover:border-2 after:rounded-xl after:group-hover:border-sky-400 after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:blur-[1px] after:z-10">
                         <i class="bi bi-pencil"></i>
                     </button>
@@ -59,9 +59,9 @@
             </div>
         </div>
     </section>
-    <hr class="mt-28 mx-auto w-[90%] border-[1.5px] border-black/40 rounded-2xl">
-    <section class="cTea mt-32 flex flex-wrap justify-center items-center gap-[75px]">
-        <div class="photo-cTea my-auto" onclick="openPopup(this.querySelector('img').src)">
+    <hr class="mt-12 mx-auto w-[90%] border-[1.5px] border-black/40 rounded-2xl">
+    <section class="cTea mt-12 flex flex-wrap justify-center items-center gap-4 lg:gap-16">
+        <div class="photo-cTea" onclick="openPopup(this.querySelector('img').src)">
             <div class="img-pri relative p-4 w-[280px] h-[400px]">
                 <div class="blur-effect absolute w-[250px] h-[370px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#AFAFAF]"
                     style="background: linear-gradient(30deg, rgba(255, 255, 255, 0.00) 50%, rgba(255, 255, 255, 0.00) 85.94%, #FFF 95.31%, #FFF 100%), linear-gradient(331deg, rgba(255, 255, 255, 0.00) 50%, rgba(255, 255, 255, 0.00) 85.56%, #FFF 94.83%, #FFF 99.47%), linear-gradient(0deg, rgba(255, 255, 255, 0.00) 50%, rgba(255, 255, 255, 0.00) 50%, rgba(255, 255, 255, 0.00) 94.88%, #FFF 100%), linear-gradient(90deg, rgba(255, 255, 255, 0.00) 50%, rgba(255, 255, 255, 0.00) 50.01%, rgba(255, 255, 255, 0.00) 94.88%, #FFF 100%), linear-gradient(270deg, rgba(255, 255, 255, 0.00) 50%, rgba(255, 255, 255, 0.00) 50%, rgba(255, 255, 255, 0.00) 94.88%, #FFF 100%), linear-gradient(209deg, rgba(255, 255, 255, 0.00) 50%, rgba(255, 255, 255, 0.00) 50.01%, #FFF 87.5%, #FFF 100%), linear-gradient(151deg, rgba(255, 255, 255, 0.00) 50%, rgba(255, 255, 255, 0.88) 83.33%, #FFF 89.56%, #FFF 100%);">
@@ -69,34 +69,25 @@
                 <img src="assets/img/dumb/imgtemp 5.jpg" class="object-center object-cover w-full h-full" alt="">
             </div>
         </div>
-        <div
-            class="quote-cTea align-self-center self-center p-4 w-[600px] h-[400px] lg:w-[800px] lg:h-[600px] lg:shadow-xl rounded-xl relative ">
-            <div class="icon-quote absolute left-[8%] top-[8%] -translate-x-[8%] -translate-y-[8%]">
-                <img src="assets/img/icon/quote.png" class="w-[75px] h-[75px]" alt="">
+        <div class="quote-cTea flex flex-col justify-center items-center px-12 pt-14 pb-8 lg:px-20 lg:pt-24 lg:pb-12 w-11/12 lg:w-1/2 shadow-gray-700 shadow-sm lg:shadow-xl rounded-xl relative">
+            <div class="icon-quote absolute left-[3%] top-[3%] -translate-x-[3%] -translate-y-[3%]">
+                <img src="assets/img/icon/quote.png" class="w-12 h-12 lg:w-20 lg:h-20" alt="">
             </div>
-            <div
-                class="quote mt-24 lg:mt-32 w-3/4 h-1/2 mx-auto text-base lg:text-lg border-2 border-dashed border-black/40 p-4 rounded-2xl">
-                <div class="h-full flex justify-center items-center relative group">
-                    <blockquote class="line-clamp-6">
+            <div class="quote  mx-auto text-base lg:text-lg border-2 border-dashed border-black/40 p-4 rounded-2xl relative group">
+                <div class="h-full  relative group">
+                    <blockquote class="line-clamp-[8]">
                         Lorem ipsum dolor amet
                         Osis adalah wadah Pembinaan Kesiswaan di sekolah untuk pengembangan minat, bakat serta potensi Peserta Didik.
-                        Osis adalah wadah Pembinaan Kesiswaan di sekolah untuk pengembangan minat, bakat serta potensi Peserta Didik.
-                        Osis adalah wadah Pembinaan Kesiswaan di sekolah untuk pengembangan minat, bakat serta potensi Peserta Didik.
-                        Osis adalah wadah Pembinaan Kesiswaan di sekolah untuk pengembangan minat, bakat serta potensi Peserta Didik.
-                        Osis adalah wadah Pembinaan Kesiswaan di sekolah untuk pengembangan minat, bakat serta potensi Peserta Didik.
-                        Osis adalah wadah Pembinaan Kesiswaan di sekolah untuk pengembangan minat, bakat serta potensi Peserta Didik.
-                        Osis adalah wadah Pembinaan Kesiswaan di sekolah untuk pengembangan minat, bakat serta potensi Peserta Didik.
-                        Osis adalah wadah Pembinaan Kesiswaan di sekolah untuk pengembangan minat, bakat serta potensi Peserta Didik.
                     </blockquote>
-                    <div class="bSQutoe absolute top-0 right-0 -translate-y-0 -translate-x-0 hidden group-hover:block">
-                        <button type="button" class="p-2 relative after:absolute after:w-full after:h-full after:group-hover:border-2 after:rounded-xl after:group-hover:border-sky-400 after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:blur-[1px] after:z-10">
-                            <i class="bi bi-pencil"></i>
-                        </button>
-                    </div>
+                </div>
+                <div class="bSQutoe absolute -top-[10%] -right-[2%] translate-y-[10%] translate-x-[2%] hidden group-hover:block">
+                    <button type="button" class="p-2 bg-white relative after:absolute after:w-full after:h-full after:group-hover:border-2 after:rounded-xl after:group-hover:border-sky-400 after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:blur-[1px] after:z-10">
+                        <i class="bi bi-pencil"></i>
+                    </button>
                 </div>
             </div>
-            <div class="detail-person w-3/4 mt-8 mx-auto">
-                <div class="name-person text-[15px] lg:text-[26px] text-[#4f4f4f]">
+            <div class="detail-person w-3/4 mt-4 mx-auto">
+                <div class="name-person text-base lg:text-xl text-[#4f4f4f]">
                     <strong>Name person</strong>
                 </div>
                 <div class="position-person text-[12px] lg:text-[16px] text-[#808080]">
@@ -146,7 +137,7 @@
                         </div>
                     </div>
                     <div class="liSocmedEks">
-                        <ul class="flex items-center gap-2 text-2xl opacity-60">
+                        <ul class="flex items-center gap-2 text-2xl">
                             <li>
                                 <a href="" class="icnSocmedEks hover:opacity-50"><i class="bi bi-facebook"></i></a>
                             </li>
@@ -170,17 +161,17 @@
     </section>
     <hr class="mt-28 mx-auto w-3/4 border-[1.5px] border-black/40 rounded-2xl">
     <section class="mt-8">
-        <div class="strOrg px-24">
+        <div class="strOrg w-11/12 mx-auto">
             <div class="chrt-stcOrgEks">
                 <div class="titleChrt">
-                    <div class="tSct w-fit py-3 px-6 bg-blue-400 rounded-xl text-white font-bold text-2xl">
+                    <div class="tSct w-fit py-3 px-6 bg-blue-400 rounded-xl text-white font-bold text-base">
                         <h2>Struktur Organisasi</h2>
                     </div>
                 </div>
                 <div class="chrtImg p-4">
-                    <div class="theChrtImg mx-auto aspect-square max-w-4xl rounded-2xl relative">
+                    <div class="theChrtImg mx-auto aspect-square max-w-4xl rounded-2xl relative group">
                         <img src="assets/img/dumb/imgtemp 1.jpg" alt="" class="w-auto h-full object-cover object-center rounded-2xl" onclick="openPopup(this.src)">
-                        <div class="pcEdDatLeEks absolute left-[102%] -top-[2%] -translate-x-[102%] translate-y-[2%] z-10">
+                        <div class="pcEdDatLeEks absolute left-[102%] -top-[2%] -translate-x-[102%] translate-y-[2%] z-10 group-hover:">
                             <button type="button" class="p-2 bg-white rounded-xl border border-black hover:border-transparent relative after:absolute after:w-full after:h-full after:hover:border-2 after:rounded-xl after:hover:border-sky-400 after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:blur-[1px] after:z-10">
                                 <i class="bi bi-pencil text-2xl"></i>
                             </button>
@@ -191,13 +182,13 @@
         </div>
     </section>
     <hr class="mt-28 mx-auto w-3/4 border-[1.5px] border-black/40 rounded-2xl">
-    <section class="mt-28">
+    <section class="mt-12">
         <div class="galOsis w-[85%] mx-auto">
             <div class="tlCat-galOsis flex justify-between items-center">
                 <div class="tlGal text-2xl font-bold">
                     <h2>Galeri</h2>
                 </div>
-                <div class="cat-galOsis flex items-center gap-6 text-2xl font-bold">
+                {{-- <div class="cat-galOsis flex flex-wrap items-center gap-6 text-2xl font-bold">
                     <div class="actCat-galOsis flex items-center space-x-2"> 
                         <i class="colActCat bi bi-circle-fill text-green-500"></i>
                         <p>Kegiatan</p>
@@ -206,34 +197,28 @@
                         <i class="colActCat bi bi-circle-fill text-blue-500"></i>
                         <p>Karya</p>
                     </div>
-                </div>
+                </div> --}}
             </div>
-            <div class="liImg-galOsis mt-12">
-                <div class="grid grid-cols-3 gap-8">
-                    <div class="contItem-imgGalOsis rounded-2xl overflow-hidden relative">
-                        <div class="colItemCat-galOsis absolute right-[2%] top-[2%] -translate-x-[2%] -translate-y-2[%]">
-                            <i class="colActCat bi bi-circle-fill text-green-500  text-2xl"></i>
-                        </div>
-                        <img src="assets/img/dumb/imgtemp 4.jpg" alt="" class="w-full h-full object-cover object-center" onclick="openPopup(this.src)">
-                        <div class="sumItem-galOsis w-[90%] px-6 py-3 h-20 rounded-xl space-y-1 bg-white absolute left-1/2 bottom-[5%] -translate-x-1/2 -translate-y-[5%]">
-                            <div class="dateItem-galOsis text-sm text-blue-600">
-                                <p class="tracking-tight">2 Agustus 2017</p>
+            <div class="liImg-galOsis mt-6">
+                <div class="grid grid-cols-2 lg:grid-cols-3 gap-2 md:gap-8 2xl:grid-cols-4">
+                    <div class="contItem-imgGalOsis rounded-md md:rounded-2xl border border-black overflow-hidden relative xl:h-72">
+                        <img src="assets/img/dumb/imgtemp 4.jpg" alt="" class="xl:w-full xl:h-full object-cover object-center" onclick="openPopup(this.src)">
+                        <div class="sumItem-galOsis bg-white px-2 py-2 md:px-6 md:py-3 h-12 md:h-20 xl:rounded-xl md:space-y-1 xl:w-[90%] xl:absolute xl:left-1/2 xl:bottom-[5%] xl:-translate-x-1/2 xl:-translate-y-[5%] transition-all">
+                            <div class="dateItem-galOsis text-[10px] md:text-xs xl:text-sm text-blue-600">
+                                <p class="tracking-tight line-clamp-1">2 Agustus 2017</p>
                             </div>
-                            <div class="tiItem-galOsis text-xl font-bold">
+                            <div class="tiItem-galOsis text-xs md:text-base xl:text-lg font-bold">
                                 <h3 class="line-clamp-1">Ini judul gambarnya asdada ad asdasd asd asd asd asd asd asd asd asd sa</h3>
                             </div>
                         </div>
                     </div>
-                    <div class="contItem-imgGalOsis rounded-2xl overflow-hidden relative">
-                        <div class="colItemCat-galOsis absolute right-[2%] top-[2%] -translate-x-[2%] -translate-y-2[%]">
-                            <i class="colActCat bi bi-circle-fill text-green-500  text-2xl"></i>
-                        </div>
-                        <img src="assets/img/dumb/imgtemp 4.jpg" alt="" class="w-full h-full object-cover object-center" onclick="openPopup(this.src)">
-                        <div class="sumItem-galOsis w-[90%] px-6 py-3 h-20 rounded-xl space-y-1 bg-white absolute left-1/2 bottom-[5%] -translate-x-1/2 -translate-y-[5%]">
-                            <div class="dateItem-galOsis text-sm text-blue-600">
-                                <p class="tracking-tight">2 Agustus 2017</p>
+                    <div class="contItem-imgGalOsis rounded-md md:rounded-2xl border border-black overflow-hidden relative  xl:h-72">
+                        <img src="assets/img/dumb/imgtemp 4.jpg" alt="" class="xl:w-full xl:h-full object-cover object-center" onclick="openPopup(this.src)">
+                        <div class="sumItem-galOsis bg-white px-2 py-2 md:px-6 md:py-3 h-12 md:h-20 xl:rounded-xl md:space-y-1 xl:w-[90%] xl:absolute xl:left-1/2 xl:bottom-[5%] xl:-translate-x-1/2 xl:-translate-y-[5%]">
+                            <div class="dateItem-galOsis text-[10px] md:text-xs xl:text-sm text-blue-600">
+                                <p class="tracking-tight line-clamp-1">2 Agustus 2017</p>
                             </div>
-                            <div class="tiItem-galOsis text-xl font-bold">
+                            <div class="tiItem-galOsis text-xs md:text-base xl:text-lg font-bold">
                                 <h3 class="line-clamp-1">Ini judul gambarnya asdada ad asdasd asd asd asd asd asd asd asd asd sa</h3>
                             </div>
                         </div>
@@ -245,7 +230,7 @@
     <section class="mt-20">
         <div class="shrcRcEksTe relative h-96">
             <div class="img-bg flex items-center justify-center relative text-center text-white h-96 bg-cover bg-top bg-no-repeat after:absolute after:top-0 after:left-0 after:bg-blue-700/80 after:w-full after:h-full"
-                style="background-image: url('assets/img/main/vecteezy_abstract-black-and-white-pattern-like-psychedelic_.jpg');">
+                style="background-image: url('{{asset('assets/img/main/vecteezy_abstract-black-and-white-pattern-like-psychedelic_.jpg')}}');">
                 <div class="content relative z-10 self-center">
                     <div class="ctnShrc flex flex-col lg:flex-row justify-center items-center gap-8 relative z-10 text-white h-full p-12">
                         <div class="rngKl flex gap-4 justify-center items-center max-w-[450px]">

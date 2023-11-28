@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @vite('resources/css/app.css')
     <link rel="stylesheet" href="main.css">
-    <link rel="stylesheet" href="assets/bootstrap-icons/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="{{asset('assets/bootstrap-icons/bootstrap-icons.min.css')}}">
     <title>@yield('title')</title>
     @yield('link-rel')
 </head>
