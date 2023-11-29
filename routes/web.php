@@ -45,7 +45,9 @@ Route::get('/profil', [ProfileModelsController::class,'index']);
 Route::get('/osis', [OsisModelsController::class,'index']);
 
 Route::view('/testing', 'pages.students.index');
-Route::view('/siswa', 'pages.students.index');
+Route::view('/siswa', 'pages.classes.index');
+Route::view('/tenpendidik', 'pages.tenpendidik.index');
+Route::view('/ekstrakurikuler', 'pages.ekstrakurikuler.index');
 
 // Route::get('/kelasAjax', [ClassesModelsController::class, 'index']) -> name('ListClass');
 // Route::post('/kelasAjax/add/', [ClassesModelsController::class, 'store']) -> name('storeClass');

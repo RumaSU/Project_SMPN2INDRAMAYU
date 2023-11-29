@@ -6,40 +6,13 @@
     <section class="img-students flex items-center justify-center relative text-center text-white h-96 bg-cover bg-center bg-no-repeat after:absolute after:top-0 after:left-0 after:bg-black/60 after:w-full after:h-full"
         style="background-image: url('{{asset('assets/img/main/126465066756.jpg')}}');">
         <div class="content relative z-10 selft-center">
-            <h1 class="text-4xl font-bold">Kelas @{{Kelas kamuch}} </h1>
+            <h1 class="text-4xl font-bold">Tenaga Kependidikan</h1>
             <h2 class="text-xl"> @{{Deskripsinya}} </h2>
-        </div>
-    </section>
-    <section class="teachers mt-12 text-center text-xl font-bold space-y-4">
-        <div class="imgTe mx-auto w-52 lg:w-72 relative group">
-            <div class="aspect-square rounded-[100%] overflow-hidden border-4 p-2 relative">
-                <img src="{{asset('assets/img/main/126465066756.jpg')}}" alt="" class="w-full h-full object-cover object-center rounded-[100%]" onclick="openPopup(this.src)">
-            </div>
-            <div class="editImgTe absolute right-[5%] top-[15%] -translate-x-[5%] -translate-y-[15%] opacity-0 transition-opacity group-hover:opacity-100">
-                <button class="editB border border-black bg-white p-2 rounded-lg hover:bg-gray-200">
-                    <i class="bi bi-pencil"></i>
-                </button>
-            </div>
-        </div>
-        <h2> @{{Nama Guru}} </h2>
-        <div class="socmedTe space-x- text-2xl group-">
-            <a href="" class="inline-block p-2 rounded-xl hover:opacity-70">
-                <i class="bi bi-facebook"></i>
-            </a>
-            <a href="" class="inline-block p-2 rounded-xl hover:opacity-70">
-                <i class="bi bi-instagram"></i>
-            </a>
-            <a href="" class="inline-block p-2 rounded-xl hover:opacity-70">
-                <i class="bi bi-twitter"></i>
-            </a>
-            <a href="" class="inline-block p-2 rounded-xl hover:opacity-70">
-                <i class="bi bi-youtube"></i>
-            </a>
         </div>
     </section>
     <section class="frmAddStnds mt-12">
         <div class="title-students text-2xl flex items-center px-6 md:px-12 gap-6 py-4 font-bold border-b-4 border-black relative">
-            <form action="" method="POST" enctype="multipart/form-data" class="sr-only">
+            {{-- <form action="" method="POST" enctype="multipart/form-data" class="sr-only">
                 @csrf
                 <input type="file" name="fmt_Excel" id="fmtExcel" accept=".xlsx, .xls" value="" class="sr-only" onchange="openExcelPopUp(this)">
                 <button type="submit" id="sbFmtExcel" class="sr-only"></button>
@@ -47,14 +20,14 @@
             <button type="button" class="btrinp-file text-sm py-2 px-3 lg:px-6 border-2 border-gray-600 bg-gray-100 rounded-lg flex items-center hover:bg-sky-600 hover:border-sky-800" onclick="document.getElementById('fmtExcel').click()">
                 <i class="bi bi-file-earmark-arrow-up-fill md:mr-2 text-2xl text-sky-400"></i>
                 <p class="hidden md:block">File</p>
-            </button>
+            </button> --}}
             <button class="btrcr-fm text-sm text-white py-2 px-4 lg:px-6 border-2 border-sky-600 bg-sky-400 rounded-lg flex items-center hover:bg-sky-600 hover:border-sky-800" onclick="showPopUpForm(this); addVals(this);">
                 <i class="bi bi-plus-circle md:mr-2 text-2xl"></i>
-                <p class="hidden md:block">Siswa</p>
+                <p class="hidden md:block">Tenaga Kependidikan</p>
             </button>
         </div>
     </section>
-    <section class="listStudents mt-8 px-4 space-y-12">
+    <section class="listStudents mt-8 px-4 md:px-8 space-y-12">
         {{-- <div class="list-items flex flex-wrap gap-5"> --}}
         <div class="list-items grid grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-2 sm:gap-5">
             @for ($i=0; $i < 10; $i++)

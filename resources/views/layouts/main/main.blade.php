@@ -75,7 +75,7 @@
                 <i class="bi bi-chevron-right py-4 px-1 cursor-pointer relative after:absolute after:w-full after:h-full after:rounded-xl after:blur-sm after:top-0 after:left-0 after:hover:border-2 after:hover:border-sky-500 after:transition-all"></i>
             </div>
         </div>
-        <div class="mIPopup w-full mt-6 md:mt-0 md:h-full mx-auto">
+        <div class="mIPopup w-full lg:w-3/4 mt-6 md:mt-0 md:h-full mx-auto">
             <img src="" alt="" id="popupImage" class="w-full h-full object-contain m-auto">
         </div>
     </div>
