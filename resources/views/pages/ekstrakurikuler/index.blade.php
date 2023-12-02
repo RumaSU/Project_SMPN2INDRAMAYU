@@ -91,115 +91,76 @@
     </section>
     <section class="deSum-Eksl mt-24">
         <div class="2xl:w-3/4 p-4 py-10 mx-auto bg-gray-100 2xl:rounded-xl">
-            <div class="datSumEks flex flex-col md:flex-row justify-center items-center h-full gap-6 select-none">
-                <div class="it1-leEks w-64 lg:w-54 p-6 rounded-lg hover:bg-gray-300/60">
-                    <div class="tdat relative group">
-                        <strong class="tiLeEks">Pembina</strong>
-                        <div class="pcEdDatLeEks absolute -right-[10%] -top-1/4 -translate-x-[10%] -translate-y-1/4">
-                            <button type="button" class="p-2 relative after:absolute after:w-full after:h-full after:group-hover:border-2 after:rounded-xl after:group-hover:border-sky-400 after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:blur-[1px] after:z-10">
-                                <i class="bi bi-pencil"></i>
-                            </button>
+            <div class="datSumEks flex flex-col lg:flex-row justify-center items-center h-full gap-6 select-none">
+                <div class="it1-leEks w-72 lg:w-54 p-6 rounded-lg hover:bg-gray-300/60">
+                    <div class="countTdatEks flex items-center gap-2">
+                        <div class="countToEks">
+                            <strong class="text-3xl">
+                                900
+                            </strong>
                         </div>
-                    </div>
-                    <div class="it1-datMem">
-                        <p class="nmeLeEks leading-4 max-w-[12rem] text-sm">
-                            @{{Muhammad Elfaz Sulton}}
-                        </p>
-                    </div>
-                </div>
-                <div class="it2-memEks w-64 lg:w-54 p-6 rounded-lg hover:bg-gray-300/60">
-                    <div class="tdat relative group">
-                        <strong class="tiLeEks">Ekstrakurikuler</strong>
-                        <div class="pcEdDatLeEks absolute -right-[10%] -top-1/4 -translate-x-[10%] -translate-y-1/4">
-                            <button type="button" class="p-2 relative after:absolute after:w-full after:h-full after:group-hover:border-2 after:rounded-xl after:group-hover:border-sky-400 after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:blur-[1px] after:z-10">
-                                <i class="bi bi-pencil"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="it2-datMem">
-                        <p class="nmeLeEks text-sm pr-6">@{{Total}} Anggota</p>
-                    </div>
-                </div>
-                <div class="it3-memEks w-64 lg:w-54 p-6 rounded-lg hover:bg-gray-300/60">
-                    <div class="tdat relative group">
-                        <strong class="tiLeEks">Anggota</strong>
-                        <div class="pcEdDatLeEks absolute -right-[10%] -top-1/4 -translate-x-[10%] -translate-y-1/4">
-                            <button type="button" class="p-2 relative after:absolute after:w-full after:h-full after:group-hover:border-2 after:rounded-xl after:group-hover:border-sky-400 after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:blur-[1px] after:z-10">
-                                <i class="bi bi-pencil"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="it2-datMem">
-                        <p class="nmeLeEks text-sm pr-6">@{{Total}} Anggota</p>
-                    </div>
-                </div>
-                <div class="it4-scmeEks w-64 lg:w-54 p-6 rounded-lg hover:bg-gray-300/60">
-                    <div class="tdat relative group">
-                        <strong class="tiLeEks">Sosial Media</strong>
-                        <div class="pcEdDatLeEks absolute left-full top-1/2 -translate-x-full -translate-y-1/2">
-                            <button type="button" class="p-2 relative after:absolute after:w-full after:h-full after:group-hover:border-2 after:rounded-xl after:group-hover:border-sky-400 after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:blur-[1px] after:z-10">
-                                <i class="bi bi-pencil"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="liSocmedEks">
-                        <ul class="flex items-center gap-2 text-2xl">
-                            <li>
-                                <a href="" class="icnSocmedEks hover:opacity-50"><i class="bi bi-facebook"></i></a>
-                            </li>
-                            <li>
-                                <a href="" class="icnSocmedEks hover:opacity-50"><i class="bi bi-instagram"></i></a>
-                            </li>
-                            <li>
-                                <a href="" class="icnSocmedEks hover:opacity-50"><i class="bi bi-twitter"></i></a>
-                            </li>
-                            <li>
-                                <a href="" class="icnSocmedEks hover:opacity-50"><i class="bi bi-tiktok"></i></a>
-                            </li>
-                            <li>
-                                <a href="" class="icnSocmedEks hover:opacity-50"><i class="bi bi-youtube"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="datSumEks flex flex-col md:flex-row justify-center items-center h-full gap-6 select-none">
-                <div class="it1-leEks w-64 lg:w-54 p-6 rounded-lg hover:bg-gray-300/60 flex items-center gap-4 text-xl">
-                    <div class="totalIt-dat">
-                        <strong>10</strong>
-                    </div>
-                    <div class="tdat relative group w-full">
-                        <strong class="tiLeEks">Pembina</strong>
-                        <div class="pcEdDatLeEks absolute -right-[10%] -top-1/4 -translate-x-[10%] -translate-y-1/4">
-                            <button type="button" class="p-2 text-base relative after:absolute after:w-full after:h-full after:group-hover:border-2 after:rounded-xl after:group-hover:border-sky-400 after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:blur-[1px] after:z-10">
-                                <i class="bi bi-pencil"></i>
-                            </button>
+                        <div class="tDatEks w-full">
+                            <div class="tdat relative group">
+                                <strong class="tiLeEks text-lg">Pembina</strong>
+                                <div class="pcEdDatLeEks absolute -right-[10%] -top-1/4 -translate-x-[10%] -translate-y-1/4">
+                                    <button type="button" class="p-2 relative after:absolute after:w-full after:h-full after:group-hover:border-2 after:rounded-xl after:group-hover:border-sky-400 after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:blur-[1px] after:z-10">
+                                        <i class="bi bi-pencil"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <a href="" class="it1-datMem">
+                                <p class="nmeLeEks leading-4 max-w-[12rem] text-sm">
+                                    Lihat Disini
+                                </p>
+                            </a>
                         </div>
                     </div>
                 </div>
-                <div class="it2-memEks w-64 lg:w-54 p-6 rounded-lg hover:bg-gray-300/60 flex items-center gap-4 text-xl">
-                    <div class="totalIt-dat">
-                        <strong>10</strong>
-                    </div>
-                    <div class="tdat relative group w-full">
-                        <strong class="tiLeEks">Ekstrakurikuler</strong>
-                        <div class="pcEdDatLeEks absolute -right-[10%] -top-1/4 -translate-x-[10%] -translate-y-1/4">
-                            <button type="button" class="p-2 text-base relative after:absolute after:w-full after:h-full after:group-hover:border-2 after:rounded-xl after:group-hover:border-sky-400 after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:blur-[1px] after:z-10">
-                                <i class="bi bi-pencil"></i>
-                            </button>
+                <div class="it2-Eks w-72 lg:w-54 p-6 rounded-lg hover:bg-gray-300/60">
+                    <div class="countTdatEks flex items-center gap-2">
+                        <div class="countToEks">
+                            <strong class="text-3xl">
+                                900
+                            </strong>
+                        </div>
+                        <div class="tDatEks w-full">
+                            <div class="tdat relative group">
+                                <strong class="tiEks text-lg">Ekstrakurikuler</strong>
+                                <div class="pcEdDatEks absolute -right-[10%] -top-1/4 -translate-x-[10%] -translate-y-1/4">
+                                    <button type="button" class="p-2 relative after:absolute after:w-full after:h-full after:group-hover:border-2 after:rounded-xl after:group-hover:border-sky-400 after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:blur-[1px] after:z-10">
+                                        <i class="bi bi-pencil"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <a href="" class="it1-dat">
+                                <p class="nmeEks leading-4 max-w-[12rem] text-sm">
+                                    Lihat Disini
+                                </p>
+                            </a>
                         </div>
                     </div>
                 </div>
-                <div class="it3-memEks w-64 lg:w-54 p-6 rounded-lg hover:bg-gray-300/60 flex items-center gap-4 text-xl">
-                    <div class="totalIt-dat">
-                        <strong>10</strong>
-                    </div>
-                    <div class="tdat relative group w-full">
-                        <strong class="tiLeEks">Anggota</strong>
-                        <div class="pcEdDatLeEks absolute -right-[10%] -top-1/4 -translate-x-[10%] -translate-y-1/4">
-                            <button type="button" class="p-2 text-base relative after:absolute after:w-full after:h-full after:group-hover:border-2 after:rounded-xl after:group-hover:border-sky-400 after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:blur-[1px] after:z-10">
-                                <i class="bi bi-pencil"></i>
-                            </button>
+                <div class="it3-EksMem w-72 lg:w-54 p-6 rounded-lg hover:bg-gray-300/60">
+                    <div class="countTdatEksMem flex items-center gap-2">
+                        <div class="countToEksMem">
+                            <strong class="text-3xl">
+                                900
+                            </strong>
+                        </div>
+                        <div class="tDatEksMem w-full">
+                            <div class="tdat relative group">
+                                <strong class="tiEksMem text-lg">Anggota</strong>
+                                <div class="pcEdDatEksMem absolute -right-[10%] -top-1/4 -translate-x-[10%] -translate-y-1/4">
+                                    <button type="button" class="p-2 relative after:absolute after:w-full after:h-full after:group-hover:border-2 after:rounded-xl after:group-hover:border-sky-400 after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:blur-[1px] after:z-10">
+                                        <i class="bi bi-pencil"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <a href="" class="it1-datMem">
+                                <p class="nmeEksMem leading-4 max-w-[12rem] text-sm">
+                                    Lihat Disini
+                                </p>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -246,21 +207,28 @@
                 </div>
                 <div class="list-items mt-6 grid grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-2 sm:gap-5">
                     @for ($i=0; $i < 10; $i++)
-                        <div class="items-students aspect-[3/4]">
-                            <div class="imgCont bg-white regular-shadow rounded-md sm:rounded-xl lg:rounded-2xl overflow-hidden w-full h-full group relative">
-                                <div class="button-editDel hidden md:block absolute bg-black/40 py-1 px-4 rounded-xl z-10 -right-full top-[5%] -translate-x-[5%] translate-y-full transition-all group-hover:right-[5%] group-hover:translate-x-[5%] group-hover:top-[5%] group-hover:translate-y-[5%]">
-                                    <button class="editB border border-black bg-white p-2 rounded-lg hover:bg-gray-200">
-                                        <i class="bi bi-pencil"></i>
-                                    </button>
-                                    <button class="delB border border-black bg-white p-2 rounded-lg hover:bg-gray-200">
-                                        <i class="bi bi-trash3"></i>
+                        <div class="items-students">
+                            <div class="cntn-item relative">
+                                <div class="hvOvQesMa">
+                                    <button id="shSumInfoEks" href="" class="cursor-pointer flex items-center bg-white p-1 rounded-xl aspect-square overflow-hidden absolute z-10 -right-[5%] -top-[5%] translate-x-[5%] translate-y-[5%]" onclick="opnPopEks(this)">
+                                        <i class="bi bi-question-circle text-2xl"></i>
                                     </button>
                                 </div>
-                                <img src="{{asset('assets/img/dumb/imgtemp 3.jpg')}}" alt="" class="supImg w-full h-full object-cover object-center" onclick="openPopup(this.src)">
-                                <div class="lg:w-3/4 lg:py-2 bg-blue-400 rounded-xl z-10 lg:absolute lg:-bottom-full lg:left-1/2 lg:translate-y-full lg:-translate-x-1/2 lg:transition-all lg:group-hover:bottom-[5%] lg:group-hover:-translate-y-[5%] lg:hover:bg-cyan-500 cursor-pointer" onclick="openPopup(this.previousElementSibling.src)">
-                                    <p class="itemClass text-white text-center font-bold ">
-                                        Test
-                                    </p>
+                                <div class="imgCont aspect-square bg-white regular-shadow rounded-md sm:rounded-xl lg:rounded-2xl overflow-hidden w-full h-full group relative">
+                                    <div class="button-editDel hidden md:block absolute bg-black/40 py-1 px-4 rounded-xl z-10 -right-full top-[5%] -translate-x-[5%] translate-y-full transition-all group-hover:right-[5%] group-hover:translate-x-[5%] group-hover:top-[5%] group-hover:translate-y-[5%]">
+                                        <button class="editB border border-black bg-white p-2 rounded-lg hover:bg-gray-200">
+                                            <i class="bi bi-pencil"></i>
+                                        </button>
+                                        <button class="delB border border-black bg-white p-2 rounded-lg hover:bg-gray-200">
+                                            <i class="bi bi-trash3"></i>
+                                        </button>
+                                    </div>
+                                    <img src="{{asset('assets/img/dumb/imgtemp 3.jpg')}}" alt="" class="supImg w-full h-full object-cover object-center" onclick="openPopup(this.src)">
+                                    <a href="" class="lg:w-3/4 lg:py-2 bg-blue-400 rounded-xl z-10 lg:absolute lg:-bottom-full lg:left-1/2 lg:translate-y-full lg:-translate-x-1/2 lg:transition-all lg:group-hover:bottom-[5%] lg:group-hover:-translate-y-[5%] lg:hover:bg-cyan-500 cursor-pointer">
+                                        <p class="itemClass text-white text-center font-bold ">
+                                            Test
+                                        </p>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -282,106 +250,61 @@
                 <div class="tlGal text-2xl font-bold">
                     <h2>Galeri</h2>
                 </div>
-                {{-- <div class="cat-galOsis flex flex-wrap items-center gap-6 text-2xl font-bold">
-                    <div class="actCat-galOsis flex items-center space-x-2"> 
-                        <i class="colActCat bi bi-circle-fill text-green-500"></i>
-                        <p>Kegiatan</p>
-                    </div>
-                    <div class="creCat-galOsis flex items-center space-x-2">
-                        <i class="colActCat bi bi-circle-fill text-blue-500"></i>
-                        <p>Karya</p>
-                    </div>
-                </div> --}}
-            </div>
-            {{-- <div class="liImg-galOsis mt-6">
-                <div class="grid grid-cols-2 lg:grid-cols-3 gap-2 md:gap-8 2xl:grid-cols-4">
-                    <div class="contItem-imgGalOsis rounded-md md:rounded-2xl border border-black overflow-hidden relative xl:h-72">
-                        <img src="assets/img/dumb/imgtemp 4.jpg" alt="" class="xl:w-full xl:h-full object-cover object-center" onclick="openPopup(this.src)">
-                        <div class="sumItem-galOsis bg-white px-2 py-2 md:px-6 md:py-3 h-12 md:h-20 xl:rounded-xl md:space-y-1 xl:w-[90%] xl:absolute xl:left-1/2 xl:bottom-[5%] xl:-translate-x-1/2 xl:-translate-y-[5%] transition-all">
-                            <div class="dateItem-galOsis text-[10px] md:text-xs xl:text-sm text-blue-600">
-                                <p class="tracking-tight line-clamp-1">2 Agustus 2017</p>
+                <div class="cat-addGal flex flex-wrap items-center gap-6 text-2xl font-bold">
+                    <form action="" method="" enctype="multipart/form-data" id="gotoAddImgGal">
+                        <div class="inpImgGal">
+                            <div class="thLabels">
+                                <label for="inpAddGaleri" class="actCat-galOsis flex px-6 py-1 items-center space-x-2 cursor-pointer hover:bg-gray-200 border border-black rounded-lg" id="btnAddImgGal"> 
+                                    <i class="icAddGal bi bi-plus-circle"></i>
+                                    <p>Tambah</p>
+                                </label>
                             </div>
-                            <div class="tiItem-galOsis text-xs md:text-base xl:text-lg font-bold">
-                                <h3 class="line-clamp-1">Ini judul gambarnya asdada ad asdasd asd asd asd asd asd asd asd asd sa</h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="contItem-imgGalOsis rounded-md md:rounded-2xl border border-black overflow-hidden relative  xl:h-72">
-                        <img src="assets/img/dumb/imgtemp 4.jpg" alt="" class="xl:w-full xl:h-full object-cover object-center" onclick="openPopup(this.src)">
-                        <div class="sumItem-galOsis bg-white px-2 py-2 md:px-6 md:py-3 h-12 md:h-20 xl:rounded-xl md:space-y-1 xl:w-[90%] xl:absolute xl:left-1/2 xl:bottom-[5%] xl:-translate-x-1/2 xl:-translate-y-[5%]">
-                            <div class="dateItem-galOsis text-[10px] md:text-xs xl:text-sm text-blue-600">
-                                <p class="tracking-tight line-clamp-1">2 Agustus 2017</p>
-                            </div>
-                            <div class="tiItem-galOsis text-xs md:text-base xl:text-lg font-bold">
-                                <h3 class="line-clamp-1">Ini judul gambarnya asdada ad asdasd asd asd asd asd asd asd asd asd sa</h3>
+                            <input type="file" name="addGaleri" id="inpAddGaleri" accept="image/*" class="hidden">
+                            <div class="btnCnAddGalImg items-center gap-2 flex  hidden" id="ifOnInputChange">
+                                <div class="cnAddImgGal">
+                                    <button type="button" id="cnAddImgGal" class="flex px-6 py-1 items-center space-x-2 cursor-pointer hover:bg-gray-200 border border-black rounded-lg">
+                                        <i class="bi bi-x-circle"></i>
+                                        <p>Cancel</p>
+                                    </button>
+                                </div>
+                                <div class="sbImgGal">
+                                    <button type="submit" class="flex px-6 py-1 items-center space-x-2 cursor-pointer hover:bg-gray-200 border border-black rounded-lg">
+                                        <i class="bi bi-save"></i>
+                                        <p>Simpan</p>
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
-            </div> --}}
-            <div class="list-items flex flex-wrap justify-center items-center">
+            </div>
+            <div class="previewImg mt-8 h-96 hidden">
+                <img src="{{asset('assets/img/dumb/imgtemp 2.jpg')}}" alt="" class="mx-auto rounded-lg h-full" id="prevImgGal">
+            </div>
+            <div class="list-items mt-12 flex flex-wrap justify-center items-center">
                 @for ($i=1; $i <= 9; $i++)
-                    <img class="photo-item rounded-[15px] max-w-full max-h-[200px] m-[5px]" src="{{asset('assets/img/dumb/imgtemp ' . $i . '.jpg')}}" alt="" onclick="openPopup(this.src)">
-                @endfor
-                @for ($i=9; $i >= 1; $i--)
-                    <img class="photo-item rounded-[15px] max-w-full max-h-[200px] m-[5px]" src="{{asset('assets/img/dumb/imgtemp ' . $i . '.jpg')}}" alt="" onclick="openPopup(this.src)">
+                    <img class="photo-item rounded-[15px] max-w-full max-h-[200px] m-[5px]" style="user-drag: none; -webkit-user-drag: none; user-select: none; -moz-user-select: none; -webkit-user-select: none;  -ms-user-select: none;" src="{{asset('assets/img/dumb/imgtemp ' . $i . '.jpg')}}" alt="" onclick="openPopup(this.src)">
                 @endfor
                 @for ($i=1; $i <= 9; $i++)
-                    <img class="photo-item rounded-[15px] max-w-full max-h-[200px] m-[5px]" src="{{asset('assets/img/dumb/imgtemp ' . $i . '.jpg')}}" alt="" onclick="openPopup(this.src)">
+                    <img class="photo-item rounded-[15px] max-w-full max-h-[200px] m-[5px]" style="user-drag: none; -webkit-user-drag: none; user-select: none; -moz-user-select: none; -webkit-user-select: none;  -ms-user-select: none;" src="{{asset('assets/img/dumb/imgtemp ' . $i . '.jpg')}}" alt="" onclick="openPopup(this.src)">
                 @endfor
-                @for ($i=9; $i >= 1; $i--)
-                    <img class="photo-item rounded-[15px] max-w-full max-h-[200px] m-[5px]" src="{{asset('assets/img/dumb/imgtemp ' . $i . '.jpg')}}" alt="" onclick="openPopup(this.src)">
-                @endfor
-                {{-- <div class="group bg-white regular-shadow flex justify-center items-center border rounded-2xl overflow-hidden relative hover:bg-gray-500/25">
-                    <div class="add-icon">
-                        <i class="bi bi-plus-circle text-8xl opacity-50"></i>
-                    </div>
-                    <button type="button" class="btrpp-vii block w-full h-full inset-0 absolute z-10" onclick="showPopUpForm(this); addVals(this);"></button>
-                </div> --}}
             </div>
         </div>
     </section>
     <section class="mt-20">
         <div class="shrcRcEksTe relative h-96">
-            <div class="img-bg flex items-center justify-center relative text-center text-white h-96 bg-cover bg-top bg-no-repeat after:absolute after:top-0 after:left-0 after:bg-blue-700/80 after:w-full after:h-full"
-                style="background-image: url('{{asset('assets/img/main/vecteezy_abstract-black-and-white-pattern-like-psychedelic_.jpg')}}');">
-                <div class="content relative z-10 self-center">
-                    <div class="ctnShrc flex flex-col lg:flex-row justify-center items-center gap-8 relative z-10 text-white h-full p-12">
-                        <div class="rngKl flex gap-4 justify-center items-center max-w-[450px]">
-                            <div class="nbr-Kl text-4xl xl:text-7xl font-bold">
-                                {26}
-                            </div>
-                            <div class="descChild space-y-8 text-left">
-                                <a href="" class="text-xl block group relative font-bold">
-                                    Ruang Kelas
-                                    <i class="bi bi-arrow-right hidden lg:block text-4xl transition-all absolute right-[10%] top-1/2 -translate-x-[10%] -translate-y-1/2 group-hover:right-0 group-hover:-translate-x-0"></i>
-                                </a>
-                                <p class="text-sm leading-4 line-clamp-2">Serta fasilitas penunjang kegiatan belajar mengajar lainnya</p>
-                            </div>
+            <div class="img-bg overflow-hidden relative text-white min-h-[16rem] lg:min-h-[24rem] bg-cover bg-center bg-no-repeat after:absolute after:top-0 after:left-0 after:bg-blue-700/90 after:w-full after:h-full"
+                style="background-image: url('{{asset('assets/img/main/126465066756.jpg')}}');">
+                <div class="content relative z-10 min-h-[16rem] lg:min-h-[24rem] flex items-center">
+                    <div class="ctnShrc flex flex-col lg:flex-row justify-center lg:justify-between lg:items-center gap-8 relative z-10 text-white h-full p-12">
+                        <div class="lWAB w-3/4">
+                            <h3 class="text-3xl lg:text-6xl font-bold">Ada pertanyaan atau ingin tahu selengkapnya?</h3>
                         </div>
-                        <div class="rngEks flex gap-4 justify-center items-center max-w-[450px]">
-                            <div class="nbr-Kl text-4xl xl:text-7xl font-bold">
-                                {26}
-                            </div>
-                            <div class="descChild space-y-8 text-left">
-                                <a href="" class="text-xl block group relative font-bold">
-                                    Ekstrakurikuer
-                                    <i class="bi bi-arrow-right hidden lg:block text-4xl transition-all absolute right-[10%] top-1/2 -translate-x-[10%] -translate-y-1/2 group-hover:right-0 group-hover:-translate-x-0"></i>
-                                </a>
-                                <p class="text-sm leading-4 line-clamp-2">Membantu peserta didik menyalurkan minat dan bakatnya.</p>
-                            </div>
-                        </div>
-                        <div class="rngTe flex gap-4 justify-center items-center max-w-[450px]">
-                            <div class="nbr-Kl text-4xl xl:text-7xl font-bold">
-                                {26}
-                            </div>
-                            <div class="descChild space-y-8 text-left">
-                                <a href="" class="text-xl block group relative font-bold">
-                                    Pendidik
-                                    <i class="bi bi-arrow-right hidden lg:block text-4xl transition-all absolute right-[10%] top-1/2 -translate-x-[10%] -translate-y-1/2 group-hover:right-0 group-hover:-translate-x-0"></i>
-                                </a>
-                                <p class="text-sm leading-4 line-clamp-2">Melalui Kualifikasi dan memiliki sertifikat sesuai bidangnya.</p>
-                            </div>
+                        <div class="rSocmed-recom flex-shrink-0">
+                            <a href="" class="flex items-center gap-2 text-2xl lg:text-3xl lg:px-4 lg:py-2">
+                                <i class="bi bi-instagram"></i>
+                                <p>@{{Instagram account}}</p>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -407,7 +330,7 @@
                                 <i class="bi bi-trash3"></i>
                             </button>
                         </div>
-                        <img src="" alt="" id="previewImage" class="supImg w-full h-full object-cover object-center relative bg-gray-400/50">
+                        <img src="" alt="" id="previewImage" class="supImg w-full h-full object-cover object-center relative bg-gray-400/50 after:absolute after:bi after:bi-card-image">
                         <label for="imgClass" class="block w-full h-full absolute inset-0 group-hover:bg-black/30 transition-all cursor-pointer">
                             <label for="imgClass" class="itemClass w-3/4 py-2 text-white text-center font-bold cursor-pointer bg-blue-400 rounded-xl z-10 absolute -bottom-full left-1/2 translate-y-full -translate-x-1/2 transition-all group-hover:bottom-[5%] group-hover:-translate-y-[5%] hover:bg-cyan-500">
                                 <i class="bi bi-plus-circle text-lg"></i>
@@ -439,9 +362,153 @@
             </form>
         </div>
     </section>
+    <div class="pop-sumEks">
+        <div id="pop-brdSumEks" class="brdSumEks w-10/12 h-full xl:h-fit xl:w-1/3 bg-slate-950 fixed pb-8 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50 rounded-lg overflow-hidden hidden">
+            <div class="heaAbtSumEks flex items-center justify-between text-white text-2xl sticky w-full left-0 top-0 pt-4 xl:pt-12 pb-2 px-8">
+                <div class="tiAbt">
+                    <div class="txt">
+                        <strong>Tentang</strong>                        
+                    </div>
+                </div>
+                <div class="x-close-btn">
+                    <div class="btnX">
+                        <button class="overflow-hidden aspect-square flex items-center" id="clsPop-brdSumEks">
+                            <i class="bi bi-x text-4xl"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="contentSumEks h-[36rem] overflow-y-scroll p-8 text-sm xl:text-base">
+                <div class="abtSumEks">
+                    <div class="cntnAbtSumEks text-white overflow-hidden">
+                        <div class="cntnEks">
+                            <p>
+                                Ini adalah sebuah konten untuk popup jika mengklik simbol tanda tanya (?) pada list ekstrakurikuler yang ada.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="lnkSumEks mt-8">
+                    <div class="cntnLnkSumEks text-white">
+                        <div class="tiLnkSumEks">
+                            <div class="txt">
+                                <strong class="font-bold text-2xl">
+                                    Link
+                                </strong>
+                            </div>
+                        </div>
+                        <div class="cntnLnk mt-6 px-4">
+                            <ul class="list-link grid grid-cols-2 gap-4">
+                                <div class="link-item overflow-hidden ">
+                                    <li>
+                                        <div class="cntnItem flex items-center gap-4">
+                                            <i class="bi bi-facebook text-3xl"></i>
+                                            <div class="desc-link leading-4">
+                                                <p class="text-base">Facebook</p>
+                                                <a href="" class="text-sm underline text-blue-600">facebook.com</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </div>
+                                <div class="link-item overflow-hidden ">
+                                    <li>
+                                        <div class="cntnItem flex items-center gap-4">
+                                            <i class="bi bi-instagram text-3xl"></i>
+                                            <div class="desc-link leading-4">
+                                                <p class="text-base">Instagram</p>
+                                                <a href="" class="text-sm underline text-blue-600">instagram.com</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </div>
+                                <div class="link-item overflow-hidden ">
+                                    <li>
+                                        <div class="cntnItem flex items-center gap-4">
+                                            <i class="bi bi-twitter-x text-3xl"></i>
+                                            <div class="desc-link leading-4">
+                                                <p class="text-base">X</p>
+                                                <a href="" class="text-sm underline text-blue-600">x.com</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </div>
+                                <div class="link-item overflow-hidden ">
+                                    <li>
+                                        <div class="cntnItem flex items-center gap-4">
+                                            <i class="bi bi-tiktok text-3xl"></i>
+                                            <div class="desc-link leading-4">
+                                                <p class="text-base">Tiktok</p>
+                                                <a href="" class="text-sm underline text-blue-600">tiktok.com</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </div>
+                                <div class="link-item overflow-hidden ">
+                                    <li>
+                                        <div class="cntnItem flex items-center gap-4">
+                                            <i class="bi bi-youtube text-3xl"></i>
+                                            <div class="desc-link leading-4">
+                                                <p class="text-base">Youtube</p>
+                                                <a href="" class="text-sm underline text-blue-600">youtube.com</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="dtlSumEks mt-8">
+                    <div class="cntnDtlSumEks text-white">
+                        <div class="tiDtlSumEks">
+                            <div class="txt">
+                                <strong class="font-bold text-2xl">
+                                    Detail Ekskul
+                                </strong>
+                            </div>
+                        </div>
+                        <div class="cntnDtl mt-6 px-4">
+                            <ul class="list-link space-y-3">
+                                <div class="link-item overflow-hidden ">
+                                    <li>
+                                        <div class="cntnItem flex items-center gap-4">
+                                            <i class="bi bi-globe2 text-3xl"></i>
+                                            <div class="desc-link">
+                                                <a href="" class="">https://smpn2indramayu.sch.id/ekstrakurikuler</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </div>
+                                <div class="link-item overflow-hidden ">
+                                    <li>
+                                        <div class="cntnItem flex items-center gap-4">
+                                            <i class="bi bi-people text-3xl"></i>
+                                            <div class="desc-link">
+                                                <p class="text-base">@{{total}} Anggota</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </div>
+                                <div class="link-item overflow-hidden ">
+                                    <li>
+                                        <div class="cntnItem flex items-center gap-4">
+                                            <i class="bi bi-exclamation-circle text-3xl"></i>
+                                            <div class="desc-link">
+                                                <p class="text-base">12 April 2023</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 @section('custom-script')
-    <script src="assets/js/students/formsInpExcel.js"></script>
-    <script src="assets/js/students/grouplist.js"></script>
-    <script src="assets/js/students/formsAdd.js"></script>
+    <script src="{{asset('assets/js/galeri/addGal.js')}}"></script>
+    <script src="{{asset('assets/js/ekstrakurikuler/formsAddEkskul.js')}}"></script>
+    <script src="{{asset('assets/js/ekstrakurikuler/shPop-sumEks.js')}}"></script>
 @endsection

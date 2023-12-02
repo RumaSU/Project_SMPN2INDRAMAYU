@@ -37,7 +37,7 @@
                         <div class="postByImgPopup mt-2 hidden md:block">
                             <div class="iconUserBy flex md:items-center gap-3">
                                 <i class="bi bi-person-circle text-lg"></i>
-                                <p class="text-sm border border-black line-clamp-2">Posted by<a href="" class="text-blue-700" >@{{Person}}</a> in  <a href="" class="text-blue-700" >@{{Where post}}</a> </p>
+                                <p class="text-sm line-clamp-2">Posted by<a href="" class="text-blue-700" >@{{Person}}</a> in  <a href="" class="text-blue-700" >@{{Where post}}</a> </p>
                             </div>
                         </div>
                     </div>

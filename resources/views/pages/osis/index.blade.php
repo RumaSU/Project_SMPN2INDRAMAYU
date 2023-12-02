@@ -201,73 +201,37 @@
             </div>
             <div class="liImg-galOsis mt-6">
                 <div class="grid grid-cols-2 lg:grid-cols-3 gap-2 md:gap-8 2xl:grid-cols-4">
-                    <div class="contItem-imgGalOsis rounded-md md:rounded-2xl border border-black overflow-hidden relative xl:h-72">
-                        <img src="assets/img/dumb/imgtemp 4.jpg" alt="" class="xl:w-full xl:h-full object-cover object-center" onclick="openPopup(this.src)">
-                        <div class="sumItem-galOsis bg-white px-2 py-2 md:px-6 md:py-3 h-12 md:h-20 xl:rounded-xl md:space-y-1 xl:w-[90%] xl:absolute xl:left-1/2 xl:bottom-[5%] xl:-translate-x-1/2 xl:-translate-y-[5%] transition-all">
-                            <div class="dateItem-galOsis text-[10px] md:text-xs xl:text-sm text-blue-600">
-                                <p class="tracking-tight line-clamp-1">2 Agustus 2017</p>
-                            </div>
-                            <div class="tiItem-galOsis text-xs md:text-base xl:text-lg font-bold">
-                                <h3 class="line-clamp-1">Ini judul gambarnya asdada ad asdasd asd asd asd asd asd asd asd asd sa</h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="contItem-imgGalOsis rounded-md md:rounded-2xl border border-black overflow-hidden relative  xl:h-72">
-                        <img src="assets/img/dumb/imgtemp 4.jpg" alt="" class="xl:w-full xl:h-full object-cover object-center" onclick="openPopup(this.src)">
-                        <div class="sumItem-galOsis bg-white px-2 py-2 md:px-6 md:py-3 h-12 md:h-20 xl:rounded-xl md:space-y-1 xl:w-[90%] xl:absolute xl:left-1/2 xl:bottom-[5%] xl:-translate-x-1/2 xl:-translate-y-[5%]">
-                            <div class="dateItem-galOsis text-[10px] md:text-xs xl:text-sm text-blue-600">
-                                <p class="tracking-tight line-clamp-1">2 Agustus 2017</p>
-                            </div>
-                            <div class="tiItem-galOsis text-xs md:text-base xl:text-lg font-bold">
-                                <h3 class="line-clamp-1">Ini judul gambarnya asdada ad asdasd asd asd asd asd asd asd asd asd sa</h3>
+                    @for ($i=1; $i<=9; $i++)
+                        <div class="contItem-imgGalOsis rounded-md md:rounded-2xl border border-black overflow-hidden relative xl:h-72 md:hover:scale-105 transition-all group">
+                            <img src="{{asset('assets/img/dumb/imgtemp ' . $i . '.jpg')}}" alt="" class="w-full h-56 xl:h-full object-cover object-center " onclick="openPopup(this.src)">
+                            <div class="sumItem-galOsis bg-white px-2 py-2 md:px-6 md:py-3 h-12 md:h-20 xl:rounded-xl md:space-y-1 xl:w-[90%] xl:absolute xl:left-1/2 xl:-bottom-[100%] group-hover:xl:bottom-[5%] xl:-translate-x-1/2 xl:-translate-y-[5%] transition-all">
+                                <div class="dateItem-galOsis text-[10px] md:text-xs xl:text-sm text-blue-600">
+                                    <p class="tracking-tight line-clamp-1">2 Agustus 2017</p>
+                                </div>
+                                <div class="tiItem-galOsis text-xs md:text-base xl:text-lg font-bold">
+                                    <h3 class="line-clamp-1">Ini judul gambarnya asdada ad asdasd asd asd asd asd asd asd asd asd sa</h3>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    @endfor
                 </div>
             </div>
         </div>
     </section>
     <section class="mt-20">
         <div class="shrcRcEksTe relative h-96">
-            <div class="img-bg flex items-center justify-center relative text-center text-white h-96 bg-cover bg-top bg-no-repeat after:absolute after:top-0 after:left-0 after:bg-blue-700/80 after:w-full after:h-full"
-                style="background-image: url('{{asset('assets/img/main/vecteezy_abstract-black-and-white-pattern-like-psychedelic_.jpg')}}');">
-                <div class="content relative z-10 self-center">
-                    <div class="ctnShrc flex flex-col lg:flex-row justify-center items-center gap-8 relative z-10 text-white h-full p-12">
-                        <div class="rngKl flex gap-4 justify-center items-center max-w-[450px]">
-                            <div class="nbr-Kl text-4xl xl:text-7xl font-bold">
-                                {26}
-                            </div>
-                            <div class="descChild space-y-8 text-left">
-                                <a href="" class="text-xl block group relative font-bold">
-                                    Ruang Kelas
-                                    <i class="bi bi-arrow-right hidden lg:block text-4xl transition-all absolute right-[10%] top-1/2 -translate-x-[10%] -translate-y-1/2 group-hover:right-0 group-hover:-translate-x-0"></i>
-                                </a>
-                                <p class="text-sm leading-4 line-clamp-2">Serta fasilitas penunjang kegiatan belajar mengajar lainnya</p>
-                            </div>
+            <div class="img-bg overflow-hidden relative text-white min-h-[16rem] lg:min-h-[24rem] bg-cover bg-center bg-no-repeat after:absolute after:top-0 after:left-0 after:bg-blue-700/90 after:w-full after:h-full"
+                style="background-image: url('{{asset('assets/img/main/126465066756.jpg')}}');">
+                <div class="content relative z-10 min-h-[16rem] lg:min-h-[24rem] flex items-center">
+                    <div class="ctnShrc flex flex-col lg:flex-row justify-center lg:justify-between lg:items-center gap-8 relative z-10 text-white h-full p-12">
+                        <div class="lWAB w-3/4">
+                            <h3 class="text-4xl lg:text-7xl font-bold">Ada pertanyaan atau ingin tahu selengkapnya?</h3>
                         </div>
-                        <div class="rngEks flex gap-4 justify-center items-center max-w-[450px]">
-                            <div class="nbr-Kl text-4xl xl:text-7xl font-bold">
-                                {26}
-                            </div>
-                            <div class="descChild space-y-8 text-left">
-                                <a href="" class="text-xl block group relative font-bold">
-                                    Ekstrakurikuer
-                                    <i class="bi bi-arrow-right hidden lg:block text-4xl transition-all absolute right-[10%] top-1/2 -translate-x-[10%] -translate-y-1/2 group-hover:right-0 group-hover:-translate-x-0"></i>
-                                </a>
-                                <p class="text-sm leading-4 line-clamp-2">Membantu peserta didik menyalurkan minat dan bakatnya.</p>
-                            </div>
-                        </div>
-                        <div class="rngTe flex gap-4 justify-center items-center max-w-[450px]">
-                            <div class="nbr-Kl text-4xl xl:text-7xl font-bold">
-                                {26}
-                            </div>
-                            <div class="descChild space-y-8 text-left">
-                                <a href="" class="text-xl block group relative font-bold">
-                                    Pendidik
-                                    <i class="bi bi-arrow-right hidden lg:block text-4xl transition-all absolute right-[10%] top-1/2 -translate-x-[10%] -translate-y-1/2 group-hover:right-0 group-hover:-translate-x-0"></i>
-                                </a>
-                                <p class="text-sm leading-4 line-clamp-2">Melalui Kualifikasi dan memiliki sertifikat sesuai bidangnya.</p>
-                            </div>
+                        <div class="rSocmed-recom flex-shrink-0">
+                            <a href="" class="flex items-center gap-2 text-2xl lg:text-3xl lg:px-4 lg:py-2">
+                                <i class="bi bi-instagram"></i>
+                                <p>@{{Instagram account}}</p>
+                            </a>
                         </div>
                     </div>
                 </div>
