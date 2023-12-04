@@ -363,7 +363,7 @@
         </div>
     </section>
     <div class="pop-sumEks">
-        <div id="pop-brdSumEks" class="brdSumEks w-10/12 h-full xl:h-fit xl:w-1/3 bg-slate-950 fixed pb-8 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50 rounded-lg overflow-hidden hidden">
+        <div id="pop-brdSumEks" class="brdSumEks w-full h-full xl:h-fit xl:w-1/3 bg-slate-950 fixed pb-8 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50 rounded-lg overflow-hidden hidden">
             <div class="heaAbtSumEks flex items-center justify-between text-white text-2xl sticky w-full left-0 top-0 pt-4 xl:pt-12 pb-2 px-8">
                 <div class="tiAbt">
                     <div class="txt">
@@ -382,7 +382,7 @@
                 <div class="abtSumEks">
                     <div class="cntnAbtSumEks text-white overflow-hidden">
                         <div class="cntnEks">
-                            <p>
+                            <p class="text-sm md:text-base">
                                 Ini adalah sebuah konten untuk popup jika mengklik simbol tanda tanya (?) pada list ekstrakurikuler yang ada.
                             </p>
                         </div>
@@ -398,14 +398,14 @@
                             </div>
                         </div>
                         <div class="cntnLnk mt-6 px-4">
-                            <ul class="list-link grid grid-cols-2 gap-4">
+                            <ul class="list-link grid md:grid-cols-2 gap-4">
                                 <div class="link-item overflow-hidden ">
                                     <li>
                                         <div class="cntnItem flex items-center gap-4">
-                                            <i class="bi bi-facebook text-3xl"></i>
+                                            <i class="bi bi-facebook text-2xl md:text-3xl"></i>
                                             <div class="desc-link leading-4">
-                                                <p class="text-base">Facebook</p>
-                                                <a href="" class="text-sm underline text-blue-600">facebook.com</a>
+                                                <p class="text-sm md:text-base">Facebook</p>
+                                                <a href="" class="text-xs underline text-blue-600">facebook.com</a>
                                             </div>
                                         </div>
                                     </li>
@@ -413,10 +413,10 @@
                                 <div class="link-item overflow-hidden ">
                                     <li>
                                         <div class="cntnItem flex items-center gap-4">
-                                            <i class="bi bi-instagram text-3xl"></i>
+                                            <i class="bi bi-instagram text-2xl md:text-3xl"></i>
                                             <div class="desc-link leading-4">
-                                                <p class="text-base">Instagram</p>
-                                                <a href="" class="text-sm underline text-blue-600">instagram.com</a>
+                                                <p class="text-sm md:text-base">Instagram</p>
+                                                <a href="" class="text-xs underline text-blue-600">instagram.com</a>
                                             </div>
                                         </div>
                                     </li>
@@ -424,10 +424,10 @@
                                 <div class="link-item overflow-hidden ">
                                     <li>
                                         <div class="cntnItem flex items-center gap-4">
-                                            <i class="bi bi-twitter-x text-3xl"></i>
+                                            <i class="bi bi-twitter-x text-2xl md:text-3xl"></i>
                                             <div class="desc-link leading-4">
-                                                <p class="text-base">X</p>
-                                                <a href="" class="text-sm underline text-blue-600">x.com</a>
+                                                <p class="text-sm md:text-base">X</p>
+                                                <a href="" class="text-xs underline text-blue-600">x.com</a>
                                             </div>
                                         </div>
                                     </li>
@@ -435,10 +435,10 @@
                                 <div class="link-item overflow-hidden ">
                                     <li>
                                         <div class="cntnItem flex items-center gap-4">
-                                            <i class="bi bi-tiktok text-3xl"></i>
+                                            <i class="bi bi-tiktok text-2xl md:text-3xl"></i>
                                             <div class="desc-link leading-4">
-                                                <p class="text-base">Tiktok</p>
-                                                <a href="" class="text-sm underline text-blue-600">tiktok.com</a>
+                                                <p class="text-sm md:text-base">Tiktok</p>
+                                                <a href="" class="text-xs underline text-blue-600">tiktok.com</a>
                                             </div>
                                         </div>
                                     </li>
@@ -446,10 +446,10 @@
                                 <div class="link-item overflow-hidden ">
                                     <li>
                                         <div class="cntnItem flex items-center gap-4">
-                                            <i class="bi bi-youtube text-3xl"></i>
+                                            <i class="bi bi-youtube text-2xl md:text-3xl"></i>
                                             <div class="desc-link leading-4">
-                                                <p class="text-base">Youtube</p>
-                                                <a href="" class="text-sm underline text-blue-600">youtube.com</a>
+                                                <p class="text-sm md:text-base">Youtube</p>
+                                                <a href="" class="text-xs underline text-blue-600">youtube.com</a>
                                             </div>
                                         </div>
                                     </li>
@@ -472,8 +472,8 @@
                                 <div class="link-item overflow-hidden ">
                                     <li>
                                         <div class="cntnItem flex items-center gap-4">
-                                            <i class="bi bi-globe2 text-3xl"></i>
-                                            <div class="desc-link">
+                                            <i class="bi bi-globe2 text-2xl md:text-3xl"></i>
+                                            <div class="desc-link text-sm md:text-base">
                                                 <a href="" class="">https://smpn2indramayu.sch.id/ekstrakurikuler</a>
                                             </div>
                                         </div>
@@ -482,9 +482,9 @@
                                 <div class="link-item overflow-hidden ">
                                     <li>
                                         <div class="cntnItem flex items-center gap-4">
-                                            <i class="bi bi-people text-3xl"></i>
+                                            <i class="bi bi-people text-2xl md:text-3xl"></i>
                                             <div class="desc-link">
-                                                <p class="text-base">@{{total}} Anggota</p>
+                                                <p class="text-sm md:text-base">@{{total}} Anggota</p>
                                             </div>
                                         </div>
                                     </li>
@@ -492,9 +492,9 @@
                                 <div class="link-item overflow-hidden ">
                                     <li>
                                         <div class="cntnItem flex items-center gap-4">
-                                            <i class="bi bi-exclamation-circle text-3xl"></i>
+                                            <i class="bi bi-exclamation-circle text-2xl md:text-3xl"></i>
                                             <div class="desc-link">
-                                                <p class="text-base">12 April 2023</p>
+                                                <p class="text-sm md:text-base">12 April 2023</p>
                                             </div>
                                         </div>
                                     </li>

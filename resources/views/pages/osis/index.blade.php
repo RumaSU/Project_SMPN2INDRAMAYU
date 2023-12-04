@@ -188,16 +188,6 @@
                 <div class="tlGal text-2xl font-bold">
                     <h2>Galeri</h2>
                 </div>
-                {{-- <div class="cat-galOsis flex flex-wrap items-center gap-6 text-2xl font-bold">
-                    <div class="actCat-galOsis flex items-center space-x-2"> 
-                        <i class="colActCat bi bi-circle-fill text-green-500"></i>
-                        <p>Kegiatan</p>
-                    </div>
-                    <div class="creCat-galOsis flex items-center space-x-2">
-                        <i class="colActCat bi bi-circle-fill text-blue-500"></i>
-                        <p>Karya</p>
-                    </div>
-                </div> --}}
             </div>
             <div class="liImg-galOsis mt-6">
                 <div class="grid grid-cols-2 lg:grid-cols-3 gap-2 md:gap-8 2xl:grid-cols-4">

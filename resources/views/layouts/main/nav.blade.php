@@ -1,4 +1,4 @@
-<div class="logImageSchool-navRight flex justify-between align-items-center px-12 py-5">
+<div class="logImageSchool-navRight bg-white flex justify-between align-items-center px-6 lg:px-12 py-5">
     <a href="/" class="gotoHomepage">
         <div class="image-Logoschool flex justify-center align-items-center gap-2">
             <div class="image self-center">
@@ -11,16 +11,16 @@
         </div>
     </a>
     <div class="navigation self-center relative hidden lg:flex items-center">
-        <ul class="flex flex-column align-items-center justify-between gap-4 text-black font-bold group">
-            <li class="relative group">
+        <ul class="flex flex-column align-items-center justify-between gap-4 text-black font-bold">
+            <li class="relative">
                 <div class="gotoHome">
                     <a href="/" class="py-1.5 px-4">Beranda</a>
                 </div>
             </li>
-            <li class="relative group">
-                <div class="gotoProfile" onmouseover="showDropdown()" onmouseleave="hideDropdown()">
+            <li class=" relative">
+                <div class="gotoProfile  group">
                     <a href="" class="py-1.5 px-4 group">Profil</a>
-                    <div id="dropDownProfile" class="dropDownProfile absolute w-48 -right-14 transition-all duration-400 ease-in-out z-50" style="top: -200%; visibility: hidden; opacity: 0;">
+                    <div id="dropDownProfile" class="dropDownProfile absolute w-48 -right-14 transition-all duration-400 ease-in-out z-10 invisible opacity-0 group-hover:visible group-hover:opacity-100">
                         <div class="p-4 text-sm font-normal mt-4 w-48  border border-black rounded-md bg-white">
                             <div class="py-1 flex">
                                 <a href="/profil" class="hover:text-gray-400">Sekolah</a>
@@ -45,17 +45,17 @@
 
                 </div>
             </li>
-            <li class="relative group">
+            <li class="relative">
                 <div class="gotoNews">
                     <a href="" class="py-1.5 px-4">Berita</a>
                 </div>
             </li>
-            <li class="relative group">
+            <li class="relative">
                 <div class="gotoGalery">
-                    <a href="" class="py-1.5 px-4">Galeri</a>
+                    <a href="/galeri" class="py-1.5 px-4">Galeri</a>
                 </div>
             </li>
-            <li class="relative group">
+            <li class="relative">
                 <div class="gotoLogin">
                     <a href="/login" class="py-1.5 px-4">Login</a>
                 </div>
@@ -113,7 +113,7 @@
             </li>
             <li class="relative group">
                 <div class="gotoGalery">
-                    <a href="" class="py-1.5 px-4">Galeri</a>
+                    <a href="/galeri" class="py-1.5 px-4">Galeri</a>
                 </div>
             </li>
             <li class="relative group">

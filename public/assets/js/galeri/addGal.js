@@ -1,9 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const labAddImg = document.getElementById('btnAddImgGal');
-    const svCnAddImg = document.getElementById('ifOnInputChange');
-    const cnAddBtnImg = document.getElementById('cnAddImgGal');
-    const inpImg = document.getElementById('inpAddGaleri');
-    const preview = document.getElementById('prevImgGal');
+    const clsFrmAddImg = document.getElementById('btnClsAddGal');
+    const frmAddImg = document.getElementById('pop-upFormAddGal');
+    const overlayPopUp = document.getElementById('overlayPopUp');
+    const inpImg = document.getElementById('imgAddGal');
+    const inpTitlAddImg = document.getElementById('titAddImg');
+    const preview = document.getElementById('prevImgFrmAddGAL');
     
     inpImg.addEventListener('change', () => {
         const file = inpImg.files[0];
@@ -21,18 +22,25 @@ document.addEventListener('DOMContentLoaded', () => {
             img.onload = function() {
                 preview.src = URL.createObjectURL(file);
                 file.value = img;
-                preview.parentElement.classList.toggle('hidden');
-                labAddImg.classList.toggle('hidden');
-                svCnAddImg.classList.toggle('hidden');
             }
         }
     });
     
-    cnAddBtnImg.addEventListener('click', () => {
+    clsFrmAddImg.addEventListener('click', () => {
         inpImg.value = null;
+        inpTitlAddImg.value = null;
         preview.src = '';
-        preview.parentElement.classList.toggle('hidden');
-        labAddImg.classList.toggle('hidden');
-        svCnAddImg.classList.toggle('hidden');
+        frmAddImg.classList.toggle('hidden');
+        overlayPopUp.classList.toggle('hidden');
+        document.body.classList.toggle('overflow-hidden');
     });
 });
+
+function showPopUpForm(event) {
+    const popUpForm = document.getElementById('pop-upFormAddGal');
+    const overlayPopUp = document.getElementById('overlayPopUp');
+    document.body.classList.toggle('overflow-hidden');
+    popUpForm.classList.toggle('hidden');
+    overlayPopUp.classList.toggle('hidden');
+}
+

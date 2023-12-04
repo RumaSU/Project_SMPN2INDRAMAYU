@@ -7,7 +7,7 @@
     @vite('resources/css/app.css')
     <link rel="stylesheet" href="{{asset('assets/bootstrap-icons/bootstrap-icons.min.css')}}">
     <link rel="icon" href="{{asset('assets/img/main/example-image.jpg')}}" type="image/x-icon">
-    <title>@yield('title')</title>
+    <title>SMPN 2 INDRAMAYU</title>
     @yield('link-rel')
 </head>
 <body>
@@ -25,7 +25,8 @@
     </footer> --}}
     
     {{-- <div id="imagePopup" class="fixed overflow-hidden z-50 w-[80%] h-[80%] bg-white rounded-md group" style="top: 200%; left:50%; transform:translate(-50%, -50%); visibility: hidden; opacity: 0; transition: all .3s ease-in-out"> --}}
-    <div id="imagePopup" class="fixed overflow-hidden z-50 w-full h-full md:w-[80%] md:h-[80%] bg-white rounded-md group" style="top: 200%; left:50%; transform:translate(-50%, -50%); visibility: hidden; opacity: 0; transition: all .3s ease-in-out">
+    {{-- <div id="imagePopup" class="fixed overflow-hidden z-50 w-full h-full md:w-[80%] md:h-[80%] bg-white rounded-md group" style="top: 200%; left:50%; transform:translate(-50%, -50%); visibility: hidden; opacity: 0; transition: all .3s ease-in-out"> --}}
+    <div id="imagePopup" class="fixed overflow-hidden z-50 w-full h-full md:w-[80%] md:h-[80%] bg-white rounded-md group left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 hidden">
         <div class="theDetailImagePopUp select-none ">
             <div class="thTiImgPopup bg-white/[85%] md:absolute w-full py-4 px-2 md:px-8 shadow-sm shadow-black -top-full left-0 -translate-x-0 -translate-y-0 transition-all group-hover:-top-0">
                 <div class="descUI flex items-center justify-between">
@@ -60,26 +61,20 @@
                     </div>
                 </div>
             </div>
-            {{-- <div class="tgFooImgPopup absolute w-full py-2 px-8 shadow-sm shadow-black border border-black bottom-0 left-0 -translate-x-0 -translate-y-0">
-                <div class="buLRImgPopup">
-                
-                </div>
-                <h1>Test</h1>
-            </div> --}}
         </div>
-        <div class="bNrBImagePopup text-4xl">
+        {{-- <div class="bNrBImagePopup text-4xl">
             <div class="btnChvLeft flex absolute transition-all left-4 md:-left-full top-3/4 md:top-1/2 -translate-x-0 -translate-y-3/4 md:-translate-y-1/2 group-hover:left-4 bg-gray-300/50 hover:bg-gray-300/50 md:bg-gray-300/20 rounded-xl">
                 <i class="bi bi-chevron-left py-4 px-1 cursor-pointer relative after:absolute after:w-full after:h-full after:rounded-xl after:blur-sm after:top-0 after:left-0 after:hover:border-2 after:hover:border-sky-500 after:transition-all"></i>
             </div>
             <div class="btnChvRight flex absolute transition-all right-4 md:-right-full top-3/4 md:top-1/2 -translate-x-0 -translate-y-3/4 md:-translate-y-1/2 group-hover:right-4 bg-gray-300/50 hover:bg-gray-300/50 md:bg-gray-300/20 rounded-xl">
                 <i class="bi bi-chevron-right py-4 px-1 cursor-pointer relative after:absolute after:w-full after:h-full after:rounded-xl after:blur-sm after:top-0 after:left-0 after:hover:border-2 after:hover:border-sky-500 after:transition-all"></i>
             </div>
-        </div>
+        </div> --}}
         <div class="mIPopup w-full lg:w-3/4 mt-6 md:mt-0 md:h-full mx-auto">
             <img src="" alt="" id="popupImage" class="w-full h-full object-contain m-auto">
         </div>
     </div>
-    <div id="overlayPopUp" class="overlayPopUp hidden w-full h-full fixed left-1/2 top-1/2 bg-black/30 -translate-x-1/2 -translate-y-1/2 z-40"></div>
+    <div id="overlayPopUp" class="overlayPopUp hidden w-full h-full fixed left-0 top-0 bg-black/30 -translate-x-0 -translate-y-0 z-40"></div>
     
     <script src="{{asset('assets/js/main/nav.js')}}"></script>
     <script src="{{asset('assets/js/main/popImage.js')}}"></script>

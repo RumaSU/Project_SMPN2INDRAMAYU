@@ -49,6 +49,7 @@ Route::view('/siswa', 'pages.classes.index');
 Route::view('/tenpendidik', 'pages.tenpendidik.index');
 Route::view('/ekstrakurikuler', 'pages.ekstrakurikuler.index');
 Route::view('/ekstrakurikuler/testing', 'pages.ekstrakurikuler.ekskulOpen.index');
+Route::view('/galeri', 'pages.galery.index');
 
 // Route::get('/kelasAjax', [ClassesModelsController::class, 'index']) -> name('ListClass');
 // Route::post('/kelasAjax/add/', [ClassesModelsController::class, 'store']) -> name('storeClass');
