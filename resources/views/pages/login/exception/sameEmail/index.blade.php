@@ -2,14 +2,16 @@
 @section('content')
 <div class="form-login mx-auto w-1/3 px-8 py-4 border border-black rounded-2xl" >
     <div class="imgError">
-        <div class="imgItem relative">
-            <img src="" alt="">
-            <div class="icExcepMark">
-                <i></i>
+        <div class="imgItem">
+            <div class="imgPeople w-52 mx-auto relative">
+                <img src="{{ asset('assets/img/icon/group-g.png') }}" alt="" class="w-full h-full">
+                <div class="icExcepMark absolute right-[3%] bottom-[7%] -translate-x-[3%] -translate-y-[7%]">
+                    <i class="bi bi-exclamation-circle text-4xl bg-white p-2 rounded-lg"></i>
+                </div>
             </div>
         </div>
     </div>
-    <form method="POST" class="flex flex-col gap-6 mt-12 ">
+    <form method="POST" class="flex flex-col gap-6 mt-4 ">
         @csrf
         <div class="form-email border rounded-sm p-6">
             <h1 class="text-2xl font-bold mt-6 text-center">Akun Sudah Ada</h1>
@@ -19,9 +21,9 @@
             </div>
             <input type="nama" id="nama" name="nama" class="w-full py-2 px-1 bg-[#FFEDED] border border-[#DD8181] rounded-sm" >
         </div>
-        <button type="submit" class="bg-[#000000] text-sm text-white font-bold py-2 rounded-lg my-3 mt-2" > Continue </button>
+        <button type="submit" class="bg-[#000000] text-sm text-white font-bold py-2 rounded-lg my-3 mt-1" > Continue </button>
     </form>
 @endsection
 @section('custom-script')
-
+    <script src="{{ asset('assets/js/login/password.js') }}"></script>
 @endsection

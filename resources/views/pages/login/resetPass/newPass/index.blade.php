@@ -43,9 +43,9 @@
                 </div>
             </div>
         </div>
-        <button type="submit" class="bg-[#000000] text-sm text-white font-bold py-4 rounded-lg my-3 mt-2 " > Continue </button>
+        <button type="submit" class="bg-[#000000] text-sm text-white font-bold py-3 rounded-lg my-3 mt-2 " > Continue </button>
     </form>
 @endsection
 @section('custom-script')
-    <script src="assets/js/login/password.js"></script>
+    <script src="{{ asset ('assets/js/login/password.js') }}"></script>
 @endsection

@@ -19,5 +19,5 @@
     </form>
 @endsection
 @section('custom-script')
-
+    <script src="{{ asset ('assets/js/login/password.js') }}"></script>
 @endsection

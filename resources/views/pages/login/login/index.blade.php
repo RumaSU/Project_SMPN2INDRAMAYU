@@ -29,7 +29,8 @@
             <input type="checkbox" id="remember" name="remember" class="w-5 h-5 cursor-pointer">
             <label for="remember" class="text-sm font-bold "  >Remember me</label>
         </div>
-        <button type="submit" class="bg-[#0096FF] text-sm text-white font-bold py-2 rounded-lg " > Login </button>
+        {{-- <button type="submit" class="bg-[#0096FF] text-sm text-white font-bold py-2 rounded-lg " > Login </button> --}}
+        <a href="/" class="bg-[#0096FF] text-sm text-white font-bold py-2 rounded-lg text-center" > Login </a>
     </form>
     <div class="divide-or flex justify-center items-center p-3 gap-3 mt-3">
         <hr class="border border-black w-1/2  ">
@@ -41,7 +42,7 @@
 
 
     <p class="text-center my-3 text-xs">
-        <a href="">
+        <a href="/login/resetPass">
             Forgot Password ?
         </a>
     </p>
@@ -51,5 +52,5 @@
 
 @endsection
 @section('custom-script')
-    <script src="assets/js/login/password.js"></script>
+    <script src="{{ asset('assets/js/login/password.js') }}"></script>
 @endsection

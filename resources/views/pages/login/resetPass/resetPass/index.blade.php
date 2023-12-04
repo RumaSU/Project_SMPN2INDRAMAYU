@@ -23,9 +23,11 @@
             </div>
             <input type="nama" id="nama" name="nama" class="w-full py-2 px-1 border border-[#CED4DA]" >
         </div>
-        <button type="submit" class="bg-[#000000] text-sm text-white font-bold py-2 rounded-lg my-3 mt-2 " > Continue </button>
+        {{-- <button type="submit" class="bg-[#000000] text-sm text-white font-bold py-2 rounded-lg my-3 mt-2 " ></button> --}}
+        <a href="/newPass" class="bg-[#000000] text-sm text-white font-bold py-2 rounded-lg my-3 mt-2 text-center">Continue</a>
+        <a href="/login" class="bg-[#852525] text-sm text-white font-bold py-2 rounded-lg my-3 mt-2 text-center">Cancel</a>
     </form>
 @endsection
 @section('custom-script')
-
+    <script src="{{ asset ('assets/js/login/password.js') }}"></script>
 @endsection

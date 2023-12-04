@@ -47,6 +47,7 @@ Route::get('/osis', [OsisModelsController::class,'index']);
 Route::view('/testing', 'pages.students.index');
 Route::view('/siswa', 'pages.classes.index');
 Route::view('/tenpendidik', 'pages.tenpendidik.index');
+Route::view('/testingpendidik', 'pages.tenpendidik.testing');
 Route::view('/ekstrakurikuler', 'pages.ekstrakurikuler.index');
 Route::view('/ekstrakurikuler/testing', 'pages.ekstrakurikuler.ekskulOpen.index');
 Route::view('/galeri', 'pages.galery.index');

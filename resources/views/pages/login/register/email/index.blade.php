@@ -10,7 +10,7 @@
                 <p class="create-account text-[12px]">
                     Mempunyai akun ? <a href="/login" class="text-[#0000FF] font-bold">Log In</a>
                 </p>
-            </div>  
+            </div>
             <input type="email" id="email" name="email" class="w-full py-2 px-1 border border-[#CED4DA]" >
         </div>
         <div class="form-password">
@@ -55,5 +55,5 @@
 
 @endsection
 @section('custom-script')
-    <script src="assets/js/login/password.js"></script>
+    <script src="{{ asset ('assets/js/login/password.js') }}"></script>
 @endsection

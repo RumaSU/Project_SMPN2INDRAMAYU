@@ -32,7 +32,7 @@
         <hr class="border border-black w-1/2 ">
     </div>
     <p class="text-center my-3 text-xs">
-        <a href="/register">
+        <a href="/login">
             Cancel?
         </a>
     </p>
@@ -40,5 +40,5 @@
 
 @endsection
 @section('custom-script')
-
+    <script src="{{ asset('assets/js/login/password.js') }}"></script>
 @endsection
