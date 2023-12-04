@@ -100,7 +100,7 @@
             </form>
         </div>
     </div>
-    <div class="pop-teDats" id="pop-teDats" role="dialog">
+    <div class="pop-teDats hidden" id="pop-teDats" role="dialog">
         <div class="rootPopDetails w-full h-full max-h-fit xl:h-fit xl:w-1/3 bg-slate-950 fixed pb-8 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50 rounded-lg overflow-hidden">
             <div class="heaAbtSumTeDats flex items-center justify-between text-white text-2xl sticky w-full left-0 top-0 pt-4 xl:pt-12 pb-2 px-8">
                 <div class="tiAbt">
