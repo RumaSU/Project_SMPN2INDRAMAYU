@@ -51,6 +51,10 @@ Route::view('/testingpendidik', 'pages.tenpendidik.testing');
 Route::view('/ekstrakurikuler', 'pages.ekstrakurikuler.index');
 Route::view('/ekstrakurikuler/testing', 'pages.ekstrakurikuler.ekskulOpen.index');
 Route::view('/galeri', 'pages.galery.index');
+Route::view('/galeri/kegiatan', 'pages.galery.galeryActivities.index');
+Route::view('/galeri/sarpras', 'pages.galery.galeryInsfra.index');
+Route::view('/galeri/prestasi', 'pages.galery.galeryAchiev.index');
+Route::view('/galeri/karya', 'pages.galery.galeryCrea.index');
 
 // Route::get('/kelasAjax', [ClassesModelsController::class, 'index']) -> name('ListClass');
 // Route::post('/kelasAjax/add/', [ClassesModelsController::class, 'store']) -> name('storeClass');

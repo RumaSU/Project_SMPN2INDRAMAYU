@@ -5,7 +5,7 @@
 @section('content')
     <section class="imgEkstsool-profiles relative">
         <div class="img-profiles flex items-center justify-center relative text-center text-white h-96 bg-cover bg-center bg-no-repeat after:absolute after:top-0 after:left-0 after:bg-black/60 after:w-full after:h-full"
-            style="background-image: url('assets/img/main/126465066756.jpg');">
+            style="background-image: url('{{asset('assets/img/main/126465066756.jpg')}}');">
             <div class="content relative z-10 selft-center">
                 <h1 class="text-4xl font-bold">Galeri</h1>
             </div>
@@ -27,7 +27,7 @@
     <section class="mt-24">
         <div class="tiType-gal lg:w-3/4 p-4 py-4 lg:py-10 mx-auto bg-gray-100 2xl:rounded-xl">
             <div class="type-gal flex justify-center items-center h-full lg:gap-6 select-none">
-                <button id="idIt1-chsAct" class="itemShowSection it1-chsAct cursor-default lg:w-72 p-3 rounded-lg transition-colors hover:bg-gray-300/60">
+                <span role="button" id="idIt1-chsAct" class="itemShowSection it1-chsAct cursor-default lg:w-72 p-3 rounded-lg transition-colors bg-blue-500 text-white hover:bg-gray-300/60">
                     <div class="countTdatEks">
                         <div class="tDatEks w-full">
                             <div class="tdat text-center flex items-center justify-center gap-2">
@@ -36,8 +36,8 @@
                             </div>
                         </div>
                     </div>
-                </button>
-                <button id="idIt2-chsInsfra" class="itemShowSection it2-chsInsfra cursor-default lg:w-72 p-3 rounded-lg transition-colors hover:bg-gray-300/60">
+                </span>
+                <span role="button" id="idIt2-chsInsfra" class="itemShowSection it2-chsInsfra cursor-default lg:w-72 p-3 rounded-lg transition-colors hover:bg-gray-300/60">
                     <div class="countTdatEks">
                         <div class="tDatEks w-full">
                             <div class="tdat text-center flex items-center justify-center gap-2">
@@ -46,8 +46,8 @@
                             </div>
                         </div>
                     </div>
-                </button>
-                <button id="idIt3-chsAchie" class="itemShowSection it3-chsAchie cursor-default lg:w-72 p-3 rounded-lg transition-colors hover:bg-gray-300/60">
+                </span>
+                <span role="button" id="idIt3-chsAchie" class="itemShowSection it3-chsAchie cursor-default lg:w-72 p-3 rounded-lg transition-colors hover:bg-gray-300/60">
                     <div class="countTdatEks">
                         <div class="tDatEks w-full">
                             <div class="tdat text-center flex items-center justify-center gap-2">
@@ -56,8 +56,8 @@
                             </div>
                         </div>
                     </div>
-                </button>
-                <button id="idIt4-chsCre" class="itemShowSection it4-chsCre cursor-default lg:w-72 p-3 rounded-lg transition-colors hover:bg-gray-300/60">
+                </span>
+                <span role="button" id="idIt4-chsCre" class="itemShowSection it4-chsCre cursor-default lg:w-72 p-3 rounded-lg transition-colors hover:bg-gray-300/60">
                     <div class="countTdatEks">
                         <div class="tDatEks w-full">
                             <div class="tdat text-center flex items-center justify-center gap-2">
@@ -66,13 +66,13 @@
                             </div>
                         </div>
                     </div>
-                </button>
+                </span>
             </div>
         </div>
     </section>
-    <div class="sectionGalery transition-opacity duration-500" id="secGalAct">
+    <section class="sectionGalery transition-opacity duration-500" id="secGalAct">
         <hr class="mt-6 mx-auto w-3/4 border-[1.5px] border-black/40 rounded-2xl">
-        <section class="mt-8">
+        <div class="mt-8">
             <div class="galAct w-11/12 mx-auto">
                 <div class="cntnGalAct">
                     <div class="tlCat-galAct flex flex-col lg:flex-row gap-2 lg:justify-between lg:items-center">
@@ -82,7 +82,7 @@
                         <div class="hrefNInpImg flex items-center gap-2">
                             <div class="hrefToAnother">
                                 <div class="cnHref">
-                                    <a href="">
+                                    <a href="/galeri/kegiatan">
                                         <div class="tx flex p-2 lg:px-6 lg:py-1 items-center space-x-2 cursor-pointer hover:bg-gray-200 border border-black rounded-lg lg:text-xl">
                                             <i class="bi bi-search"></i>
                                             <p class="hidden lg:block">Lainnya</p>
@@ -92,10 +92,10 @@
                             </div>
                             <div class="inpImgGal">
                                 <div class="thBtnsAdd">
-                                    <button class="actCat-gal flex p-2 lg:px-6 lg:py-1 items-center space-x-2 cursor-pointer hover:bg-gray-200 border border-black rounded-lg lg:text-xl" id="btnAddImgGal" onclick="showPopUpForm(this);"> 
+                                    <span role="button" class="actCat-gal flex p-2 lg:px-6 lg:py-1 items-center space-x-2 cursor-pointer hover:bg-gray-200 border border-black rounded-lg lg:text-xl" id="btnAddImgGal" onclick="showPopUpForm(this);"> 
                                         <i class="icAddGal bi bi-plus-circle"></i>
                                         <p>Tambah</p>
-                                    </button>
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -110,11 +110,11 @@
                     </div>
                 </div>
             </div>
-        </section>
-    </div>
-    <div class="sectionGalery transition-opacity duration-500 opacity-0 hidden" id="secGalInsfra">
+        </div>
+    </section>
+    <section class="sectionGalery transition-opacity duration-500 opacity-0 hidden" id="secGalInsfra">
         <hr class="mt-6 mx-auto w-3/4 border-[1.5px] border-black/40 rounded-2xl">
-        <section class="mt-8">
+        <div class="mt-8">
             <div class="galInsfra w-11/12 mx-auto">
                 <div class="cntnGakInsfra">
                     <div class="tlCat-galInsfra flex flex-col lg:flex-row gap-2 lg:justify-between lg:items-center">
@@ -124,7 +124,7 @@
                         <div class="hrefNInpImg flex items-center gap-2">
                             <div class="hrefToAnother">
                                 <div class="cnHref">
-                                    <a href="">
+                                    <a href="/galeri/sarpras">
                                         <div class="tx flex p-2 lg:px-6 lg:py-1 items-center space-x-2 cursor-pointer hover:bg-gray-200 border border-black rounded-lg lg:text-xl">
                                             <i class="bi bi-search"></i>
                                             <p class="hidden lg:block">Lainnya</p>
@@ -134,10 +134,10 @@
                             </div>
                             <div class="inpImgGal">
                                 <div class="thBtnsAdd">
-                                    <button class="actCat-gal flex p-2 lg:px-6 lg:py-1 items-center space-x-2 cursor-pointer hover:bg-gray-200 border border-black rounded-lg lg:text-xl" id="btnAddImgGal" onclick="showPopUpForm(this);"> 
+                                    <span role="button" class="actCat-gal flex p-2 lg:px-6 lg:py-1 items-center space-x-2 cursor-pointer hover:bg-gray-200 border border-black rounded-lg lg:text-xl" id="btnAddImgGal" onclick="showPopUpForm(this);"> 
                                         <i class="icAddGal bi bi-plus-circle"></i>
                                         <p>Tambah</p>
-                                    </button>
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -187,7 +187,6 @@
                                     </div>
                                 </div>
                             @endif
-                            
                         @endfor
                         <div class="gotoAnotherInsfraGal group bg-white regular-shadow border rounded-2xl overflow-hidden relative hover:bg-gray-500/25 max-h-full hidden lg:block" style="grid-column: span 3; grid-row-end: span;">
                             <div class="hrefTo-full">
@@ -210,11 +209,11 @@
                     </div>
                 </div>
             </div>
-        </section>
-    </div>
-    <div class="sectionGalery transition-opacity duration-500 opacity-0 hidden" id="secGalAchie">
+        </div>
+    </section>
+    <section class="sectionGalery transition-opacity duration-500 opacity-0 hidden" id="secGalAchie">
         <hr class="mt-6 mx-auto w-3/4 border-[1.5px] border-black/40 rounded-2xl">
-        <section class="mt-8">
+        <div class="mt-8">
             <div class="galAchie w-11/12 mx-auto">
                 <div class="cntnGalAchie">
                     <div class="tlCat-galAchie flex flex-col gap-2 lg:flex-row lg:justify-between lg:items-center">
@@ -224,7 +223,7 @@
                         <div class="hrefNInpImg flex items-center gap-2">
                             <div class="hrefToAnother">
                                 <div class="cnHref">
-                                    <a href="">
+                                    <a href="/galeri/prestasi">
                                         <div class="tx flex p-2 lg:px-6 lg:py-1 items-center space-x-2 cursor-pointer hover:bg-gray-200 border border-black rounded-lg lg:text-xl">
                                             <i class="bi bi-search"></i>
                                             <p class="hidden lg:block">Lainnya</p>
@@ -234,10 +233,10 @@
                             </div>
                             <div class="inpImgGal">
                                 <div class="thBtnsAdd">
-                                    <button class="actCat-gal flex p-2 lg:px-6 lg:py-1 items-center space-x-2 cursor-pointer hover:bg-gray-200 border border-black rounded-lg lg:text-xl" id="btnAddImgGal" onclick="showPopUpForm(this);"> 
+                                    <span role="button" class="actCat-gal flex p-2 lg:px-6 lg:py-1 items-center space-x-2 cursor-pointer hover:bg-gray-200 border border-black rounded-lg lg:text-xl" id="btnAddImgGal" onclick="showPopUpForm(this);"> 
                                         <i class="icAddGal bi bi-plus-circle"></i>
                                         <p>Tambah</p>
-                                    </button>
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -319,11 +318,11 @@
                     </div>
                 </div>
             </div>
-        </section>    
-    </div>
-    <div class="sectionGalery transition-opacity duration-500 opacity-0 hidden" id="secGalCrea">
+        </div>
+    </section>    
+    <section class="sectionGalery transition-opacity duration-500 opacity-0 hidden" id="secGalCrea">
         <hr class="mt-6 mx-auto w-3/4 border-[1.5px] border-black/40 rounded-2xl">
-        <section class="mt-8">
+        <div class="mt-8">
             <div class="galCrea w-11/12 mx-auto">
                 <div class="cntnGalCrea">
                     <div class="tlCat-galCrea flex flex-col gap-2 lg:flex-row lg:justify-between lg:items-center">
@@ -333,7 +332,7 @@
                         <div class="hrefNInpImg flex items-center gap-2">
                             <div class="hrefToAnother">
                                 <div class="cnHref">
-                                    <a href="">
+                                    <a href="/galeri/karya">
                                         <div class="tx flex p-2 lg:px-6 lg:py-1 items-center space-x-2 cursor-pointer hover:bg-gray-200 border border-black rounded-lg lg:text-xl">
                                             <i class="bi bi-search"></i>
                                             <p class="hidden lg:block">Lainnya</p>
@@ -343,10 +342,10 @@
                             </div>
                             <div class="inpImgGal">
                                 <div class="thBtnsAdd">
-                                    <button class="actCat-gal flex p-2 lg:px-6 lg:py-1 items-center space-x-2 cursor-pointer hover:bg-gray-200 border border-black rounded-lg lg:text-xl" id="btnAddImgGal" onclick="showPopUpForm(this);"> 
+                                    <span role="button" class="actCat-gal flex p-2 lg:px-6 lg:py-1 items-center space-x-2 cursor-pointer hover:bg-gray-200 border border-black rounded-lg lg:text-xl" id="btnAddImgGal" onclick="showPopUpForm(this);"> 
                                         <i class="icAddGal bi bi-plus-circle"></i>
                                         <p>Tambah</p>
-                                    </button>
+                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -361,8 +360,8 @@
                     </div>
                 </div>
             </div>
-        </section>
-    </div>
+        </div>
+    </section>
     <section class="mt-20">
         <div class="shrcRcEksTe relative h-96">
             <div class="img-bg overflow-hidden relative text-white min-h-[16rem] lg:min-h-[24rem] bg-cover bg-center bg-no-repeat after:absolute after:top-0 after:left-0 after:bg-blue-700/90 after:w-full after:h-full"

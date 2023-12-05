@@ -12,14 +12,13 @@
     </section>
     <section class="frmAddStnds mt-12">
         <div class="title-students text-2xl flex items-center px-6 md:px-12 gap-6 py-4 font-bold border-b-4 border-black relative">
-            <span role="button" class="btrcr-fm text-sm text-white py-2 px-4 lg:px-6 border-2 border-sky-600 bg-sky-400 rounded-lg flex items-center hover:bg-sky-600 hover:border-sky-800" onclick="showPopUpForm(this); addVals(this);">
+            <span role="button" class="btrcr-fm lg:text-3xl py-2 px-4 lg:px-6 flex items-center" onclick="showPopUpForm(this); addVals(this);">
                 <i class="bi bi-plus-circle md:mr-2 text-2xl"></i>
                 <p class="hidden md:block">Tenaga Kependidikan</p>
             </span>
         </div>
     </section>
     <section class="listStudents mt-8 px-4 md:px-8 space-y-12">
-        {{-- <div class="list-items flex flex-wrap gap-5"> --}}
         <div class="list-items grid grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-2 sm:gap-5 relative" id="listItemsTeachers">
             @for ($i=0; $i < 10; $i++)
                 <div class="items-staffTe aspect-[3/4] overflow-hidden relative group" title="Staff {{$i}}" data-item-id="" aria-haspopup="true">
@@ -48,7 +47,7 @@
                 <span role="button" class="btrpp-vii block w-full h-full inset-0 absolute" onclick="showPopUpForm(this); addVals(this);" title="add more staff" aria-labelledby="pop-upFormAdd"></span>
             </div>
             {{-- <div class="ovTeachers w-full h-full absolute left-0 top-0 hidden backdrop-blur-sm" id="overlayTeachers"></div> --}}
-        </div>
+        </div> 
     </section>
     <div id="pop-upFormAdd" role="alertdialog" class="pop-upFormAdd hidden fixed w-1/2 max-h-full left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2  px-8 py-6 bg-white border border-black rounded-2xl overflow-auto z-50">
         <div class="mx-auto">
@@ -101,7 +100,7 @@
         </div>
     </div>
     <div class="pop-teDats hidden" id="pop-teDats" role="dialog">
-        <div class="rootPopDetails w-full h-full max-h-fit xl:h-fit xl:w-1/3 bg-slate-950 fixed pb-8 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50 rounded-lg overflow-hidden">
+        <div class="rootPopDetails w-full h-full max-h-fit lg:h-fit lg:w-1/3 bg-slate-950 fixed pb-8 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50 rounded-lg overflow-hidden">
             <div class="heaAbtSumTeDats flex items-center justify-between text-white text-2xl sticky w-full left-0 top-0 pt-4 xl:pt-12 pb-2 px-8">
                 <div class="tiAbt">
                     <div class="txt">
@@ -117,11 +116,11 @@
                 </div>
             </div>
             <div id="pop-teSumDats" class="teSumDats ">
-                <div class="contentSumTeDats h-[36rem] overflow-y-scroll p-8 text-sm xl:text-base">
+                <div class="contentSumTeDats h-[30rem] xl:h-[32rem] 2xl:h-[36rem] overflow-y-scroll p-8 text-sm xl:text-base">
                     <div class="contentDisplayDetails hidden">
                         <div class="abtSumEks">
                             <div class="cntnAbtSumEks text-white overflow-hidden">
-                                <div class="imgWthNameTeDats flex items-center gap-4">
+                                <div class="imgWthNameTeDats flex flex-col xl:flex-row items-center gap-4">
                                     <div class="thImgTe aspect-square border-2 w-40 rounded-[100%] overflow-hidden p-1">
                                         <img src="{{asset('assets/img/dumb/imgtemp 1.jpg')}}" alt="" class="h-full w-full object-cover object-center rounded-[100%]">
                                     </div>
@@ -175,7 +174,7 @@
                                     </div>
                                 </div>
                                 <div class="cntnLnk mt-6 px-4">
-                                    <ul class="list-link grid md:grid-cols-2 gap-4" role="list">
+                                    <ul class="list-link grid 2xl:grid-cols-2 gap-4" role="list">
                                         <li class="link-item" role="listitem">
                                             <div class="overflow-hidden ">
                                                 <div class="cntnItem flex items-center gap-4">
@@ -359,7 +358,7 @@
                                         </div>
                                     </div>
                                     <div class="cntnLnk mt-6 px-4">
-                                        <ul class="list-link grid md:grid-cols-2 gap-4" role="list">
+                                        <ul class="list-link grid 2xl:grid-cols-2 gap-4" role="list">
                                             <li class="link-item" role="listitem">
                                                 <div class="overflow-hidden ">
                                                     <div class="cntnItem flex items-center gap-4">
