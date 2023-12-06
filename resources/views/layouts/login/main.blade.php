@@ -14,7 +14,7 @@
     <header>
         @include('layouts.login.header')
     </header>
-    <main>
+    <main class="min-h-screen">
         @yield('content')
     </main>
     <footer class="mt-10">
