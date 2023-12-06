@@ -7,6 +7,8 @@ use App\Http\Controllers\ProfileModelsController;
 use App\Http\Controllers\SiswaModelsController;
 use App\Http\Controllers\StudentsModelsController;
 use App\Http\Controllers\TeachersModelsController;
+use App\Http\Controllers\UsersModelsController;
+use App\Models\UsersModels;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -54,11 +56,12 @@ Route::view('/galeri', 'pages.galery.index');
 
 // Route::get('/kelasAjax', [ClassesModelsController::class, 'index']) -> name('ListClass');
 // Route::post('/kelasAjax/add/', [ClassesModelsController::class, 'store']) -> name('storeClass');
-Route::get('/login', function () {
-    return view('pages.login.login.index');
-});
+Route::get('/login', [UsersModelsController::class,"index"]);
+Route::get('/register', [UsersModelsController::class,"createEmail"]);
+Route::post('/register', [UsersModelsController::class,"validateEmail"]);
+Route::get('/register/{$hashToken}/data', [UsersModelsController::class,"createData"]);
 
-Route::get('/register', function () {
+Route::POST('/register', function () {
     return view('pages.login.register.email.index');
 });
 
@@ -66,23 +69,23 @@ Route::POST('/register/data', function () {
     return view('pages.login.register.dataUser.index');
 });
 
-Route::get('/login/error', function () {
+Route::POST('/login/error', function () {
     return view('pages.login.exception.sameNisNip.index');
 });
 
-Route::get('/login/error/email', function () {
+Route::POST('/login/error/email', function () {
     return view('pages.login.exception.sameEmail.index');
 });
 
-Route::get('/login/resetPass', function () {
+Route::POST('/login/resetPass', function () {
     return view('pages.login.resetPass.resetPass.index');
 });
 
-Route::get('/newPass', function () {
+Route::POST('/newPass', function () {
     return view('pages.login.resetPass.newPass.index');
 });
 
-Route::get('/register/waitSignUp', function () {
+Route::POST('/register/waitSignUp', function () {
     return view('pages.login.register.waitSignUp.index');
 });
 Route::view('/temp/newPass', 'pages.test.testNewPass');

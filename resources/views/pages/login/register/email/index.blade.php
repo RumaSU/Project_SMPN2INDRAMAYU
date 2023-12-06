@@ -2,8 +2,9 @@
 @section('content')
 <div class="form-login mx-auto w-1/3 px-8 py-4 border border-black rounded-2xl" >
     <h1 class="text-2xl font-bold">Sign Up</h1>
-    <form method="POST" action="/register/data" class="flex flex-col gap-6 mt-12">
+    <form method="POST" action="/register" class="flex flex-col gap-6 mt-12">
         @csrf
+        <input type="hidden" name="register_token" id="register_token" value="{{ $hashToken }}" class="hidden" disabled>
         <div class="form-email">
             <div class="the-labels flex justify-between items-center " >
                 <label for="email" class="font-bold"> Email </label>
@@ -11,7 +12,13 @@
                     Mempunyai akun ? <a href="/login" class="text-[#0000FF] font-bold">Log In</a>
                 </p>
             </div>
-            <input type="email" id="email" name="email" class="w-full py-2 px-1 border border-[#CED4DA]" >
+            <input type="email" id="email" name="email" class="w-full py-2 px-1 border border-[#CED4DA]" value="{{old('email')}}" required >
+        </div>
+        <div class="form-username">
+            <div class="the-labels flex justify-between items-center " >
+                <label for="username" class="font-bold"> Username </label>
+            </div>
+            <input type="text" id="username" name="username" class="w-full py-2 px-1 border border-[#CED4DA]" value="{{old('usename')}}" required >
         </div>
         <div class="form-password">
             <div class="the-labels flex items-center justify-between">
@@ -23,7 +30,7 @@
                     </button>
                 </div>
             </div>
-            <input type="password" id="password" name="password" class=" w-full py-2 px-1 border border-[#CED4DA]" >
+            <input type="password" id="password" name="password" class=" w-full py-2 px-1 border border-[#CED4DA]" required >
         </div>
         <div class="form-confPassword">
             <div class="the-labels flex items-center justify-between">
@@ -35,7 +42,7 @@
                     </button>
                 </div>
             </div>
-            <input type="password" id="confPassword" name="confPassword" class=" w-full py-2 px-1 border border-[#CED4DA]" >
+            <input type="password" id="confPassword" name="confPassword" class=" w-full py-2 px-1 border border-[#CED4DA]" required >
         </div>
         <button type="submit" class="bg-[#0096FF] text-sm text-white font-bold py-2 rounded-lg " > Continue </button>
     </form>
