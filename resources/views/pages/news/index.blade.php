@@ -6,15 +6,15 @@
     <section class="">
         <div class="headerTopNews p-6">
             <div class="leftRightContents-News flex justify-center items-center flex-wrap gap-3">
-                <div class="mainNew p-10 lg:rounded-md lg:shadow-md lg:shadow-black h-fit">
-                    <div class="mainNews-Contents w-[50rem] h-[40rem]">
+                <div class="mainNew lg:p-10 lg:rounded-md lg:shadow-md lg:shadow-black h-fit">
+                    <div class="mainNews-Contents xl:w-[50rem] xl:h-[40rem]">
                         <div class="imgDateAuthor-news block">
                             <div class="topImgNews">
                                 <div class="imgNews aspect-video">
                                     <img src="{{asset('assets/img/dumb/imgtemp 1.jpg')}}" alt="" class="w-full h-full object-cover object-center">
                                 </div>
                             </div>
-                            <div class="dateAuthor-news mt-2 flex justify-between items-center text-xs opacity-50 select-none">
+                            <div class="dateAuthor-news mt-2 flex flex-col md:flex-row justify-between md:items-center text-xs opacity-50 select-none">
                                 <div class="date-timeNews flex items-center gap-1">
                                     <div class="dateNews">
                                         <div class="t">
@@ -51,7 +51,7 @@
                                     </div>
                                     <div class="tagsNews">
                                         <div class="listTagsNews flex items-center flex-wrap gap-1">
-                                            @for ($i=0; $i<5; $i++)
+                                            @for ($i=0; $i<4; $i++)
                                                 <div class="tagsItems">
                                                     <a href="" role="link" class="block @if ($i==0) pr-2 @else px-2 @endif rounded-md text-sm underline cursor-default select-none">
                                                         <div class="t">
@@ -59,7 +59,7 @@
                                                         </div>
                                                     </a>
                                                 </div>
-                                                @if ($i < 4)
+                                                @if ($i < 3)
                                                     <span class="d relative block border-2 border-black rounded-[100%]"></span>                                                
                                                 @endif
                                             @endfor
@@ -139,28 +139,28 @@
         </div>
     </section>
     <div class="hedrNewsUpdate mt-12">
-        <div class="t w-10/12 px-6 mx-auto text-4xl font-bold">
+        <div class="t w-10/12 lg:px-6 mx-auto text-xl lg:text-4xl font-bold">
             <h2>Berita Terbaru</h2>
         </div>
     </div>
     <hr class="mt-6 mx-auto w-10/12 border-[1.5px] border-black/40 rounded-2xl">
     <section class="newsUpdate mt-12 w-full">
-        <div class="cntnListNStikyNews xl:w-3/4 md:mx-auto md:flex md:gap-2">
+        <div class="cntnListNStikyNews px-6 xl:px-0 xl:w-3/4 md:mx-auto md:flex md:gap-2">
             <div class="newsContentsPgnt10">
                 <div class="listNewsPgnt space-y-2">
                     @for ($i=1; $i<10; $i++)
                         <div class="newsItems">
-                            <div class="contentsItems-news flex items-center gap-1 p-1 h-36 rounded-md">
+                            <div class="contentsItems-news flex flex-col md:flex-row md:items-center gap-1 p-1 md:h-36 rounded-md">
                                 <div class="imgNewsItems aspect-video h-32 flex-shrink-0">
                                     <img src="{{asset('assets/img/dumb/imgtemp ' . $i . '.jpg')}}" alt="" class="w-full h-full object-cover object-center rounded-lg">
                                 </div>
-                                <div class="contentsItems w-full">
+                                <div class="contentsItems">
                                     <div class="titleLineNews">
                                         <a href="">
                                             <h3 class="text-xl font-semibold">Tittle News</h3>
                                         </a>
                                     </div>
-                                    <div class="textLineNews h-20">
+                                    <div class="textLineNews h-20 w-full">
                                         <p class="text-sm line-clamp-3">
                                             This is text items in news This is text items in news This is text items in news This is text items in news
                                             This is text items in news This is text items in news This is text items in news This is text items in news
@@ -204,17 +204,17 @@
                     @endfor
                     @for ($i=1; $i<10; $i++)
                         <div class="newsItems">
-                            <div class="contentsItems-news flex items-center gap-1 p-1 h-36 rounded-md">
+                            <div class="contentsItems-news flex flex-col md:flex-row md:items-center gap-1 p-1 md:h-36 rounded-md">
                                 <div class="imgNewsItems aspect-video h-32 flex-shrink-0">
                                     <img src="{{asset('assets/img/dumb/imgtemp ' . $i . '.jpg')}}" alt="" class="w-full h-full object-cover object-center rounded-lg">
                                 </div>
-                                <div class="contentsItems w-full">
+                                <div class="contentsItems">
                                     <div class="titleLineNews">
                                         <a href="">
                                             <h3 class="text-xl font-semibold">Tittle News</h3>
                                         </a>
                                     </div>
-                                    <div class="textLineNews h-20">
+                                    <div class="textLineNews h-20 w-full">
                                         <p class="text-sm line-clamp-3">
                                             This is text items in news This is text items in news This is text items in news This is text items in news
                                             This is text items in news This is text items in news This is text items in news This is text items in news
@@ -258,17 +258,17 @@
                     @endfor
                     @for ($i=1; $i<10; $i++)
                         <div class="newsItems">
-                            <div class="contentsItems-news flex items-center gap-1 p-1 h-36 rounded-md">
+                            <div class="contentsItems-news flex flex-col md:flex-row md:items-center gap-1 p-1 md:h-36 rounded-md">
                                 <div class="imgNewsItems aspect-video h-32 flex-shrink-0">
                                     <img src="{{asset('assets/img/dumb/imgtemp ' . $i . '.jpg')}}" alt="" class="w-full h-full object-cover object-center rounded-lg">
                                 </div>
-                                <div class="contentsItems w-full">
+                                <div class="contentsItems">
                                     <div class="titleLineNews">
                                         <a href="">
                                             <h3 class="text-xl font-semibold">Tittle News</h3>
                                         </a>
                                     </div>
-                                    <div class="textLineNews h-20">
+                                    <div class="textLineNews h-20 w-full">
                                         <p class="text-sm line-clamp-3">
                                             This is text items in news This is text items in news This is text items in news This is text items in news
                                             This is text items in news This is text items in news This is text items in news This is text items in news
@@ -345,7 +345,7 @@
                                             <div class="contentsItems">
                                                 <div class="titleLineNews">
                                                     <a href="" class="min-h-[6rem] xl:p-2 rounded-xl block hover:bg-gray-50">
-                                                        <h3 class="text-xl font-semibold line-clamp-3">
+                                                        <h3 class="text-lg xl:text-xl font-semibold line-clamp-3">
                                                             Tittle News
                                                             Tittle News
                                                             Tittle News
@@ -417,9 +417,9 @@
         </div>
     </section>
     <section>
-        <div class="anotherNews w-fit mx-auto mt-20">
-            <div class="listIndxNews flex items-center gap-2">
-                @for ($i=0; $i<10; $i++)
+        <div class="anotherNews w-fit mx-auto mt-20 px-2">
+            <div class="listIndxNews flex flex-wrap items-center justify-center gap-2">
+                @for ($i=1; $i<=10; $i++)
                     <div class="indxNews">
                         <a href="" class="block border border-black p-2 rounded-lg">
                             <div class="t">
