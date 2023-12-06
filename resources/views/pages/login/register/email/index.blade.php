@@ -2,9 +2,9 @@
 @section('content')
 <div class="form-login mx-auto w-1/3 px-8 py-4 border border-black rounded-2xl" >
     <h1 class="text-2xl font-bold">Sign Up</h1>
-    <form method="POST" action="/register" class="flex flex-col gap-6 mt-12">
+    <form method="POST" action="/register/{{session()->get('register_token')}}" class="flex flex-col gap-6 mt-12">
         @csrf
-        <input type="hidden" name="register_token" id="register_token" value="{{ $hashToken }}" class="hidden" disabled>
+        <input type="hidden" name="register_token" id="register_token" value="{{ session()->get('register_token') }}" class="hidden" readonly>
         <div class="form-email">
             <div class="the-labels flex justify-between items-center " >
                 <label for="email" class="font-bold"> Email </label>
@@ -45,6 +45,12 @@
             <input type="password" id="confPassword" name="confPassword" class=" w-full py-2 px-1 border border-[#CED4DA]" required >
         </div>
         <button type="submit" class="bg-[#0096FF] text-sm text-white font-bold py-2 rounded-lg " > Continue </button>
+        @if (session('errorBruh'))
+            <p>Something error i dunno where bruh</p>
+        @endif
+        @if (session('isthisdone'))
+            <p>I dunno if this done but not to new page</p>
+        @endif
     </form>
     <div class="divide-or flex justify-center items-center p-3 gap-3 mt-3">
         <hr class="border border-black w-1/2  ">

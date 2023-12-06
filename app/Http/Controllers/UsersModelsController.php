@@ -25,7 +25,7 @@ class UsersModelsController extends Controller
     {
         $hashToken=md5(rand());
         session()->put("register_token", $hashToken);
-        return view("pages.login.register.email.index", compact("hashToken"));
+        return view("pages.login.register.email.index");
     }
     public function validateEmail(Request $request)
     {
@@ -37,19 +37,22 @@ class UsersModelsController extends Controller
             'confPassword' => 'required|max:255',
         ]);
         if($validateRequest){
-            $sessionNow = $request->session()->get("register_token");
-
+            $sessionNow = session()->get("register_token");
             if ($sessionNow == $request->register_token){
                 $request->session()->put("validateEmail", $validateRequest);
-                return redirect("/register/data");
+                return redirect()->route('register.data', ['hashToken' => $sessionNow]);
             }
-            return redirect()->back();
+            return redirect()->back()->with('errorBruh', 'Bruh something error i dunno where');
         }
-        return redirect()->back();
+        return redirect()->back()->with('errorBruh', 'Bruh something error i dunno where');
     }
-    public function createData()
+    public function createData($hashToken)
     {
-        return view("pages.login.register.dataUser.index");
+        $checkSession = session()->get('register_token');
+        if($hashToken == $checkSession){
+            return view("pages.login.register.dataUser.index");
+        }
+        return redirect('/register');
 
     }
 

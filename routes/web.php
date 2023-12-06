@@ -63,8 +63,8 @@ Route::view('/berita', 'pages.news.index');
 // Route::post('/kelasAjax/add/', [ClassesModelsController::class, 'store']) -> name('storeClass');
 Route::get('/login', [UsersModelsController::class,"index"]);
 Route::get('/register', [UsersModelsController::class,"createEmail"]);
-Route::post('/register', [UsersModelsController::class,"validateEmail"]);
-Route::get('/register/{$hashToken}/data', [UsersModelsController::class,"createData"]);
+Route::post('/register/{hashToken}', [UsersModelsController::class,"validateEmail"]);
+Route::get('/register/{hashToken}/data', [UsersModelsController::class, 'createData'])->name('register.data');
 
 Route::POST('/register', function () {
     return view('pages.login.register.email.index');
