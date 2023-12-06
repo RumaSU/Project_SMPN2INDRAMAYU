@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\UsersDataModels;
+use App\Models\UsersTypeModels;
 use App\Models\UsersModels;
 use Illuminate\Http\Request;
 use PHPUnit\Framework\MockObject\Stub\ReturnStub;
@@ -27,7 +29,7 @@ class UsersModelsController extends Controller
         session()->put("register_token", $hashToken);
         return view("pages.login.register.email.index");
     }
-    public function validateEmail(Request $request)
+    public function validateEmail(Request $request, $hashToken)
     {
         $validateRequest=$request->validate([
             'register_token' => 'required',
@@ -38,8 +40,11 @@ class UsersModelsController extends Controller
         ]);
         if($validateRequest){
             $sessionNow = session()->get("register_token");
-            if ($sessionNow == $request->register_token){
+            if (($sessionNow == $request->register_token) && ($sessionNow == $hashToken)){
                 $request->session()->put("validateEmail", $validateRequest);
+
+                $validateToken=md5(implode(', ', $validateRequest));
+                session()->put("validateToken", $validateToken);
                 return redirect()->route('register.data', ['hashToken' => $sessionNow]);
             }
             return redirect()->back()->with('errorBruh', 'Bruh something error i dunno where');
@@ -60,9 +65,41 @@ class UsersModelsController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, $hashToken, $validateToken)
     {
+        $checkRegisterToken = session()->get('register_token');
+        $checkValidateToken = session()->get('validateToken');
+        if(($hashToken == $checkRegisterToken) && ($validateToken == $checkValidateToken)){
+            $validateRequest=$request->validate([
+                'nama' => 'required|max:255',
+                'nisNip' => 'required|max:255',
+                'noTelp' => 'required|max:255',
+            ]);
+            if ($validateRequest){
+                $dataUser = session()->get('validateEmail');
+                $idUser = Uuid::uuid4()->toString();
+                $insertUser = UsersModels::create([
+                    'user_id'=>$idUser,
+                    'username'=>$dataUser['username'],
+                    'email'=>$dataUser['email'],
+                    'password'=>bcrypt($dataUser['password']),
+                ]);
+                $insertData = UsersDataModels::create([
+                    'user_id'=>$idUser,
+                    'nama'=>$request->nama,
+                    'nis_nip'=>$request->nisNip,
+                    'no_telepon'=>$request->noTelp,
+                ]);
+                $insertType = UsersTypeModels::create([
+                    'user_id'=>$idUser,
+                    'type'=>"User",
+                ]);
+                if ($insertUser && $insertData && $insertType){
+                    return view('pages.homepage.index');
+                }
 
+            }
+        }
     }
 
     /**

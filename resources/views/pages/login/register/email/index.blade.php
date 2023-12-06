@@ -18,7 +18,7 @@
             <div class="the-labels flex justify-between items-center " >
                 <label for="username" class="font-bold"> Username </label>
             </div>
-            <input type="text" id="username" name="username" class="w-full py-2 px-1 border border-[#CED4DA]" value="{{old('usename')}}" required >
+            <input type="text" id="username" name="username" class="w-full py-2 px-1 border border-[#CED4DA]" value="{{old('username')}}" required >
         </div>
         <div class="form-password">
             <div class="the-labels flex items-center justify-between">

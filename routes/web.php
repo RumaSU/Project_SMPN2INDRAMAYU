@@ -65,6 +65,7 @@ Route::get('/login', [UsersModelsController::class,"index"]);
 Route::get('/register', [UsersModelsController::class,"createEmail"]);
 Route::post('/register/{hashToken}', [UsersModelsController::class,"validateEmail"]);
 Route::get('/register/{hashToken}/data', [UsersModelsController::class, 'createData'])->name('register.data');
+Route::post('/register/{hashToken}/data/{validateToken}', [UsersModelsController::class, 'store'])->name('register.store');
 
 Route::POST('/register', function () {
     return view('pages.login.register.email.index');
