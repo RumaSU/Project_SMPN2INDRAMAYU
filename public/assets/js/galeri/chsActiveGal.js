@@ -18,6 +18,11 @@ document.addEventListener('DOMContentLoaded', () => {
             section.classList.add('hidden');
             section.classList.add('opacity-0');
         });
+        buttons.forEach(button => {
+            button.classList.add('hover:bg-gray-300/60');
+            button.classList.remove('bg-blue-500');
+            button.classList.remove('text-white');
+        });
     };
 
     const showSection = (index) => {
@@ -25,6 +30,9 @@ document.addEventListener('DOMContentLoaded', () => {
         sections[index].classList.remove('hidden');
         setTimeout(() => {
             sections[index].classList.remove('opacity-0');
+            buttons[index].classList.remove('hover:bg-gray-300/60');
+            buttons[index].classList.add('bg-blue-500');
+            buttons[index].classList.add('text-white');
         }, 50);
     };
 

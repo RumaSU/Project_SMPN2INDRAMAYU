@@ -10,7 +10,7 @@
             </div>
         </div>
     </a>
-    <div class="navigation self-center relative hidden lg:flex items-center">
+    <div id="navigation-desktop" class="navigation-desktop self-center relative hidden lg:flex items-center">
         <ul class="flex flex-column align-items-center justify-between gap-4 text-black font-bold">
             <li class="relative">
                 <div class="gotoHome">
@@ -47,7 +47,7 @@
             </li>
             <li class="relative">
                 <div class="gotoNews">
-                    <a href="" class="py-1.5 px-4">Berita</a>
+                    <a href="/berita" class="py-1.5 px-4">Berita</a>
                 </div>
             </li>
             <li class="relative">
@@ -63,25 +63,25 @@
         </ul>
     </div>
     <div class="ml-2 -my-1 flex lg:hidden">
-        <button id="tglBtn-navWrapper" type="button" class="text-slate-500 w-8 h-8 flex items-center justify-center self-center hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300">
-            <span class="sr-only"></span>
-            <img src="{{asset('assets/img/icon/three_dots.svg')}}" alt="">
-        </button>
+        <span role="button" id="tglBtn-navWrapper" type="button" class="text-3xl flex items-center justify-center self-center hover:text-slate-600">
+            <span class="sr-only">Navigation Mobile</span>
+            <i class="bi bi-three-dots-vertical"></i>
+        </span>
     </div>
-    <div class="navigation-wrap fixed top-12 right-4 w-full max-w-xs bg-white rounded-lg shadow-lg p-6 text-base font-semibold text-black dark:highlight-white/5 z-50 lg:hidden hidden">
-        <button id="tglClsBtn-navWrapper" type="button" class="absolute top-5 right-5 w-8 h-8 flex items-center justify-center text-slate-500 hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300 z-[11]">
+    <div id="navigation-mobile" class="navigation-wrap-mobile fixed top-0 left-0 w-full h-full bg-white z-50 lg:hidden hidden">
+        <span role="button" id="tglClsBtn-navWrapper" type="button" class="text-3xl absolute top-5 right-5 w-8 h-8 flex items-center justify-center hover:text-slate-600 z-[11]">
             <span class="sr-only">Close navigation</span>
-            <img src="{{asset('assets/img/icon/close-lights.svg')}}" alt="">
-        </button>
-        <ul class="group space-y-4 mt-8">
+            <i class="bi bi-x text-3xl"></i>
+        </span>
+        <ul class="group space-y-4 mt-12 h-full overflow-y-scroll p-6">
             <li class="relative group">
                 <div class="gotoHome">
-                    <a href="" class="py-1.5 px-4 flex hover:bg-gray-200">Beranda</a>
+                    <a href="" class="py-1.5 px-4 font-semibold flex hover:bg-gray-200">Beranda</a>
                 </div>
             </li>
             <li class="relative group">
                 <div class="gotoProfile">
-                    <a href="" class="py-1.5 px-4 group">Profil</a>
+                    <a href="" class="py-1.5 px-4 group font-semibold">Profil</a>
                     <div id="dropDownProfile" class="dropDownProfile">
                         <div class="text-sm font-normal ml-8 w-48 space-y-0">
                             <div class="py-1 flex">
@@ -108,17 +108,17 @@
             </li>
             <li class="relative group">
                 <div class="gotoNews">
-                    <a href="" class="py-1.5 px-4">Berita</a>
+                    <a href="/berita" class="py-1.5 px-4 font-semibold">Berita</a>
                 </div>
             </li>
             <li class="relative group">
                 <div class="gotoGalery">
-                    <a href="/galeri" class="py-1.5 px-4">Galeri</a>
+                    <a href="/galeri" class="py-1.5 px-4 font-semibold">Galeri</a>
                 </div>
             </li>
             <li class="relative group">
                 <div class="gotoLogin">
-                    <a href="" class="py-1.5 px-4">Login</a>
+                    <a href="/login" class="py-1.5 px-4 font-semibold">Login</a>
                 </div>
             </li>
         </ul>

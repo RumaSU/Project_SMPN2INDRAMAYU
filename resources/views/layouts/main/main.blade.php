@@ -17,7 +17,7 @@
     <nav>
         @include('layouts.main.nav')
     </nav>
-    <main>
+    <main class="min-h-screen">
         @yield('content')
     </main>
     {{-- <footer class="mt-10">
