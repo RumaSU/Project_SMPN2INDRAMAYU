@@ -12,9 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('teachers_images', function (Blueprint $table) {
-            $table->id();
             $table->text('name_files');
-            $table->unsignedBigInteger('teacher_id');
+            $table->uuid('teacher_id');
             $table->foreign('teacher_id')->references('teacher_id')->on('teachers')->onDelete('cascade');
             $table->timestamps();
         });

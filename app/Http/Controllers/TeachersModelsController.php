@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\TeachersModels;
+use App\Models\TeachersImagesModels;
 use Illuminate\Http\Request;
+use Ramsey\Uuid\Uuid;
 
 class TeachersModelsController extends Controller
 {
@@ -28,7 +30,37 @@ class TeachersModelsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request_validate = $request->validate([
+            'nameTeachers' => 'required',
+            'nipTeachers' => 'required',
+            'emailsAccount' => 'email',
+            'bidangTeachers' => 'required',
+            'yearsSignTeachers' => 'required',
+        ]);
+        if($request_validate){
+            $teachersId = Uuid::uuid4()->toString();
+            $storeTeachers = TeachersModels::create([
+                'teacher_id' => $teachersId,
+                'nip' => $request->nipTeachers,
+                'name' => $request->nameTeachers,
+                'status' => "Pendidik",
+                'sector' => $request->bidangTeachers,
+                'email' => $request->emailsAccount,
+                'tahun_terdaftar' => $request->yearsSignTeachers,
+            ]);
+            if ($storeTeachers){
+                $storeTeachersImage = TeachersImagesModels::create([
+                    'name_files' => "defaul.png",
+                    'teacher_id' => $teachersId,
+                ]);
+                if($storeTeachersImage) {
+                    return redirect('/homepage')->with('succedSomething', 'This is succed');
+                }
+                return redirect()->back()->with('errorSomething', 'this is error');
+            }
+            return redirect()->back()->with('errorSomething', 'this is error');
+        }
+        return redirect()->back()->with('errorSomething', 'this is error');
     }
 
     /**

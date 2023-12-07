@@ -10,5 +10,7 @@ class TeachersModels extends Model
     use HasFactory;
     protected $table = "teachers";
     protected $primaryKey = "teacher_id";
-    protected $fillable = ['nip', 'name', 'status', 'sector', 'email', 'no_telp', 'alamat'];
+    protected $fillable = [
+        'teacher_id', 'nip', 'name', 'status', 'sector', 'email', 'tahun_terdaftar',
+    ];
 }

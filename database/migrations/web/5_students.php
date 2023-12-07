@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nis') -> unique();
             $table->string('name');
             $table->unsignedBigInteger('class_id');
-            $table->foreign("class_id")->references("class_id")->on("classes")->onDelete("cascade");
+            // $table->foreign("class_id")->references("class_id")->on("classes")->onDelete("cascade");
             $table->string('no_telp');
             $table->string('address');
             $table->timestamps();

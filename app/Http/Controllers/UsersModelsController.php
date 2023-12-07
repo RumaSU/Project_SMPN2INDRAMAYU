@@ -92,7 +92,7 @@ class UsersModelsController extends Controller
                 ]);
                 $insertType = UsersRolesModels::create([
                     'user_id'=>$idUser,
-                    'type'=>"User",
+                    'roles'=>"User",
                 ]);
                 if ($insertUser && $insertData && $insertType){
                     return view('pages.homepage.index');

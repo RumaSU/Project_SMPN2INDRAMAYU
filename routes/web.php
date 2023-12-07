@@ -36,7 +36,7 @@ Route::delete('/kelas/{id}', [ClassesModelsController::class, 'destroy'])->name(
 
 // Route Staff
 Route::get('/pendidik', [TeachersModelsController::class, 'index']) -> name('ListTeachers');
-Route::post('/pendidik', [TeachersModelsController::class, 'store']) -> name('storeTeachers');
+Route::post('/pendidik/store', [TeachersModelsController::class, 'store']) -> name('storeTeachers');
 Route::delete('/kelas/min/{id}', [TeachersModelsController::class, 'destroy'])->name('delTeachers');
 
 // Route Students
