@@ -44,7 +44,7 @@
                                 <div class="title-TagsNews">
                                     <div class="titleNews">
                                         <div class="t">
-                                            <a href="" class="w-fit block">
+                                            <a href="/berita/testing" class="w-fit block">
                                                 <h2 class="text-3xl font-bold">Judul Berita</h2>                                                
                                             </a>
                                         </div>
@@ -89,8 +89,8 @@
                     </div>
                 </div>
                 <div class="listContentsNews hidden xl:block p-4 xl:rounded-md xl:shadow-md xl:shadow-black">
-                    <div class="listContensts w-96 h-[45rem] overflow-y-scroll">
-                        <div class="headerListNews">
+                    <div class="listContensts w-96 h-[45rem] overflow-y-scroll relative">
+                        <div class="headerListNews sticky top-0 bg-white py-4">
                             <div class="txt">
                                 <h2 class="text-xl font-semibold">Berita Lainnya</h2>
                             </div>
@@ -98,22 +98,28 @@
                         <div class="listNews space-y-1 mt-2">
                             @for ($i=1; $i<=10; $i++)
                                 <div class="newsItems">
-                                    <div class="contentsItems-news flex items-center gap-1 p-1 h-24 rounded-md">
-                                        <div class="imgNewsItems aspect-square w-20 flex-shrink-0">
+                                    <div class="contentsItems-news flex items-center gap-1 p-1 rounded-md">
+                                        <div class="imgNewsItems aspect-square w-24 flex-shrink-0">
                                             <img src="{{asset('assets/img/dumb/imgtemp ' . $i . '.jpg')}}" alt="" class="w-full h-full object-cover object-center rounded-lg">
                                         </div>
                                         <div class="contentsItems w-full">
                                             <div class="titleLineNews">
-                                                <a href="">
-                                                    <h3 class="text-xl font-semibold">Tittle News</h3>
+                                                <a href="" class="h-18">
+                                                    <h3 class="text-lg font-semibold  line-clamp-3 leading-5">
+                                                        Tittle News
+                                                        Tittle News
+                                                        Tittle News
+                                                        Tittle News
+                                                        Tittle News
+                                                        Tittle News
+                                                        Tittle News
+                                                        Tittle News
+                                                        Tittle News
+                                                        Tittle News
+                                                    </h3>
                                                 </a>
                                             </div>
-                                            <div class="textLineNews">
-                                                <p class="text-sm line-clamp-2 h-10">
-                                                    This is text items in news
-                                                </p>
-                                            </div>
-                                            <div class="tagsNDatetime flex items-center gap-1 text-xs opacity-50">
+                                            <div class="tagsNDatetime flex items-center gap-1 text-xs opacity-50 mt-2">
                                                 <div class="primaryTagsNews">
                                                     <div class="t">
                                                         <a href="">
@@ -149,166 +155,133 @@
             <div class="newsContentsPgnt10">
                 <div class="listNewsPgnt space-y-2">
                     @for ($i=1; $i<10; $i++)
-                        <div class="newsItems">
-                            <div class="contentsItems-news flex flex-col md:flex-row md:items-center gap-1 p-1 md:h-36 rounded-md">
-                                <div class="imgNewsItems aspect-video h-32 flex-shrink-0">
-                                    <img src="{{asset('assets/img/dumb/imgtemp ' . $i . '.jpg')}}" alt="" class="w-full h-full object-cover object-center rounded-lg">
-                                </div>
-                                <div class="contentsItems">
-                                    <div class="titleLineNews">
-                                        <a href="">
-                                            <h3 class="text-xl font-semibold">Tittle News</h3>
-                                        </a>
+                        <article class="newsItems">
+                            <div class="contentArticleNews">
+                                <div class="contentsItems-news flex flex-col md:flex-row md:items-center gap-1 p-1 md:h-36 rounded-md">
+                                    <div class="imgNewsItems aspect-video h-32 flex-shrink-0">
+                                        <img src="{{asset('assets/img/dumb/imgtemp ' . $i . '.jpg')}}" alt="" class="w-full h-full object-cover object-center rounded-lg">
                                     </div>
-                                    <div class="textLineNews h-20 w-full">
-                                        <p class="text-sm line-clamp-3">
-                                            This is text items in news This is text items in news This is text items in news This is text items in news
-                                            This is text items in news This is text items in news This is text items in news This is text items in news
-                                            This is text items in news This is text items in news This is text items in news This is text items in news
-                                            This is text items in news This is text items in news This is text items in news This is text items in news
-                                            This is text items in news This is text items in news This is text items in news This is text items in news
-                                            This is text items in news This is text items in news This is text items in news This is text items in news
-                                            This is text items in news This is text items in news This is text items in news This is text items in news
-                                            This is text items in news This is text items in news This is text items in news This is text items in news
-                                            This is text items in news This is text items in news This is text items in news This is text items in news
-                                            This is text items in news This is text items in news This is text items in news This is text items in news
-                                            This is text items in news This is text items in news This is text items in news This is text items in news
-                                            This is text items in news This is text items in news This is text items in news This is text items in news
-                                            This is text items in news This is text items in news This is text items in news This is text items in news
-                                            This is text items in news This is text items in news This is text items in news This is text items in news
-                                            This is text items in news This is text items in news This is text items in news This is text items in news
-                                            This is text items in news This is text items in news This is text items in news This is text items in news
-                                            This is text items in news This is text items in news This is text items in news This is text items in news
-                                            This is text items in news This is text items in news This is text items in news This is text items in news
-                                            This is text items in news This is text items in news This is text items in news This is text items in news
-                                        </p>
-                                    </div>
-                                    <div class="tagsNDatetime flex items-center gap-1 text-xs opacity-50">
-                                        <div class="primaryTagsNews">
-                                            <div class="t">
-                                                <a href="">
-                                                    <p>This is tags</p>
-                                                </a> 
-                                            </div>
+                                    <div class="contentsItems">
+                                        <div class="titleLineNews">
+                                            <a href="">
+                                                <h3 class="text-xl font-semibold">Tittle News</h3>
+                                            </a>
                                         </div>
-                                        <span class="border-2 border-black rounded-[100%]"></span>
-                                        <div class="dataTimeNews">
-                                            <div class="t">
-                                                <p>This is Times</p>
+                                        <div class="textLineNews h-20 w-full">
+                                            <p class="text-sm line-clamp-3">
+                                                This is text items in news This is text items in news This is text items in news This is text items in news
+                                                This is text items in news This is text items in news This is text items in news This is text items in news
+                                                This is text items in news This is text items in news This is text items in news This is text items in news
+                                                This is text items in news This is text items in news This is text items in news This is text items in news
+                                                This is text items in news This is text items in news This is text items in news This is text items in news
+                                                This is text items in news This is text items in news This is text items in news This is text items in news
+                                            </p>
+                                        </div>
+                                        <div class="tagsNDatetime flex items-center gap-1 text-xs opacity-50">
+                                            <div class="primaryTagsNews">
+                                                <div class="t">
+                                                    <a href="">
+                                                        <p>This is tags</p>
+                                                    </a> 
+                                                </div>
+                                            </div>
+                                            <span class="border-2 border-black rounded-[100%]"></span>
+                                            <div class="dataTimeNews">
+                                                <div class="t">
+                                                    <time datetime="">This is Times</time>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
+                            </div> 
+                        </article>
                     @endfor
                     @for ($i=1; $i<10; $i++)
-                        <div class="newsItems">
-                            <div class="contentsItems-news flex flex-col md:flex-row md:items-center gap-1 p-1 md:h-36 rounded-md">
-                                <div class="imgNewsItems aspect-video h-32 flex-shrink-0">
-                                    <img src="{{asset('assets/img/dumb/imgtemp ' . $i . '.jpg')}}" alt="" class="w-full h-full object-cover object-center rounded-lg">
-                                </div>
-                                <div class="contentsItems">
-                                    <div class="titleLineNews">
-                                        <a href="">
-                                            <h3 class="text-xl font-semibold">Tittle News</h3>
-                                        </a>
+                        <article class="newsItems">
+                            <div class="contentArticleNews">
+                                <div class="contentsItems-news flex flex-col md:flex-row md:items-center gap-1 p-1 md:h-36 rounded-md">
+                                    <div class="imgNewsItems aspect-video h-32 flex-shrink-0">
+                                        <img src="{{asset('assets/img/dumb/imgtemp ' . $i . '.jpg')}}" alt="" class="w-full h-full object-cover object-center rounded-lg">
                                     </div>
-                                    <div class="textLineNews h-20 w-full">
-                                        <p class="text-sm line-clamp-3">
-                                            This is text items in news This is text items in news This is text items in news This is text items in news
-                                            This is text items in news This is text items in news This is text items in news This is text items in news
-                                            This is text items in news This is text items in news This is text items in news This is text items in news
-                                            This is text items in news This is text items in news This is text items in news This is text items in news
-                                            This is text items in news This is text items in news This is text items in news This is text items in news
-                                            This is text items in news This is text items in news This is text items in news This is text items in news
-                                            This is text items in news This is text items in news This is text items in news This is text items in news
-                                            This is text items in news This is text items in news This is text items in news This is text items in news
-                                            This is text items in news This is text items in news This is text items in news This is text items in news
-                                            This is text items in news This is text items in news This is text items in news This is text items in news
-                                            This is text items in news This is text items in news This is text items in news This is text items in news
-                                            This is text items in news This is text items in news This is text items in news This is text items in news
-                                            This is text items in news This is text items in news This is text items in news This is text items in news
-                                            This is text items in news This is text items in news This is text items in news This is text items in news
-                                            This is text items in news This is text items in news This is text items in news This is text items in news
-                                            This is text items in news This is text items in news This is text items in news This is text items in news
-                                            This is text items in news This is text items in news This is text items in news This is text items in news
-                                            This is text items in news This is text items in news This is text items in news This is text items in news
-                                            This is text items in news This is text items in news This is text items in news This is text items in news
-                                        </p>
-                                    </div>
-                                    <div class="tagsNDatetime flex items-center gap-1 text-xs opacity-50">
-                                        <div class="primaryTagsNews">
-                                            <div class="t">
-                                                <a href="">
-                                                    <p>This is tags</p>
-                                                </a> 
-                                            </div>
+                                    <div class="contentsItems">
+                                        <div class="titleLineNews">
+                                            <a href="">
+                                                <h3 class="text-xl font-semibold">Tittle News</h3>
+                                            </a>
                                         </div>
-                                        <span class="border-2 border-black rounded-[100%]"></span>
-                                        <div class="dataTimeNews">
-                                            <div class="t">
-                                                <p>This is Times</p>
+                                        <div class="textLineNews h-20 w-full">
+                                            <p class="text-sm line-clamp-3">
+                                                This is text items in news This is text items in news This is text items in news This is text items in news
+                                                This is text items in news This is text items in news This is text items in news This is text items in news
+                                                This is text items in news This is text items in news This is text items in news This is text items in news
+                                                This is text items in news This is text items in news This is text items in news This is text items in news
+                                                This is text items in news This is text items in news This is text items in news This is text items in news
+                                                This is text items in news This is text items in news This is text items in news This is text items in news
+                                            </p>
+                                        </div>
+                                        <div class="tagsNDatetime flex items-center gap-1 text-xs opacity-50">
+                                            <div class="primaryTagsNews">
+                                                <div class="t">
+                                                    <a href="">
+                                                        <p>This is tags</p>
+                                                    </a> 
+                                                </div>
+                                            </div>
+                                            <span class="border-2 border-black rounded-[100%]"></span>
+                                            <div class="dataTimeNews">
+                                                <div class="t">
+                                                    <time datetime="">This is Times</time>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
+                            </div> 
+                        </article>
                     @endfor
                     @for ($i=1; $i<10; $i++)
-                        <div class="newsItems">
-                            <div class="contentsItems-news flex flex-col md:flex-row md:items-center gap-1 p-1 md:h-36 rounded-md">
-                                <div class="imgNewsItems aspect-video h-32 flex-shrink-0">
-                                    <img src="{{asset('assets/img/dumb/imgtemp ' . $i . '.jpg')}}" alt="" class="w-full h-full object-cover object-center rounded-lg">
-                                </div>
-                                <div class="contentsItems">
-                                    <div class="titleLineNews">
-                                        <a href="">
-                                            <h3 class="text-xl font-semibold">Tittle News</h3>
-                                        </a>
+                        <article class="newsItems">
+                            <div class="contentArticleNews">
+                                <div class="contentsItems-news flex flex-col md:flex-row md:items-center gap-1 p-1 md:h-36 rounded-md">
+                                    <div class="imgNewsItems aspect-video h-32 flex-shrink-0">
+                                        <img src="{{asset('assets/img/dumb/imgtemp ' . $i . '.jpg')}}" alt="" class="w-full h-full object-cover object-center rounded-lg">
                                     </div>
-                                    <div class="textLineNews h-20 w-full">
-                                        <p class="text-sm line-clamp-3">
-                                            This is text items in news This is text items in news This is text items in news This is text items in news
-                                            This is text items in news This is text items in news This is text items in news This is text items in news
-                                            This is text items in news This is text items in news This is text items in news This is text items in news
-                                            This is text items in news This is text items in news This is text items in news This is text items in news
-                                            This is text items in news This is text items in news This is text items in news This is text items in news
-                                            This is text items in news This is text items in news This is text items in news This is text items in news
-                                            This is text items in news This is text items in news This is text items in news This is text items in news
-                                            This is text items in news This is text items in news This is text items in news This is text items in news
-                                            This is text items in news This is text items in news This is text items in news This is text items in news
-                                            This is text items in news This is text items in news This is text items in news This is text items in news
-                                            This is text items in news This is text items in news This is text items in news This is text items in news
-                                            This is text items in news This is text items in news This is text items in news This is text items in news
-                                            This is text items in news This is text items in news This is text items in news This is text items in news
-                                            This is text items in news This is text items in news This is text items in news This is text items in news
-                                            This is text items in news This is text items in news This is text items in news This is text items in news
-                                            This is text items in news This is text items in news This is text items in news This is text items in news
-                                            This is text items in news This is text items in news This is text items in news This is text items in news
-                                            This is text items in news This is text items in news This is text items in news This is text items in news
-                                            This is text items in news This is text items in news This is text items in news This is text items in news
-                                        </p>
-                                    </div>
-                                    <div class="tagsNDatetime flex items-center gap-1 text-xs opacity-50">
-                                        <div class="primaryTagsNews">
-                                            <div class="t">
-                                                <a href="">
-                                                    <p>This is tags</p>
-                                                </a> 
-                                            </div>
+                                    <div class="contentsItems">
+                                        <div class="titleLineNews">
+                                            <a href="">
+                                                <h3 class="text-xl font-semibold">Tittle News</h3>
+                                            </a>
                                         </div>
-                                        <span class="border-2 border-black rounded-[100%]"></span>
-                                        <div class="dataTimeNews">
-                                            <div class="t">
-                                                <p>This is Times</p>
+                                        <div class="textLineNews h-20 w-full">
+                                            <p class="text-sm line-clamp-3">
+                                                This is text items in news This is text items in news This is text items in news This is text items in news
+                                                This is text items in news This is text items in news This is text items in news This is text items in news
+                                                This is text items in news This is text items in news This is text items in news This is text items in news
+                                                This is text items in news This is text items in news This is text items in news This is text items in news
+                                                This is text items in news This is text items in news This is text items in news This is text items in news
+                                                This is text items in news This is text items in news This is text items in news This is text items in news
+                                            </p>
+                                        </div>
+                                        <div class="tagsNDatetime flex items-center gap-1 text-xs opacity-50">
+                                            <div class="primaryTagsNews">
+                                                <div class="t">
+                                                    <a href="">
+                                                        <p>This is tags</p>
+                                                    </a> 
+                                                </div>
+                                            </div>
+                                            <span class="border-2 border-black rounded-[100%]"></span>
+                                            <div class="dataTimeNews">
+                                                <div class="t">
+                                                    <time datetime="">This is Times</time>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
+                            </div> 
+                        </article>
                     @endfor
                 </div>
             </div>
@@ -373,41 +346,25 @@
                                 <h2 class="text-xl font-semibold">Berita Lainnya</h2>
                             </div>
                         </div>
-                        <div class="contnListAnotherNews block lg:mt-6 space-y-1">
-                            @for ($i=1; $i<5; $i++)
+                        <div class="contnListAnotherNews grid grid-cols-2 gap-2 lg:mt-6">
+                            @for ($i=1; $i<7; $i++)
                                 <div class="newsItems">
-                                    <div class="contentsItems-news flex  items-center gap-1 xl:p-1 h-24 rounded-md">
-                                        <div class="imgNewsItems aspect-square w-20 flex-shrink-0">
-                                            <img src="{{asset('assets/img/dumb/imgtemp ' . $i . '.jpg')}}" alt="" class="w-full h-full object-cover object-center rounded-lg">
-                                        </div>
-                                        <div class="contentsItems w-full">
-                                            <div class="titleLineNews">
-                                                <a href="">
-                                                    <h3 class="text-xl font-semibold">Tittle News</h3>
-                                                </a>
+                                    <a href="" class="contentsItems-news rounded-md relative overflow-hidden">
+                                        <div class="cntnNews">
+                                            <div class="imgNewsItems aspect-video">
+                                                <img src="{{asset('assets/img/dumb/imgtemp ' . $i . '.jpg')}}" alt="" class="w-full h-full object-cover object-center rounded-lg">
                                             </div>
-                                            <div class="textLineNews">
-                                                <p class="text-sm line-clamp-2 h-10">
-                                                    This is text items in news
-                                                </p>
-                                            </div>
-                                            <div class="tagsNDatetime flex items-center gap-1 text-xs opacity-50">
+                                            <div class="contentsItems absolute left-1/2 bottom-2 -translate-x-1/2 -translate-y-0 bg-slate-100/50 w-full text-center">
                                                 <div class="primaryTagsNews">
                                                     <div class="t">
-                                                        <a href="">
+                                                        <p>
                                                             <p>This is tags</p>
-                                                        </a> 
-                                                    </div>
-                                                </div>
-                                                <span class="border-2 border-black rounded-[100%]"></span>
-                                                <div class="dataTimeNews">
-                                                    <div class="t">
-                                                        <p>This is Times</p>
+                                                        </p> 
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </a>
                                 </div>
                             @endfor
                         </div>
@@ -458,7 +415,5 @@
     <div class="foo mb-96"></div>
 @endsection
 @section('custom-script')
-    <script src="{{asset('assets/js/galeri/addGal.js')}}"></script>
-    <script src="{{asset('assets/js/ekstrakurikuler/shPop-sumEks.js')}}"></script>
-    <script src="{{asset('assets/js/galeri/popupPrestasi.js')}}"></script>
+
 @endsection

@@ -21,7 +21,7 @@
                     class="hrefProfileSchool group bg-white  py-3 px-6 rounded-lg text-black text-sm font-bold hover:bg-white/90">
                     <p>Profil Sekolah</p>
                 </a>
-                <a href=""
+                <a href="/berita"
                     class="hrefNews group py-3 px-6 border border-white rounded-lg text-white text-sm font-bold hover:bg-transparent/10">
                     <p>Berita Terbaru</p>
                 </a>
