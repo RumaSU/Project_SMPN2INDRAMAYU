@@ -11,5 +11,9 @@ class UsersModels extends Model
     protected $table="users";
     protected $primaryKey="user_id";
     protected $fillable=["user_id", "username", "email", "password"];
+    protected $hidden = ["password"];
+    public function roles() {
+        return $this->belongsToMany(UsersRolesModels::class, 'roles');
+    }
 
 }

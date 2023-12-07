@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create("users_type", function(Blueprint $table){
+        Schema::create("users_roles", function(Blueprint $table){
             $table->uuid("user_id")->nullable();
             $table->foreign("user_id")->references("user_id")->on("users")->onDelete("cascade");
-            $table->string("type", 25);
+            $table->string("roles", 25);
             $table->timestamps();
         });
     }

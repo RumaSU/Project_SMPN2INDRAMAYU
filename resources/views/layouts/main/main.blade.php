@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @vite('resources/css/app.css')
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="{{asset('assets/bootstrap-icons/bootstrap-icons.min.css')}}">
     <link rel="icon" href="{{asset('assets/img/main/example-image.jpg')}}" type="image/x-icon">
     <title>SMPN 2 INDRAMAYU</title>
@@ -23,7 +24,7 @@
     {{-- <footer class="mt-10">
         @include('layouts.main.footer')
     </footer> --}}
-    
+
     {{-- <div id="imagePopup" class="fixed overflow-hidden z-50 w-[80%] h-[80%] bg-white rounded-md group" style="top: 200%; left:50%; transform:translate(-50%, -50%); visibility: hidden; opacity: 0; transition: all .3s ease-in-out"> --}}
     {{-- <div id="imagePopup" class="fixed overflow-hidden z-50 w-full h-full md:w-[80%] md:h-[80%] bg-white rounded-md group" style="top: 200%; left:50%; transform:translate(-50%, -50%); visibility: hidden; opacity: 0; transition: all .3s ease-in-out"> --}}
     <div id="imagePopup" class="fixed overflow-hidden z-50 w-full h-full md:w-[80%] md:h-[80%] bg-white rounded-md group left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 hidden">
@@ -75,7 +76,7 @@
         </div>
     </div>
     <div id="overlayPopUp" class="overlayPopUp hidden w-full h-full fixed left-0 top-0 bg-black/30 -translate-x-0 -translate-y-0 z-40"></div>
-    
+
     <script src="{{asset('assets/js/main/nav.js')}}"></script>
     <script src="{{asset('assets/js/main/popImage.js')}}"></script>
     @yield('custom-script')

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\UsersDataModels;
-use App\Models\UsersTypeModels;
+use App\Models\UsersRolesModels;
 use App\Models\UsersModels;
 use Illuminate\Http\Request;
 use PHPUnit\Framework\MockObject\Stub\ReturnStub;
@@ -90,7 +90,7 @@ class UsersModelsController extends Controller
                     'nis_nip'=>$request->nisNip,
                     'no_telepon'=>$request->noTelp,
                 ]);
-                $insertType = UsersTypeModels::create([
+                $insertType = UsersRolesModels::create([
                     'user_id'=>$idUser,
                     'type'=>"User",
                 ]);
