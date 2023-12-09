@@ -26,7 +26,7 @@ class TeachersModelsController extends Controller
             'teachers_images.name_files'
         )
         ->join('teachers_images', 'teachers_images.teacher_id', '=', 'teachers.teacher_id')
-        ->orderBy('teachers.name', 'desc')
+        ->orderBy('teachers.name', 'asc')
         ->get();
         return view("pages.teachers.index", compact('listTeachers'));
     }
@@ -191,17 +191,18 @@ class TeachersModelsController extends Controller
      */
     public function update(Request $request, $teacherName, $teacherId)
     {
-        foreach ($request->except('imageTeachers') as $value) {
-            if (!is_string($value)) {
-                return redirect()->back()->with('errorSomething', 'Request data is invalid');
-            }
-        }
+        // $values = array_map('is_string', $request->except('imageTeachers'));
+        // if (in_array(false, $values, true)) {
+        //     return redirect()->back()->with('errorSomething', 'Request data is invalid');
+        // }
         
+        $foundTeacherId = DB::table('teachers')
+            ->select('teacher_id')
+            ->where('teacher_id', '=', $teacherId)
+            ->where('name', '=', $teacherName)
+            ->first();
         $temporaryData = $this->storeDataTemp($request->all(), $teacherId, $teacherName);
-        $searchDataExists = TeachersModels::where('teacher_id', $teacherId)
-            ->where('name', $teacherName)
-            ->exists();
-        if ($searchDataExists) {
+        if ($foundTeacherId) {
             $request_validate = $request->validate([
                 'nameTeachers' => 'required|string',
                 'nipTeachers' => 'required|string',
@@ -209,10 +210,9 @@ class TeachersModelsController extends Controller
                 'bidangTeachers' => 'required|string',
                 'yearsSignTeachers' => 'required|date',
             ]);
-            if($request_validate){
-                $teachersId = $searchDataExists->teacher_id;
-                $searchNIP = TeachersModels::where('nip', $request->nipTeachers)->exists();
-                if($searchNIP) {
+            if($request_validate){                
+                $searchNIP = TeachersModels::where('nip', $request->nipTeachers)->where('teacher_id', '!=', $foundTeacherId->teacher_id)->exists();
+                if(!$searchNIP) {
                     $columnTeachers  = ['nip', 'name', 'sector', 'email', 'years_sign'];
                     $requestTeachers = ['nipTeachers', 'nameTeachers', 'bidangTeachers', 'emailsAccount', 'years_sign'];
                     foreach($columnTeachers as $idx => $column) {
@@ -228,33 +228,38 @@ class TeachersModelsController extends Controller
                             'imageTeachers' => 'image',
                         ]);
                         if($validFile){ 
-                            $nameFileDatabase = TeachersImagesModels::where('teacher_id', $teachersId)->exists();
-                            if($nameFileDatabase->name_files == 'default.png') {
+                            // $nameFileDatabase = DB::table('teachers_images')->where('teacher_id', '=', $foundTeacherId->teacher_id)->first();
+                            $nameFileDatabase = TeachersImagesModels::select('name_files')->where('teacher_id', '=' ,$foundTeacherId->teacher_id)->first();
+                            if($nameFileDatabase == 'default.png') {
                                 if($request->hasFile('imageTeachers')) {
                                     $succedStore = $this->storeImage($request->file('imageTeachers'), $teacherId);
                                     if (!$succedStore) {
-                                        $this->rollbackData($temporaryData);
+                                        $this->rollbackData($temporaryData, $teacherId);
                                         return redirect()->back()->with('errorSomething', 'Image not store');
                                     }
+                                } else {
+                                    $this->rollbackData($temporaryData, $teacherId);
+                                    return redirect()->back()->with('errorSomething', 'Image not found');
                                 }
-                                $this->rollbackData($temporaryData);
-                                return redirect()->back()->with('errorSomething', 'Image not found');
                             }
                             else {
-                                $deleteImage = Storage::delete('public/images/teachers/' . $nameFileDatabase->name_files);
+                                $deleteImage = Storage::delete('public/images/teachers/' . $nameFileDatabase);
                                 if($deleteImage) {
                                     if($request->hasFile('imageTeachers')) {
                                         $succedStore = $this->storeImage($request->file('imageTeachers'), $teacherId);
                                         if (!$succedStore) {
-                                            $this->rollbackData($temporaryData);
+                                            $this->rollbackData($temporaryData, $teacherId);
                                             return redirect()->back()->with('errorSomething', 'Image not store');
                                         }
                                     }
-                                    $this->rollbackData($temporaryData);
-                                    return redirect()->back()->with('errorSomething', 'Image not found');
+                                    else {
+                                        $this->rollbackData($temporaryData, $teacherId);
+                                        return redirect()->back()->with('errorSomething', 'Image not found');
+                                    }
+                                } else {
+                                    $this->rollbackData($temporaryData, $teacherId);
+                                    return redirect()->back()->with('errorSomething', 'Path not found');
                                 }
-                                $this->rollbackData($temporaryData);
-                                return redirect()->back()->with('errorSomething', 'Path not found');
                             }
                         }
                     }
@@ -262,19 +267,25 @@ class TeachersModelsController extends Controller
                     if($searchNIP) {
                         $listSocmed = ["facebook", "twitter", "instagram", "tiktok", "youtube"];
                         foreach($listSocmed as $socmed) {
-                            $this->validateSocmed($request, $socmed , $socmed.'-active', $socmed.'Link', $teachersId);
+                            $this->validateSocmed($request, $socmed , $socmed.'-active', $socmed.'Link', $foundTeacherId->teacher_id);
                         }
                     }
                     return redirect()->back()->with('succedSomething', 'succed');
                 }
-                $this->rollbackData($temporaryData);
+                else {
+                    $this->rollbackData($temporaryData, $teacherId);
+                    return redirect()->back()->with('errorSomething', 'request is invalid');
+                }
+            }
+            else {
+                $this->rollbackData($temporaryData, $teacherId);
                 return redirect()->back()->with('errorSomething', 'request is invalid');
             }
-            $this->rollbackData($temporaryData);
+        }
+        else {
+            $this->rollbackData($temporaryData, $teacherId);
             return redirect()->back()->with('errorSomething', 'request is invalid');
         }
-        $this->rollbackData($temporaryData);
-        return redirect()->back()->with('errorSomething', 'request is invalid');
     }
     
     function storeImage($image, $teachersId) {
@@ -291,16 +302,34 @@ class TeachersModelsController extends Controller
     
     function storeDataTemp($request, $teacherId, $teacherName) {
         $teacherDataTemp = TeachersModels::where('teacher_id', $teacherId)->where('name', $teacherName)->first();
-        $teacherImageTemp = TeachersImagesModels::where('teacher_id', $teacherId)->where('name', $teacherName)->first();
-        $teacherSocmedTemp = TeachersSocmedModels::where('teacher_id', $teacherId)->where('name', $teacherName)->first();
+        $teacherImageTemp = TeachersImagesModels::where('teacher_id', $teacherId)->first();
+        $teacherSocmedTemp = TeachersSocmedModels::where('teacher_id', $teacherId)->first();
         
         return [$teacherDataTemp, $teacherImageTemp, $teacherSocmedTemp];
     }
     
-    function rollbackData($dataBefore) {
-        TeachersModels::where('teacher_id', $dataBefore[0]->teacher_id)->update($dataBefore[0]);
-        TeachersImagesModels::where('teacher_id', $dataBefore[0]->teacher_id)->update($dataBefore[1]);
-        TeachersSocmedModels::where('teacher_id', $dataBefore[0]->teacher_id)->update($dataBefore[2]);
+    function rollbackData($dataBefore, $teacherId) {
+        TeachersModels::where('teacher_id', $teacherId)->update([
+            'name' => $dataBefore[0]->name,
+            'nip' => $dataBefore[0]->nip,
+            'status' => $dataBefore[0]->status,
+            'sector' => $dataBefore[0]->sector,
+            'email' => $dataBefore[0]->email,
+            'years_sign' => $dataBefore[0]->years_sign,
+            'updated_at' => $dataBefore[0]->updated_at,
+        ]);
+        TeachersImagesModels::where('teacher_id', $teacherId)->update([
+            'name_files' => $dataBefore[1]->name_files,
+            'updated_at' => $dataBefore[1]->updated_at,
+        ]);
+        TeachersSocmedModels::where('teacher_id', $teacherId)->update([
+            'facebook' => $dataBefore[2]->facebook,
+            'instagram' => $dataBefore[2]->instagram,
+            'twitter' => $dataBefore[2]->twitter,
+            'tiktok' => $dataBefore[2]->tiktok,
+            'youtube' => $dataBefore[2]->youtube,
+            'updated_at' => $dataBefore[2]->updated_at,
+        ]);
     }
     
     function deleteFailData($teacherId) {
@@ -309,7 +338,7 @@ class TeachersModelsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(TeachersModels $teachersModels)
+    public function destroy($teacherId, $teacherName)
     {
         //
     }

@@ -38,7 +38,7 @@ Route::delete('/kelas/{id}', [ClassesModelsController::class, 'destroy'])->name(
 // Route Staff
 Route::get('/pendidik', [TeachersModelsController::class, 'index']) -> name('ListTeachers');
 Route::get('/pendidik/{teacherName}/{teacherId}', [TeachersModelsController::class, 'popupData']);
-Route::post('/pendidik/edit/{teacherName}/{teacherId}', [TeachersModelsController::class, 'editData']);
+Route::post('/pendidik/edit/{teacherName}/{teacherId}', [TeachersModelsController::class, 'update']);
 Route::post('/pendidik', [TeachersModelsController::class, 'store']) -> name('storeTeachers');
 Route::delete('/kelas/min/{id}', [TeachersModelsController::class, 'destroy'])->name('delTeachers');
 

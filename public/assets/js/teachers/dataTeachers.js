@@ -57,8 +57,10 @@ $(document).ready(function () {
         popupRoot.show();
         titlePopup.text('Edit');
         popupContent.append('<div class="loadWaiting absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"><div class="animate-spin rounded-[100%] border-[16px] border-dotted w-[120px] h-[120px]"></div></div>');
-        let teacherId = $(this).data('show-item-id');
-        let teacherName = $(this).data('show-item-name');
+        // let teacherId = $(this).data('show-item-id');
+        // let teacherName = $(this).data('show-item-name');
+        let teacherId = $(this).attr('data-show-item-id');
+        let teacherName = $(this).attr('data-show-item-name');
         $("#formPopupTeachers").attr('action', "/pendidik/edit/" + teacherName + "/" + teacherId);
         $.ajax({
             type: "get",
@@ -102,7 +104,7 @@ $(document).ready(function () {
         popupFormDisplay.show();
         popupContentDisplay.hide();
         $("#formPopupTeachers").attr('action', "/pendidik");
-        resetValue()
+        resetValue();
     });
     // $("#btrcr-fmte").click(function() {
     //     popupRoot.show();
@@ -116,7 +118,6 @@ $(document).ready(function () {
 
 function getData(data) {
     $("#previewGalPreview").attr('src', "storage/images/teachers/" + data.name_files);
-    $("#imageTeachers").attr('value', data.name_files);
     $("#nameTeachers").val(data.name);
     // $("#nipTeachers").attr('value', data.nip);
     $("#nipTeachers").val(data.nip);

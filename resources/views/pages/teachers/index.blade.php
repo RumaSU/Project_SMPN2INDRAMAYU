@@ -56,12 +56,14 @@
                     </div>
                 </div>
             @endforeach
-            <div id="addTeacher" class="group bg-white regular-shadow flex justify-center items-center border rounded-2xl overflow-hidden relative hover:bg-gray-500/25" aria-haspopup="true">
-                <div class="add-icon">
-                    <i class="bi bi-plus-circle text-8xl opacity-50"></i>
+            @if (count($listTeachers) > 1)
+                <div id="addTeacher" class="group bg-white regular-shadow flex justify-center items-center border rounded-2xl overflow-hidden relative hover:bg-gray-500/25" aria-haspopup="true">
+                    <div class="add-icon">
+                        <i class="bi bi-plus-circle text-8xl opacity-50"></i>
+                    </div>
+                    <span role="button" class="btrpp-vii block w-full h-full inset-0 absolute" title="add more teachers"></span>
                 </div>
-                <span role="button" class="btrpp-vii block w-full h-full inset-0 absolute" title="add more teachers"></span>
-            </div>
+            @endif
             {{-- <div class="ovTeachers w-full h-full absolute left-0 top-0 hidden backdrop-blur-sm" id="overlayTeachers"></div> --}}
         </div>
     </section>
