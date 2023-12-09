@@ -9,6 +9,17 @@ export default {
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
+  purge: {
+    enabled: true,
+    content: [
+      './resources/**/*.blade.php',
+      './resources/**/*.js',
+      './resources/**/*.vue',
+    ],
+    options: {
+      safelist: [], // Daftar kelas yang tidak akan dihapus meskipun tidak digunakan
+    },
+  },
 }
 

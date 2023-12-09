@@ -8,6 +8,7 @@ use App\Http\Controllers\SiswaModelsController;
 use App\Http\Controllers\StudentsModelsController;
 use App\Http\Controllers\TeachersModelsController;
 use App\Http\Controllers\UsersModelsController;
+use App\Http\Controllers\TexteditorController;
 use App\Models\UsersModels;
 use Illuminate\Support\Facades\Route;
 
@@ -36,7 +37,9 @@ Route::delete('/kelas/{id}', [ClassesModelsController::class, 'destroy'])->name(
 
 // Route Staff
 Route::get('/pendidik', [TeachersModelsController::class, 'index']) -> name('ListTeachers');
-Route::post('/pendidik/store', [TeachersModelsController::class, 'store']) -> name('storeTeachers');
+Route::get('/pendidik/{teacherName}/{teacherId}', [TeachersModelsController::class, 'popupData']);
+Route::post('/pendidik/edit/{teacherName}/{teacherId}', [TeachersModelsController::class, 'editData']);
+Route::post('/pendidik', [TeachersModelsController::class, 'store']) -> name('storeTeachers');
 Route::delete('/kelas/min/{id}', [TeachersModelsController::class, 'destroy'])->name('delTeachers');
 
 // Route Students
@@ -101,3 +104,10 @@ Route::get('/chart', [ChartController::class, 'index']);
 
 Route::view('/temp', 'pages.test.index');
 Route::view('/slideshow', 'pages.test.slideShow');
+Route::get('/texteditor/show', [TexteditorController::class, 'index']);
+Route::post('/texteditor/upload', [TexteditorController::class, 'upload'])->name('ckEditor.upload');
+Route::post('upload_image','TexteditorController@uploadImage')->name('upload');
+Route::post('image-upload', [TexteditorController::class, 'storeImage'])->name('image.upload');
+Route::get('/texteditor/create', [TexteditorController::class, 'create']);
+Route::post('/texteditor', [TexteditorController::class, 'store']);
+Route::post('/upload-image', 'EditorController@uploadImage')->name('upload.image');

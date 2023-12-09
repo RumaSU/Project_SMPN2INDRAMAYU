@@ -11,6 +11,6 @@ class TeachersModels extends Model
     protected $table = "teachers";
     protected $primaryKey = "teacher_id";
     protected $fillable = [
-        'teacher_id', 'nip', 'name', 'status', 'sector', 'email', 'tahun_terdaftar',
+        'teacher_id', 'nip', 'name', 'status', 'sector', 'email', 'years_sign',
     ];
 }

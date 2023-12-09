@@ -4,9 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    @vite('resources/css/app.css')
+    {{-- @if (!(str_contains(Request::url(), '/texteditor') || Request::is('/texteditor')))
+        @vite('resources/css/app.css')    
+        <script src="https://cdn.tailwindcss.com"></script>
+    @endif --}}
+    @vite('resources/css/app.css')    
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{{asset('assets/bootstrap-icons/bootstrap-icons.min.css')}}">
+    <link rel="stylesheet" href="{{asset('main.css')}}">
     <link rel="icon" href="{{asset('assets/img/main/example-image.jpg')}}" type="image/x-icon">
     <title>SMPN 2 INDRAMAYU</title>
     @yield('link-rel')

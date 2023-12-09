@@ -15,5 +15,4 @@ class UsersModels extends Model
     public function roles() {
         return $this->belongsToMany(UsersRolesModels::class, 'roles');
     }
-
 }
