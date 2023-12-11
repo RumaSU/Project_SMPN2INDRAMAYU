@@ -2,7 +2,7 @@ $(document).ready(function () {
     let popupRoot = $(".pop-teDats");
     let popupContentDisplay = $(".contentDisplayDetails");
     let popupFormDisplay = $(".contentFormDetails");
-    
+
     $("#clsPop-sumTeDats").click(function() {
         popupRoot.hide();
         popupContentDisplay.hide();
@@ -10,7 +10,7 @@ $(document).ready(function () {
         $("#formPopupTeachers").attr('action', "");
         resetValue();
     });
-    
+
     // $("delB").click(function() {
     //     let teacherId = $(this.parentElement.parentElement).data('item-id');
     //     let teacherName = $(this.parentElement.parentElement).attr('title');
@@ -41,10 +41,11 @@ $(document).ready(function () {
         var confirmation = confirm('Apakah Anda yakin ingin menghapus data ini?');
         parentItemTeacher.children().hide();
         parentItemTeacher.append('<div class="loadWaiting absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"><div class="animate-spin rounded-[100%] border-[16px] border-dotted w-[120px] h-[120px]"></div></div>');
+        console.log(getURL());
         if(confirmation) {
             $.ajax({
                 type: "DELETE",
-                url: "/pendidik/" + teacherName + "/" + teacherId + "/delete",
+                url: getURL() + "/" + teacherName + "/" + teacherId + "/delete",
                 success: function (response) {
                     if (response.errorSomething) {
                         alertContent.append('<div class="errorDelete w-80 px-4 py-3 bg-red-100 rounded-sm"><div class="cntn flex items-center gap-4"><i class="bi bi-x-circle-fill text-red-500"></i><p class="text-lg">Data gagal dihapus</p></div></div>');
@@ -57,7 +58,7 @@ $(document).ready(function () {
                         setTimeout(function () {
                             $('.confirmDelete').remove();
                         }, 3000);
-                        
+
                         if(response.nowData === 0) {
                             $('#addTeacher').remove();
                             $('#list-itemsTeachers').append('<div id="noData" class="group py-10 block bg-gray-200 regular-shadow border rounded-2xl overflow-hidden relative hover:bg-gray-500/25" style="grid-column: 1 / -1"> <div class="text-center text-gray-500"> <i class="bi bi-people-fill text-8xl"></i> <p>Belum ada data saat ini</p> </div> </div>');
@@ -73,6 +74,10 @@ $(document).ready(function () {
     });
 });
 
+function getURL() {
+    return window.location.pathname;
+}
+
 function getCsrfToken() {
     return document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 }
@@ -80,7 +85,7 @@ function getCsrfToken() {
 // function checkTotalData() {
 //     const listItem = document.getElementById('list-itemsTeachers');
 //     const lengthItem = listItem.querySelectorAll('items-teacher').length;
-    
+
 //     if(lengthItem === 0) {
 //         listItem.removeChild(document.getElementById('addTeacher'))
 //         // listItem.append('<div id="noData" class="group py-10 block bg-gray-200 regular-shadow border rounded-2xl overflow-hidden relative hover:bg-gray-500/25" style="grid-column: 1 / -1"> <div class="text-center text-gray-500"> <i class="bi bi-people-fill text-8xl"></i> <p>Belum ada data saat ini</p> </div> </div>');

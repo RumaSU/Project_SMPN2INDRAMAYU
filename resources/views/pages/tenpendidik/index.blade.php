@@ -72,13 +72,12 @@
                 </div>
                 <span role="button" class="btrpp-vii block w-full h-full inset-0 absolute" onclick="showPopUpForm(this); addVals(this);" title="add more staff" aria-labelledby="pop-upFormAdd"></span>
             </div>
-        </div> 
+        </div>
     </section> --}}
     <section class="listTeachersStaff mt-8 px-4 md:px-8 space-y-12">
         <div id="list-itemsTeachers" class="list-items grid grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-2 sm:gap-5 relative">
             @foreach ($listTeachers as $teacher)
-                <div class="items-teacher aspect-[3/4] overflow-hidden rounded-md relative group"
-                    title="{{ $teacher->name }}" data-item-id="{{ $teacher->teacher_id }}" aria-haspopup="true">
+                <div class="items-teacher aspect-[3/4] overflow-hidden rounded-md relative group" title="{{ $teacher->name }}" data-item-id="{{ $teacher->teacher_id }}" aria-haspopup="true">
                     <div class="button-editDel hidden md:flex items-center gap-1 bg-black/40 absolute py-1 px-4 rounded-xl z-10 -right-full top-[5%] -translate-x-[5%] translate-y-full transition-all group-hover:right-[5%] group-hover:translate-x-[5%] group-hover:top-[5%] group-hover:translate-y-[5%]">
                         <span role="button"
                             class="editButtonTeacher border border-black bg-white p-2 rounded-lg hover:bg-gray-200 block w-fit"
