@@ -27,20 +27,41 @@ Route::get('/', function () {
     return view('pages.homepage.index');
 });
 
-// Route Teachers
-Route::get('/guru', [ClassesModelsController::class, 'index']) -> name('ListClass');
-
 // Route Classes
-Route::get('/kelas', [ClassesModelsController::class, 'index']) -> name('ListClass');
-Route::post('/kelas', [ClassesModelsController::class, 'store']) -> name('storeClass');
-Route::delete('/kelas/{id}', [ClassesModelsController::class, 'destroy'])->name('delClass');
+Route::controller(ClassesModelsController::class)->group(function() {
+    
+});
+Route::controller(StudentsModelsController::class)->group(function() {
+    
+});
 
-// Route Staff
-Route::get('/pendidik', [TeachersModelsController::class, 'index']) -> name('ListTeachers');
-Route::get('/pendidik/{teacherName}/{teacherId}', [TeachersModelsController::class, 'popupData']);
-Route::post('/pendidik/edit/{teacherName}/{teacherId}', [TeachersModelsController::class, 'update']);
-Route::post('/pendidik', [TeachersModelsController::class, 'store']) -> name('storeTeachers');
-Route::delete('/kelas/min/{id}', [TeachersModelsController::class, 'destroy'])->name('delTeachers');
+Route::controller(ClassesModelsController::class)->group(function() {
+    Route::get('/kelas', 'index') -> name('ListClass');
+    Route::get('/kelas/tag', 'tagClass');
+    Route::get('/kelas/pendidik', 'listTeacher');
+    Route::get('/kelas/pendidik/image', 'teacherImage');
+    Route::post('/kelas', 'store') -> name('storeClass');
+    Route::delete('/kelas/{id}', 'destroy')->name('delClass');
+});
+
+
+// Route Teachers and Staff Teachers
+Route::controller(TeachersModelsController::class)->group(function() {
+    Route::get('/pendidik', 'index')->name('pendidik.index');
+    Route::get('/pendidik/getCount', 'getCount')->name('pendidik.count');
+    Route::get('/pendidik/{teacherName}/{teacherId}', 'show')->name('pendidik.show');
+    Route::post('/pendidik', 'store') -> name('pendidik.store');
+    Route::post('/pendidik/edit/{teacherName}/{teacherId}', 'update')->name('pendidik.update');
+    Route::delete('/pendidik/{tempTeacherName}/{tempTeacherId}/delete', 'destroy')->name('pendidik.delete');
+    
+    Route::get('/tenpendidik', 'index')->name('tenpendidik.index');
+    Route::get('/tenpendidik/getCount', 'getCount')->name('tenpendidik.count');
+    Route::get('/tenpendidik/{teacherName}/{teacherId}', 'show')->name('tenpendidik.popup');
+    Route::post('/tenpendidik', 'store') -> name('tenpendidik.store');
+    Route::post('/tenpendidik/edit/{teacherName}/{teacherId}', 'update')->name('tenpendidik.update');
+    Route::delete('/tenpendidik/{tempTeacherName}/{tempTeacherId}/delete', 'destroy')->name('tenpendidik.delete');
+});
+
 
 // Route Students
 Route::get('/kelas/siswa', [StudentsModelsController::class, 'index']) -> name('ListStudents');
@@ -51,7 +72,7 @@ Route::get('/osis', [OsisModelsController::class,'index']);
 
 Route::view('/testing', 'pages.students.index');
 Route::view('/siswa', 'pages.classes.index');
-Route::view('/tenpendidik', 'pages.tenpendidik.index');
+// Route::view('/tenpendidik', 'pages.tenpendidik.index');
 Route::view('/testingpendidik', 'pages.tenpendidik.testing');
 Route::view('/ekstrakurikuler', 'pages.ekstrakurikuler.index');
 Route::view('/ekstrakurikuler/testing', 'pages.ekstrakurikuler.ekskulOpen.index');

@@ -12,12 +12,14 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('classes', function (Blueprint $table) {
-            $table->id('class_id');
-            $table->unsignedBigInteger('teacher_id');
-            // $table->foreign('teacher_id')->references('teacher_id')->on('teachers')->onDelete('cascade');
-            $table->string('class');
-            $table->string('tag');
-            $table->text('description');
+            $table->uuid('class_id')->primary();
+            $table->uuid('teacher_id');
+            $table->string('class_grade');
+            $table->string('class_tag');
+            $table->text('description')->nullable();
+            $table->enum('status', ['Aktif', 'Alumni'])->default('Aktif');
+            $table->boolean('is_published')->default(true);
+            $table->year('year');
             $table->timestamps();
         });
     }

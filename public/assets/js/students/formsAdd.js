@@ -1,7 +1,7 @@
-function showPopUpForm() {
-    const popUpForm = document.getElementById('pop-upForm');
-    popUpForm.classList.toggle('hidden');
-}
+// function showPopUpForm() {
+//     const popUpForm = document.getElementById('pop-upForm');
+//     popUpForm.classList.toggle('hidden');
+// }
 
 const textarea = document.getElementById('desc');
 
@@ -96,36 +96,36 @@ function previewFile(event) {
 // }
 
 
-function showPopUpForm(event) {
-    const popUpForm = document.getElementById('pop-upFormAdd');
-    const overlayPopUp = document.getElementById('overlayPopUp');
+// function showPopUpForm(event) {
+//     const popUpForm = document.getElementById('pop-upFormAdd');
+//     const overlayPopUp = document.getElementById('overlayPopUp');
     
-    document.body.style.overflow = "hidden";
-    popUpForm.classList.remove('hidden');
-    overlayPopUp.classList.remove('hidden');
+//     document.body.style.overflow = "hidden";
+//     popUpForm.classList.remove('hidden');
+//     overlayPopUp.classList.remove('hidden');
 
-}
+// }
 
-function closePopUpForm(event) {
-    const popUpForm = document.getElementById('pop-upFormAdd');
-    const overlayPopUp = document.getElementById('overlayPopUp');
-    if (!popUpForm.contains(event.target) && event.target !== event) {
-        document.body.style.overflow = "";
-        popUpForm.classList.add('hidden');
-        overlayPopUp.classList.add('hidden');
-    }
-}
+// function closePopUpForm(event) {
+//     const popUpForm = document.getElementById('pop-upFormAdd');
+//     const overlayPopUp = document.getElementById('overlayPopUp');
+//     if (!popUpForm.contains(event.target) && event.target !== event) {
+//         document.body.style.overflow = "";
+//         popUpForm.classList.add('hidden');
+//         overlayPopUp.classList.add('hidden');
+//     }
+// }
 
-function addVals(event) {
-    const inpValClass = document.getElementById('classInput');
-    if (event.classList.contains('btrpp-vii')) {
-        inpValClass.value = "VII";
-    } else if (event.classList.contains('btrpp-viii')) {
-        inpValClass.value = "VIII";
-    } else if (event.classList.contains('btrpp-ix')) {
-        inpValClass.value = "IX";
-    }
-}
+// function addVals(event) {
+//     const inpValClass = document.getElementById('classInput');
+//     if (event.classList.contains('btrpp-vii')) {
+//         inpValClass.value = "VII";
+//     } else if (event.classList.contains('btrpp-viii')) {
+//         inpValClass.value = "VIII";
+//     } else if (event.classList.contains('btrpp-ix')) {
+//         inpValClass.value = "IX";
+//     }
+// }
 
 
 

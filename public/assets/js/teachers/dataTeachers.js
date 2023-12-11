@@ -3,7 +3,24 @@ $(document).ready(function () {
     let titlePopup = $(".heaAbtSumTeDats strong");
     let popupContent = $(".contentSumTeDats");
     let popupContentDisplay = $(".contentDisplayDetails");
-    let popupFormDisplay = $(".contentFormDetails")
+    let popupFormDisplay = $(".contentFormDetails");
+    // let listItemsTeachers = $('#list-itemsTeachers');
+    // $.ajax({
+    //     url: '/pendidik/get',
+    //     type: 'GET',
+    //     success: function(response) {
+    //         var data = response;
+    //         $.each(data, function(index, item) {
+    //             listItemsTeachers.append('<div class="items-teacher aspect-[3/4] overflow-hidden rounded-md relative group" title="'+item.name+'" data-item-id="'+item.teacher_id+'" aria-haspopup="true"> <div class="button-editDel hidden md:flex items-center gap-1 bg-black/40 absolute py-1 px-4 rounded-xl z-10 -right-full top-[5%] -translate-x-[5%] translate-y-full transition-all group-hover:right-[5%] group-hover:translate-x-[5%] group-hover:top-[5%] group-hover:translate-y-[5%]"> <span role="button" class="editButtonTeacher border border-black bg-white p-2 rounded-lg hover:bg-gray-200 block w-fit" title="Edit '+item.name+'" aria-label="Edit '+item.name+'" data-edit-id="'+item.teacher_id+'"> <i class="bi bi-pencil"></i> </span> <span role="button" class="delB border border-black bg-white p-2 rounded-lg hover:bg-gray-200 block w-fit" title="Delete '+item.name+'" aria-label="Delete '+item.name+'" data-delete-id="'+item.teacher_id+'"> <i class="bi bi-trash3"></i> </span> </div> <div class="itemsTeacher-content bg-white regular-shadow rounded-md sm:rounded-xl lg:rounded-2xl w-full h-full" data-id="'+item.teacher_id+'"> <img src="storage/images/teachers/'+item.name_files+'" alt="" class="supImg w-full h-full object-cover object-center"> <div class="lg:w-3/4 lg:py-2 bg-white shadow-gray-500 shadow-sm rounded-xl z-10 lg:absolute lg:-bottom-full lg:left-1/2 lg:translate-y-full lg:-translate-x-1/2 lg:transition-all lg:group-hover:bottom-[5%] lg:group-hover:-translate-y-[5%] cursor-pointer"><p class="itemClass text-center font-bold line-clamp-1" title="'+item.name+'"aria-roledescription="">'+item.name+'</p></div></div></div>');
+    //         });
+
+    //         // Hapus kelas animasi setelah data dimuat
+    //         // $('.item').removeClass('animate-slide-lazy');
+    //     },
+    //     error: function(xhr, status, error) {
+    //         console.error(error);
+    //     }
+    // });
     $(".itemsTeacher-content").click(function() {
         popupContentDisplay.hide();
         popupRoot.show();
@@ -51,27 +68,7 @@ $(document).ready(function () {
             }
         });
     });
-    $("#editTeachers").click(function() {
-        popupContentDisplay.hide();
-        popupFormDisplay.hide();
-        popupRoot.show();
-        titlePopup.text('Edit');
-        popupContent.append('<div class="loadWaiting absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"><div class="animate-spin rounded-[100%] border-[16px] border-dotted w-[120px] h-[120px]"></div></div>');
-        // let teacherId = $(this).data('show-item-id');
-        // let teacherName = $(this).data('show-item-name');
-        let teacherId = $(this).attr('data-show-item-id');
-        let teacherName = $(this).attr('data-show-item-name');
-        $("#formPopupTeachers").attr('action', "/pendidik/edit/" + teacherName + "/" + teacherId);
-        $.ajax({
-            type: "get",
-            url: "/pendidik/" + teacherName + "/" + teacherId,
-            success: function (data) {
-                $(".loadWaiting").remove();
-                popupFormDisplay.show();
-                getData(data);
-            }
-        });
-    });
+    
     $("#clsPop-sumTeDats").click(function() {
         popupRoot.hide();
         popupContentDisplay.hide();
@@ -79,108 +76,13 @@ $(document).ready(function () {
         $("#formPopupTeachers").attr('action', "");
         resetValue();
     });
-    $(".editButtonTeacher").click(function() {
-        popupContentDisplay.hide();
-        popupFormDisplay.hide();
-        popupRoot.show();
-        titlePopup.text('Edit');
-        popupContent.append('<div class="loadWaiting absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"><div class="animate-spin rounded-[100%] border-[16px] border-dotted w-[120px] h-[120px]"></div></div>');
-        let teacherId = $(this.parentElement.parentElement).data('item-id');
-        let teacherName = $(this.parentElement.parentElement).attr('title');
-        $("#formPopupTeachers").attr('action', "/pendidik/edit/" + teacherName + "/" + teacherId);
-        $.ajax({
-            type: "get",
-            url: "/pendidik/" + teacherName + "/" + teacherId,
-            success: function (data) {
-                $(".loadWaiting").remove();
-                popupFormDisplay.show();
-                getData(data);
-            }
-        });
-    });
-    $("#addTeacher, #btrcr-fmte").click(function() {
-        popupRoot.show();
-        titlePopup.text('Tambah');
-        popupFormDisplay.show();
-        popupContentDisplay.hide();
-        $("#formPopupTeachers").attr('action', "/pendidik");
-        resetValue();
-    });
-    // $("#btrcr-fmte").click(function() {
-    //     popupRoot.show();
-    //     titlePopup.text('Tambah');
-    //     popupFormDisplay.show();
-    //     popupContentDisplay.hide();
-    //     $("#formPopupTeachers").attr('action', "/pendidik");
-    //     resetValue()
-    // });
-});
-
-function getData(data) {
-    $("#previewGalPreview").attr('src', "storage/images/teachers/" + data.name_files);
-    $("#nameTeachers").val(data.name);
-    // $("#nipTeachers").attr('value', data.nip);
-    $("#nipTeachers").val(data.nip);
-    $("#bidangTeachers").val(data.sector);
-    $("#yearsSignTeachers").val(data.years_sign);
     
-    let listSocmed = ["facebook", "instagram", "twitter", "tiktok", "youtube", "emails"];
-    let listLinkSocmed = [data.facebook, data.instagram, data.twitter, data.tiktok, data.youtube, data.email];
-
-    listLinkSocmed.forEach((itemLink, idx) => {
-        let isActive = itemLink ? 'active' : '';
-        let ariaChecked = itemLink ? 'true' : 'false';
-        
-        let inputActive = '#' + listSocmed[idx] + '-active';
-        let inputIdValue = listSocmed[idx] === 'emails' ? '#' + listSocmed[idx] + 'Account' : '#' + listSocmed[idx] + 'Link';
-        console.log(inputIdValue);
-        
-        let styleParentRollActive = itemLink ? "rgba(37, 99, 235, 0.2)" : "";
-        let styleRollActive = itemLink ? "left:100% ; transform: translate(-100%, -50%)" : "left:0 ; transform: translateX(0, -50%)";
-        
-        let parentDiv = $(inputActive).prev().find('label div');
-        let spanInside = $(inputActive).prev().find('label div span');
-        
-        parentDiv.css('backgroundColor', styleParentRollActive);
-        spanInside.attr('style', styleRollActive);
-        
-        $(inputActive).prop('checked', !!itemLink); // Check/Uncheck checkbox based on itemLink
-        $(inputActive).val(isActive).attr('aria-checked', ariaChecked);
-        $(inputIdValue).val(itemLink).attr('value', itemLink);
-        
-        if (itemLink) {
-            $(inputIdValue).removeClass('hidden').removeClass('opacity-0');
-        } else {
-            $(inputIdValue).addClass('hidden').addClass('opacity-0');
-        }
-    });
-}
-
-function resetValue() {
-    $("#previewGalPreview").attr('src', "storage/images/teachers/default.png");
-    $("#nameTeachers").val('');
-    $("#nipTeachers").val('');
-    let listSocmed = ["facebook", "instagram", "twitter", "tiktok", "youtube", "emails"];
-
-    listSocmed.forEach((itemSocmed) => {
-        let isActive = '';
-        let ariaChecked = 'false';
-        
-        let inputActive = '#' + itemSocmed + '-active';
-        let styleParentRollActive = "";
-        let styleRollActive = "left:0 ; transform: translateX(0, -50%)";
-        
-        let parentDiv = $(inputActive).prev().find('label div');
-        let spanInside = $(inputActive).prev().find('label div span');
-        parentDiv.css('backgroundColor', styleParentRollActive);
-        spanInside.attr('style', styleRollActive);
-        
-        $(inputActive).prop('checked', false); // Check/Uncheck checkbox based on itemLink
-        $(inputActive).val(isActive).attr('aria-checked', ariaChecked);
-        $('#' + itemSocmed + 'Link').val('');
-        $('#' + itemSocmed + 'Link').addClass('hidden').addClass('opacity-0');
-    });
-}
+    setTimeout(() => {
+        $('.confirmDelete').remove();
+        $('.confirmUpdate').remove();
+        $('.errorDelete').remove();
+    }, 3000);
+});
 
 function formatDate(date) {
     let parts = date.split('-');

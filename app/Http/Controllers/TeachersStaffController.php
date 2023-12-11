@@ -2,22 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\StudentsModels;
-use App\Models\TeachersModels;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Ramsey\Uuid\Uuid;
 
-class StudentsModelsController extends Controller
+class TeachersStaffController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view("pages.students.index");
+        //
     }
-    
+
     /**
      * Show the form for creating a new resource.
      */
@@ -37,7 +33,7 @@ class StudentsModelsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(StudentsModels $studentsModels)
+    public function show(string $id)
     {
         //
     }
@@ -45,7 +41,7 @@ class StudentsModelsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(StudentsModels $studentsModels)
+    public function edit(string $id)
     {
         //
     }
@@ -53,7 +49,7 @@ class StudentsModelsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, StudentsModels $studentsModels)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -61,7 +57,7 @@ class StudentsModelsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(StudentsModels $studentsModels)
+    public function destroy(string $id)
     {
         //
     }
