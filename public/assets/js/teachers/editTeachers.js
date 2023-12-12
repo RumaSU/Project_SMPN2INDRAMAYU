@@ -51,6 +51,8 @@ $(document).ready(function () {
 });
 
 function getURL() {
+    let nowUrl = window.localStorage.pathname;
+    console.log(nowUrl);
     return window.location.pathname;
 }
 

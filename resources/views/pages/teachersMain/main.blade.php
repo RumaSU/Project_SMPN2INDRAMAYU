@@ -1,6 +1,21 @@
 @extends('layouts.main.main')
 @section('link-rel')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <style>
+        @keyframes slideLazy {
+            0% {
+                transform: translateX(-100%);
+            }
 
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        .animate-slide-lazy {
+            animation: slideLazy 2s linear infinite;
+        }
+    </style>
 @endsection
 @section('content')
     <div class="alertContent fixed right-0 z-[9999] space-y-2 text-2xl">
@@ -29,98 +44,7 @@
             </div>
         @endif
     </div>
-    <section class="img-students flex items-center justify-center relative text-center text-white h-96 bg-cover bg-center bg-no-repeat after:absolute after:top-0 after:left-0 after:bg-black/60 after:w-full after:h-full"
-        style="background-image: url('{{asset('assets/img/main/126465066756.jpg')}}');">
-        <div class="content relative z-10 selft-center">
-            <h1 class="text-4xl font-bold">Tenaga Kependidikan</h1>
-            <a href="/tenPendidik" class="text-xl">Profil/Tenaga Kependidikan</a>
-        </div>
-    </section>
-    <section class="frmAddStnds mt-12">
-        <div class="title-students text-2xl flex items-center px-6 md:px-12 gap-6 py-4 font-bold border-b-4 border-black relative">
-            <span role="button" id="btrcr-fm" class="btrcr-fm lg:text-3xl py-2 px-4 lg:px-6 flex items-center" onclick="showPopUpForm(this); addVals(this);">
-                <i class="bi bi-plus-circle md:mr-2 text-2xl"></i>
-                <p class="hidden md:block">Tenaga Kependidikan</p>
-            </span>
-        </div>
-    </section>
-    {{-- <section class="listTeachersStaff mt-8 px-4 md:px-8 space-y-12">
-        <div class="list-items grid grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-2 sm:gap-5 relative" id="listItemsTeachers">
-            @for ($i=0; $i < 10; $i++)
-                <div class="items-staffTe aspect-[3/4] overflow-hidden relative group" title="Staff {{$i}}" data-item-id="" aria-haspopup="true">
-                    <div class="button-editDel hidden md:flex items-center gap-1 bg-black/40 absolute py-1 px-4 rounded-xl z-10 -right-full top-[5%] -translate-x-[5%] translate-y-full transition-all group-hover:right-[5%] group-hover:translate-x-[5%] group-hover:top-[5%] group-hover:translate-y-[5%]">
-                        <span role="button" class="editB border border-black bg-white p-2 rounded-lg hover:bg-gray-200 block w-fit" title="Edit this" aria-label="Edit this" onclick="opnFormTeDats()">
-                            <i class="bi bi-pencil"></i>
-                        </span>
-                        <span role="button" class="delB border border-black bg-white p-2 rounded-lg hover:bg-gray-200 block w-fit" title="Delete this" aria-label="Delete this">
-                            <i class="bi bi-trash3"></i>
-                        </span>
-                    </div>
-                    <div class="imgCont bg-white regular-shadow rounded-md sm:rounded-xl lg:rounded-2xl w-full h-full"  onclick="opnSumTeDats()">
-                        <img src="{{asset('assets/img/dumb/imgtemp 3.jpg')}}" alt="" class="supImg w-full h-full object-cover object-center" >
-                        <div class="lg:w-3/4 lg:py-2 bg-blue-400 rounded-xl z-10 lg:absolute lg:-bottom-full lg:left-1/2 lg:translate-y-full lg:-translate-x-1/2 lg:transition-all lg:group-hover:bottom-[5%] lg:group-hover:-translate-y-[5%] lg:hover:bg-cyan-500 cursor-pointer">
-                            <p class="itemClass text-white text-center font-bold" title="This is name staff {{$i}}" aria-roledescription="">
-                                Test{{$i}}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            @endfor
-            <div class="group bg-white regular-shadow flex justify-center items-center border rounded-2xl overflow-hidden relative hover:bg-gray-500/25" aria-haspopup="true">
-                <div class="add-icon">
-                    <i class="bi bi-plus-circle text-8xl opacity-50"></i>
-                </div>
-                <span role="button" class="btrpp-vii block w-full h-full inset-0 absolute" onclick="showPopUpForm(this); addVals(this);" title="add more staff" aria-labelledby="pop-upFormAdd"></span>
-            </div>
-        </div>
-    </section> --}}
-    <section class="listTeachersStaff mt-8 px-4 md:px-8 space-y-12">
-        <div id="list-itemsTeachers" class="list-items grid grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-2 sm:gap-5 relative">
-            @foreach ($listTeachers as $teacher)
-                <div class="items-teacher aspect-[3/4] overflow-hidden rounded-md relative group" title="{{ $teacher->name }}" data-item-id="{{ $teacher->teacher_id }}" aria-haspopup="true">
-                    <div class="button-editDel hidden md:flex items-center gap-1 bg-black/40 absolute py-1 px-4 rounded-xl z-10 -right-full top-[5%] -translate-x-[5%] translate-y-full transition-all group-hover:right-[5%] group-hover:translate-x-[5%] group-hover:top-[5%] group-hover:translate-y-[5%]">
-                        <span role="button"
-                            class="editButtonTeacher border border-black bg-white p-2 rounded-lg hover:bg-gray-200 block w-fit"
-                            title="Edit {{ $teacher->name }}" aria-label="Edit {{ $teacher->name }}"
-                            data-edit-id="{{ $teacher->teacher_id }}">
-                            <i class="bi bi-pencil"></i>
-                        </span>
-                        <span role="button"
-                            class="delB border border-black bg-white p-2 rounded-lg hover:bg-gray-200 block w-fit"
-                            title="Delete {{ $teacher->name }}" aria-label="Delete {{ $teacher->name }}" data-
-                            data-delete-id="{{ $teacher->teacher_id }}">
-                            <i class="bi bi-trash3"></i>
-                        </span>
-                    </div>
-                    <div class="itemsTeacher-content bg-white regular-shadow rounded-md sm:rounded-xl lg:rounded-2xl w-full h-full"
-                        data-id="{{ $teacher->teacher_id }}">
-                        <img src="{{ asset('storage/images/teachers/' . $teacher->name_files) }}" alt=""
-                            class="supImg w-full h-full object-cover object-center">
-                        <div
-                            class="lg:w-3/4 lg:py-2 bg-white shadow-gray-500 shadow-sm rounded-xl z-10 lg:absolute lg:-bottom-full lg:left-1/2 lg:translate-y-full lg:-translate-x-1/2 lg:transition-all lg:group-hover:bottom-[5%] lg:group-hover:-translate-y-[5%] cursor-pointer">
-                            <p class="itemClass text-center font-bold line-clamp-1" title="{{ $teacher->name }}"
-                                aria-roledescription="">{{ $teacher->name }}</p>
-                        </div>
-                    </div>
-                </div>
-            @endforeach
-            @if (count($listTeachers) >= 1)
-                <div id="addTeacher"
-                    class="aspect-[3/4] group bg-white regular-shadow flex justify-center items-center border rounded-2xl overflow-hidden relative hover:bg-gray-500/25"
-                    aria-haspopup="true"
-                    @if (count($listTeachers) == 0) style="grid-column: 1 / -1; height: 14rem" @endif>
-                    <div class="add-icon">
-                        <i class="bi bi-plus-circle text-8xl opacity-50"></i>
-                    </div>
-                    <span role="button" class="btrpp-vii block w-full h-full inset-0 absolute"
-                        title="add more teachers"></span>
-                </div>
-            @endif
-            @if (!count($listTeachers))
-                <div id="noData" class="group py-10 block bg-gray-200 regular-shadow border rounded-2xl overflow-hidden relative hover:bg-gray-500/25" style="grid-column: 1 / -1"> <div class="text-center text-gray-500"> <i class="bi bi-people-fill text-8xl"></i> <p>Belum ada data saat ini</p> </div> </div>
-            @endif
-        </div>
-    </section>
+    @yield('teachers.content')
     <div class="pop-teDats" id="pop-teDats" role="dialog" style="display: none;">
         <div
             class="rootPopDetails w-full h-full max-h-fit lg:h-fit lg:w-1/3 bg-slate-950 fixed pb-8 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50 rounded-lg overflow-hidden">
@@ -609,9 +533,9 @@
     <div class="foo mb-96"></div>
 @endsection
 @section('custom-script')
-<script src="{{ asset('assets/js/teachers/popDetailsTeachers.js') }}"></script>
-<script src="{{ asset('assets/js/teachers/dataTeachers.js') }}"></script>
-<script src="{{ asset('assets/js/teachers/addTeachers.js') }}"></script>
-<script src="{{ asset('assets/js/teachers/editTeachers.js') }}"></script>
-<script src="{{ asset('assets/js/teachers/deleteTeachers.js') }}"></script>
+    <script src="{{ asset('assets/js/teachers/popDetailsTeachers.js') }}"></script>
+    <script src="{{ asset('assets/js/teachers/dataTeachers.js') }}"></script>
+    <script src="{{ asset('assets/js/teachers/addTeachers.js') }}"></script>
+    <script src="{{ asset('assets/js/teachers/editTeachers.js') }}"></script>
+    <script src="{{ asset('assets/js/teachers/deleteTeachers.js') }}"></script>
 @endsection

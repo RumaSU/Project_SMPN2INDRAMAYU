@@ -3,23 +3,25 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Auth;
+use Illuminate\Support\Facades\Auth;
+// Salah namespace
 
 class LoginModelsController extends Controller
 {
     public function postLogin(Request $request){
-        if(Auth::guard('pengguna')->attampt({'email' => $request->email,'password' => $request password}))){
+        // ->attempt, bukan {...} tapi [...]
+        if(Auth::guard('pengguna')->attempt(['email' => $request->email,'password' => $request->password])){
             return redirect('/homepage');
-        }elseif (Auth::guard('user')->attampt({'email' => $reques$request->email,'password' => $request password}))){
+        }
+        else if (Auth::guard('user')->attempt(['email' => $request->email,'password' => $request->password])){
             return redirect('/homepage');
         }
 
         return redirect('/');
     }
 
-    public function logout(){
-        Auth::logaut();
-            return redirect ('/');
-
+    public function logout() {
+        Auth::logout(); // typo bagian sini
+        return redirect ('/');
     }
 }

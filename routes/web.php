@@ -36,10 +36,10 @@ Route::controller(StudentsModelsController::class)->group(function() {
 });
 
 Route::controller(ClassesModelsController::class)->group(function() {
-    Route::get('/kelas', 'index') -> name('ListClass');
-    Route::get('/kelas/tag', 'tagClass');
-    Route::get('/kelas/pendidik', 'listTeacher');
-    Route::get('/kelas/pendidik/image', 'teacherImage');
+    Route::get('/kelas', 'index') -> name('viewClass');
+    Route::get('/kelas/tag', 'tagClass')->name('ajaxClassTag');
+    Route::get('/kelas/pendidik', 'listTeacher')->name('ajaxClassGetTeachers');
+    Route::get('/kelas/pendidik/image', 'teacherImage')->name('ajaxClassGetTeachersImages');
     Route::post('/kelas', 'store') -> name('storeClass');
     Route::delete('/kelas/{id}', 'destroy')->name('delClass');
 });

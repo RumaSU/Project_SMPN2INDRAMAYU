@@ -23,20 +23,20 @@ class TeachersModelsController extends Controller
         $nowRoute = $this->checkRoute();
         if ($nowRoute != 'Unknown') {
             $listTeachers = DB::table('teachers')
-            ->select(
-                'teachers.teacher_id',
-                'teachers.name',
-                'teachers_images.name_files'
-            )
-            ->join('teachers_images', 'teachers_images.teacher_id', '=', 'teachers.teacher_id')
-            ->where('teachers.status' , '=', $nowRoute)
-            ->orderBy('teachers.name', 'asc')
-            ->get();
+                ->select(
+                    'teachers.teacher_id',
+                    'teachers.name',
+                    'teachers_images.name_files'
+                )
+                ->join('teachers_images', 'teachers_images.teacher_id', '=', 'teachers.teacher_id')
+                ->where('teachers.status' , '=', $nowRoute)
+                ->orderBy('teachers.name', 'asc')
+                ->get();
             
             if($nowRoute == 'Pendidik') {
-                return view("pages.teachers.index", compact('listTeachers'));                
+                return view("pages.teachersMain.teachers.index", compact('listTeachers'));                
             } else if($nowRoute == 'Tenaga Kependidikan') {
-                return view("pages.tenpendidik.index", compact('listTeachers'));                
+                return view("pages.teachersMain.tenpendidik.index", compact('listTeachers'));                
             }
         }
         return redirect('/');
@@ -190,10 +190,10 @@ class TeachersModelsController extends Controller
      */
     public function update(Request $request, $teacherName, $teacherId)
     {
-        $values = array_map('is_string', $request->except('imageTeachers'));
-        if (in_array(false, $values, true)) {
-            return redirect()->back()->with('errorSomething', 'Request data is invalid');
-        }
+        // $values = array_map('is_string', $request->except('imageTeachers'));
+        // if (in_array(false, $values, true)) {
+        //     return redirect()->back()->with('errorSomething', 'Request data is invalid ');
+        // }
         
         $nowRoute = $this->checkRoute();
         if($nowRoute != 'Unknown') {
@@ -275,19 +275,20 @@ class TeachersModelsController extends Controller
                     }
                     else {
                         $this->rollbackData($temporaryData, $teacherId);
-                        return redirect()->back()->with('errorSomething', 'request is invalid');
+                        return redirect()->back()->with('errorSomething', 'request is invalid after check nip');
                     }
                 }
                 else {
                     $this->rollbackData($temporaryData, $teacherId);
-                    return redirect()->back()->with('errorSomething', 'request is invalid');
+                    return redirect()->back()->with('errorSomething', 'request is invalid after request validate');
                 }
             }
             else {
                 $this->rollbackData($temporaryData, $teacherId);
-                return redirect()->back()->with('errorSomething', 'request is invalid');
+                return redirect()->back()->with('errorSomething', 'request is invalid after select id');
             }
         }
+        return redirect()->back()->with('errorSomething', 'request is invalid root');
     }
     
     function storeImage($image, $teachersId) {
@@ -337,24 +338,12 @@ class TeachersModelsController extends Controller
     function storeFail($teacherId) {
         TeachersModels::findOrFail($teacherId)->delete();
     }
+    
     /**
      * Remove the specified resource from storage.
      */
     public function destroy($tempTeacherName, $tempTeacherId)
     {
-        // $teacher = TeachersModels::where('teacher_id', $tempTeacherId)
-        // ->where('name', $tempTeacherName)
-        // ->firstOrFail(); // Mengambil objek guru atau memberikan respons 404 jika tidak ditemukan
-
-        // if ($teacher) {
-        //     $image = TeachersImagesModels::where('teacher_id', $teacher->teacher_id)->first();
-        //     if ($image && $image->name_files != 'default.png') {
-        //         $this->deleteImage($image->name_files);
-        //     }
-        //     $teacher->delete();
-        //     return response()->json(['errorSomething' => 'request is invalid']);
-        // }
-        // return response()->json(['succedSomething' => 'succed']);
         try {
             $teacher = TeachersModels::where('teacher_id', $tempTeacherId)
                 ->where('name', $tempTeacherName)
@@ -387,10 +376,11 @@ class TeachersModelsController extends Controller
     
     public function checkRoute() {
         $routeFrom = Route::current()->uri();
-        if($routeFrom == 'pendidik') {
+        $splitRoute = explode('/', $routeFrom);
+        if($routeFrom == 'pendidik' || $splitRoute[0] == 'pendidik') {
             return "Pendidik";
         }
-        else if ($routeFrom == 'tenpendidik') {
+        else if ($routeFrom == 'tenpendidik' || $splitRoute[0] == 'tenpendidik') {
             return "Tenaga Kependidikan";
         }
         

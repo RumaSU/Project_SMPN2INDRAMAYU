@@ -1,12 +1,14 @@
 $(document).ready(function() {
     let nowDate = new Date();
     let nowYear = nowDate.getFullYear();
+    
     $( "#classYear" ).on('input', function() {
         let enterYear = $(this).val();
         if(enterYear > nowYear){
             $(this).val(nowYear)
         }
     });
+    
     $('.btrpp-vii, .btrpp-viii, .btrpp-ix').click(function () {
         $('#pop-upFormAdd').removeClass('hidden');
         $('#overlayPopUp').removeClass('hidden');
@@ -15,6 +17,7 @@ $(document).ready(function() {
         let classGrade = $(this).data('classGrade');
         $('#classGrade').val(classGrade);
         getLatestClassTag(classGrade);
+        checkedGrade(classGrade);
         
         $('#classYear').val(nowYear);
         $('#classYear').attr('max', nowYear);
@@ -36,6 +39,7 @@ $(document).ready(function() {
             }
         });
     });
+    
     $('#teacherList').change(function() {
         let valSelectTe = $(this).val();
         
@@ -54,13 +58,18 @@ $(document).ready(function() {
             }
         });
     });
+    
     $('#closeForm').click(function() {
         $('#pop-upFormAdd').addClass('hidden');
         $('#overlayPopUp').addClass('hidden');
         $('body').removeClass('overflow-hidden');
         let resetValue = $('#pop-upFormAdd').find('form');
         resetValue.find('#classGrade, #imgClass, #teacher, #tagClass, #descClass').val('');
+        $('.chckChoose').remove();
+        $('.elemRdChsClass').removeClass('bg-green-100');
+        $(resetValue).find('input[type="radio"]').prop('checked', false); // Menandai radio button yang sesuai
     });
+    
     $('#imgClass').change(function(event) {
         const previewImg = $('#previewImage');
         const file = event.target.files[0];
@@ -78,10 +87,39 @@ $(document).ready(function() {
             }
         }
     });
+    
     $('#resetImageClass').click(function() {
         $('#previewImage').attr('src', 'assets/img/dumb/imgtemp 1.jpg');
         $('#imgClass').val('');
     });
+    
+    $('.chooseClass').click(function() {
+        let input = $(this).find('input[type="radio"]');
+        let grade = $(this).data('classGrade');
+        let checked = input.is(':checked');
+        
+        $('.chckChoose').remove();
+        $('.elemRdChsClass').removeClass('bg-green-100');
+
+        if (checked) {
+            $(this).append('<div class="chckChoose absolute -right-[7%] -top-[25%] translate-x-[7%] translate-y-[25%] z-10"><i class="bi bi-check-circle-fill text-xl text-green-500 bg-white p-0 flex rounded-[100%]"></i></div>');
+            $(this).find('.elemRdChsClass').addClass('bg-green-100');
+            getLatestClassTag(grade);
+        }
+    });
+    
+    function checkedGrade(grade) {
+        $('.chooseClass').each(function () {
+            // element == this
+            let elementData = $(this).data('classGrade');
+            if(grade === elementData) {
+                $(this).append('<div class="chckChoose absolute -right-[7%] -top-[25%] translate-x-[7%] translate-y-[25%] z-10"><i class="bi bi-check-circle-fill text-xl text-green-500 bg-white p-0 flex rounded-[100%]"></i></div>');
+                $(this).find('.elemRdChsClass').addClass('bg-green-100');
+                $(this).find('input[type="radio"]').prop('checked', true); // Menandai radio button yang sesuai
+            }
+        });
+    }
+    
     function getLatestClassTag(classGrade) {
         $.ajax({
             type: "GET",
@@ -90,19 +128,19 @@ $(document).ready(function() {
                 classGrade: classGrade,
             },
             success: function (response) {
+                // let lastTag = response.classTag;
+                // lastTag.slice(0, -1) + String.fromCharCode(lastTag.charCodeAt(lastTag.length - 1) + 1);
                 if (response.length > 0) {
-                    // Jika terdapat data kelas
-                    var latestTag = response[0].tag; // Mengambil tag dari kelas terbaru
+                    var latestTag = response.class_tag; 
     
-                    // Proses untuk menentukan huruf selanjutnya
-                    var lastLetter = latestTag.slice(-1); // Mengambil huruf terakhir
-                    var nextLetter = String.fromCharCode(lastLetter.charCodeAt(0) + 1); // Menentukan huruf selanjutnya
+                    var lastLetter = latestTag.slice(-1); 
+                    var nextLetter = String.fromCharCode(lastLetter.charCodeAt(0) + 1); 
                     
-                    // Set nilai tag pada form dengan huruf selanjutnya
-                    $('#tagClass').val(nextLetter); // Ganti dengan ID input tag Anda
+                    var newTag = latestTag.slice(0, -1) + nextLetter;
+                    
+                    $('#tagClass').val(newTag);
                 } else {
-                    // Jika tidak ada data kelas terbaru, misalnya jika tabel kosong
-                    $('#tagClass').val('A'); // Jika tabel kosong, mulai dari A
+                    $('#tagClass').val('A');
                 }
             }
         });

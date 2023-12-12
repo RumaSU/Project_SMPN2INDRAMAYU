@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('classes_images', function (Blueprint $table) {
-            $table->text('name_files');
+            $table->text('name_files')->default("default.png");
             $table->uuid('class_id');
             $table->foreign('class_id')->references('class_id')->on('classes')->onDelete('cascade');
             $table->timestamps();
