@@ -151,7 +151,9 @@ class TeachersModelsController extends Controller
             // Melakukan validasi sukses, lakukan update jika nilai berubah
             if ($active === "active") {
                 // Lakukan pengecekan dan update jika ada perubahan pada link
-                $linkSocmed = (str_contains($link, "https://") || str_contains($link, "http://")) ? $link : "https://" . $link;
+                // $linkSocmed = (str_contains($link, "https://") || str_contains($link, "http://")) ? $link : "https://" . $link;
+                // $linkSocmed = (str_contains($link, "https://" . $socmed . ".com/") || str_contains($link, "http://" . $socmed . ".com/")) ? $link : "https://". $socmed . ".com/" . $link;
+                $linkSocmed = $this->validateSocialMediaLink($link, $socmed);
                 if ($linkSocmed != TeachersSocmedModels::where('teacher_id', $teacherID)->where($socmed, $linkSocmed)->exists()) {
                     TeachersSocmedModels::where("teacher_id", $teacherID)
                         ->update([
@@ -160,6 +162,28 @@ class TeachersModelsController extends Controller
                 }
             }
         }
+    }
+    
+    function validateSocialMediaLink($link, $socmed) {
+        // check https:// di awal
+        if (strpos($link, 'https://') === 0) {
+            // Jika tidak ditemukan $socmed .com setelah https://
+            if (strpos($link, $socmed . '.com') === false) {
+                // Tambahkan $socmed .com setelah https://
+                return str_replace('https://', 'https://' . $socmed . '.com/', $link);
+            }
+        } else {
+            // Jika tidak ada https:// di awal URL
+            // Cek jika $socmed .com/namanya ditemukan
+            if (strpos($link, $socmed . '.com/') !== false) {
+                // Tambahkan https:// di awal jika hanya ada $socmed .com/namanya
+                return 'https://' . $link;
+            } else {
+                // Jika tidak ditemukan https:// dan $socmed .com, tambahkan keduanya
+                return 'https://'. $socmed .'.com/' . $link;
+            }
+        }
+        return $link;
     }
     
     public function show($teacherName, $teacherId)

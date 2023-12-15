@@ -202,7 +202,7 @@
                                                             aria-checked="false" aria-label="Facebook Account">
                                                     </div>
                                                     <div class="inpLnkFacebook">
-                                                        <input type="text" name="facebookLink" id="facebookLink" class="rounded-sm outline-none px-2 py-0.5 w-full text-xs underline text-black transition-all hidden opacity-0"
+                                                        <input type="text" name="facebookLink" id="facebookLink" class="rounded-md outline-none px-2 py-1 w-full text-xs underline text-black transition-all hidden opacity-0"
                                                             aria-label="Facebook Link">
                                                     </div>
                                                 </div>
@@ -235,7 +235,7 @@
                                                     <div class="inpLnkinstagram">
                                                         <input type="text" name="instagramLink"
                                                             id="instagramLink"
-                                                            class="rounded-sm outline-none px-2 py-0.5 w-full text-xs underline text-black transition-all hidden opacity-0"
+                                                            class="rounded-md outline-none px-2 py-1 w-full text-xs underline text-black transition-all hidden opacity-0"
                                                             aria-label="Instagram Account">
                                                     </div>
                                                 </div>
@@ -268,7 +268,7 @@
                                                     </div>
                                                     <div class="inpLnkTwitter">
                                                         <input type="text" name="twitterLink" id="twitterLink"
-                                                            class="rounded-sm outline-none px-2 py-0.5 w-full text-xs underline text-black transition-all hidden opacity-0"
+                                                            class="rounded-md outline-none px-2 py-1 w-full text-xs underline text-black transition-all hidden opacity-0"
                                                             aria-label="Twitter Link">
                                                     </div>
                                                 </div>
@@ -301,7 +301,7 @@
                                                     </div>
                                                     <div class="inpLnkTiktok">
                                                         <input type="text" name="tiktokLink" id="tiktokLink"
-                                                            class="rounded-sm outline-none px-2 py-0.5 w-full text-xs underline text-black transition-all hidden opacity-0"
+                                                            class="rounded-md outline-none px-2 py-1 w-full text-xs underline text-black transition-all hidden opacity-0"
                                                             aria-label="Tiktok Link">
                                                     </div>
                                                 </div>
@@ -331,7 +331,7 @@
                                                     </div>
                                                     <div class="inpLnkYoutube">
                                                         <input type="text" name="youtubeLink" id="youtubeLink"
-                                                            class="rounded-sm outline-none px-2 py-0.5 w-full text-xs underline text-black transition-all hidden opacity-0"
+                                                            class="rounded-md outline-none px-2 py-1 w-full text-xs underline text-black transition-all hidden opacity-0"
                                                             aria-label="Youtube Account">
                                                     </div>
                                                 </div>
