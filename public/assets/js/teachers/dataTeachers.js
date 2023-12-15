@@ -21,25 +21,37 @@ $(document).ready(function () {
     //         console.error(error);
     //     }
     // });
-    $(".itemsTeacher-content").click(function() {
+    
+    $('.items-teacher').each(function(){
+        var $currentItem = $(this);
+
+        $currentItem.waitForImages(function() {
+            $currentItem.find('.contentItems').removeClass('hidden');
+            $currentItem.find('.lazy-placeholder').remove();
+            $currentItem.lazy();
+        });
+    });
+    
+    $(".item-content").click(function() {
         popupContentDisplay.hide();
         popupRoot.show();
         titlePopup.text('Tentang');
         popupContent.append('<div class="loadWaiting absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"><div class="animate-spin rounded-[100%] border-[16px] border-dotted w-[120px] h-[120px]"></div></div>');
         popupFormDisplay.hide();
-        let teacherId = $(this.parentElement).data('item-id');
-        let teacherName = $(this.parentElement).attr('title');
+        let teacherId = $(this).closest('.items-teacher').data('item-id');
+        let teacherName = $(this).closest('.items-teacher').attr('title');
         $.ajax({
             type: "get",
             url: "/pendidik/" + teacherName + "/" + teacherId,
             success: function (data) {
+                console.log(data);
                 popupContentDisplay.show();
                 $(".loadWaiting").remove();
                 $("#popupImageTeacher").attr('src', "storage/images/teachers/" + data.name_files);
                 $("#nameShowTeachers").text(data.name).data('value', data.name).attr('data-value', data.name);
                 $("#nipShowTeachers").text(data.nip).data('value', data.nip).attr('data-value', data.nip);
                 $("#editTeachers").attr('title', 'Edit ' + data.name).attr('data-show-item-id', data.teacher_id).attr('data-show-item-name', data.name);
-                $("#statusDisplayTeachers").text(data.status).data('value', data.status).attr('data-value', data.status);
+                $("#statusDisplayTeachers").text(data.status).data('value', data.status).attr('data-value', data.type);
                 $("#sectorDisplayTeachers").text(data.sector).data('value', data.sector).attr('data-value', data.sector);
                 $("#yearsDisplaySignTeachers").text(formatDate(data.years_sign)).data('value', data.years_sign).attr('data-value', data.years_sign);
                 
@@ -65,6 +77,9 @@ $(document).ready(function () {
                     $('.data-item-email').remove();
                 }
                 
+            }, 
+            error: function() {
+                alert('error');
             }
         });
     });

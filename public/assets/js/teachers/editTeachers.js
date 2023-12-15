@@ -34,8 +34,8 @@ $(document).ready(function () {
         popupRoot.show();
         titlePopup.text('Edit');
         popupContent.append('<div class="loadWaiting absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"><div class="animate-spin rounded-[100%] border-[16px] border-dotted w-[120px] h-[120px]"></div></div>');
-        let teacherId = $(this.parentElement.parentElement).data('item-id');
-        let teacherName = $(this.parentElement.parentElement).attr('title');
+        let teacherId = $(this).closest('.items-teacher').data('item-id');
+        let teacherName = $(this).closest('.items-teacher').attr('title');
         console.log(getURL());
         $("#formPopupTeachers").attr('action', getURL() + "/edit/" + teacherName + "/" + teacherId);
         $.ajax({

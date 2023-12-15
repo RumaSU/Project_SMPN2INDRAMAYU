@@ -13,9 +13,7 @@ return new class extends Migration
     {   
         Schema::create('classes_students', function (Blueprint $table) {
             $table->uuid('student_id');
-            $table->uuid('class_id');
-            $table->foreign("student_id")->references("student_id")->on("students")->onDelete("cascade");
-            $table->foreign("class_id")->references("class_id")->on("classes")->onDelete("cascade");
+            $table->uuid('class_id')->nullable();
         });
     }
 

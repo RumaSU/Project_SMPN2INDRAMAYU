@@ -37,6 +37,8 @@ Route::controller(StudentsModelsController::class)->group(function() {
 
 Route::controller(ClassesModelsController::class)->group(function() {
     Route::get('/kelas', 'index') -> name('viewClass');
+    Route::get('/kelas/get', 'getDataClass') -> name('viewClass');
+    Route::get('/kelas/list', 'getListClass') -> name('viewClass');
     Route::get('/kelas/tag', 'tagClass')->name('ajaxClassTag');
     Route::get('/kelas/pendidik', 'listTeacher')->name('ajaxClassGetTeachers');
     Route::get('/kelas/pendidik/image', 'teacherImage')->name('ajaxClassGetTeachersImages');
@@ -52,14 +54,14 @@ Route::controller(TeachersModelsController::class)->group(function() {
     Route::get('/pendidik/{teacherName}/{teacherId}', 'show')->name('pendidik.show');
     Route::post('/pendidik', 'store') -> name('pendidik.store');
     Route::post('/pendidik/edit/{teacherName}/{teacherId}', 'update')->name('pendidik.update');
-    Route::delete('/pendidik/{tempTeacherName}/{tempTeacherId}/delete', 'destroy')->name('pendidik.delete');
+    Route::delete('/pendidik/delete', 'destroy')->name('pendidik.delete');
     
     Route::get('/tenpendidik', 'index')->name('tenpendidik.index');
     Route::get('/tenpendidik/getCount', 'getCount')->name('tenpendidik.count');
     Route::get('/tenpendidik/{teacherName}/{teacherId}', 'show')->name('tenpendidik.popup');
     Route::post('/tenpendidik', 'store') -> name('tenpendidik.store');
     Route::post('/tenpendidik/edit/{teacherName}/{teacherId}', 'update')->name('tenpendidik.update');
-    Route::delete('/tenpendidik/{tempTeacherName}/{tempTeacherId}/delete', 'destroy')->name('tenpendidik.delete');
+    Route::delete('/tenpendidik/delete', 'destroy')->name('tenpendidik.delete');
 });
 
 

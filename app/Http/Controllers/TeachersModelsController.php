@@ -29,7 +29,8 @@ class TeachersModelsController extends Controller
                     'teachers_images.name_files'
                 )
                 ->join('teachers_images', 'teachers_images.teacher_id', '=', 'teachers.teacher_id')
-                ->where('teachers.status' , '=', $nowRoute)
+                ->where('teachers.type' , '=', $nowRoute)
+                ->where('teachers.status' , '=', 'Aktif')
                 ->orderBy('teachers.name', 'asc')
                 ->get();
             
@@ -71,7 +72,7 @@ class TeachersModelsController extends Controller
                         'teacher_id' => $teachersId,
                         'nip' => $request->nipTeachers,
                         'name' => $request->nameTeachers,
-                        'status' => $nowRoute,
+                        'type' => $nowRoute,
                         'sector' => $request->bidangTeachers,
                         'email' => $request->emailsAccount,
                         'years_sign' => $request->yearsSignTeachers,
@@ -103,9 +104,11 @@ class TeachersModelsController extends Controller
                                 $this->validateSocmed($request, $socmed , $socmed.'-active', $socmed.'Link', $teachersId);
                             }
                             if($nowRoute == 'Pendidik') {
-                                return redirect('/pendidik')->with('succedSomething', 'Data now added');
+                                return redirect('/pendidik')->with('succedSomething', 'Data now added' . $nowRoute);
+                                // echo $nowRoute;
                             } else if($nowRoute == 'Tenaga Kependidikan') {
-                                return redirect('/tenpendidik')->with('succedSomething', 'Data now added');
+                                return redirect('/tenpendidik')->with('succedSomething', 'Data now added' . $nowRoute);
+                                // echo $nowRoute;
                             }
                         }
                         $this->storeFail($storeTeachers->teacher_id);
@@ -118,7 +121,6 @@ class TeachersModelsController extends Controller
             }
             return redirect()->back()->with('errorSomething', 'This is invalid');
         }
-        echo "URl saat ini bukan tenaga kependidikan";
         // return redirect('/');
     }
     
@@ -164,7 +166,7 @@ class TeachersModelsController extends Controller
     {
         $popupData = DB::table('teachers')
             ->select(
-                'teachers.teacher_id', 'teachers.name', 'teachers.nip', 'teachers.status', 'teachers.sector', 'teachers.email', 'teachers.years_sign',
+                'teachers.teacher_id', 'teachers.name', 'teachers.nip', 'teachers.type', 'teachers.sector', 'teachers.email', 'teachers.years_sign',
                 'teachers_images.name_files',
                 'teachers_socmed.facebook', 'teachers_socmed.instagram', 'teachers_socmed.twitter', 'teachers_socmed.tiktok', 'teachers_socmed.youtube',
                 )
@@ -189,12 +191,7 @@ class TeachersModelsController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, $teacherName, $teacherId)
-    {
-        // $values = array_map('is_string', $request->except('imageTeachers'));
-        // if (in_array(false, $values, true)) {
-        //     return redirect()->back()->with('errorSomething', 'Request data is invalid ');
-        // }
-        
+    {   
         $nowRoute = $this->checkRoute();
         if($nowRoute != 'Unknown') {
             $foundTeacherId = DB::table('teachers')
@@ -315,6 +312,7 @@ class TeachersModelsController extends Controller
         TeachersModels::where('teacher_id', $teacherId)->update([
             'name' => $dataBefore[0]->name,
             'nip' => $dataBefore[0]->nip,
+            'type' => $dataBefore[0]->type,
             'status' => $dataBefore[0]->status,
             'sector' => $dataBefore[0]->sector,
             'email' => $dataBefore[0]->email,
@@ -342,27 +340,50 @@ class TeachersModelsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($tempTeacherName, $tempTeacherId)
+    public function destroy(Request $request)
     {
         try {
-            $teacher = TeachersModels::where('teacher_id', $tempTeacherId)
-                ->where('name', $tempTeacherName)
+            $teacher = TeachersModels::where('teacher_id', $request->teacher_id)
+                ->where('name', $request->teacher_name)
                 ->firstOrFail(); // Mengambil objek guru atau memberikan respons 404 jika tidak ditemukan
     
             if ($teacher) {
-                $image = TeachersImagesModels::where('teacher_id', $teacher->teacher_id)->first();
-                if ($image && $image->name_files != 'default.png') {
-                    $this->deleteImage($image->name_files);
+                $isTeaching = $this->isTeacherTeaching($teacher->teacher_id);
+                if($isTeaching->teacher_id === NULL) {
+                    $image = TeachersImagesModels::where('teacher_id', $teacher->teacher_id)->first();
+                    if ($image && $image->name_files != 'default.png') {
+                        $this->deleteImage($image->name_files);
+                    }
+                    $teacher->delete();
+                    $nowData = DB::table('teachers')->where('status', '=', 'Aktif')->count('teacher_id');
+                    return response()->json(['succedSomething' => 'Data berhasil dihapus', 'nowData' => $nowData], 200);
+                } else {
+                    $nowData = DB::table('teachers')->where('status', '=', 'Aktif')->count('teacher_id');
+                    $this->ifTeachersTeaching($teacher->teacher_id);
+                    return response()->json(['succedSomething' => 'Data berhasil disembunyikan', 'nowData' => $nowData], 200);
                 }
-                $teacher->delete();
-                $nowData = DB::table('teachers')->count('teacher_id');
-                return response()->json(['succedSomething' => 'Data berhasil dihapus', 'nowData' => $nowData], 200);
             }
     
             return response()->json(['errorSomething' => 'Data tidak ditemukan'], 400);
         } catch (\Throwable $th) {
             return response()->json(['errorSomething' => 'Terjadi kesalahan dalam menghapus data'], 500);
         }
+    }
+    
+    public function isTeacherTeaching($teacherId) {
+        $searchTeacher = TeachersModels::leftJoin('classes', 'classes.teacher_id', '=', 'teachers.teacher_id')
+            ->where('teachers.teacher_id', $teacherId)
+            ->select('classes.teacher_id')
+            ->first();
+        return $searchTeacher;
+    }
+    
+    public function ifTeachersTeaching($teacherId) {
+        TeachersModels::where('teacher_id', $teacherId)->
+            update([ 
+                'status' => 'Tidak Aktif', 
+            ]);
+        return;
     }
     
     public function deleteImage($nameFiles) {

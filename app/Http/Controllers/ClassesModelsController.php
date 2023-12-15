@@ -45,12 +45,33 @@ class ClassesModelsController extends Controller
         // return view("pages.classes.index");
     }
     
+    public function getListClass()
+    {
+        $tempClass = DB::table("classes")
+            ->leftJoin('classes_images', 'classes.class_id', '=', 'classes_images.class_id')
+            ->orderBy('classes.class_tag', 'asc')
+            ->select('classes.class_id', 'classes.class_grade', 'classes.class_tag', 'classes_images.name_files')
+            ->get();
+
+        return view("pages.classes.index", compact("tempClass"));
+    }
+    
     public function listTeacher() {
         $nowRoute = $this->checkRoute();
         $listTeacher = DB::table('teachers')
             ->leftJoin('classes', 'teachers.teacher_id', '=', 'classes.teacher_id') // Menggunakan leftJoin agar bisa mengambil guru yang tidak terhubung dengan kelas
+            // ->leftJoin('classes', function($join) use ($previousYear, $inputYear) {
+            //     $join->on('teachers.teacher_id', '=', 'classes.teacher_id')
+            //         ->where('classes.year', '=', $previousYear);
+            //         // ->where('classes.year', '=', $inputYear);
+            // })
             ->whereNull('classes.teacher_id') // Hanya ambil guru yang tidak terhubung dengan kelas
-            ->where('teachers.status', '=', 'Pendidik')
+            ->where('teachers.status', '=', 'Aktif')
+            ->where('teachers.type', '=', 'Pendidik')
+            // ->when($condition, function ($query) {
+            //     return $query->orWhere('classes.status', 'Alumni');
+            // })
+            ->orWhere('classes.status', '=', 'Alumni')
             ->select('teachers.teacher_id', 'teachers.name')
             ->get();
         if($nowRoute == 'Ajax') {
@@ -74,6 +95,10 @@ class ClassesModelsController extends Controller
             ->get();
         return response()->json($latestClass);
     }
+    
+    public function getDataClass() {
+        
+    }
 
 
     /**
@@ -89,7 +114,7 @@ class ClassesModelsController extends Controller
      */
     public function store(Request $request)
     {
-        $listTeacher = $this->listTeacher()->pluck('teacher_id')->toArray();
+        $listTeacher = $this->listTeacher($request)->pluck('teacher_id')->toArray();
         $currentYear = Date('Y');
         $validateRequest = $request->validate([
             'teacherList' => ['required', Rule::in($listTeacher)],

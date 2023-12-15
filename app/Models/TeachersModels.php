@@ -9,8 +9,11 @@ class TeachersModels extends Model
 {
     use HasFactory;
     protected $table = "teachers";
+    protected $casts = [
+        'teacher_id' => 'string',
+    ];
     protected $primaryKey = "teacher_id";
     protected $fillable = [
-        'teacher_id', 'nip', 'name', 'status', 'sector', 'email', 'years_sign',
+        'teacher_id', 'nip', 'name', 'type','sector', 'email', 'years_sign', 'status',
     ];
 }

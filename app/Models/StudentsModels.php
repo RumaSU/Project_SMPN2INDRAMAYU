@@ -9,6 +9,9 @@ class StudentsModels extends Model
 {
     use HasFactory;
     protected $table = "students";
+    protected $casts = [
+        'student_id' => 'string',
+    ];
     protected $primaryKey = "student_id";
     protected $fillable = ['nis', 'name', 'no_telp', 'alamat'];
 }

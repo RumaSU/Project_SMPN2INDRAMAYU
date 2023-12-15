@@ -2,12 +2,29 @@ $(document).ready(function() {
     let nowDate = new Date();
     let nowYear = nowDate.getFullYear();
     
-    $( "#classYear" ).on('input', function() {
-        let enterYear = $(this).val();
-        if(enterYear > nowYear){
-            $(this).val(nowYear)
-        }
-    });
+    // $( "#classYear" ).on('input', function() {
+    //     let enterYear = $(this).val();
+    //     if(enterYear > nowYear){
+    //         enterYear = nowYear;
+    //         $(this).val(nowYear)
+    //     }
+    //     let listTeacher = $('#teacherList');
+    //     $.ajax({
+    //         type: "GET",
+    //         url: "/kelas/pendidik",
+    //         success: function (response) {
+    //             listTeacher.empty();
+    //             listTeacher.append('<option value="" selected disabled>Pilih guru</option>');
+    //             $.each(response, function(index, item) { // Memperbaiki penggunaan $.each
+    //                 listTeacher.append('<option value="' + item.teacher_id + '">' + item.name + '</option>');
+    //                 console.log(item.teacherId);
+    //             });
+    //         },
+    //         error: function() {
+    //             alert('error');
+    //         }
+    //     });
+    // });
     
     $('.btrpp-vii, .btrpp-viii, .btrpp-ix').click(function () {
         $('#pop-upFormAdd').removeClass('hidden');
@@ -25,7 +42,7 @@ $(document).ready(function() {
         let listTeacher = $('#teacherList');
         $.ajax({
             type: "GET",
-            url: "kelas/pendidik",
+            url: "kelas/pendidik/",
             success: function (response) {
                 listTeacher.empty();
                 listTeacher.append('<option value="" selected disabled>Pilih guru</option>');
@@ -33,6 +50,37 @@ $(document).ready(function() {
                     listTeacher.append('<option value="' + item.teacher_id + '">' + item.name + '</option>');
                     console.log(item.teacherId);
                 });
+            },
+            error: function() {
+                alert('error');
+            }
+        });
+    });
+    
+    $('.editBtClass').click(function() {
+        $('#pop-upFormAdd').removeClass('hidden');
+        $('#overlayPopUp').removeClass('hidden');
+        $('body').addClass('overflow-hidden');
+        
+        let classGrade = $(this).data('classGrade');
+        // $('#classGrade').val(classGrade);
+        // getLatestClassTag(classGrade);
+        // checkedGrade(classGrade);
+        
+        // $('#classYear').val(nowYear);
+        // $('#classYear').attr('max', nowYear);
+        
+        let listTeacher = $('#teacherList');
+        $.ajax({
+            type: "GET",
+            url: "kelas/get",
+            success: function (response) {
+                // listTeacher.empty();
+                // listTeacher.append('<option value="" selected disabled>Pilih guru</option>');
+                // $.each(response, function(index, item) { // Memperbaiki penggunaan $.each
+                //     listTeacher.append('<option value="' + item.teacher_id + '">' + item.name + '</option>');
+                //     console.log(item.teacherId);
+                // });
             },
             error: function() {
                 alert('error');

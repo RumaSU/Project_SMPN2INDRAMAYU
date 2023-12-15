@@ -15,10 +15,11 @@ return new class extends Migration
             $table->uuid("teacher_id")->primary();
             $table->string('nip') -> unique();
             $table->string('name');
-            $table->enum('status', ['Pendidik', 'Tenaga Kependidikan']);
+            $table->enum('type', ["Pendidik", "Tenaga Kependidikan"]);
             $table->string('sector');
             $table->string('email')->nullable();
             $table->date('years_sign');
+            $table->enum('status', ["Aktif", "Tidak Aktif"])->default("Aktif");
             $table->timestamps();
         });
     }

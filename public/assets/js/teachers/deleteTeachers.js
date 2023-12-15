@@ -33,28 +33,42 @@ $(document).ready(function () {
             'X-CSRF-TOKEN': getCsrfToken()
         }
     });
-    $(".delB").click(function() {
-        let teacherId = $(this.parentElement.parentElement).data('itemId');
-        let teacherName = $(this.parentElement.parentElement).attr('title');
-        let parentItemTeacher = $(this.parentElement.parentElement);
+    $(".delB-teacher").click(function() {
+        let teacherId = $(this).data('deleteId');
+        let teacherName = $(this).closest('.items-teacher').attr('title');
+        console.log(teacherId);
+        console.log(teacherName);
+
+        let parentItemTeacher = $(this).closest('.items-teacher');
         let alertContent = $('.alertContent');
-        var confirmation = confirm('Apakah Anda yakin ingin menghapus data ini?');
-        parentItemTeacher.children().hide();
+        
+        parentItemTeacher.find('.contentItems').hide();
         parentItemTeacher.append('<div class="loadWaiting absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"><div class="animate-spin rounded-[100%] border-[16px] border-dotted w-[120px] h-[120px]"></div></div>');
+        
+
+        var confirmation = confirm('Apakah Anda yakin ingin menghapus data ini?');
         console.log(getURL());
+        var $urlDel = getURL() +  "/delete";
+        console.log($urlDel);
+        
         if(confirmation) {
             $.ajax({
-                type: "DELETE",
-                url: getURL() + "/" + teacherName + "/" + teacherId + "/delete",
+                type: "POST",
+                data: {
+                    _method: 'delete',
+                    teacher_id: teacherId,
+                    teacher_name: teacherName,
+                },
+                url: $urlDel,
                 success: function (response) {
                     if (response.errorSomething) {
-                        alertContent.append('<div class="errorDelete w-80 px-4 py-3 bg-red-100 rounded-sm"><div class="cntn flex items-center gap-4"><i class="bi bi-x-circle-fill text-red-500"></i><p class="text-lg">Data gagal dihapus</p></div></div>');
+                        alertContent.append('<div class="errorDelete w-80 px-4 py-3 bg-red-100 rounded-sm"><div class="cntn flex items-center gap-4"><i class="bi bi-x-circle-fill text-red-500"></i><p class="text-lg">'+response.errorSomething+'</p></div></div>');
                         setTimeout(function () {
                             $('.errorDelete').remove();
                         }, 3000);
                     } else if (response.succedSomething) {
                         parentItemTeacher.remove();
-                        alertContent.append('<div class="confirmDelete w-80 px-4 py-3 bg-green-100 rounded-sm"><div class="cntn flex items-center gap-4"><i class="bi bi-check-circle-fill text-green-500"></i><p class="text-lg">Data berhasil dihapus</p></div></div>')
+                        alertContent.append('<div class="confirmDelete w-80 px-4 py-3 bg-green-100 rounded-sm"><div class="cntn flex items-center gap-4"><i class="bi bi-check-circle-fill text-green-500"></i><p class="text-lg">'+response.succedSomething+'</p></div></div>')
                         setTimeout(function () {
                             $('.confirmDelete').remove();
                         }, 3000);
@@ -66,8 +80,12 @@ $(document).ready(function () {
                     }
                 },
                 error: function() {
-                    parentItemTeacher.children().show();
+                    parentItemTeacher.find('.contentItems').show();
                     $('.loadWaiting').remove();
+                    alertContent.append('<div class="errorDelete w-80 px-4 py-3 bg-red-100 rounded-sm"><div class="cntn flex items-center gap-4"><i class="bi bi-x-circle-fill text-red-500"></i><p class="text-lg">Delete 500 Error</p></div></div>');
+                    setTimeout(function () {
+                        $('.errorDelete').remove();
+                    }, 3000);
                 }
             });
         } else { parentItemTeacher.children().show(); $('.loadWaiting').remove(); }
@@ -75,9 +93,8 @@ $(document).ready(function () {
 });
 
 function getURL() {
-    let nowUrl = window.localStorage.pathname;
-    console.log(nowUrl);
-    return window.location.pathname;
+    let nowUrl = window.location.pathname;
+    return nowUrl;
 }
 
 function getCsrfToken() {
