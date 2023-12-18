@@ -91,13 +91,50 @@ class ClassesModelsController extends Controller
     public function tagClass(Request $request) {
         $latestClass = ClassesModels::select('class_tag')
             ->where('class_grade', $request->classGrade)
+            ->where('year', $request->classYear)
             ->orderBy('created_at', 'desc')
-            ->get();
-        return response()->json($latestClass);
+            ->first();
+        $countTag = ClassesModels::select('class_tag')
+            ->where('class_grade', $request->classGrade)
+            ->where('year', $request->classYear)
+            ->count();
+        return response()->json([
+            'latestTag' => $latestClass,
+            'countTag' => $countTag,
+        ]);
     }
     
-    public function getDataClass() {
-        
+    public function getDataClass(Request $request) {
+        $dataClass = DB::table('classes')
+            ->leftJoin('classes_images', 'classes_images.class_id', '=', 'classes.class_id')
+            ->where('classes.class_id', '=', $request->class_id)
+            ->first();
+        // $dataClass = ClassesModels::where('class_id', $request->class_id)->first();
+        if($dataClass){
+            $dataTeacher = DB::table('teachers')
+                ->leftJoin('teachers_images', 'teachers.teacher_id', '=', 'teachers_images.teacher_id')
+                ->select('teachers.teacher_id', 'teachers.name', 'teachers_images.name_files')
+                ->where('teachers.teacher_id', '=', $dataClass->teacher_id)
+                ->first();
+            // $dataTeacher = TeachersModels::select('teacher_id', 'name')->where('teacher_id', $dataClass->teacher_id)->first();
+            $listTeacherEdit = DB::table('teachers')
+                ->leftJoin('classes', 'teachers.teacher_id', '=', 'classes.teacher_id')
+                ->whereNull('classes.teacher_id') // Hanya ambil guru yang tidak terhubung dengan kelas
+                ->where('teachers.status', '=', 'Aktif')
+                ->where('teachers.type', '=', 'Pendidik')
+                ->where('teachers.teacher_id', '!=', $dataClass->teacher_id)
+                ->orWhere('classes.status', '=', 'Alumni')
+                ->select('teachers.teacher_id', 'teachers.name')
+                ->get();
+                
+            return response()->json([
+                'dataClass' => $dataClass, 
+                'dataTeacher' => $dataTeacher, 
+                'listEdit' => $listTeacherEdit,
+            ]);
+        } else {
+            return response()->json();
+        }
     }
 
 
@@ -114,7 +151,7 @@ class ClassesModelsController extends Controller
      */
     public function store(Request $request)
     {
-        $listTeacher = $this->listTeacher($request)->pluck('teacher_id')->toArray();
+        $listTeacher = $this->listTeacher()->pluck('teacher_id')->toArray();
         $currentYear = Date('Y');
         $validateRequest = $request->validate([
             'teacherList' => ['required', Rule::in($listTeacher)],

@@ -32,12 +32,14 @@ Route::controller(ClassesModelsController::class)->group(function() {
     
 });
 Route::controller(StudentsModelsController::class)->group(function() {
-    
+    Route::get('/kelas/{classGrade}/{classTag}', 'index')->name('student');
+    Route::post('/kelas/siswa/get', 'siswaData')->name('siswaData');
+    Route::post('/kelas/{classGrade}/{classTag}', 'index')->name('storeStudents');
 });
 
 Route::controller(ClassesModelsController::class)->group(function() {
     Route::get('/kelas', 'index') -> name('viewClass');
-    Route::get('/kelas/get', 'getDataClass') -> name('viewClass');
+    Route::post('/kelas/get', 'getDataClass') -> name('viewClass');
     Route::get('/kelas/list', 'getListClass') -> name('viewClass');
     Route::get('/kelas/tag', 'tagClass')->name('ajaxClassTag');
     Route::get('/kelas/pendidik', 'listTeacher')->name('ajaxClassGetTeachers');
