@@ -91,7 +91,7 @@
                                 </span>
                             </div>
                             <img src="{{asset('storage/images/classes/' . $class->name_files )}}" alt="" class="lozad supImg w-full h-full object-cover object-center relative" loading="lazy">
-                            <a href="/kelas/{{$class->class_grade}}/{{$class->class_tag}}?ic={{$class->class_id}}" class="block w-full h-full absolute inset-0 group-hover:bg-black/30 transition-all" data-class-grade="{{$class->class_grade}}" data-class-id="{{$class->class_id}}">
+                            <a href="/kelas/siswa/{{$class->class_grade}}/{{$class->class_tag}}?ic={{$class->class_id}}" class="block w-full h-full absolute inset-0 group-hover:bg-black/30 transition-all" data-class-grade="{{$class->class_grade}}" data-class-id="{{$class->class_id}}">
                                 <p class="gradeAndTagClass w-3/4 py-2 text-center font-bold bg-white rounded-xl z-10 absolute -bottom-full left-1/2 translate-y-full -translate-x-1/2 transition-all group-hover:bottom-[5%] group-hover:-translate-y-[5%]">
                                     {{$class->class_grade . ' ' . $class->class_tag}}
                                 </p>
@@ -138,7 +138,7 @@
                                 </span>
                             </div>
                             <img src="{{asset('storage/images/classes/' . $class->name_files )}}" alt="" class="lozad supImg w-full h-full object-cover object-center relative" loading="lazy">
-                            <a href="/kelas/{{$class->class_grade}}/{{$class->class_tag}}?ic={{$class->class_id}}" class="block w-full h-full absolute inset-0 group-hover:bg-black/30 transition-all" data-class-grade="{{$class->class_grade}}" data-class-id="{{$class->class_id}}">
+                            <a href="/kelas/siswa/{{$class->class_grade}}/{{$class->class_tag}}?ic={{$class->class_id}}" class="block w-full h-full absolute inset-0 group-hover:bg-black/30 transition-all" data-class-grade="{{$class->class_grade}}" data-class-id="{{$class->class_id}}">
                                 <p class="gradeAndTagClass w-3/4 py-2 text-center font-bold bg-white rounded-xl z-10 absolute -bottom-full left-1/2 translate-y-full -translate-x-1/2 transition-all group-hover:bottom-[5%] group-hover:-translate-y-[5%]">
                                     {{$class->class_grade . ' ' . $class->class_tag}}
                                 </p>
@@ -196,7 +196,7 @@
                                 </span>
                             </div>
                             <img src="{{asset('storage/images/classes/' . $class->name_files )}}" alt="" class="lozad supImg w-full h-full object-cover object-center relative" loading="lazy">
-                            <a href="/kelas/{{$class->class_grade}}/{{$class->class_tag}}?ic={{$class->class_id}}" class="block w-full h-full absolute inset-0 group-hover:bg-black/30 transition-all" data-class-grade="{{$class->class_grade}}" data-class-id="{{$class->class_id}}">
+                            <a href="/kelas/siswa/{{$class->class_grade}}/{{$class->class_tag}}?ic={{$class->class_id}}" class="block w-full h-full absolute inset-0 group-hover:bg-black/30 transition-all" data-class-grade="{{$class->class_grade}}" data-class-id="{{$class->class_id}}">
                                 <p class="gradeAndTagClass w-3/4 py-2 text-center font-bold bg-white rounded-xl z-10 absolute -bottom-full left-1/2 translate-y-full -translate-x-1/2 transition-all group-hover:bottom-[5%] group-hover:-translate-y-[5%]">
                                     {{$class->class_grade . ' ' . $class->class_tag}}
                                 </p>
@@ -231,12 +231,13 @@
                                 Add Image
                             </label>
                         </label>
-                        <input type="file" name="imgClass" id="imgClass" value="" accept="image/*" class="w-15 h-15 border border-black sr-only" onchange="previewFile(event)" value="">
+                        <input type="file" name="imgClass" id="imgClass" value="" accept="image/*" class="w-15 h-15 border border-black sr-only" value="">
                     </div>
                 </div>
                 <div class="teClass">
                     <div class="imgSelectTeachers flex items-center gap-4">
-                        <div class="img flex-shrink-0 aspect-square w-40 rounded-[100%] p-1">
+                        <div class="imgSelected flex-shrink-0 aspect-square w-40 rounded-[100%] overflow-hidden p-1 relative">
+                            {{-- <div class="plcImgFrm w-full h-full flex justify-center items-center absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-gray-300 rounded-[100%] overflow-hidden animate-pulse"> <i class="bi bi-image-fill text-4xl text-gray-400"></i> </div> --}}
                             <img src="{{asset('assets/img/dumb/imgtemp 1.jpg')}}" alt="" class="w-full h-full object-center object-cover rounded-[100%]" id="teacherSelectedImage">
                         </div>
                         <div class="slctTeacherAndChseClass w-full space-y-4">
@@ -298,7 +299,7 @@
                     </div>
                     <textarea name="descClass" id="descClass" rows="3" class="border w-full h-auto py-2 px-4 rounded-lg resize-none" maxlength="250"></textarea>
                 </div>
-                <button type="submit" class="block border border-black py-2 px-12 rounded-xl mx-auto hover:bg-blue-400"> Simpan </button>
+                <button type="submit" class="block border border-black py-2 px-12 rounded-xl mx-auto hover:bg-gray-200"> Simpan </button>
             </form>
         </div>
     </section>

@@ -207,7 +207,7 @@
                             </div>
                             <img src="{{asset('assets/img/dumb/imgtemp 1.jpg')}}" alt="" id="previewImage" class="supImg w-full h-full object-cover object-center relative bg-gray-400/50">
                             <label for="imgFrmStudent" class="block w-full h-full absolute inset-0 group-hover:bg-black/30 transition-all cursor-pointer">
-                                <label for="imgFrmStudent" class="itemClass w-3/4 py-2 text-white text-center font-bold cursor-pointer bg-blue-400 rounded-xl z-10 absolute -bottom-full left-1/2 translate-y-full -translate-x-1/2 transition-all group-hover:bottom-[5%] group-hover:-translate-y-[5%] hover:bg-cyan-500">
+                                <label for="imgFrmStudent" class="itemClass w-3/4 py-2 text-center font-bold cursor-pointer bg-white rounded-xl z-10 absolute -bottom-full left-1/2 translate-y-full -translate-x-1/2 transition-all group-hover:bottom-[5%] group-hover:-translate-y-[5%] hover:bg-cyan-500">
                                     <i class="bi bi-plus-circle text-lg"></i>
                                     Add Image
                                 </label>
@@ -221,14 +221,14 @@
                                 <div class="theLabels">
                                     <label for="nameFrmStudent" class="nameFrmStudent font-bold">Nama Siswa</label>
                                 </div>
-                                <input type="text" id="nameFrmStudent" class="border w-full py-2 px-4 rounded-lg">
+                                <input type="text" name="nameFrmStudent" id="nameFrmStudent" class="border w-full py-2 px-4 rounded-lg">
                             </div>
                             <div class="classStudent flex-shrink-0 w-48">
                                 <div class="thHeadClass font-bold">
                                     <p>Kelas</p>
                                 </div>
                                 <div class="t">
-                                    <p class="border w-full py-2 px-4 rounded-lg text-gray-500">VII</p>
+                                    <p class="border w-full py-2 px-4 rounded-lg text-gray-500">{{$classGrade}}</p>
                                 </div>
                             </div>
                         </div>

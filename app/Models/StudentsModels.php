@@ -13,5 +13,5 @@ class StudentsModels extends Model
         'student_id' => 'string',
     ];
     protected $primaryKey = "student_id";
-    protected $fillable = ['nis', 'name', 'no_telp', 'alamat'];
+    protected $fillable = ['student_id','nis', 'name', 'status', 'is_published', 'year'];
 }

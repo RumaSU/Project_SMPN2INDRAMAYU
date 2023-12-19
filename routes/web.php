@@ -27,16 +27,6 @@ Route::get('/', function () {
     return view('pages.homepage.index');
 });
 
-// Route Classes
-Route::controller(ClassesModelsController::class)->group(function() {
-    
-});
-Route::controller(StudentsModelsController::class)->group(function() {
-    Route::get('/kelas/{classGrade}/{classTag}', 'index')->name('student');
-    Route::post('/kelas/siswa/get', 'siswaData')->name('siswaData');
-    Route::post('/kelas/{classGrade}/{classTag}', 'index')->name('storeStudents');
-});
-
 Route::controller(ClassesModelsController::class)->group(function() {
     Route::get('/kelas', 'index') -> name('viewClass');
     Route::post('/kelas/get', 'getDataClass') -> name('viewClass');
@@ -48,6 +38,25 @@ Route::controller(ClassesModelsController::class)->group(function() {
     Route::delete('/kelas/{id}', 'destroy')->name('delClass');
 });
 
+Route::controller(StudentsModelsController::class)->group(function() {
+    Route::get('/kelas/siswa/{classGrade}/{classTag}', 'index')->name('student');
+    Route::post('/kelas/siswa/get', 'siswaData')->name('siswaData');
+    Route::post('/kelas/siswa/{classGrade}/{classTag}', 'index')->name('storeStudents');
+});
+
+// Route::get('/kelas', [ClassesModelsController::class, 'index']) -> name('viewClass');
+// Route::post('/kelas/get', [ClassesModelsController::class, 'getDataClass']) -> name('viewClass');
+// Route::get('/kelas/list', [ClassesModelsController::class, 'getListClass']) -> name('viewClass');
+// Route::get('/kelas/tag', [ClassesModelsController::class, 'tagClass'])->name('ajaxClassTag');
+// Route::get('/kelas/pendidik', [ClassesModelsController::class, 'listTeacher'])->name('ajaxClassGetTeachers');
+// Route::get('/kelas/pendidik/image', [ClassesModelsController::class, 'teacherImage'])->name('ajaxClassGetTeachersImages');
+// Route::post('/kelas', [ClassesModelsController::class, 'store']) -> name('storeClass');
+// Route::delete('/kelas/{id}', [ClassesModelsController::class, 'destroy'])->name('delClass');
+
+
+// Route::get('/kelas/{classGrade}/{classTag}', [StudentsModelsController::class, 'index'])->name('student');
+// Route::post('/kelas/siswa/get', [StudentsModelsController::class, 'siswaData'])->name('siswaData');
+// Route::post('/kelas/{classGrade}/{classTag}', [StudentsModelsController::class, 'index'])->name('storeStudents');
 
 // Route Teachers and Staff Teachers
 Route::controller(TeachersModelsController::class)->group(function() {

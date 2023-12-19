@@ -22,21 +22,26 @@ class ClassesModelsController extends Controller
      */
     public function index()
     {
+        $classGrade = ['VII', 'VIII', 'IX'];
+        $latestYears = $this->getLatestYearClass($classGrade);
         $tempClassVII = DB::table("classes")
             ->leftJoin('classes_images', 'classes.class_id', '=', 'classes_images.class_id')
             ->where('classes.class_grade', 'VII')
+            ->where('classes.year', $latestYears[0])
             ->orderBy('classes.class_tag', 'asc')
             ->select('classes.class_id', 'classes.class_grade', 'classes.class_tag', 'classes_images.name_files')
             ->get();
         $tempClassVIII = DB::table("classes")
             ->leftJoin('classes_images', 'classes.class_id', '=', 'classes_images.class_id')
             ->where('classes.class_grade', 'VIII')
+            ->where('classes.year', $latestYears[1])
             ->orderBy('classes.class_tag', 'asc')
             ->select('classes.class_id', 'classes.class_grade', 'classes.class_tag', 'classes_images.name_files')
             ->get();
         $tempClassIX = DB::table("classes")
             ->leftJoin('classes_images', 'classes.class_id', '=', 'classes_images.class_id')
             ->where('classes.class_grade', 'IX')
+            ->where('classes.year', $latestYears[2])
             ->orderBy('classes.class_tag', 'asc')
             ->select('classes.class_id', 'classes.class_grade', 'classes.class_tag', 'classes_images.name_files')
             ->get();
@@ -82,10 +87,28 @@ class ClassesModelsController extends Controller
     }
     
     public function teacherImage(Request $request){
-        $nameFiles = TeachersImagesModels::select('name_files')
-            ->where('teacher_id', $request->teacherId)
+        $nameFiles = TeachersImagesModels::where('teacher_id', $request->teacherId)
+            ->select('name_files')
             ->first();
+            // ->value('name_files');
+        // if($request->teacherId){
+        //     $nameFiles = DB::table('teachers_images')
+        //         ->where('teacher_id', $request->teacherId)
+        //         ->select('name_files')
+        //         ->first();
+        //     if($nameFiles) {
+        //         return response()->json($nameFiles);            
+        //     } else {
+        //         return response()->json(['error' => 'Gambar tidak ditemukan'], 404);
+        //     }
+        // }
+        // $nameFiles = DB::table('teachers_images')
+        //     ->select('name_files')
+        //     ->where('teacher_id', '=' ,$request->teacherId)
+        //     ->first();
+        // return response()->json($nameFiles);
         return response()->json($nameFiles);
+        // return response()->json(['error' => 'Error penolakan'], 404);
     }
     
     public function tagClass(Request $request) {
@@ -135,6 +158,20 @@ class ClassesModelsController extends Controller
         } else {
             return response()->json();
         }
+    }
+    
+    public function getLatestYearClass($classGrade) {
+        $latestYear = [];
+        foreach($classGrade as $grade){
+            $getYear = ClassesModels::where('class_grade', $grade)
+            ->select('year')
+            ->groupBy('year')
+            ->orderBy('year', 'desc')
+            ->value('year');
+            
+            $latestYear[] = $getYear;
+        }
+        return $latestYear;
     }
 
 

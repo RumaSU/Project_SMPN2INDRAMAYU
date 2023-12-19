@@ -2,29 +2,35 @@ $(document).ready(function() {
     let nowDate = new Date();
     let nowYear = nowDate.getFullYear();
     
-    // $( "#classYear" ).on('input', function() {
-    //     let enterYear = $(this).val();
-    //     if(enterYear > nowYear){
-    //         enterYear = nowYear;
-    //         $(this).val(nowYear)
-    //     }
-    //     let listTeacher = $('#teacherList');
-    //     $.ajax({
-    //         type: "GET",
-    //         url: "/kelas/pendidik",
-    //         success: function (response) {
-    //             listTeacher.empty();
-    //             listTeacher.append('<option value="" selected disabled>Pilih guru</option>');
-    //             $.each(response, function(index, item) { // Memperbaiki penggunaan $.each
-    //                 listTeacher.append('<option value="' + item.teacher_id + '">' + item.name + '</option>');
-    //                 console.log(item.teacherId);
-    //             });
-    //         },
-    //         error: function() {
-    //             alert('error');
-    //         }
-    //     });
-    // });
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': getCsrfToken()
+        }
+    });
+    
+    $( "#classYear" ).on('input', function() {
+        let enterYear = $(this).val();
+        if(enterYear > nowYear){
+            enterYear = nowYear;
+            $(this).val(nowYear)
+        }
+        // let listTeacher = $('#teacherList');
+        // $.ajax({
+        //     type: "GET",
+        //     url: "/kelas/pendidik",
+        //     success: function (response) {
+        //         listTeacher.empty();
+        //         listTeacher.append('<option value="" selected disabled>Pilih guru</option>');
+        //         $.each(response, function(index, item) { // Memperbaiki penggunaan $.each
+        //             listTeacher.append('<option value="' + item.teacher_id + '">' + item.name + '</option>');
+        //             console.log(item.teacherId);
+        //         });
+        //     },
+        //     error: function() {
+        //         alert('error');
+        //     }
+        // });
+    });
     
     $('.btrpp-vii, .btrpp-viii, .btrpp-ix').click(function () {
         $('#pop-upFormAdd').removeClass('hidden');
@@ -33,8 +39,8 @@ $(document).ready(function() {
         
         let classGrade = $(this).data('classGrade');
         $('#classGrade').val(classGrade);
-        getLatestClassTag(classGrade);
         checkedGrade(classGrade);
+        getLatestClassTag(classGrade, nowYear);
         
         $('#classYear').val(nowYear);
         $('#classYear').attr('max', nowYear);
@@ -48,7 +54,6 @@ $(document).ready(function() {
                 listTeacher.append('<option value="" selected disabled>Pilih guru</option>');
                 $.each(response, function(index, item) { // Memperbaiki penggunaan $.each
                     listTeacher.append('<option value="' + item.teacher_id + '">' + item.name + '</option>');
-                    console.log(item.teacherId);
                 });
             },
             error: function() {
@@ -59,22 +64,55 @@ $(document).ready(function() {
     
     $('#teacherList').change(function() {
         let valSelectTe = $(this).val();
-        
+        $('#teacherSelectedImage').addClass('hidden');
+        $('.imgSelected').append('<div class="plcImgFrm w-full h-full flex justify-center items-center absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-gray-300 rounded-[100%] overflow-hidden animate-pulse"> <i class="bi bi-image-fill text-4xl text-gray-400"></i> </div>');
         $.ajax({
             type: "GET",
+            // url: "kelas/pendidik/image?teacherId=" + valSelectTe,
             url: "kelas/pendidik/image",
             data: {
                 teacherId: valSelectTe,
             },
             success: function (response) {
-                $('#teacherSelectedImage').attr('src', "storage/images/teachers/" + response.name_files);
-                console.log(response.name_files);
+                var nameFiles = response.name_files;
+                // var nameFiles = response[0].name_files;
+                console.log(nameFiles);
+                $('.plcImgFrm').remove();
+                $('#teacherSelectedImage').attr('src', "storage/images/teachers/" + nameFiles);
+                $('#teacherSelectedImage').removeClass('hidden');
             },
             error: function() {
                 alert('error');
             }
+            // error: function(xhr, status, error) {
+            //     var errorMessage = xhr.responseJSON.error; // Mendapatkan pesan kesalahan dari respons JSON
+        
+            //     // Menampilkan pesan kesalahan ke konsol atau melakukan sesuatu dengan pesan kesalahan
+            //     console.error(errorMessage);
+        
+            //     // Contoh menampilkan pesan kesalahan ke pengguna
+            //     alert('Terjadi kesalahan: ' + errorMessage);
+            // }
         });
     });
+    
+    // $('#teacherList').change(function() {
+    //     let valSelectTe = $(this).val();
+    //     console.log(valSelectTe);
+    //     $.ajax({
+    //         type: "get",
+    //         url: "/kelas/pendidik/image",
+    //         data: { teacherId: valSelectTe },
+    //         success: function (response) {
+    //             $('#teacherSelectedImage').attr('src', "storage/images/teachers/" + response.name_files);
+    //             console.log(response.name_files);
+    //         },
+    //         // error: function() {
+    //         //     alert('error');
+    //         //     console.error();
+    //         // }
+    //     });
+    // });
     
     $('#closeForm').click(function() {
         $('#pop-upFormAdd').addClass('hidden');
@@ -83,6 +121,8 @@ $(document).ready(function() {
         $('#teacherList').empty();
         let resetValue = $('#pop-upFormAdd').find('form');
         resetValue.find('#classGrade, #imgClass, #teacher, #tagClass, #descClass').val('');
+        $('#teacherSelectedImage').attr('src', 'assets/img/dumb/imgtemp 1.jpg');
+        $('#previewImage').attr('src', 'assets/img/dumb/imgtemp 1.jpg');
         $('.chckChoose').remove();
         $('.elemRdChsClass').removeClass('bg-green-100');
         $(resetValue).find('input[type="radio"]').prop('checked', false); // Menandai radio button yang sesuai
@@ -139,6 +179,8 @@ $(document).ready(function() {
         });
     }
     
+    
+    
     function getLatestClassTag(classGrade, year) {
         $.ajax({
             type: "GET",
@@ -171,4 +213,8 @@ $(document).ready(function() {
         });
     }
 });
+
+function getCsrfToken() {
+    return document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+}
 

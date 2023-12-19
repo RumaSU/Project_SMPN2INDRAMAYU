@@ -16,7 +16,7 @@ $(document).ready(function () {
         $('body').removeClass('overflow-hidden');
         
         $popForm.find('#nameFrmStudent, #imgFrmStudent, #nisFrmStudent').val('');
-        $popForm.find('img').attr('src', '');
+        $popForm.find('img').attr('src', 'http://' + getURL() + ':8000/assets/img/dumb/imgtemp 1.jpg');
         
         linkActive.forEach(link => {
             const linkEvent = $(`#${link}`);
@@ -40,3 +40,9 @@ $(document).ready(function () {
         });
     });
 });
+
+
+function getURL() {
+    let nowUrl = window.location.hostname;
+    return nowUrl;
+}
