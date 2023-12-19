@@ -134,6 +134,7 @@ class StudentsModelsController extends Controller
                         foreach($listSocmed as $socmed) {
                             $this->validateSocmed($request, $socmed , $socmed.'-active', $socmed.'Link', $studentId);
                         }
+                        
                         return redirect('/kelas/siswa/'. $classGrade .'/' . $classTag . '?ic=' . $idClass)->with('successAdd', 'Success add student');
                     } else {
                         return redirect('/kelas/siswa/'. $classGrade .'/' . $classTag . '?ic=' . $idClass)->with('errorSomething', 'Something error when add student');
