@@ -39,9 +39,9 @@ Route::controller(ClassesModelsController::class)->group(function() {
 });
 
 Route::controller(StudentsModelsController::class)->group(function() {
+    Route::post('/siswa', 'show')->name('siswaData');
     Route::get('/kelas/siswa/{classGrade}/{classTag}', 'index')->name('student');
-    Route::post('/kelas/siswa/get', 'siswaData')->name('siswaData');
-    Route::post('/kelas/siswa/{classGrade}/{classTag}', 'index')->name('storeStudents');
+    Route::post('/kelas/siswa/{classGrade}/{classTag}/store', 'store')->name('storeStudents');
 });
 
 // Route::get('/kelas', [ClassesModelsController::class, 'index']) -> name('viewClass');

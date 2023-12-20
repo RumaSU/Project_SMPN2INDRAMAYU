@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\StudentsModels;
 use App\Models\StudentsImagesModels;
+use App\Models\StudentsSocmedModels;
 use App\Models\ClassesModels;
 use App\Models\ClassesImagesModels;
 use App\Models\ClassesStudentsModels;
@@ -40,10 +41,11 @@ class StudentsModelsController extends Controller
                 ->where('teacher_id', '=', $teacherClass->teacher_id)
                 ->first();
                 
-            $listStudents = DB::table('classes')
-                ->join('classes_students', 'classes_students.class_id', '=', 'classes.class_id')
-                ->where('classes.class_id', '=', $idClass)
-                ->select('classes_students.student_id')
+            $listStudents = DB::table('students')
+                ->join('students_images', 'students.student_id', '=', 'students_images.student_id')
+                ->join('classes_students', 'classes_students.student_id', '=', 'students.student_id')
+                ->where('classes_students.class_id', '=', $idClass)
+                ->select('students.*', 'students_images.name_files')
                 ->get();
             
             return view("pages.students.index", compact('listStudents', 'teacherClass', 'teacherSocmed', 'classGrade', 'classTag', 'idClass'));
@@ -92,6 +94,8 @@ class StudentsModelsController extends Controller
     {
         $idClass = $request->ic;
         $checkClass = ClassesModels::where('class_id', $idClass)
+            ->where('class_grade', $classGrade)
+            ->where('class_tag', $classTag)
             ->first();
         
         if ($checkClass) {
@@ -112,7 +116,7 @@ class StudentsModelsController extends Controller
                 
                 if($createStudent) {
                     $studentImageCreate = StudentsImagesModels::create(['student_id' => $studentId]);
-                    $studentSocmedCreate = TeachersSocmedModels::create([
+                    $studentSocmedCreate = StudentsSocmedModels::create([
                         'student_id' => $studentId,
                     ]);
                     $validFile = $request->validate([
@@ -135,12 +139,30 @@ class StudentsModelsController extends Controller
                             $this->validateSocmed($request, $socmed , $socmed.'-active', $socmed.'Link', $studentId);
                         }
                         
-                        return redirect('/kelas/siswa/'. $classGrade .'/' . $classTag . '?ic=' . $idClass)->with('successAdd', 'Success add student');
+                        $linkClassWithStudent = ClassesStudentsModels::create([
+                            'class_id' => $idClass, 
+                            'student_id' => $studentId,
+                        ]);
+                        
+                        if(!$linkClassWithStudent) {
+                            $this->ifStoreFail($studentId);
+                            return redirect()->back()->with('errorSomething', 'Something error when add student');
+                        }
+                        
+                        return redirect()->back()->with('succedSomething', 'Success add student');
                     } else {
-                        return redirect('/kelas/siswa/'. $classGrade .'/' . $classTag . '?ic=' . $idClass)->with('errorSomething', 'Something error when add student');
+                        $this->ifStoreFail($studentId);
+                        return redirect()->back()->with('errorSomething', 'Something error when add student');
                     }
+                } else {
+                    $this->ifStoreFail($studentId);
+                    return redirect()->back()->with('errorSomething', 'Something error when add student');
                 }
+            } else {
+                return redirect()->back()->with('errorSomething', 'Something error when add student');
             }
+        } else {
+            return redirect()->back()->with('errorSomething', 'Something error when add student');
         }
     }
     
@@ -174,8 +196,16 @@ class StudentsModelsController extends Controller
                 // $linkSocmed = (str_contains($link, "https://") || str_contains($link, "http://")) ? $link : "https://" . $link;
                 // $linkSocmed = (str_contains($link, "https://" . $socmed . ".com/") || str_contains($link, "http://" . $socmed . ".com/")) ? $link : "https://". $socmed . ".com/" . $link;
                 $linkSocmed = $this->validateSocialMediaLink($link, $socmed);
-                if ($linkSocmed != StudentsModels::where('student_id', $studentId)->where($socmed, $linkSocmed)->exists()) {
-                    StudentsModels::where("student_id", $studentId)
+                // if ($linkSocmed) {
+                //     StudentsSocmedModels::where("student_id", $studentId)
+                //         ->update([
+                //             $socmed => $linkSocmed,
+                //         ]);
+                // }
+                $isLinkSocmedSame = StudentsSocmedModels::where('student_id', $studentId)->where($socmed, $linkSocmed)->value($socmed);
+                if ($linkSocmed != $isLinkSocmedSame) {
+                // if ($linkSocmed) {
+                    StudentsSocmedModels::where("student_id", $studentId)
                         ->update([
                             $socmed => $linkSocmed,
                         ]);
@@ -205,13 +235,38 @@ class StudentsModelsController extends Controller
         }
         return $link;
     }
+    
+    public function ifStoreFail($studentId) {
+        StudentsModels::where('student_id', $studentId)->delete();
+        ClassesStudentsModels::where('student_id', $studentId)->delete();
+    }
 
     /**
      * Display the specified resource.
      */
-    public function show(StudentsModels $studentsModels)
+    public function show(Request $request)
     {
-        //
+        $stdId = $request->studentId;
+        $existsStudents = StudentsModels::where('student_id', $stdId)->exists();
+        if($existsStudents) {
+            $selectStudent = DB::table('students')
+                ->leftJoin('students_images', 'students_images.student_id', '=', 'students.student_id')
+                ->leftJoin('students_socmed', 'students_socmed.student_id', '=', 'students.student_id')
+                ->select(
+                    'students.student_id',
+                    'students.name',
+                    'students_images.name_files', 
+                    'students_socmed.facebook', 
+                    'students_socmed.instagram', 
+                    'students_socmed.twitter', 
+                    'students_socmed.tiktok', 
+                    'students_socmed.youtube')
+                ->where('students.student_id', '=', $stdId)
+                ->first();
+            if ($selectStudent) {
+                return response()->json($selectStudent);
+            }
+        }
     }
 
     /**

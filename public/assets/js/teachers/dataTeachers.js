@@ -44,14 +44,13 @@ $(document).ready(function () {
             type: "get",
             url: "/pendidik/" + teacherName + "/" + teacherId,
             success: function (data) {
-                console.log(data);
                 popupContentDisplay.show();
                 $(".loadWaiting").remove();
                 $("#popupImageTeacher").attr('src', "storage/images/teachers/" + data.name_files);
                 $("#nameShowTeachers").text(data.name).data('value', data.name).attr('data-value', data.name);
                 $("#nipShowTeachers").text(data.nip).data('value', data.nip).attr('data-value', data.nip);
                 $("#editTeachers").attr('title', 'Edit ' + data.name).attr('data-show-item-id', data.teacher_id).attr('data-show-item-name', data.name);
-                $("#statusDisplayTeachers").text(data.status).data('value', data.status).attr('data-value', data.type);
+                $("#typeDisplayTeachers").text(data.type).data('value', data.type).attr('data-value', data.type);
                 $("#sectorDisplayTeachers").text(data.sector).data('value', data.sector).attr('data-value', data.sector);
                 $("#yearsDisplaySignTeachers").text(formatDate(data.years_sign)).data('value', data.years_sign).attr('data-value', data.years_sign);
                 

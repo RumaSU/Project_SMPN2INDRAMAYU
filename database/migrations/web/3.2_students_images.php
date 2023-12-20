@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('students_images', function (Blueprint $table) {
-            $table->text('name_files');
+            $table->text('name_files')->default('siswa.png');
             $table->uuid('student_id');
             $table->foreign('student_id')->references('student_id')->on('students')->onDelete('cascade');
             $table->timestamps();

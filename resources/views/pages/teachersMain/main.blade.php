@@ -46,10 +46,8 @@
     </div>
     @yield('teachers.content')
     <div class="pop-teDats" id="pop-teDats" role="dialog" style="display: none;">
-        <div
-            class="rootPopDetails w-full h-full max-h-fit lg:h-fit lg:w-1/3 bg-slate-950 fixed pb-8 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50 rounded-lg overflow-hidden">
-            <div
-                class="heaAbtSumTeDats flex items-center justify-between text-white text-2xl sticky w-full left-0 top-0 pt-4 xl:pt-12 pb-2 px-8">
+        <div class="rootPopDetails w-full h-full max-h-fit lg:h-fit lg:w-1/3 bg-slate-950 fixed pb-8 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50 rounded-lg overflow-hidden">
+            <div class="heaAbtSumTeDats flex items-center justify-between text-white text-2xl sticky w-full left-0 top-0 pt-4 xl:pt-12 pb-2 px-8">
                 <div class="tiAbt">
                     <div class="txt">
                         <strong>Tentang</strong>
@@ -64,8 +62,7 @@
                 </div>
             </div>
             <div id="pop-teSumDats" class="teSumDats">
-                <div
-                    class="contentSumTeDats h-[30rem] xl:h-[32rem] 2xl:h-[36rem] overflow-y-scroll p-8 text-sm xl:text-base">
+                <div class="contentSumTeDats h-[30rem] xl:h-[32rem] 2xl:h-[36rem] overflow-y-scroll p-8 text-sm xl:text-base">
                     <div class="contentDisplayDetails" style="display: none;">
                         <div class="abtSumEks">
                             <div class="cntnAbtSumEks text-white overflow-hidden">
@@ -148,7 +145,7 @@
                                                     <i class="bi bi-people text-2xl md:text-3xl" title="Status"
                                                         aria-hidden="true"></i>
                                                     <div class="desc-link">
-                                                        <p class="text-sm md:text-base" id="statusDisplayTeachers"
+                                                        <p class="text-sm md:text-base" id="typeDisplayTeachers"
                                                             data-value=""></p>
                                                     </div>
                                                 </div>

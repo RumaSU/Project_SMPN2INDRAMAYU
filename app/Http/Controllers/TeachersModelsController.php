@@ -154,7 +154,9 @@ class TeachersModelsController extends Controller
                 // $linkSocmed = (str_contains($link, "https://") || str_contains($link, "http://")) ? $link : "https://" . $link;
                 // $linkSocmed = (str_contains($link, "https://" . $socmed . ".com/") || str_contains($link, "http://" . $socmed . ".com/")) ? $link : "https://". $socmed . ".com/" . $link;
                 $linkSocmed = $this->validateSocialMediaLink($link, $socmed);
-                if ($linkSocmed != TeachersSocmedModels::where('teacher_id', $teacherID)->where($socmed, $linkSocmed)->exists()) {
+                $isLinkSocmedSame = TeachersSocmedModels::where('teacher_id', $teacherID)->where($socmed, $linkSocmed)->value($socmed);
+                if ($linkSocmed != $isLinkSocmedSame) {
+                // if ($linkSocmed) {
                     TeachersSocmedModels::where("teacher_id", $teacherID)
                         ->update([
                             $socmed => $linkSocmed,
@@ -245,6 +247,12 @@ class TeachersModelsController extends Controller
                                     ]);
                             }
                         }
+                        
+                        $listSocmed = ["facebook", "twitter", "instagram", "tiktok", "youtube"];
+                            foreach($listSocmed as $socmed) {
+                                $this->validateSocmed($request, $socmed , $socmed.'-active', $socmed.'Link', $foundTeacherId->teacher_id);
+                            }
+                        
                         if(!empty($request->imageTeachers)) {
                             $validFile = $request->validate([
                                 'imageTeachers' => 'image',
@@ -286,12 +294,6 @@ class TeachersModelsController extends Controller
                             }
                         }
                         
-                        if($searchNIP) {
-                            $listSocmed = ["facebook", "twitter", "instagram", "tiktok", "youtube"];
-                            foreach($listSocmed as $socmed) {
-                                $this->validateSocmed($request, $socmed , $socmed.'-active', $socmed.'Link', $foundTeacherId->teacher_id);
-                            }
-                        }
                         return redirect()->back()->with('updateSomething', 'Data now update');
                     }
                     else {
