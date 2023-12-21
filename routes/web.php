@@ -35,6 +35,7 @@ Route::controller(ClassesModelsController::class)->group(function() {
     Route::get('/kelas/pendidik', 'listTeacher')->name('ajaxClassGetTeachers');
     Route::get('/kelas/pendidik/image', 'teacherImage')->name('ajaxClassGetTeachersImages');
     Route::post('/kelas', 'store') -> name('storeClass');
+    Route::post('/kelas/update', 'update') -> name('updateClass');
     Route::delete('/kelas/{id}', 'destroy')->name('delClass');
 });
 

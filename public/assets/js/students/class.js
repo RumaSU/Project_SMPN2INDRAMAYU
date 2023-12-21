@@ -11,7 +11,13 @@ $(document).ready(function() {
     $('.img-classes').waitForImages(function() {
         $(this).find('.cntnTopImage').removeClass('hidden');
         $(this).find('.lazy-placeholder').remove();
-    })
+    });
+    
+    setTimeout(() => {
+        $('.errorSomething').remove();
+        $('.succedSomething').remove();
+        $('.updateSomething').remove();
+    }, 3000);
     // $('.itemStudent .contentItems').removeClass('hidden');
     // $('.itemStudent .contentItems').prev().remove();
     // $('.itemStudent').load("kelas/getData", "data", function (response, status, request) {

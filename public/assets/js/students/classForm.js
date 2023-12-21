@@ -36,6 +36,7 @@ $(document).ready(function() {
         $('#pop-upFormAdd').removeClass('hidden');
         $('#overlayPopUp').removeClass('hidden');
         $('body').addClass('overflow-hidden');
+        $(".form-addClass").attr('action', getURL());
         
         let classGrade = $(this).data('classGrade');
         $('#classGrade').val(classGrade);
@@ -126,6 +127,7 @@ $(document).ready(function() {
         $('.chckChoose').remove();
         $('.elemRdChsClass').removeClass('bg-green-100');
         $(resetValue).find('input[type="radio"]').prop('checked', false); // Menandai radio button yang sesuai
+        $("#form-addClass").attr('action', '');
     });
     
     $('#imgClass').change(function(event) {
@@ -218,3 +220,6 @@ function getCsrfToken() {
     return document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 }
 
+function getURL() {
+    return window.location.href;
+}

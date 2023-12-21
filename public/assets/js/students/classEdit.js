@@ -10,7 +10,8 @@ $(document).ready(function () {
         $('#overlayPopUp').removeClass('hidden');
         $('body').addClass('overflow-hidden');
         
-        let classId = $(this).closest('.contentItems').data('classId');
+        let classId = $(this).data('classId');
+        $("#form-addClass").attr('action', getURL() + "/update?ic" + classId);
         
         let listTeacher = $('#teacherList');
         $.ajax({
@@ -72,4 +73,8 @@ $(document).ready(function () {
 
 function getCsrfToken() {
     return document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+}
+
+function getURL() {
+    return window.location.href;
 }

@@ -68,37 +68,46 @@
             </div>
             <div class="list-class mt-6 grid grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-2 sm:gap-5 relative">
                 @foreach ($tempClassVII as $class)
-                    <div class="itemClass group aspect-[3/4] bg-white regular-shadow border rounded-2xl overflow-hidden relative" data-class-id="{{$class->class_id}}">
-                        <div class="lazy-placeholder w-full h-full animate-pulse relative">
-                            <div class="flex items-center justify-center w-full h-full bg-gray-300 rounded">
-                                <svg class="w-10 h-10 text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
-                                    <path d="M18 0H2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm-5.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm4.376 10.481A1 1 0 0 1 16 15H4a1 1 0 0 1-.895-1.447l3.5-7A1 1 0 0 1 7.468 6a.965.965 0 0 1 .9.5l2.775 4.757 1.546-1.887a1 1 0 0 1 1.618.1l2.541 4a1 1 0 0 1 .028 1.011Z"/>
-                                </svg>
-                            </div>
-                            <div class="lzLR flex items-center gap-2 absolute bg-gray-200 py-1 px-4 rounded-xl right-[5%] top-[5%] -translate-x-[5%] -translate-y-[5%] ">
-                                <div class="bg-gray-300 w-8 h-8 rounded-lg"></div>
-                                <div class="bg-gray-300 w-8 h-8 rounded-lg"></div>
-                            </div>
-                            <div class="bg-gray-200 w-3/4 py-6 rounded-xl absolute bottom-[5%] left-1/2 -translate-y-[5%] -translate-x-1/2"></div>
-                        </div>
-                        <div class="contentItems w-full h-full dvClass hidden" data-class-id="{{$class->class_id}}">
-                            <div class="button-editDel flex gap-2 items-center absolute bg-black/40 py-1 px-4 rounded-xl z-10 -right-full top-[5%] -translate-x-[5%] translate-y-full transition-all group-hover:right-[5%] group-hover:translate-x-[5%] group-hover:top-[5%] group-hover:translate-y-[5%]">
-                                <span role="button" class="editBtClass border border-black bg-white p-2 rounded-lg hover:bg-gray-200">
+                    <div class="itemClass relative group overflow-hidden">
+                        <div class="questionSummaryClass flex items-center absolute p-2 rounded-bl-xl bg-white right-0 translate-x-0 z-20">
+                            <div class="button-editDel -z-10 flex items-center absolute rounded-l-lg bg-white overflow-hidden -right-full translate-x-full group-hover:right-[36%] group-hover:-translate-x-[36%] transition-all">
+                                <span role="button" class="editBtClass px-3 flex bg-white p-2 hover:bg-gray-200" data-class-id="{{$class->class_id}}">
                                     <i class="bi bi-pencil"></i>
                                 </span>
-                                <span role="button" class="delBtClass border border-black bg-white p-2 rounded-lg hover:bg-gray-200">
+                                <span role="button" class="delBtClass px-3 flex bg-white p-2 hover:bg-gray-200" data-class-id="{{$class->class_id}}">
                                     <i class="bi bi-trash3"></i>
                                 </span>
                             </div>
-                            <img src="{{asset('storage/images/classes/' . $class->name_files )}}" alt="" class="lozad supImg w-full h-full object-cover object-center relative" loading="lazy">
-                            <a href="/kelas/siswa/{{$class->class_grade}}/{{$class->class_tag}}?ic={{$class->class_id}}" class="block w-full h-full absolute inset-0 group-hover:bg-black/30 transition-all" data-class-grade="{{$class->class_grade}}" data-class-id="{{$class->class_id}}">
-                                <p class="gradeAndTagClass w-3/4 py-2 text-center font-bold bg-white rounded-xl z-10 absolute -bottom-full left-1/2 translate-y-full -translate-x-1/2 transition-all group-hover:bottom-[5%] group-hover:-translate-y-[5%]">
-                                    {{$class->class_grade . ' ' . $class->class_tag}}
-                                </p>
-                            </a>
+                            <div class="icnQs">
+                                <span role="button" class="cursor-pointer p-1 flex hover:opacity-30">
+                                    <i class="bi bi-question-circle-fill text-2xl" ></i>                                    
+                                </span>
+                            </div>
+                        </div>
+                        <div class="contentClass group aspect-[3/4] bg-white regular-shadow border rounded-2xl relative" data-class-id="{{$class->class_id}}">
+                            <div class="lazy-placeholder w-full h-full animate-pulse relative">
+                                <div class="flex items-center justify-center w-full h-full bg-gray-300 rounded">
+                                    <svg class="w-10 h-10 text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
+                                        <path d="M18 0H2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm-5.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm4.376 10.481A1 1 0 0 1 16 15H4a1 1 0 0 1-.895-1.447l3.5-7A1 1 0 0 1 7.468 6a.965.965 0 0 1 .9.5l2.775 4.757 1.546-1.887a1 1 0 0 1 1.618.1l2.541 4a1 1 0 0 1 .028 1.011Z"/>
+                                    </svg>
+                                </div>
+                                <div class="lzLR flex items-center gap-2 absolute bg-gray-200 py-1 px-4 rounded-xl right-[5%] top-[5%] -translate-x-[5%] -translate-y-[5%] ">
+                                    <div class="bg-gray-300 w-8 h-8 rounded-lg"></div>
+                                    <div class="bg-gray-300 w-8 h-8 rounded-lg"></div>
+                                </div>
+                                <div class="bg-gray-200 w-3/4 py-6 rounded-xl absolute bottom-[5%] left-1/2 -translate-y-[5%] -translate-x-1/2"></div>
+                            </div>
+                            <div class="contentItems w-full h-full dvClass hidden" data-class-id="{{$class->class_id}}">
+                                <img src="{{asset('storage/images/classes/' . $class->name_files )}}" alt="" class="lozad supImg w-full h-full object-cover object-center relative" loading="lazy">
+                                <a href="/kelas/siswa/{{$class->class_grade}}/{{$class->class_tag}}?ic={{$class->class_id}}" class="block w-full h-full absolute inset-0 group-hover:bg-black/30 transition-all" data-class-grade="{{$class->class_grade}}" data-class-id="{{$class->class_id}}">
+                                    <p class="gradeAndTagClass w-3/4 py-2 text-center font-bold bg-white rounded-xl absolute -bottom-full left-1/2 translate-y-full -translate-x-1/2 transition-all group-hover:bottom-[5%] group-hover:-translate-y-[5%]">
+                                        {{$class->class_grade . ' ' . $class->class_tag}}
+                                    </p>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                        {{-- <div class="contentItems w-full h-full dvClass"> <div class="button-editDel absolute bg-black/40 py-1 px-4 rounded-xl z-10 -right-full top-[5%] -translate-x-[5%] translate-y-full transition-all group-hover:right-[5%] group-hover:translate-x-[5%] group-hover:top-[5%] group-hover:translate-y-[5%]"> <div class="button-editDel flex gap-2 items-center absolute bg-black/40 py-1 px-4 rounded-xl z-10 -right-full top-[5%] -translate-x-[5%] translate-y-full transition-all group-hover:right-[5%] group-hover:translate-x-[5%] group-hover:top-[5%] group-hover:translate-y-[5%]"> <span role="button" class="editB border border-black bg-white p-2 rounded-lg hover:bg-gray-200"> <i class="bi bi-pencil"></i> </span> <span role="button" class="delBtClass border border-black bg-white p-2 rounded-lg hover:bg-gray-200"> <i class="bi bi-trash3"></i> </span> </div> </div> <img src="{{asset('storage/images/classes/' . $class->name_files )}}" alt="" class="lozad supImg w-full h-full object-cover object-center relative" loading="lazy"> <a href="" class="block w-full h-full absolute inset-0 group-hover:bg-black/30 transition-all" data-class-grade="{{$class->class_grade}}" data-class-id="{{$class->class_id}}"> <p class="gradeAndTagClass w-3/4 py-2 text-center font-bold bg-white rounded-xl z-10 absolute -bottom-full left-1/2 translate-y-full -translate-x-1/2 transition-all group-hover:bottom-[5%] group-hover:-translate-y-[5%]"> {{$class->class_grade . ' ' . $class->class_tag}} </p> </a> </div> --}}
+                    {{-- <div class="contentItems w-full h-full dvClass"> <div class="button-editDel absolute bg-black/40 py-1 px-4 rounded-xl z-10 -right-full top-[5%] -translate-x-[5%] translate-y-full transition-all group-hover:right-[5%] group-hover:translate-x-[5%] group-hover:top-[5%] group-hover:translate-y-[5%]"> <div class="button-editDel flex gap-2 items-center absolute bg-black/40 py-1 px-4 rounded-xl z-10 -right-full top-[5%] -translate-x-[5%] translate-y-full transition-all group-hover:right-[5%] group-hover:translate-x-[5%] group-hover:top-[5%] group-hover:translate-y-[5%]"> <span role="button" class="editB border border-black bg-white p-2 rounded-lg hover:bg-gray-200"> <i class="bi bi-pencil"></i> </span> <span role="button" class="delBtClass border border-black bg-white p-2 rounded-lg hover:bg-gray-200"> <i class="bi bi-trash3"></i> </span> </div> </div> <img src="{{asset('storage/images/classes/' . $class->name_files )}}" alt="" class="lozad supImg w-full h-full object-cover object-center relative" loading="lazy"> <a href="" class="block w-full h-full absolute inset-0 group-hover:bg-black/30 transition-all" data-class-grade="{{$class->class_grade}}" data-class-id="{{$class->class_id}}"> <p class="gradeAndTagClass w-3/4 py-2 text-center font-bold bg-white rounded-xl z-10 absolute -bottom-full left-1/2 translate-y-full -translate-x-1/2 transition-all group-hover:bottom-[5%] group-hover:-translate-y-[5%]"> {{$class->class_grade . ' ' . $class->class_tag}} </p> </a> </div> --}}
                 @endforeach
             </div>
         </div>
@@ -115,34 +124,43 @@
             </div>
             <div class="list-class mt-6 grid grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-2 sm:gap-5 relative @if (count($tempClassVIII) > 4) hidden @endif">
                 @foreach ($tempClassVIII as $class)
-                    <div class="itemClass group aspect-[3/4] bg-white regular-shadow border rounded-2xl overflow-hidden relative" data-class-id="{{$class->class_id}}">
-                        <div class="lazy-placeholder w-full h-full animate-pulse relative">
-                            <div class="flex items-center justify-center w-full h-full bg-gray-300 rounded">
-                                <svg class="w-10 h-10 text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
-                                    <path d="M18 0H2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm-5.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm4.376 10.481A1 1 0 0 1 16 15H4a1 1 0 0 1-.895-1.447l3.5-7A1 1 0 0 1 7.468 6a.965.965 0 0 1 .9.5l2.775 4.757 1.546-1.887a1 1 0 0 1 1.618.1l2.541 4a1 1 0 0 1 .028 1.011Z"/>
-                                </svg>
-                            </div>
-                            <div class="lzLR flex items-center gap-2 absolute bg-gray-200 py-1 px-4 rounded-xl right-[5%] top-[5%] -translate-x-[5%] -translate-y-[5%] ">
-                                <div class="bg-gray-300 w-8 h-8 rounded-lg"></div>
-                                <div class="bg-gray-300 w-8 h-8 rounded-lg"></div>
-                            </div>
-                            <div class="bg-gray-200 w-3/4 py-6 rounded-xl absolute bottom-[5%] left-1/2 -translate-y-[5%] -translate-x-1/2"></div>
-                        </div>
-                        <div class="contentItems w-full h-full dvClass hidden" data-class-id="{{$class->class_id}}">
-                            <div class="button-editDel flex gap-2 items-center absolute bg-black/40 py-1 px-4 rounded-xl z-10 -right-full top-[5%] -translate-x-[5%] translate-y-full transition-all group-hover:right-[5%] group-hover:translate-x-[5%] group-hover:top-[5%] group-hover:translate-y-[5%]">
-                                <span role="button" class="editBtClass border border-black bg-white p-2 rounded-lg hover:bg-gray-200">
+                    <div class="itemClass relative group overflow-hidden">
+                        <div class="questionSummaryClass flex items-center absolute p-2 rounded-bl-xl bg-white right-0 translate-x-0 z-20">
+                            <div class="button-editDel -z-10 flex items-center absolute rounded-l-lg bg-white overflow-hidden -right-full translate-x-full group-hover:right-[36%] group-hover:-translate-x-[36%] transition-all">
+                                <span role="button" class="editBtClass px-3 flex bg-white p-2 hover:bg-gray-200" data-class-id="{{$class->class_id}}">
                                     <i class="bi bi-pencil"></i>
                                 </span>
-                                <span role="button" class="delBtClass border border-black bg-white p-2 rounded-lg hover:bg-gray-200">
+                                <span role="button" class="delBtClass px-3 flex bg-white p-2 hover:bg-gray-200" data-class-id="{{$class->class_id}}">
                                     <i class="bi bi-trash3"></i>
                                 </span>
                             </div>
-                            <img src="{{asset('storage/images/classes/' . $class->name_files )}}" alt="" class="lozad supImg w-full h-full object-cover object-center relative" loading="lazy">
-                            <a href="/kelas/siswa/{{$class->class_grade}}/{{$class->class_tag}}?ic={{$class->class_id}}" class="block w-full h-full absolute inset-0 group-hover:bg-black/30 transition-all" data-class-grade="{{$class->class_grade}}" data-class-id="{{$class->class_id}}">
-                                <p class="gradeAndTagClass w-3/4 py-2 text-center font-bold bg-white rounded-xl z-10 absolute -bottom-full left-1/2 translate-y-full -translate-x-1/2 transition-all group-hover:bottom-[5%] group-hover:-translate-y-[5%]">
-                                    {{$class->class_grade . ' ' . $class->class_tag}}
-                                </p>
-                            </a>
+                            <div class="icnQs">
+                                <span role="button" class="cursor-pointer p-1 flex hover:opacity-30">
+                                    <i class="bi bi-question-circle-fill text-2xl" ></i>                                    
+                                </span>
+                            </div>
+                        </div>
+                        <div class="contentClass group aspect-[3/4] bg-white regular-shadow border rounded-2xl relative" data-class-id="{{$class->class_id}}">
+                            <div class="lazy-placeholder w-full h-full animate-pulse relative">
+                                <div class="flex items-center justify-center w-full h-full bg-gray-300 rounded">
+                                    <svg class="w-10 h-10 text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
+                                        <path d="M18 0H2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm-5.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm4.376 10.481A1 1 0 0 1 16 15H4a1 1 0 0 1-.895-1.447l3.5-7A1 1 0 0 1 7.468 6a.965.965 0 0 1 .9.5l2.775 4.757 1.546-1.887a1 1 0 0 1 1.618.1l2.541 4a1 1 0 0 1 .028 1.011Z"/>
+                                    </svg>
+                                </div>
+                                <div class="lzLR flex items-center gap-2 absolute bg-gray-200 py-1 px-4 rounded-xl right-[5%] top-[5%] -translate-x-[5%] -translate-y-[5%] ">
+                                    <div class="bg-gray-300 w-8 h-8 rounded-lg"></div>
+                                    <div class="bg-gray-300 w-8 h-8 rounded-lg"></div>
+                                </div>
+                                <div class="bg-gray-200 w-3/4 py-6 rounded-xl absolute bottom-[5%] left-1/2 -translate-y-[5%] -translate-x-1/2"></div>
+                            </div>
+                            <div class="contentItems w-full h-full dvClass hidden" data-class-id="{{$class->class_id}}">
+                                <img src="{{asset('storage/images/classes/' . $class->name_files )}}" alt="" class="lozad supImg w-full h-full object-cover object-center relative" loading="lazy">
+                                <a href="/kelas/siswa/{{$class->class_grade}}/{{$class->class_tag}}?ic={{$class->class_id}}" class="block w-full h-full absolute inset-0 group-hover:bg-black/30 transition-all" data-class-grade="{{$class->class_grade}}" data-class-id="{{$class->class_id}}">
+                                    <p class="gradeAndTagClass w-3/4 py-2 text-center font-bold bg-white rounded-xl absolute -bottom-full left-1/2 translate-y-full -translate-x-1/2 transition-all group-hover:bottom-[5%] group-hover:-translate-y-[5%]">
+                                        {{$class->class_grade . ' ' . $class->class_tag}}
+                                    </p>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 @endforeach
@@ -173,34 +191,43 @@
             </div>
             <div class="list-class mt-6 grid grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-2 sm:gap-5 relative @if (count($tempClassIX) > 4) hidden @endif">
                 @foreach ($tempClassIX as $class)
-                    <div class="itemClass group aspect-[3/4] bg-white regular-shadow border rounded-2xl overflow-hidden relative" data-class-id="{{$class->class_id}}">
-                        <div class="lazy-placeholder w-full h-full animate-pulse relative">
-                            <div class="flex items-center justify-center w-full h-full bg-gray-300 rounded">
-                                <svg class="w-10 h-10 text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
-                                    <path d="M18 0H2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm-5.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm4.376 10.481A1 1 0 0 1 16 15H4a1 1 0 0 1-.895-1.447l3.5-7A1 1 0 0 1 7.468 6a.965.965 0 0 1 .9.5l2.775 4.757 1.546-1.887a1 1 0 0 1 1.618.1l2.541 4a1 1 0 0 1 .028 1.011Z"/>
-                                </svg>
-                            </div>
-                            <div class="lzLR flex items-center gap-2 absolute bg-gray-200 py-1 px-4 rounded-xl right-[5%] top-[5%] -translate-x-[5%] -translate-y-[5%] ">
-                                <div class="bg-gray-300 w-8 h-8 rounded-lg"></div>
-                                <div class="bg-gray-300 w-8 h-8 rounded-lg"></div>
-                            </div>
-                            <div class="bg-gray-200 w-3/4 py-6 rounded-xl absolute bottom-[5%] left-1/2 -translate-y-[5%] -translate-x-1/2"></div>
-                        </div>
-                        <div class="contentItems w-full h-full dvClass hidden" data-class-id="{{$class->class_id}}">
-                            <div class="button-editDel flex gap-2 items-center absolute bg-black/40 py-1 px-4 rounded-xl z-10 -right-full top-[5%] -translate-x-[5%] translate-y-full transition-all group-hover:right-[5%] group-hover:translate-x-[5%] group-hover:top-[5%] group-hover:translate-y-[5%]">
-                                <span role="button" class="editBtClass border border-black bg-white p-2 rounded-lg hover:bg-gray-200">
+                    <div class="itemClass relative group overflow-hidden">
+                        <div class="questionSummaryClass flex items-center absolute p-2 rounded-bl-xl bg-white right-0 translate-x-0 z-20">
+                            <div class="button-editDel -z-10 flex items-center absolute rounded-l-lg bg-white overflow-hidden -right-full translate-x-full group-hover:right-[36%] group-hover:-translate-x-[36%] transition-all">
+                                <span role="button" class="editBtClass px-3 flex bg-white p-2 hover:bg-gray-200" data-class-id="{{$class->class_id}}">
                                     <i class="bi bi-pencil"></i>
                                 </span>
-                                <span role="button" class="delBtClass border border-black bg-white p-2 rounded-lg hover:bg-gray-200">
+                                <span role="button" class="delBtClass px-3 flex bg-white p-2 hover:bg-gray-200" data-class-id="{{$class->class_id}}">
                                     <i class="bi bi-trash3"></i>
                                 </span>
                             </div>
-                            <img src="{{asset('storage/images/classes/' . $class->name_files )}}" alt="" class="lozad supImg w-full h-full object-cover object-center relative" loading="lazy">
-                            <a href="/kelas/siswa/{{$class->class_grade}}/{{$class->class_tag}}?ic={{$class->class_id}}" class="block w-full h-full absolute inset-0 group-hover:bg-black/30 transition-all" data-class-grade="{{$class->class_grade}}" data-class-id="{{$class->class_id}}">
-                                <p class="gradeAndTagClass w-3/4 py-2 text-center font-bold bg-white rounded-xl z-10 absolute -bottom-full left-1/2 translate-y-full -translate-x-1/2 transition-all group-hover:bottom-[5%] group-hover:-translate-y-[5%]">
-                                    {{$class->class_grade . ' ' . $class->class_tag}}
-                                </p>
-                            </a>
+                            <div class="icnQs">
+                                <span role="button" class="cursor-pointer p-1 flex hover:opacity-30">
+                                    <i class="bi bi-question-circle-fill text-2xl" ></i>                                    
+                                </span>
+                            </div>
+                        </div>
+                        <div class="contentClass group aspect-[3/4] bg-white regular-shadow border rounded-2xl relative" data-class-id="{{$class->class_id}}">
+                            <div class="lazy-placeholder w-full h-full animate-pulse relative">
+                                <div class="flex items-center justify-center w-full h-full bg-gray-300 rounded">
+                                    <svg class="w-10 h-10 text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
+                                        <path d="M18 0H2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm-5.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm4.376 10.481A1 1 0 0 1 16 15H4a1 1 0 0 1-.895-1.447l3.5-7A1 1 0 0 1 7.468 6a.965.965 0 0 1 .9.5l2.775 4.757 1.546-1.887a1 1 0 0 1 1.618.1l2.541 4a1 1 0 0 1 .028 1.011Z"/>
+                                    </svg>
+                                </div>
+                                <div class="lzLR flex items-center gap-2 absolute bg-gray-200 py-1 px-4 rounded-xl right-[5%] top-[5%] -translate-x-[5%] -translate-y-[5%] ">
+                                    <div class="bg-gray-300 w-8 h-8 rounded-lg"></div>
+                                    <div class="bg-gray-300 w-8 h-8 rounded-lg"></div>
+                                </div>
+                                <div class="bg-gray-200 w-3/4 py-6 rounded-xl absolute bottom-[5%] left-1/2 -translate-y-[5%] -translate-x-1/2"></div>
+                            </div>
+                            <div class="contentItems w-full h-full dvClass hidden" data-class-id="{{$class->class_id}}">
+                                <img src="{{asset('storage/images/classes/' . $class->name_files )}}" alt="" class="lozad supImg w-full h-full object-cover object-center relative" loading="lazy">
+                                <a href="/kelas/siswa/{{$class->class_grade}}/{{$class->class_tag}}?ic={{$class->class_id}}" class="block w-full h-full absolute inset-0 group-hover:bg-black/30 transition-all" data-class-grade="{{$class->class_grade}}" data-class-id="{{$class->class_id}}">
+                                    <p class="gradeAndTagClass w-3/4 py-2 text-center font-bold bg-white rounded-xl absolute -bottom-full left-1/2 translate-y-full -translate-x-1/2 transition-all group-hover:bottom-[5%] group-hover:-translate-y-[5%]">
+                                        {{$class->class_grade . ' ' . $class->class_tag}}
+                                    </p>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 @endforeach
@@ -212,7 +239,7 @@
             <span role="button" id="closeForm" type="button" class="icon border border-black rounded-lg absolute top-[5%] right-[5%] -translate-x-[5%] -translate-y-[5%]">
                 <i class="bi bi-x text-5xl"></i>
             </span>
-            <form action="{{ route('storeClass') }}" method="POST" class="form-addClass space-y-6" enctype="multipart/form-data">
+            <form action="" method="POST" id="form-addClass" class="form-addClass space-y-6" enctype="multipart/form-data">
                 @csrf
                 <div class="imgClass block">
                     <div class="group bg-white regular-shadow w-80 h-80 border-dashed rounded-2xl overflow-hidden relative mx-auto">
