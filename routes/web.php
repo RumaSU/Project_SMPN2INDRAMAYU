@@ -27,16 +27,21 @@ Route::get('/', function () {
     return view('pages.homepage.index');
 });
 
+Route::post('/kelas/update', [ClassesModelsController::class, 'update']) -> name('updateClass');
+Route::delete('/kelas/delete', [ClassesModelsController::class, 'destroy']) -> name('deleteClass');
+
 Route::controller(ClassesModelsController::class)->group(function() {
     Route::get('/kelas', 'index') -> name('viewClass');
-    Route::post('/kelas/get', 'getDataClass') -> name('viewClass');
-    Route::get('/kelas/list', 'getListClass') -> name('viewClass');
+    Route::post('/kelas', 'store') -> name('storeClass');
+    // Route::post('/kelas/update', 'update') -> name('updateClass');
+    // Route::delete('/kelas/delete', 'destroy')->name('delClass');
+    Route::post('/kelas/get', 'getDataClass');
+    
+    Route::get('/kelas/list', 'getListClass');
     Route::get('/kelas/tag', 'tagClass')->name('ajaxClassTag');
     Route::get('/kelas/pendidik', 'listTeacher')->name('ajaxClassGetTeachers');
+    Route::post('/kelas/pendidik', 'listTeacherOnInput')->name('ajaxClassGetTeachersOnInput');
     Route::get('/kelas/pendidik/image', 'teacherImage')->name('ajaxClassGetTeachersImages');
-    Route::post('/kelas', 'store') -> name('storeClass');
-    Route::post('/kelas/update', 'update') -> name('updateClass');
-    Route::delete('/kelas/{id}', 'destroy')->name('delClass');
 });
 
 Route::controller(StudentsModelsController::class)->group(function() {

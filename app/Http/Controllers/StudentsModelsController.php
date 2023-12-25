@@ -32,7 +32,16 @@ class StudentsModelsController extends Controller
             ->where('class_id', $idClass)
             ->exists();
         if($isClassFound) {
-            $classImage = ClassesImagesModels::where('class_id', $idClass)->select('name_files')->first();
+            $classData = ClassesModels::where('classes.class_id', $idClass)
+                ->leftJoin('classes_images', 'classes_images.class_id', '=', 'classes.class_id')
+                ->select(
+                    'classes.class_grade',
+                    'classes.class_tag',
+                    'classes.year',
+                    'classes_images.name_files', 
+                )
+                ->first();
+            // $classImage = ClassesImagesModels::where('class_id', $idClass)->select('name_files')->first();
             $teacherClass = DB::table('teachers')
                 ->join('teachers_images', 'teachers_images.teacher_id', '=', 'teachers.teacher_id')
                 ->join('classes', 'classes.teacher_id', '=', 'teachers.teacher_id')
@@ -49,7 +58,7 @@ class StudentsModelsController extends Controller
                 ->select('students.*', 'students_images.name_files')
                 ->get();
             
-            return view("pages.students.index", compact('classImage','listStudents', 'teacherClass', 'teacherSocmed', 'classGrade', 'classTag', 'idClass'));
+            return view("pages.students.index", compact('classData','listStudents', 'teacherClass', 'teacherSocmed', 'classGrade', 'classTag', 'idClass'));
         } else {
             return redirect('/kelas');
         }

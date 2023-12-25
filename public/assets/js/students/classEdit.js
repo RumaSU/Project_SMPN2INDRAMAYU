@@ -11,7 +11,7 @@ $(document).ready(function () {
         $('body').addClass('overflow-hidden');
         
         let classId = $(this).data('classId');
-        $("#form-addClass").attr('action', getURL() + "/update?ic" + classId);
+        $("#form-addClass").attr('action', getURL() + "/update?ic=" + classId);
         
         let listTeacher = $('#teacherList');
         $.ajax({

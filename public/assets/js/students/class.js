@@ -4,6 +4,7 @@ $(document).ready(function() {
 
         $currentItem.waitForImages(function() {
             $currentItem.find('.contentItems').removeClass('hidden');
+            $currentItem.find('.questionSummaryClass').removeClass('hidden');
             $currentItem.find('.lazy-placeholder').remove();
             $currentItem.lazy();
         });

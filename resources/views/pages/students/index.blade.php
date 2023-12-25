@@ -39,10 +39,11 @@
         <div class="cntnTopImage hidden">
             <div class="imgBgTop absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full -z-10">
                 <div class="ovTop bg-black/60 w-full h-full absolute left-0 top-1/2 -translate-y-1/2"></div>
-                <img src="{{asset('storage/images/classes/' . $classImage->name_files) }}" alt="{{$classImage->name_files}}" class="w-full h-full object-cover object-center">            
+                <img src="{{asset('storage/images/classes/' . $classData->name_files) }}" alt="Gambar kelas {{$classData->class_grade}} {{$classData->class_tag}} Tahun {{$classData->year}}" class="w-full h-full object-cover object-center">            
             </div>
-            <div class="content relative z-10 selft-center">
+            <div class="content relative z-10">
                 <h1 class="text-4xl font-bold">Kelas {{$teacherClass->class_grade}} {{$teacherClass->class_tag}}</h1>
+                <p class="flex justify-end">{{$classData->year}}</p>
             </div>
         </div>
     </section>

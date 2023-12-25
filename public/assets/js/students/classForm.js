@@ -8,30 +8,6 @@ $(document).ready(function() {
         }
     });
     
-    $( "#classYear" ).on('input', function() {
-        let enterYear = $(this).val();
-        if(enterYear > nowYear){
-            enterYear = nowYear;
-            $(this).val(nowYear)
-        }
-        // let listTeacher = $('#teacherList');
-        // $.ajax({
-        //     type: "GET",
-        //     url: "/kelas/pendidik",
-        //     success: function (response) {
-        //         listTeacher.empty();
-        //         listTeacher.append('<option value="" selected disabled>Pilih guru</option>');
-        //         $.each(response, function(index, item) { // Memperbaiki penggunaan $.each
-        //             listTeacher.append('<option value="' + item.teacher_id + '">' + item.name + '</option>');
-        //             console.log(item.teacherId);
-        //         });
-        //     },
-        //     error: function() {
-        //         alert('error');
-        //     }
-        // });
-    });
-    
     $('.btrpp-vii, .btrpp-viii, .btrpp-ix').click(function () {
         $('#pop-upFormAdd').removeClass('hidden');
         $('#overlayPopUp').removeClass('hidden');
@@ -45,22 +21,22 @@ $(document).ready(function() {
         
         $('#classYear').val(nowYear);
         $('#classYear').attr('max', nowYear);
-        
-        let listTeacher = $('#teacherList');
-        $.ajax({
-            type: "GET",
-            url: "kelas/pendidik/",
-            success: function (response) {
-                listTeacher.empty();
-                listTeacher.append('<option value="" selected disabled>Pilih guru</option>');
-                $.each(response, function(index, item) { // Memperbaiki penggunaan $.each
-                    listTeacher.append('<option value="' + item.teacher_id + '">' + item.name + '</option>');
-                });
-            },
-            error: function() {
-                alert('error');
-            }
-        });
+        getTeacherByYear(nowYear);
+        // let listTeacher = $('#teacherList');
+        // $.ajax({
+        //     type: "GET",
+        //     url: "kelas/pendidik/",
+        //     success: function (response) {
+        //         listTeacher.empty();
+        //         listTeacher.append('<option value="" selected disabled>Pilih guru</option>');
+        //         $.each(response, function(index, item) { // Memperbaiki penggunaan $.each
+        //             listTeacher.append('<option value="' + item.teacher_id + '">' + item.name + '</option>');
+        //         });
+        //     },
+        //     error: function() {
+        //         alert('error');
+        //     }
+        // });
     });
     
     $('#teacherList').change(function() {
@@ -96,24 +72,6 @@ $(document).ready(function() {
             // }
         });
     });
-    
-    // $('#teacherList').change(function() {
-    //     let valSelectTe = $(this).val();
-    //     console.log(valSelectTe);
-    //     $.ajax({
-    //         type: "get",
-    //         url: "/kelas/pendidik/image",
-    //         data: { teacherId: valSelectTe },
-    //         success: function (response) {
-    //             $('#teacherSelectedImage').attr('src', "storage/images/teachers/" + response.name_files);
-    //             console.log(response.name_files);
-    //         },
-    //         // error: function() {
-    //         //     alert('error');
-    //         //     console.error();
-    //         // }
-    //     });
-    // });
     
     $('#closeForm').click(function() {
         $('#pop-upFormAdd').addClass('hidden');
@@ -153,6 +111,43 @@ $(document).ready(function() {
         $('#imgClass').val('');
     });
     
+    $("#classYear").on('input', function() {
+        let year = $(this).val();
+        if(year > nowYear){
+            year = nowYear;
+            $(this).val(nowYear)
+        }
+        
+        let grade = "";
+        $('.chooseClass input[type="radio"]').each(function (index, element) {
+            if ($(this).is(':checked')) {
+                grade = $(this).val();
+            }
+        });
+        
+        // let listTeacher = $('#teacherList');
+        // $.ajax({
+        //     type: "POST",
+        //     url: getURL() + "/pendidik",
+        //     data: {
+        //         yearInput: year,
+        //     },
+        //     success: function (response) {
+        //         listTeacher.empty();
+        //         listTeacher.append('<option value="" selected disabled>Pilih guru</option>');
+        //         $.each(response, function(index, item) { // Memperbaiki penggunaan $.each
+        //             listTeacher.append('<option value="' + item.teacher_id + '">' + item.name + '</option>');
+        //             console.log(item);
+        //         });
+        //     },
+        //     error: function() {
+        //         alert('error');
+        //     }
+        // });
+        getTeacherByYear(year)
+        getLatestClassTag(grade, year);
+    });
+    
     $('.chooseClass').click(function() {
         let input = $(this).find('input[type="radio"]');
         let grade = $(this).data('classGrade');
@@ -181,12 +176,10 @@ $(document).ready(function() {
         });
     }
     
-    
-    
     function getLatestClassTag(classGrade, year) {
         $.ajax({
             type: "GET",
-            url: "kelas/tag",
+            url: getURL() + "/tag",
             data: {
                 classGrade: classGrade,
                 classYear: year,
@@ -210,6 +203,27 @@ $(document).ready(function() {
                 }
             },
             error: () => {
+                alert('error');
+            }
+        });
+    }
+    
+    function getTeacherByYear(year) {
+        let listTeacher = $('#teacherList');
+        $.ajax({
+            type: "POST",
+            url: getURL() + "/pendidik",
+            data: {
+                yearInput: year,
+            },
+            success: function (response) {
+                listTeacher.empty();
+                listTeacher.append('<option value="" selected disabled>Pilih guru</option>');
+                $.each(response, function(index, item) { // Memperbaiki penggunaan $.each
+                    listTeacher.append('<option value="' + item.teacher_id + '">' + item.name + '</option>');
+                });
+            },
+            error: function() {
                 alert('error');
             }
         });
