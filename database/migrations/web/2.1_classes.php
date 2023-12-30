@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('class_grade');
             $table->string('class_tag');
             $table->text('description')->nullable();
-            $table->enum('status', ['Aktif', 'Tidak Aktif' ,'Alumni'])->default('Aktif');
+            $table->enum('status', ['Aktif', 'Tidak Aktif'])->default('Aktif');
             $table->boolean('is_published')->default(true);
             $table->year('year');
             $table->timestamps();

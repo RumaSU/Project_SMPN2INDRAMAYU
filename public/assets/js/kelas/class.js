@@ -16,14 +16,16 @@ $(document).ready(function() {
     setTimeout(() => {
         $('.succedSomething').removeClass('translate-x-[125%]');
         $('.updateSomething').removeClass('translate-x-[125%]');
+        $('.errorSomething').removeClass('translate-x-[125%]');
     }, 50);
     setTimeout(() => {
         $('.succedSomething').addClass('translate-x-[125%]');
         $('.updateSomething').addClass('translate-x-[125%]');
+        $('.errorSomething').addClass('translate-x-[125%]');
     }, 3500);
     setTimeout(() => {
-        $('.errorSomething').remove();
         $('.succedSomething').remove();
         $('.updateSomething').remove();
+        $('.errorSomething').remove();
     }, 3600);
 });

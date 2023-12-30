@@ -51,7 +51,7 @@
     <div class="w-36 h-11 rounded-lg bg-gray-200 mx-auto mt-6"></div>
 </div>
 
-<div class="contentWhatStudentDelete px-6 mt-12 md:mt-4" style="display: none">
+<div class="contentWhatStudentDelete px-6 mt-12 md:mt-4 overflow-y-scroll" style="display: none">
     <div class="titleWthDescDeleteStudent text-center">
         <div class="titleDeleteStudent text-2xl">
             <strong>Hapus Siswa?</strong>

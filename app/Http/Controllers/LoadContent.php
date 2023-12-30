@@ -16,10 +16,10 @@ class LoadContent extends Controller
     public function classInfo() {
         return view('pages.classes.load');
     }
-    public function deleteInfo() {
+    public function deleteClassInfo() {
         return view('pages.classes.load');
     }
-    public function alertInfo() {
+    public function alertClassInfo() {
         return view('pages.classes.alert');
     }
     
@@ -28,5 +28,8 @@ class LoadContent extends Controller
     }
     public function studentDelete() {
         return view('pages.students.load');
+    }
+    public function alertStudentInfo() {
+        return view('pages.students.alert');
     }
 }

@@ -12,15 +12,15 @@
             <div class="listInfoClassHide text-base">
                 <ul class="text-sm">
                     <li class="flex items-center">
-                        <i class="dotList shrink-0 bg-red-700 rounded-[100%] w-1.5 h-1.5 block mr-2"></i>
+                        <i class="dotList shrink-0 bg-blue-700 rounded-[100%] w-1.5 h-1.5 block mr-2"></i>
                         <div class="itm inline-flex gap-1"><p>Kelas <strong class="classGradeAlert"></strong> <strong class="classYearAlert"></strong> sudah disembunyikan</p></div>
                     </li>
                     <li class="flex items-center">
-                        <i class="dotList shrink-0 bg-red-700 rounded-[100%] w-1.5 h-1.5 block mr-2"></i>
+                        <i class="dotList shrink-0 bg-blue-700 rounded-[100%] w-1.5 h-1.5 block mr-2"></i>
                         <div class="itm inline-flex gap-1"><p class="line-clamp-2">Setidaknya terdapat <strong> <div class="studentInfoAlert font-bold"></div> siswa</strong> yang terhubung </p></div>
                     </li>
                     <li class="flex items-center">
-                        <i class="dotList shrink-0 bg-red-700 rounded-[100%] w-1.5 h-1.5 block mr-2"></i>
+                        <i class="dotList shrink-0 bg-blue-700 rounded-[100%] w-1.5 h-1.5 block mr-2"></i>
                         <div class="itm"><p>Data di disembunyikan pada <strong class="deleteDateAlert"></strong></p></div>
                     </li>
                 </ul>

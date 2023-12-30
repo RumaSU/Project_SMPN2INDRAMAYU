@@ -4,13 +4,6 @@ $(document).ready(function () {
     let popupContent = $(".contentWrapperShow");
     let popupContentDisplay = $(".contentDisplayDetails");
     
-    setInterval(() => {
-        $('#tryTransitionHeight').height('400px');
-    }, 1000);
-    setInterval(() => {
-        $('#tryTransitionHeight').height('200px');
-    }, 2000);
-    
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': getCsrfToken()
@@ -74,11 +67,27 @@ $(document).ready(function () {
         resetValue();
     });
     
+    // setTimeout(() => {
+    //     $('.confirmDelete').remove();
+    //     $('.confirmUpdate').remove();
+    //     $('.errorDelete').remove();
+    // }, 3000);
+    
     setTimeout(() => {
-        $('.confirmDelete').remove();
-        $('.confirmUpdate').remove();
-        $('.errorDelete').remove();
-    }, 3000);
+        $('.succedSomething').removeClass('translate-x-[125%]');
+        $('.updateSomething').removeClass('translate-x-[125%]');
+        $('.errorSomething').removeClass('translate-x-[125%]');
+    }, 50);
+    setTimeout(() => {
+        $('.succedSomething').addClass('translate-x-[125%]');
+        $('.updateSomething').addClass('translate-x-[125%]');
+        $('.errorSomething').addClass('translate-x-[125%]');
+    }, 3500);
+    setTimeout(() => {
+        $('.succedSomething').remove();
+        $('.updateSomething').remove();
+        $('.errorSomething').remove();
+    }, 3600);
     
     function resetValue() {
         let $popForm = $('#pop-upFormAddStudent');

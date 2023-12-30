@@ -3,28 +3,86 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
 @section('content')
-    <div class="alertContent fixed right-0 z-[9999] space-y-2 text-2xl">
+    <div class="alertContent fixed right-0 top-4 md:right-4 z-[9999] space-y-2 text-2xl">
         @if (session('errorSomething'))
-            <div class="errorDelete min-w-[20rem] px-4 py-3 bg-red-100 rounded-sm">
-                <div class="cntn flex items-center gap-4">
-                    <i class="bi bi-x-circle-fill text-red-500"></i>
-                    <p class="text-lg">{{ session('errorSomething') }}</p>
+            <div class="errorSomething text-red-950 w-full lg:w-[26rem] px-4 py-3 bg-red-100 border-l-4 border-red-600 rounded-md transition-all translate-x-[125%]" role="alert" aria-live="assertive">
+                <div class="titleConfirmHide flex items-center gap-4">
+                    <i class="bi bi-x-circle-fill text-red-700"></i>
+                    <p class="text-lg">Siswa gagal ditambahkan</p>
+                </div>
+                <div class="cntnWht ml-6 mt-2">
+                    <div class="infoWhatClassHide flex flex-col md:flex-row md:gap-4">
+                        <div class="icn flex items-center gap-2">
+                            <i class="bi bi-info-circle-fill text-lg text-red-700"></i>
+                            <p class="text-base block md:hidden">Info</p>
+                        </div>
+                        <div class="text-base">
+                            <ul class="text-sm">
+                                <li class="flex items-center">
+                                    <i class="dotList shrink-0 bg-red-700 rounded-[100%] w-1.5 h-1.5 block mr-2"></i>
+                                    <div class="itm"><p>Siswa bernama <strong>{{ session('errorSomething')['name'] }}</strong> gagal ditambahkan</p></div>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="dotList shrink-0 bg-red-700 rounded-[100%] w-1.5 h-1.5 block mr-2"></i>
+                                    <div class="itm"><p>Nis <strong>{{ session('errorSomething')['nis'] }}</strong> sudah digunakan</p></div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         @endif
-        @if (session('succedSomething'))
-            <div class="confirmDelete min-w-[20rem] px-4 py-3 bg-green-100 rounded-sm">
-                <div class="cntn flex items-center gap-4">
-                    <i class="bi bi-check-circle-fill text-green-500"></i>
-                    <p class="text-lg">{{ session('succedSomething') }}</p>
+        @if (session('successAdd'))
+            <div class="succedSomething text-green-950 w-full lg:w-[26rem] px-4 py-3 bg-green-100 border-l-4 border-green-600 rounded-md transition-all translate-x-[125%]" role="alert" aria-live="assertive">
+                <div class="titleConfirmHide flex items-center gap-4">
+                    <i class="bi bi-check-circle-fill text-green-700"></i>
+                    <p class="text-lg">Siswa berhasil ditambahkan</p>
+                </div>
+                <div class="cntnWht ml-6 mt-2">
+                    <div class="infoWhatClassHide flex flex-col md:flex-row md:gap-4">
+                        <div class="icn flex items-center gap-2">
+                            <i class="bi bi-info-circle-fill text-lg text-green-700"></i>
+                            <p class="text-base block md:hidden">Info</p>
+                        </div>
+                        <div class="text-base">
+                            <ul class="text-sm">
+                                <li class="flex items-center">
+                                    <i class="dotList shrink-0 bg-green-700 rounded-[100%] w-1.5 h-1.5 block mr-2"></i>
+                                    <div class="itm"><p>Siswa bernama <strong>{{ session('successAdd')['name'] }}</strong> berhasil ditambahkan</p></div>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="dotList shrink-0 bg-green-700 rounded-[100%] w-1.5 h-1.5 block mr-2"></i>
+                                    <div class="itm"><p>Nis <strong>{{ session('successAdd')['nis'] }}</strong></p></div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         @endif
         @if (session('updateSomething'))
-            <div class="confirmUpdate min-w-[20rem] px-4 py-3 bg-blue-100 rounded-sm">
-                <div class="cntn flex items-center gap-4">
+            <div class="updateSomething text-blue-950 w-full lg:w-[26rem] px-4 py-3 bg-blue-100 border-l-4 border-blue-600 rounded-md transition-all" role="alert" aria-live="assertive">
+                <div class="titleConfirmHide flex items-center gap-4">
                     <i class="bi bi-upload text-blue-700"></i>
-                    <p class="text-lg">{{ session('updateSomething') }}</p>
+                    <p class="text-lg">Kelas berhasil diperbaharui</p>
+                </div>
+                <div class="cntnWht ml-6 mt-2">
+                    <div class="infoWhatClassHide flex flex-col md:flex-row md:gap-4">
+                        <div class="icn flex items-center gap-2">
+                            <i class="bi bi-info-circle-fill text-lg text-blue-700"></i>
+                            <p class="text-base block md:hidden">Info</p>
+                        </div>
+                        <div class="text-base">
+                            <ul class="text-sm">
+                                @foreach (session('updateSomething')['theUpdate'] as $update)
+                                    <li class="flex items-center">
+                                        <i class="dotList shrink-0 bg-blue-700 rounded-[100%] w-1.5 h-1.5 block mr-2"></i>
+                                        <div class="itm"><p>{!!$update!!}</p></div>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         @endif
@@ -124,7 +182,7 @@
         <div class="list-student mt-6 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-2 sm:gap-5 relative">
             @if ($listStudents !== null)
                 @foreach ($listStudents as $student)
-                    <div class="itemStudent relative group transition-all overflow-hidden duration-500" aria-haspopup="true">
+                    <div class="itemStudent relative group transition-all overflow-hidden duration-1000" aria-haspopup="true" data-student-id="{{$student->student_id}}">
                         <div class="questionSummaryStudent items-center absolute p-2 rounded-bl-xl bg-white right-0 translate-x-0 z-20 border-l border-b hidden">
                             <div class="button-editDel text-sm md:text-base -z-10 flex items-center absolute rounded-l-lg bg-white overflow-hidden -right-full top-0 md:top-auto translate-x-full group-hover:right-[29%] md:group-hover:right-[36%] group-hover:-translate-x-[29%] md:group-hover:-translate-x-[36%] transition-all">
                                 <span role="button" class="editBtStudent px-3 flex bg-white p-2 hover:bg-gray-200" data-student-id="{{$student->student_id}}">
@@ -632,9 +690,9 @@
             </div>
         </div>
     </div>
-    {{-- <div class="deleteStudentPopupAlert fixed bg-orange-50 w-full pb-12 xl:w-1/2 min-h-full lg:min-h-[32rem] max-h-full lg:max-h-[45rem] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-2xl overflow-auto z-50 shadow-gray-500 shadow-lg transition-all" style="display: none" role="alertdialog"> --}}
-    <div class="deleteStudentPopupAlert fixed bg-orange-50 w-full pb-12 xl:w-1/2  left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-2xl overflow-auto z-50 shadow-gray-500 shadow-lg transition-all" style="display: none" role="alertdialog">
-        <div class="px-8 py-6 relative">
+    <div class="deleteStudentPopupAlert fixed bg-orange-50 w-full pb-12 lg:w-8/12 xl:w-1/2 min-h-full lg:min-h-[32rem] max-h-full lg:max-h-[45rem] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-2xl overflow-auto z-50 shadow-gray-500 shadow-lg transition-all" style="display: none" role="alertdialog">
+    {{-- <div class="deleteStudentPopupAlert fixed bg-orange-50 w-full pb-12 xl:w-1/2  left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-2xl overflow-auto z-50 shadow-gray-500 shadow-lg transition-all" style="display: none" role="alertdialog"> --}}
+        <div class="lg:px-8 lg:py-6 relative">
             <div class="px-6 py-6 flex items-center gap-2 text-red-500 absolute left-0 top-0 -translate-x-0 -translate-y-0 z-10 bg-orange-50 rounded-lg">
                 <i class="bi bi-exclamation-circle-fill text-4xl"></i>
                 <strong>Peringatan</strong>

@@ -36,6 +36,7 @@ class ClassesModelsController extends Controller
             ->leftJoin('classes_images', 'classes.class_id', '=', 'classes_images.class_id')
             ->where('classes.class_grade', 'VII')
             ->where('classes.status', 'Aktif')
+            ->where('classes.is_published', true)
             ->where('classes.year', $latestYears[0])
             ->orderBy('classes.class_tag', 'asc')
             ->select('classes.class_id', 'classes.class_grade', 'classes.class_tag', 'classes_images.name_files')
@@ -44,6 +45,7 @@ class ClassesModelsController extends Controller
             ->leftJoin('classes_images', 'classes.class_id', '=', 'classes_images.class_id')
             ->where('classes.class_grade', 'VIII')
             ->where('classes.status', 'Aktif')
+            ->where('classes.is_published', true)
             ->where('classes.year', $latestYears[1])
             ->orderBy('classes.class_tag', 'asc')
             ->select('classes.class_id', 'classes.class_grade', 'classes.class_tag', 'classes_images.name_files')
@@ -52,6 +54,7 @@ class ClassesModelsController extends Controller
             ->leftJoin('classes_images', 'classes.class_id', '=', 'classes_images.class_id')
             ->where('classes.class_grade', 'IX')
             ->where('classes.status', 'Aktif')
+            ->where('classes.is_published', true)
             ->where('classes.year', $latestYears[2])
             ->orderBy('classes.class_tag', 'asc')
             ->select('classes.class_id', 'classes.class_grade', 'classes.class_tag', 'classes_images.name_files')
@@ -577,7 +580,7 @@ class ClassesModelsController extends Controller
         
         ClassesModels::where('class_id', $classId)
             ->update([ 
-                'status' => 'Tidak Aktif',
+                'is_published' => false,
             ]);
         echo $tempClassInfo;
         return response()->json($tempClassInfo);

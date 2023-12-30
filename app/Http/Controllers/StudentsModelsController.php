@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Validation\Rule;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Ramsey\Uuid\Uuid;
 
 
@@ -58,6 +59,7 @@ class StudentsModelsController extends Controller
                 ->join('students_images', 'students.student_id', '=', 'students_images.student_id')
                 ->join('classes_students', 'classes_students.student_id', '=', 'students.student_id')
                 ->where('classes_students.class_id', '=', $idClass)
+                ->where('students.is_published', '=', true)
                 ->select('students.*', 'students_images.name_files')
                 ->get();
             
@@ -65,31 +67,6 @@ class StudentsModelsController extends Controller
         } else {
             return redirect('/kelas');
         }
-        // $listStudents = DB::table('students')
-        //     ->join('students_images', 'students.student_id', '=', 'students_images.student_id')
-        //     ->join('classes', 'classes.class_id', '=', 'classes_students.class_id')
-        //     ->join('classes_students', 'classes_students.class_id', '=', 'classes.class_id')
-        //     ->where('classes.class_id', '=', $idClass)
-        //     ->get();
-        // $teacherClass = DB::table('teachers')
-        //     ->join('teachers_images', 'teachers_images.teacher_id', '=', 'teachers.teacher_id')
-        //     ->join('classes', 'classes.teacher_id', '=', 'teachers.teacher_id')
-        //     ->where('classes.class_id', '=', $idClass)
-        //     ->first();
-        // if($teacherClass){
-        //     $teacherSocmed = DB::table('teachers_socmed')
-        //         ->where('teacher_id', '=', $teacherClass->teacher_id)
-        //         ->first();
-        //     $listStudents = DB::table('classes')
-        //         ->join('classes_students', 'classes_students.class_id', '=', 'classes.class_id')
-        //         ->where('classes.class_id', '=', $idClass)
-        //         ->select('classes_students.student_id')
-        //         ->get();
-            
-        //     return view("pages.students.index", compact('listStudents', 'teacherClass', 'teacherSocmed', 'classGrade', 'classTag', 'idClass'));
-        
-        
-        // return view("pages.students.index");
     }
     
     public function createTokenForm(Request $request) {
@@ -167,12 +144,21 @@ class StudentsModelsController extends Controller
                 ->where('class_tag', $classTag)
                 ->first();
             if ($checkClass) {
+                // $validateNisName = Validator::make([
+                //     'nameFrmStudent' => $request->nameFrmStudent,
+                //     'nisFrmStudent' => $request->nisFrmStudent,
+                // ], [
+                //     'nameFrmStudent' => 'required|string|max:255',
+                //     'nisFrmStudent' => 'required|string|max:255|unique:students,nis',
+                // ]);
                 $validateNisName = $request->validate([
                     'nameFrmStudent' => 'required|string|max:255',
-                    'nisFrmStudent' => 'required|string|max:255|unique:students,nis',
+                    'nisFrmStudent' => 'required|string|max:255',
                 ]);
                 
-                if($validateNisName) {
+                $isNisDuplicate = StudentsModels::where('nis', $request->nisFrmStudent)->exists();
+                
+                if(!$isNisDuplicate) {
                     $studentId = Uuid::uuid4()->toString();;
                     $createStudent = StudentsModels::create([
                         'student_id' => $studentId,
@@ -217,7 +203,13 @@ class StudentsModelsController extends Controller
                                 return redirect()->back()->with('errorSomething', 'Something error when add student');
                             }
                             
-                            return redirect()->back()->with('succedSomething', 'Success add student');
+                            Cache::forget('tokenForFormStudent');
+                            $dataAlert = [
+                                'name' => $createStudent->name,
+                                'nis' => $createStudent->nis,
+                            ];
+                            session()->flash('successAdd', $dataAlert);
+                            return redirect()->back();
                         } else {
                             $this->ifStoreFail($studentId);
                             return redirect()->back()->with('errorSomething', 'Something error when add student');
@@ -227,7 +219,12 @@ class StudentsModelsController extends Controller
                         return redirect()->back()->with('errorSomething', 'Something error when add student');
                     }
                 } else {
-                    return redirect()->back()->with('errorSomething', 'Something error when add student');
+                    $dataAlert = [
+                        'name' => $request->nameFrmStudent,
+                        'nis' => $request->nisFrmStudent,
+                    ];
+                    session()->flash('errorSomething', $dataAlert);
+                    return redirect()->back();
                 }
             } else {
                 return redirect()->back()->with('errorSomething', 'Something error when add student');
@@ -353,21 +350,23 @@ class StudentsModelsController extends Controller
                     'nameFrmStudent' => 'required|string|max:255',
                     'nisFrmStudent' => 'required|string|max:255',
                 ]);
+                $isNisDuplicate = StudentsModels::where('nis', $request->nisFrmStudent)
+                    ->where('student_id', '!=', $idStudent)
+                    ->exists();
                 // $validInput = $request->validate([
                 //     'nameFrmStudent' => 'required|string|max:255',
                 //     'nisFrmStudent' => 'required|string|max:255',
                 // ]);
-                if($validInput->passes()) {
+                if($validInput->passes() && !$isNisDuplicate) {
+                    $whatsUpdate = [];
                     $arrColumnStudent = ['name', 'nis'];
                     $arrReqInpSt = ['nameFrmStudent', 'nisFrmStudent'];
                     foreach($arrColumnStudent as $idx => $column) {
                         $existingData = StudentsModels::where('student_id', $idStudent)->value($column);
                         $input = $request->input($arrReqInpSt[$idx]);
                         if($existingData !== $input) {
-                            StudentsModels::where('student_id',$idStudent)
-                                ->update([
-                                    $column => $input,
-                                ]);
+                            StudentsModels::where('student_id',$idStudent)->update([$column => $input,]);
+                            $whatsUpdate[$column] = "<strong>$existingData</strong> menjadi <strong>$input</strong>";
                         }
                     }
                     
@@ -391,20 +390,30 @@ class StudentsModelsController extends Controller
                                         ->update([
                                             'name_files' => 'siswa.png',
                                         ]);
+                                $whatsUpdate[$column] = "<strong>Image $nameFileInDatabase</strong> menjadi <strong>Image siswa.png</strong>";    
                                 }
                             }
                         }
                     } else {
                         if ($request->hasFile('imgFrmStudent')) {
                             $this->storeImage($request->file('imgFrmStudent'), $idStudent);
+                            $image = $request->file('imgFrmStudent');
+                            $imageName = $image->getClientOriginalName();
+                            $whatsUpdate[$column] = "<strong>Image $nameFileInDatabase</strong> menjadi <strong>Image ". $imageName ." </strong>";    
                         }
                     }
-                    
-                    return redirect()->back()->with('updateSomething', 'Update succed');
+                    Cache::forget('tokenForFormStudent');
+                    session()->flash('updateSomething', ['theUpdate' => $whatsUpdate]);
+                    return redirect()->back();
                     
                 } 
                 else {
-                    return redirect()->back()->with('errorSomething', 'Something error when add student');                
+                    $dataAlert = [
+                        'name' => $request->nameFrmStudent,
+                        'nis' => $request->nisFrmStudent,
+                    ];
+                    session()->flash('errorSomething', $dataAlert);
+                    return redirect()->back();
                 }
             } else {
                 return redirect()->back()->with('errorSomething', 'Something error when add student');
@@ -475,12 +484,111 @@ class StudentsModelsController extends Controller
         }
     }
     
+    public function createTokenDelete(Request $request) {
+        Cache::flush();
+        $uuidToken = Uuid::uuid4()->toString();
+        $tokenForm = $uuidToken . $request->studentId . '&?r=' . rand();
+        $md5Hash = md5(rand() . $tokenForm);
+        
+        $cacheKey = '_delete?isd=' . $request->studentId . '&?r=28mm2du8821ks1';
+        
+        // Menyimpan nilai dalam cache sebagai array yang bersarang
+        $cachedData = Cache::get('tokenDeleteStudent', []);
+        
+        $cachedData[$cacheKey] = $md5Hash;
+        
+        // Simpan nilai dalam cache
+        Cache::put('tokenDeleteStudent', $cachedData, now()->addMinutes(10)); // Simpan selama 60 menit
+        return response()->json(['tokenDelete' => $md5Hash]);
+    }
+    
+    public function checkTokenDelete($keyToken, $requestToken) {
+        // Mengambil data dari cache
+        $cachedData = Cache::get('tokenDeleteStudent', []);
+    
+        if (array_key_exists($keyToken, $cachedData)) {
+            $savedToken = $cachedData[$keyToken];
+    
+            // Memeriksa apakah token yang disimpan cocok dengan yang diberikan
+            if ($savedToken === $requestToken) {
+                // Token cocok, lakukan tindakan yang diinginkan
+                return true;
+            }
+        }
+    
+        // Jika tidak cocok atau tidak ada dalam cache
+        return false;
+    }
+    
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(StudentsModels $studentsModels)
-    {
-        //
+    public function actionDeleteClass(Request $request) {
+        $checkStudent = StudentsModels::where('student_id', $request->studentId)->exists();
+        
+        if($checkStudent) {
+            $studentId = $request->studentId;
+
+            $validActionDel = $request->validate([
+                'acd' => 'required|in:Hide,Delete',
+                'tokenStudentDelete' => 'required|string',
+            ]);
+            if($validActionDel) {
+                $keyToken = '_delete?isd=' . $studentId . '&?r=28mm2du8821ks1';
+                $requestToken = $request->tokenStudentDelete;
+                $checkTokenDelete = $this->checkTokenDelete($keyToken, $requestToken);
+                
+                if($checkTokenDelete) {
+                    $studentName = StudentsModels::where('student_id', $studentId)->value('name');
+                    $dateDelete = Date('l, d F Y');
+                
+                    if($validActionDel['acd'] === 'Hide') {
+                        $isActionTrue =  $this->hideThisStudent($studentId);
+                        if($isActionTrue) {
+                            return response()->json([
+                                'studentName' => $studentName,
+                                'dateDelete' => $dateDelete,
+                            ]);
+                        }
+                        return response()->json(['errorSomething' => 'Halooooo']);
+                    }
+                    if($validActionDel['acd'] === 'Delete') {
+                        $isActionTrue = $this->deleteThisStudent($studentId);
+                        if($isActionTrue) {
+                            return response()->json([
+                                'studentName' => $studentName,
+                                'dateDelete' => $dateDelete,
+                            ]);
+                        }
+                        return response()->json(['errorSomething' => 'Halooooo']);
+                    }
+                }
+            }
+        }
+    }
+    
+    public function hideThisStudent($studentId) {
+        $updateStudent = StudentsModels::where('student_id', $studentId)
+            ->update([ 
+                'is_published' => false,
+            ]);
+        if ($updateStudent) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    public function deleteThisStudent($studentId) {
+        $studentsFound = StudentsModels::where('student_id', $studentId)
+            ->firstOrFail();
+        if ($studentsFound) {
+            $image = StudentsImagesModels::where('student_id', $studentsFound->class_id)->first();
+            if ($image && $image->name_files != 'default.png') {
+                $this->deleteImage($image->name_files);
+            }
+            $studentsFound->delete();
+            return true;
+        }
+        
+        return false;
     }
 }

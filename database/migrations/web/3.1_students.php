@@ -15,7 +15,8 @@ return new class extends Migration
             $table->uuid('student_id')->primary();
             $table->string('nis')->unique();
             $table->string('name');
-            $table->enum('status', ['Aktif', 'Alumni'])->default('Aktif');
+            $table->enum('status', ['Aktif', 'Tidak Aktif', 'Pindah'])->default('Aktif');
+            $table->enum('is_graduate', ['Lulus', 'Belum Lulus'])->default('Belum Lulus');
             $table->boolean('is_published')->default(true);
             $table->year('year');
             $table->timestamps();
