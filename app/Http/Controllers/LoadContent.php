@@ -26,4 +26,7 @@ class LoadContent extends Controller
     public function studentForm() {
         return view('pages.students.load');
     }
+    public function studentDelete() {
+        return view('pages.students.load');
+    }
 }

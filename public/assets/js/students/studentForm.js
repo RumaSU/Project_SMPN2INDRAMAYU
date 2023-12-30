@@ -1,5 +1,6 @@
 $(document).ready(function () {
-    let linkActive = ["facebook-active", "instagram-active", "twitter-active", "tiktok-active", "youtube-active", "emails-active"];
+    let loadForm = '<div class="loadWaiting absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"><div class="animate-spin rounded-[100%] border-[16px] border-dotted w-[120px] h-[120px]"></div></div>';
+    let linkActive = ["facebook-active", "instagram-active", "twitter-active", "tiktok-active", "youtube-active"];
     
     $.ajaxSetup({
         headers: {
@@ -8,14 +9,29 @@ $(document).ready(function () {
     });
     
     $('#btrcr-fm, .buttonAddStudent').click(function() {
+        resetValue();
         let $popForm = $('#pop-upFormAddStudent');
-        var $nowUrl = window.location.href;
-        var $urlLoad = window.location.origin + '/siswa/formload';
+        let $elementForm = $popForm.find('.frmAddStudent');
         
-        getElementFormLoad();
+        var $originUrl = window.location.origin;
+        var $nowUrl = (window.location.href).split('?ic=');
+        
+        var $windowHeight = $(window).height();
+        var $displayWindowsHeight = $windowHeight * 0.9;
+        var $minHeight = $windowHeight * 0.4;
+
+        $popForm.append(loadForm);
+        $popForm.height($minHeight);
         $popForm.show();
         
-        $popForm.find('form').attr('action', $nowUrl);
+        $elementForm.find('img').attr('src', $originUrl + '/assets/img/dumb/imgtemp 1.jpg');
+        $popForm.find('form').attr('action', $nowUrl[0]  + '/store?ic=' + $nowUrl[1]);
+        
+        $elementForm.waitForImages(function() {
+            $popForm.find('.loadWaiting').remove();
+            $popForm.height($displayWindowsHeight);
+            $elementForm.show();;
+        });
         
         putTokenToForm();
         $('#overlayPopUp').removeClass('hidden');
@@ -26,55 +42,49 @@ $(document).ready(function () {
         let $popForm = $('#pop-upFormAddStudent');
         var $nowUrl = window.location.origin;
         
-        $popForm.hide();
-        $('#overlayPopUp').addClass('hidden');
-        $('body').removeClass('overflow-hidden');
+        var $windowHeight = $(window).height();
+        var $minHeight = $windowHeight * 0.4;
         
-        $popForm.find('#nameFrmStudent, #imgFrmStudent, #nisFrmStudent').val('');
-        $popForm.find('form').attr('action', '');
-        $popForm.find('img').attr('src', $nowUrl + '/assets/img/dumb/imgtemp 1.jpg');
+        $popForm.height($minHeight);
         
-        linkActive.forEach(link => {
-            const linkEvent = $(`#${link}`);
-            const inpLnkTeachers = linkEvent.parent().next().find('input');
-            const dvBgLabelCheck = linkEvent.prev().find('label div');
-            const ballRollLabelCheck = linkEvent.prev().find('label div span');
+        setTimeout(() => {
+            $popForm.hide();
+            $popForm.find('.frmAddStudent').hide();
+            $('#overlayPopUp').addClass('hidden');
+            $('body').removeClass('overflow-hidden');
             
-            linkEvent.val('');
-            linkEvent.attr('aria-checked', 'false');
-            dvBgLabelCheck.css('backgroundColor', '');
-            ballRollLabelCheck.css({
-                'backgroundColor': '',
-                'borderColor': '',
-                'left': '0',
-                'transform': 'translate(0, -50%)',
-            });
-            inpLnkTeachers.removeClass('opacity-0');
-            setTimeout(() => {
-                inpLnkTeachers.addClass('hidden');
-            }, 50);
-        });
+            resetValue();
+        },500);
+        
     });
     
-    function getElementFormLoad() {
-        var rootFormElement = $('#pop-upFormAddStudent');
-        var $nowUrl = window.location.origin;
-        $.ajax({
-            type: "GET",
-            url: $nowUrl + '/siswa/formload',
-            success: function (data) {
-                elementForm = $(data).get(0).outerHTML;
-                console.log(elementForm);
-                rootFormElement.append(elementForm);
+    function resetValue() {
+        let $popForm = $('#pop-upFormAddStudent');
+        let $elementForm = $popForm.find('.frmAddStudent');
+        
+        $elementForm.find('#imgFrmStudent, #nameFrmStudent, #nisFrmStudent').val('');
+        $popForm.find('form').attr('action', '');
+        $popForm.find('img').attr('src', '');
 
-                var $elementForm = rootFormElement.find('.frmAddStudent');
-                $elementForm.waitForImages(function() {
-                    rootFormElement.find('.lazyLoadFormStudent').remove()
-                    $elementForm.show();
-                })
-            },
-            error: () => {
-            }
+        let listSocmed = ["facebook", "instagram", "twitter", "tiktok", "youtube"];
+        listSocmed.forEach((itemSocmed) => {
+            let isActive = '';
+            let ariaChecked = 'false';
+            
+            let inputActive = '#' + itemSocmed + '-active';
+            let socmedInput = '#' + itemSocmed + 'Link';
+            let styleParentRollActive = "";
+            let styleRollActive = "left:0 ; transform: translateX(0, -50%)";
+            
+            let parentDiv = $(inputActive).prev().find('label div');
+            let spanInside = $(inputActive).prev().find('label div span');
+            parentDiv.css('backgroundColor', styleParentRollActive);
+            spanInside.attr('style', styleRollActive);
+            
+            $(inputActive).prop('checked', false); // Check/Uncheck checkbox based on itemLink
+            $(inputActive).val(isActive).attr('aria-checked', ariaChecked);
+            $(socmedInput).val('');
+            $(socmedInput).addClass('hidden').addClass('opacity-0');
         });
     }
 });
@@ -107,7 +117,41 @@ function putTokenToForm() {
     
 }
 
+$(document).on('click', '#resetImageStudent', function() {
+    var $originUrl = window.location.origin;
+    var $getPathName = window.location.pathname;
+    
+    var $tokenUrl = $originUrl + '/siswa/resetimagetoken';
+    var $splitGet = $getPathName.split('/');
+    var $idStudent = $('#pop-upFormAddStudent form').attr('action').split('?si=');
+    var $gradeClass = $splitGet[3];
+    var $tagClass = $splitGet[4];
+    
+    $.ajax({
+        type: "POST",
+        url: $tokenUrl,
+        data: {
+            gradeClass: $gradeClass,
+            tagClass: $tagClass,
+            idStudent: $idStudent[1],
+        },
+        success: function (response) {
+            $('#_tokenResetImage').val(response.tokenImage);
+            
+            $('#previewImage').attr('src', $originUrl + '/storage/images/students/siswa.png');
+            $('#imgFrmStudent').val('');
+        }
+    });
+});
+
+// $('#resetImageStudent').click(function() {
+//     var $originUrl = window.location.origin;
+//     $('#previewImage').attr('src', $originUrl + '/storage/images/students/siswa.png');
+//     $('#imgFrmStudent').val('siswa.png');
+// });
+
 $(document).on('change', '#imgFrmStudent', function(event) {
+    var $originUrl = window.location.origin;
     const previewImg = $('#previewImage');
     const file = event.target.files[0];
     if (file){
@@ -116,11 +160,12 @@ $(document).on('change', '#imgFrmStudent', function(event) {
         
         img.onerror = function() {
             alert("Gagal memuat gambar. Pastikan file yang Anda pilih ada gambar yang valid");
-            previewImg.attr('src', '');
+            previewImg.attr('src', $originUrl + '/assets/img/dumb/imgtemp 1.jpg');
             $(this).val('');
         }
         img.onload = function() {
             previewImg.attr('src', img.src);
+            $('#_tokenResetImage').val('');
         }
     }
 });

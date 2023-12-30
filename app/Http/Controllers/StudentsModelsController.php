@@ -101,6 +101,10 @@ class StudentsModelsController extends Controller
         
         // Menyimpan nilai dalam cache sebagai array yang bersarang
         $cachedData = Cache::get('tokenForFormStudent', []);
+        // if(isset($cachedData[$cacheKey])) {
+        //     unset($cachedData[$cacheKey]);
+        // }
+        
         $cachedData[$cacheKey] = $md5Hash;
         
         // Simpan nilai dalam cache
@@ -108,104 +112,121 @@ class StudentsModelsController extends Controller
         return response()->json(['tokenForm' => $md5Hash]);
     }
     
-    public function checkToken(Request $request) {
-        $cacheKey = $request->gradeClass . '_' . $request->tagClass;
+    public function createTokenResetImage(Request $request) {
+        $uuidToken = Uuid::uuid4()->toString();
+        $tokenForm = $uuidToken . $request->gradeClass . $request->tagClass . $request->idStudent;
+        $md5Hash = md5(rand() . $tokenForm);
+        
+        $cacheKey = 'img_' . $request->idStudent;
+        
+        // Menyimpan nilai dalam cache sebagai array yang bersarang
+        $cachedData = Cache::get('tokenForFormStudent', []);
+        // if(isset($cachedData[$cacheKey])) {
+        //     unset($cachedData[$cacheKey]);
+        // }
+        
+        $cachedData[$cacheKey] = $md5Hash;
+        
+        // Simpan nilai dalam cache
+        Cache::put('tokenForFormStudent', $cachedData, now()->addMinutes(10)); // Simpan selama 60 menit
+        return response()->json(['tokenImage' => $md5Hash]);
+    }
     
+    public function checkToken($keyToken, $requestToken) {
         // Mengambil data dari cache
-        $cachedData = Cache::get('tokenForDeleteClass', []);
+        $cachedData = Cache::get('tokenForFormStudent', []);
     
-        if (array_key_exists($cacheKey, $cachedData)) {
-            $savedToken = $cachedData[$cacheKey];
+        if (array_key_exists($keyToken, $cachedData)) {
+            $savedToken = $cachedData[$keyToken];
     
             // Memeriksa apakah token yang disimpan cocok dengan yang diberikan
-            if ($savedToken === $request->input('token')) {
+            if ($savedToken === $requestToken) {
                 // Token cocok, lakukan tindakan yang diinginkan
-                return "Token cocok";
+                return true;
             }
         }
     
         // Jika tidak cocok atau tidak ada dalam cache
-        return "Token tidak cocok atau tidak ada dalam cache";
+        return false;
     }
     
-    
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request, $classGrade, $classTag)
     {
-        $idClass = $request->ic;
-        $checkClass = ClassesModels::where('class_id', $idClass)
-            ->where('class_grade', $classGrade)
-            ->where('class_tag', $classTag)
-            ->first();
+        $keyToken = $classGrade . $classTag;
+        $requestToken = $request->_tokenFormStudent;
+        $isTokenValid = $this->checkToken($keyToken, $requestToken);
         
-        if ($checkClass) {
-            $validateNisName = $request->validate([
-                'nameFrmStudent' => 'required|string|max:255',
-                'nisFrmStudent' => 'required|string|max:255|unique:students,nis',
-            ]);
-            
-            if($validateNisName) {
-                $studentId = Uuid::uuid4()->toString();;
-                $createStudent = StudentsModels::create([
-                    'student_id' => $studentId,
-                    'nis' => $request->nisFrmStudent, 
-                    'name' => $request->nameFrmStudent, 
-                    'status' => $checkClass->status,  
-                    'year' => $checkClass->year,
+        if($isTokenValid) {
+            $idClass = $request->ic;
+            $checkClass = ClassesModels::where('class_id', $idClass)
+                ->where('class_grade', $classGrade)
+                ->where('class_tag', $classTag)
+                ->first();
+            if ($checkClass) {
+                $validateNisName = $request->validate([
+                    'nameFrmStudent' => 'required|string|max:255',
+                    'nisFrmStudent' => 'required|string|max:255|unique:students,nis',
                 ]);
                 
-                if($createStudent) {
-                    $studentImageCreate = StudentsImagesModels::create(['student_id' => $studentId]);
-                    $studentSocmedCreate = StudentsSocmedModels::create([
+                if($validateNisName) {
+                    $studentId = Uuid::uuid4()->toString();;
+                    $createStudent = StudentsModels::create([
                         'student_id' => $studentId,
-                    ]);
-                    $validFile = $request->validate([
-                        'imgFrmStudent' => 'nullable|image',
+                        'nis' => $request->nisFrmStudent, 
+                        'name' => $request->nameFrmStudent, 
+                        'status' => $checkClass->status,  
+                        'year' => $checkClass->year,
                     ]);
                     
-                    if($validFile) {
-                        if($request->hasFile('imgFrmStudent')) {
-                            $image = $request->file('imgFrmStudent');
-                            $imageName = $image->hashName(); // Menamai gambar
-                            $image->storeAs('public/images/students/'. $imageName);
-                            StudentsImagesModels::where('student_id', $studentId)->update([
-                                'name_files' => $imageName,
-                            ]);
-                        }
-                    }
-                    if($studentImageCreate && $studentSocmedCreate) {
-                        $listSocmed = ["facebook", "twitter", "instagram", "tiktok", "youtube"];
-                        foreach($listSocmed as $socmed) {
-                            $this->validateSocmed($request, $socmed , $socmed.'-active', $socmed.'Link', $studentId);
-                        }
-                        
-                        $linkClassWithStudent = ClassesStudentsModels::create([
-                            'class_id' => $idClass, 
+                    if($createStudent) {
+                        $studentImageCreate = StudentsImagesModels::create(['student_id' => $studentId]);
+                        $studentSocmedCreate = StudentsSocmedModels::create([
                             'student_id' => $studentId,
                         ]);
+                        $validFile = $request->validate([
+                            'imgFrmStudent' => 'nullable|image',
+                        ]);
                         
-                        if(!$linkClassWithStudent) {
+                        if($validFile) {
+                            if($request->hasFile('imgFrmStudent')) {
+                                $image = $request->file('imgFrmStudent');
+                                $imageName = $image->hashName(); // Menamai gambar
+                                $image->storeAs('public/images/students/'. $imageName);
+                                StudentsImagesModels::where('student_id', $studentId)->update([
+                                    'name_files' => $imageName,
+                                ]);
+                            }
+                        }
+                        if($studentImageCreate && $studentSocmedCreate) {
+                            $listSocmed = ["facebook", "twitter", "instagram", "tiktok", "youtube"];
+                            foreach($listSocmed as $socmed) {
+                                $this->validateSocmed($request, $socmed , $socmed.'-active', $socmed.'Link', $studentId);
+                            }
+                            
+                            $linkClassWithStudent = ClassesStudentsModels::create([
+                                'class_id' => $idClass, 
+                                'student_id' => $studentId,
+                            ]);
+                            
+                            if(!$linkClassWithStudent) {
+                                $this->ifStoreFail($studentId);
+                                return redirect()->back()->with('errorSomething', 'Something error when add student');
+                            }
+                            
+                            return redirect()->back()->with('succedSomething', 'Success add student');
+                        } else {
                             $this->ifStoreFail($studentId);
                             return redirect()->back()->with('errorSomething', 'Something error when add student');
                         }
-                        
-                        return redirect()->back()->with('succedSomething', 'Success add student');
                     } else {
                         $this->ifStoreFail($studentId);
                         return redirect()->back()->with('errorSomething', 'Something error when add student');
                     }
                 } else {
-                    $this->ifStoreFail($studentId);
                     return redirect()->back()->with('errorSomething', 'Something error when add student');
                 }
             } else {
@@ -297,6 +318,7 @@ class StudentsModelsController extends Controller
                 ->select(
                     'students.student_id',
                     'students.name',
+                    'students.nis',
                     'students_images.name_files', 
                     'students_socmed.facebook', 
                     'students_socmed.instagram', 
@@ -312,20 +334,147 @@ class StudentsModelsController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(StudentsModels $studentsModels)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, StudentsModels $studentsModels)
+    public function update(Request $request, $classGrade, $classTag)
     {
-        //
+        $keyToken = $classGrade . $classTag;
+        $requestToken = $request->_tokenFormStudent;
+        $isTokenValid = $this->checkToken($keyToken, $requestToken);
+        
+        if($isTokenValid) {
+            $idStudent = $request->si;
+            $checkStudent = StudentsModels::where('student_id', $idStudent)->first();
+            if ($checkStudent) {
+                $validInput = Validator::make([
+                    'nameFrmStudent' => $request->nameFrmStudent,
+                    'nisFrmStudent' => $request->nisFrmStudent,
+                ], [
+                    'nameFrmStudent' => 'required|string|max:255',
+                    'nisFrmStudent' => 'required|string|max:255',
+                ]);
+                // $validInput = $request->validate([
+                //     'nameFrmStudent' => 'required|string|max:255',
+                //     'nisFrmStudent' => 'required|string|max:255',
+                // ]);
+                if($validInput->passes()) {
+                    $arrColumnStudent = ['name', 'nis'];
+                    $arrReqInpSt = ['nameFrmStudent', 'nisFrmStudent'];
+                    foreach($arrColumnStudent as $idx => $column) {
+                        $existingData = StudentsModels::where('student_id', $idStudent)->value($column);
+                        $input = $request->input($arrReqInpSt[$idx]);
+                        if($existingData !== $input) {
+                            StudentsModels::where('student_id',$idStudent)
+                                ->update([
+                                    $column => $input,
+                                ]);
+                        }
+                    }
+                    
+                    $listSocmed = ["facebook", "twitter", "instagram", "tiktok", "youtube"];
+                    foreach($listSocmed as $socmed) {
+                        $this->validateSocmed($request, $socmed , $socmed.'-active', $socmed.'Link', $idStudent);
+                    }
+                    
+                    
+                    $nameFileInDatabase = StudentsImagesModels::where('student_id', $idStudent)->value('name_files');
+                    if ($request->_tokenResetImage) {
+                        $keyToken = 'img_' . $idStudent;
+                        $requestToken = $request->_tokenResetImage;
+                        
+                        $isTokenValid = $this->checkToken($keyToken, $requestToken);
+                        if($isTokenValid){
+                            if($nameFileInDatabase !== 'siswa.png') {
+                                $deleteImage = $this->deleteImage($nameFileInDatabase);
+                                if($deleteImage) {
+                                    StudentsImagesModels::where('student_id', $idStudent)
+                                        ->update([
+                                            'name_files' => 'siswa.png',
+                                        ]);
+                                }
+                            }
+                        }
+                    } else {
+                        if ($request->hasFile('imgFrmStudent')) {
+                            $this->storeImage($request->file('imgFrmStudent'), $idStudent);
+                        }
+                    }
+                    
+                    return redirect()->back()->with('updateSomething', 'Update succed');
+                    
+                } 
+                else {
+                    return redirect()->back()->with('errorSomething', 'Something error when add student');                
+                }
+            } else {
+                return redirect()->back()->with('errorSomething', 'Something error when add student');
+            }
+        } else {
+            return redirect()->back()->with('errorSomething', 'Something error when add student');
+        }
     }
+    
+    function storeImage($image, $studentId) {
+        $imageName = $image->hashName();
+        $storeImage = $image->storeAs('public/images/students/'. $imageName);
+        if($storeImage) {
+            StudentsImagesModels::where('student_id', $studentId)->update([
+                'name_files' => $imageName,
+            ]);
+            return true;
+        }
+        return false;
+    }
+    
+    public function deleteImage($nameFiles) {
+        $filePath = 'public/images/students/' . $nameFiles;
+        if (Storage::exists($filePath)) {
+            Storage::delete($filePath);
+            return true; // Penghapusan berhasil
+        }
+        return false; // Penghapusan gagal
+    }
+    
+    
+    public function getDataStudent(Request $request) {
+        $studentId = $request->studentId;
+        $checkStudent = StudentsModels::where('student_id', $studentId)->exists();
+        if ($checkStudent) {
+            $studentClass = ClassesStudentsModels::where('classes_students.student_id', $studentId)
+                ->leftJoin('classes', 'classes.class_id', '=', 'classes_students.class_id')
+                ->select(
+                    'classes.class_id',
+                    'classes.class_grade',
+                    'classes.class_tag',
+                    'classes.year',
+                )
+                ->first();
+            $dataStudent = StudentsModels::where('students.student_id', $studentId)
+                ->leftJoin('students_images', 'students_images.student_id', '=', 'students.student_id')
+                ->select(
+                    'students.name',
+                    'students.nis',
+                    'students_images.name_files',
+                )
+                ->first();
+            $socmedStudent = StudentsSocmedModels::where('student_id', $studentId)
+            ->select(
+                'facebook',
+                'instagram',
+                'twitter',
+                'tiktok',
+                'youtube',
+            )
+            ->first();
+            
+            return response()->json([
+                'whatClass' => $studentClass,
+                'dataStudent' => $dataStudent,
+                'socmedStudent' => $socmedStudent,
+            ]);
+        }
+    }
+    
 
     /**
      * Remove the specified resource from storage.

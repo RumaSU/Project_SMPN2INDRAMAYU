@@ -66,8 +66,7 @@ $(document).on('click', '.delBtClass, .deleteClassInfo', function() {
             $rootDeleteInfo.append(contentDelete);
 
             $rootDeleteInfo.show();
-            dataSummaryDelete($classId)
-            // console.log($(data));
+            dataSummaryDelete($classId);
         }
     });
 });

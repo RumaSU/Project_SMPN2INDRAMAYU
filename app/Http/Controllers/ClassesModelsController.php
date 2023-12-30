@@ -678,7 +678,7 @@ class ClassesModelsController extends Controller
     // }
     
     public function deleteImage($nameFiles) {
-        $filePath = 'images/classes/' . $nameFiles;
+        $filePath = 'public/images/classes/' . $nameFiles;
         if (Storage::exists($filePath)) {
             Storage::delete($filePath);
             return true; // Penghapusan berhasil

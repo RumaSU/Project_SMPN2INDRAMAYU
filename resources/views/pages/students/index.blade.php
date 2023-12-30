@@ -176,7 +176,7 @@
                                         <i class="bi bi-trash3"></i>
                                     </span>
                                 </div> --}}
-                                <img src="{{asset('storage/images/students/' . $student->name_files)}}" alt="" class="supImg w-full h-full object-cover object-center relative" loading="lazy">
+                                <img src="{{asset('storage/images/students/' . $student->name_files)}}" alt="" class="supImg w-full h-full object-cover object-center relative">
                                 <div class="block w-full h-full absolute inset-0 group-hover:bg-black/30 transition-all" data-student-id={{$student->student_id}} data-nis="{{$student->nis}}">
                                     <p class="nameStudent w-full md:w-3/4 py-2 text-center text-sm md:text-base font-bold bg-white md:rounded-xl z-10 absolute bottom-0 md:-bottom-full left-1/2 -translate-y-0 md:translate-y-full -translate-x-1/2 transition-all md:group-hover:bottom-[5%] md:group-hover:-translate-y-[5%]">{{$student->name}}</p>
                                 </div>
@@ -207,7 +207,8 @@
             </div>
         </div>
     </section>
-    <section id="pop-upFormAddStudent" class="pop-upFormAddStudent fixed w-full lg:w-1/2 max-h-full left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2  px-8 py-6 bg-white lg:border lg:border-black rounded-2xl overflow-auto z-50" style="display: none">
+    {{-- <div class="loadWaiting fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"><div class="animate-spin rounded-[100%] border-[16px] border-dotted w-[50px] h-[50px] md:w-[120px] md:h-[120px]"></div></div> --}}
+    <section id="pop-upFormAddStudent" class="pop-upFormAddStudent fixed w-full lg:w-1/2 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2  px-8 py-6 bg-white lg:border lg:border-black rounded-2xl overflow-auto z-50 transition-all duration-500" style="display: none;">
         <div class="hdrPopup py-4">
             <div class="titlePopupAdd">
                 <div class="t text-2xl">
@@ -283,10 +284,11 @@
                                 <span role="button" id="resetImageStudent" class="resetImageStudent border border-black bg-white p-0.5 rounded-lg hover:bg-gray-200 text-2xl">
                                     <i class="bi bi-arrow-clockwise flex"></i>
                                 </span>
+                                <input type="hidden" name="_tokenResetImage" id="_tokenResetImage">
                             </div>
-                            <img src="{{asset('assets/img/dumb/imgtemp 1.jpg')}}" alt="" id="previewImage" class="supImg w-full h-full object-cover object-center relative bg-gray-400/50">
+                            <img src="" alt="" id="previewImage" class="supImg w-full h-full object-cover object-center relative bg-gray-400/50">
                             <label for="imgFrmStudent" class="block w-full h-full absolute inset-0 group-hover:bg-black/30 transition-all cursor-pointer">
-                                <label for="imgFrmStudent" class="itemClass w-3/4 py-2 text-center font-bold cursor-pointer bg-white rounded-xl z-10 absolute -bottom-full left-1/2 translate-y-full -translate-x-1/2 transition-all group-hover:bottom-[5%] group-hover:-translate-y-[5%] hover:bg-cyan-500">
+                                <label for="imgFrmStudent" class="itemClass w-3/4 py-2 text-center font-bold cursor-pointer bg-white rounded-xl z-10 absolute -bottom-full left-1/2 translate-y-full -translate-x-1/2 transition-all group-hover:bottom-[5%] group-hover:-translate-y-[5%] hover:bg-gray-200">
                                     <i class="bi bi-plus-circle text-lg"></i>
                                     Add Image
                                 </label>
@@ -495,7 +497,7 @@
         </div>
     </section>
     <div class="detailShowStudent" id="detailShowStudent" role="dialog" style="display: none;">
-        <div class="rootShowDetails rootPopDetails w-full h-full max-h-fit lg:h-fit lg:w-1/3 bg-white shadow-slate-950 shadow-md fixed pb-8 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50 rounded-lg overflow-hidden">
+        <div class="rootShowDetails rootPopDetails w-full h-full max-h-fit lg:h-fit lg:w-1/2 xl:w-1/3 bg-white shadow-slate-950 shadow-md fixed pb-8 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50 rounded-lg overflow-hidden">
             <div class="heaAbtSumTeDats flex items-center justify-between text-2xl sticky w-full left-0 top-0 pt-4 xl:pt-12 pb-2 px-8">
                 <div class="tiAbt">
                     <div class="txt">
@@ -516,7 +518,7 @@
                         <div class="abtSumEks">
                             <div class="cntnAbtSumEks overflow-hidden">
                                 <div class="imgWthNameTeDats block">
-                                    <div class="thImgStud mx-auto aspect-square border-2 w-52 rounded-[100%] overflow-hidden p-1">
+                                    <div class="thImgStud mx-auto aspect-square border-2 w-60 md:w-72 rounded-[100%] overflow-hidden p-1">
                                         <img src="" alt=" Image" class="h-full w-full object-cover object-center rounded-[100%]" id="popupImageStudent">
                                     </div>
                                     <div class="nmeStudWthEdDel space-y-2">
@@ -536,7 +538,8 @@
                                             <div class="btEdStudDats">
                                                 <span role="button" id="editStudents"
                                                     class="border-2 px-6 py-1 rounded-md block" title=""
-                                                    data-show-item-id="" data-show-item-name="">
+                                                    data-show-item-id="" data-show-item-name=""
+                                                    data-class-id="">
                                                     <div class="flex items-center">
                                                         <i></i>
                                                         <p>Edit</p>
@@ -546,7 +549,8 @@
                                             <div class="btDelStudDats">
                                                 <span role="button" class="border-2 px-6 py-1 rounded-md block"
                                                     aria-label="Delete" title="" data-show-item-id=""
-                                                    data-show-item-name="">
+                                                    data-show-item-name=""
+                                                    data-class-id="">
                                                     <div class="flex items-center">
                                                         <i></i>
                                                         <p>Hapus</p>
@@ -567,24 +571,23 @@
                                         </strong>
                                     </div>
                                 </div>
-                                <div class="cntnLnk mt-6 px-4">
+                                <div class="cntnLnk mt-6 px-1.5 md:px-4">
                                     <ul class="list-link-display grid 2xl:grid-cols-2 gap-4" role="list">
                                     </ul>
                                 </div>
                             </div>
                         </div>
-                        {{-- <div class="dtlSumStudDats mt-8">
+                        <div class="dtlSumStudDats mt-8">
                             <div class="cntnDtlSumStudDats ">
                                 <div class="tiDtlSumStudDats">
                                     <div class="txt">
                                         <strong class="font-bold text-2xl">
-                                            Detail Studnaga Kependidikan
+                                            Detail Siswa
                                         </strong>
                                     </div>
                                 </div>
                                 <div class="cntnDtl mt-6 px-4">
                                     <ul class="list-data-student space-y-3">
-                                        <li class="itemEmailStudent"></li>
                                         <li>
                                             <div class="data-item overflow-hidden ">
                                                 <div class="cntnItem flex items-center gap-4">
@@ -623,11 +626,24 @@
                                     </ul>
                                 </div>
                             </div>
-                        </div> --}}
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+    {{-- <div class="deleteStudentPopupAlert fixed bg-orange-50 w-full pb-12 xl:w-1/2 min-h-full lg:min-h-[32rem] max-h-full lg:max-h-[45rem] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-2xl overflow-auto z-50 shadow-gray-500 shadow-lg transition-all" style="display: none" role="alertdialog"> --}}
+    <div class="deleteStudentPopupAlert fixed bg-orange-50 w-full pb-12 xl:w-1/2  left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-2xl overflow-auto z-50 shadow-gray-500 shadow-lg transition-all" style="display: none" role="alertdialog">
+        <div class="px-8 py-6 relative">
+            <div class="px-6 py-6 flex items-center gap-2 text-red-500 absolute left-0 top-0 -translate-x-0 -translate-y-0 z-10 bg-orange-50 rounded-lg">
+                <i class="bi bi-exclamation-circle-fill text-4xl"></i>
+                <strong>Peringatan</strong>
+            </div>
+            <div class="closeStudentAlertDelete text-6xl text-gray-600 absolute right-0 top-0 -translate-x-0 -translate-y-0 z-10 bg-orange-50 rounded-lg">
+                <span role="button" class="bi bi-x"></span>
+            </div>
+        </div>
+        
     </div>
     <div class="foo mb-96"></div>
 @endsection
@@ -636,6 +652,8 @@
     <script src="{{asset('assets/js/students/studentLinkActive.js')}}"></script>
     <script src="{{asset('assets/js/students/studentLazy.js')}}"></script>
     <script src="{{asset('assets/js/students/studentForm.js')}}"></script>
+    <script src="{{asset('assets/js/students/studentUpdate.js')}}"></script>
+    <script src="{{asset('assets/js/students/studentDelete.js')}}"></script>
     <script src="{{asset('assets/js/students/studentImagePreview.js')}}"></script>
     {{-- <script src="assets/js/students/formsInpExcel.js"></script>
     <script src="assets/js/students/grouplist.js"></script>

@@ -36,6 +36,7 @@ Route::controller(LoadContent::class)->group(function() {
     Route::get('/kelas/deleteload', 'deleteInfo');
     Route::get('/kelas/alertload', 'alertInfo');
     Route::get('/siswa/formload', 'studentForm');
+    Route::get('/siswa/deleteload', 'studentDelete');
 });
 
 Route::controller(ClassesModelsController::class)->group(function() {
@@ -56,9 +57,14 @@ Route::controller(ClassesModelsController::class)->group(function() {
 
 Route::controller(StudentsModelsController::class)->group(function() {
     Route::post('/siswa', 'show')->name('siswaData');
+    Route::post('/siswa/infodata', 'getDataStudent')->name('siswaData');
     Route::post('/siswa/formtoken', 'createTokenForm');
+    Route::post('/siswa/resetimagetoken', 'createTokenResetImage');
+    Route::post('/siswa/deletetoken', 'createTokenDelete');
+    
     Route::get('/kelas/siswa/{classGrade}/{classTag}', 'index')->name('student');
     Route::post('/kelas/siswa/{classGrade}/{classTag}/store', 'store')->name('storeStudents');
+    Route::post('/kelas/siswa/{classGrade}/{classTag}/update', 'update');
 });
 
 // Route::get('/kelas', [ClassesModelsController::class, 'index']) -> name('viewClass');
