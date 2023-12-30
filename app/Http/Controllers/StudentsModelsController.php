@@ -15,6 +15,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Validation\Rule;
 use Ramsey\Uuid\Uuid;
 
@@ -88,6 +91,43 @@ class StudentsModelsController extends Controller
         
         // return view("pages.students.index");
     }
+    
+    public function createTokenForm(Request $request) {
+        $uuidToken = Uuid::uuid4()->toString();
+        $tokenForm = $uuidToken . $request->gradeClass . $request->tagClass . $request->idClass;
+        $md5Hash = md5(rand() . $tokenForm);
+        
+        $cacheKey = $request->gradeClass . $request->tagClass;
+        
+        // Menyimpan nilai dalam cache sebagai array yang bersarang
+        $cachedData = Cache::get('tokenForFormStudent', []);
+        $cachedData[$cacheKey] = $md5Hash;
+        
+        // Simpan nilai dalam cache
+        Cache::put('tokenForFormStudent', $cachedData, now()->addMinutes(10)); // Simpan selama 60 menit
+        return response()->json(['tokenForm' => $md5Hash]);
+    }
+    
+    public function checkToken(Request $request) {
+        $cacheKey = $request->gradeClass . '_' . $request->tagClass;
+    
+        // Mengambil data dari cache
+        $cachedData = Cache::get('tokenForDeleteClass', []);
+    
+        if (array_key_exists($cacheKey, $cachedData)) {
+            $savedToken = $cachedData[$cacheKey];
+    
+            // Memeriksa apakah token yang disimpan cocok dengan yang diberikan
+            if ($savedToken === $request->input('token')) {
+                // Token cocok, lakukan tindakan yang diinginkan
+                return "Token cocok";
+            }
+        }
+    
+        // Jika tidak cocok atau tidak ada dalam cache
+        return "Token tidak cocok atau tidak ada dalam cache";
+    }
+    
     
     /**
      * Show the form for creating a new resource.
@@ -202,16 +242,8 @@ class StudentsModelsController extends Controller
         if ($validSocmed->passes()) {
             // Melakukan validasi sukses, lakukan update jika nilai berubah
             if ($active === "active") {
-                // Lakukan pengecekan dan update jika ada perubahan pada link
-                // $linkSocmed = (str_contains($link, "https://") || str_contains($link, "http://")) ? $link : "https://" . $link;
-                // $linkSocmed = (str_contains($link, "https://" . $socmed . ".com/") || str_contains($link, "http://" . $socmed . ".com/")) ? $link : "https://". $socmed . ".com/" . $link;
+                
                 $linkSocmed = $this->validateSocialMediaLink($link, $socmed);
-                // if ($linkSocmed) {
-                //     StudentsSocmedModels::where("student_id", $studentId)
-                //         ->update([
-                //             $socmed => $linkSocmed,
-                //         ]);
-                // }
                 $isLinkSocmedSame = StudentsSocmedModels::where('student_id', $studentId)->where($socmed, $linkSocmed)->value($socmed);
                 if ($linkSocmed != $isLinkSocmedSame) {
                 // if ($linkSocmed) {

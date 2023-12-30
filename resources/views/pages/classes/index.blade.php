@@ -6,10 +6,41 @@
             display: none;
         }
         #classYear::-webkit-outer-spin-button, #classYear::-webkit-inner-spin-button{-webkit-appearance: none; margin:0;}
+        
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(-40%);
+                animation-timing-function: cubic-bezier(0.8,0,1,1);
+            }
+            50% {
+                transform: none;
+                animation-timing-function: cubic-bezier(0,0,0.2,1);
+            }
+        }
+        @keyframes pulse {
+            50% {
+                opacity: .5;
+            }
+        }
+        
+        @keyframes animateBlur{
+            50% {
+                filter: blur(4px);
+            }
+        }
+        
+        
+        .animation-loading {
+            animation: bounce 1s infinite, pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        .animation-blur{
+            animation: animateBlur 1s infinite;
+        }
+        .shortListStudent::-webkit-scrollbar-thumb { background-color: rgb(255, 204, 145);}
     </style>
 @endsection
 @section('content')
-    <div class="alertContent fixed right-0 z-[9999] space-y-2 text-2xl">
+    <div class="alertContent fixed right-0 top-4 md:right-4 z-[9999] space-y-2 text-2xl">
         @if (session('errorSomething'))
             <div class="errorDelete min-w-[20rem] px-4 py-3 bg-red-100 rounded-sm">
                 <div class="cntn flex items-center gap-4">
@@ -19,23 +50,84 @@
             </div>
         @endif
         @if (session('successAdd'))
-            <div class="confirmDelete min-w-[20rem] px-4 py-3 bg-green-100 rounded-sm">
-                <div class="cntn flex items-center gap-4">
-                    <i class="bi bi-check-circle-fill text-green-500"></i>
-                    <p class="text-lg">{{ session('successAdd') }}</p>
+            <div class="succedSomething text-green-950 w-full lg:w-[26rem] px-4 py-3 bg-green-100 border-l-4 border-green-600 rounded-md transition-all translate-x-[125%]" role="alert" aria-live="assertive">
+                <div class="titleConfirmHide flex items-center gap-4">
+                    <i class="bi bi-check-circle-fill text-green-700"></i>
+                    <p class="text-lg">Kelas berhasil ditambahkan</p>
+                </div>
+                <div class="cntnWht ml-6 mt-2">
+                    <div class="infoWhatClassHide flex flex-col md:flex-row md:gap-4">
+                        <div class="icn flex items-center gap-2">
+                            <i class="bi bi-info-circle-fill text-lg text-green-700"></i>
+                            <p class="text-base block md:hidden">Info</p>
+                        </div>
+                        <div class="text-base">
+                            <ul class="text-sm">
+                                <li class="flex items-center">
+                                    <i class="dotList shrink-0 bg-green-700 rounded-[100%] w-1.5 h-1.5 block mr-2"></i>
+                                    <div class="itm"><p>Kelas <strong>{{ session('successAdd')['classes'] }} {{ session('successAdd')['year'] }}</strong> berhasil ditambahkan</p></div>
+                                </li>
+                                <li class="flex items-center">
+                                    <i class="dotList shrink-0 bg-green-700 rounded-[100%] w-1.5 h-1.5 block mr-2"></i>
+                                    <div class="itm"><p><strong>{{ session('successAdd')['teacherName'] }}</strong> dijadikan wali kelas</p></div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         @endif
         @if (session('updateSomething'))
-            <div class="confirmUpdate min-w-[20rem] px-4 py-3 bg-blue-100 rounded-sm">
-                <div class="cntn flex items-center gap-4">
+            <div class="updateSomething text-blue-950 w-full lg:w-[26rem] px-4 py-3 bg-blue-100 border-l-4 border-blue-600 rounded-md transition-all" role="alert" aria-live="assertive">
+                <div class="titleConfirmHide flex items-center gap-4">
                     <i class="bi bi-upload text-blue-700"></i>
-                    <p class="text-lg">{{ session('updateSomething') }}</p>
+                    <p class="text-lg">Kelas berhasil diperbaharui</p>
+                </div>
+                <div class="cntnWht ml-6 mt-2">
+                    <div class="infoWhatClassHide flex flex-col md:flex-row md:gap-4">
+                        <div class="icn flex items-center gap-2">
+                            <i class="bi bi-info-circle-fill text-lg text-blue-700"></i>
+                            <p class="text-base block md:hidden">Info</p>
+                        </div>
+                        <div class="text-base">
+                            <ul class="text-sm">
+                                @if (isset(session('updateSomething')['teacher_id']))
+                                    <li class="flex items-center">
+                                        <i class="dotList shrink-0 bg-blue-700 rounded-[100%] w-1.5 h-1.5 block mr-2"></i>
+                                        <div class="itm"><p>{!!session('updateSomething')['teacher_id']!!}</p></div>
+                                    </li>
+                                @endif
+                                @if (isset(session('updateSomething')['class_grade']))
+                                    <li class="flex items-center">
+                                        <i class="dotList shrink-0 bg-blue-700 rounded-[100%] w-1.5 h-1.5 block mr-2"></i>
+                                        <div class="itm"><p>{!! session('updateSomething')['class_grade'] !!}</p></div>
+                                    </li>
+                                @endif
+                                @if (isset(session('updateSomething')['class_tag']))
+                                    <li class="flex items-center">
+                                        <i class="dotList shrink-0 bg-blue-700 rounded-[100%] w-1.5 h-1.5 block mr-2"></i>
+                                        <div class="itm"><p>{!! session('updateSomething')['class_tag'] !!}</p></div>
+                                    </li>
+                                @endif
+                                @if (isset(session('updateSomething')['description']))
+                                    <li class="flex items-center">
+                                        <i class="dotList shrink-0 bg-blue-700 rounded-[100%] w-1.5 h-1.5 block mr-2"></i>
+                                        <div class="itm"><p>{!! session('updateSomething')['description'] !!}</p></div>
+                                    </li>
+                                @endif
+                                @if (isset(session('updateSomething')['year']))
+                                    <li class="flex items-center">
+                                        <i class="dotList shrink-0 bg-blue-700 rounded-[100%] w-1.5 h-1.5 block mr-2"></i>
+                                        <div class="itm"><p>{!! session('updateSomething')['year'] !!}</p></div>
+                                    </li>
+                                @endif
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         @endif
     </div>
-    
     <section class="img-classes flex items-center justify-center relative overflow-hidden  text-center text-white h-80 lg:h-[28rem]">
         <div class="lazy-placeholder animate-pulse w-full h-full absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-gray-300">
             <div class="txPlace absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 flex flex-col justify-center items-center gap-2">
@@ -70,7 +162,7 @@
             </div>
             <div class="list-class mt-6 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-2 sm:gap-5 relative">
                 @foreach ($tempClassVII as $class)
-                    <div class="itemClass relative group overflow-hidden">
+                    <div class="itemClass relative group overflow-hidden transition-all duration-500" data-class-id="{{$class->class_id}}">
                         <div class="questionSummaryClass items-center absolute p-2 rounded-bl-xl bg-white right-0 translate-x-0 z-20 border-l border-b hidden">
                             <div class="button-editDel -z-10 flex items-center absolute rounded-l-lg bg-white overflow-hidden -right-full translate-x-full group-hover:right-[36%] group-hover:-translate-x-[36%] transition-all">
                                 <span role="button" class="editBtClass px-3 flex bg-white p-2 hover:bg-gray-200" data-class-id="{{$class->class_id}}">
@@ -79,50 +171,25 @@
                                 <span role="button" class="delBtClass px-3 flex bg-white p-2 hover:bg-gray-200" data-class-id="{{$class->class_id}}">
                                     <i class="bi bi-trash3"></i>
                                 </span>
+                                {{-- <form action="/kelas/studentlist" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="classId" value="{{$class->class_id}}">
+                                    <button type="submit" class="cursor-pointer px-3 flex bg-white p-2 hover:bg-gray-200" data-class-id="{{$class->class_id}}">
+                                        <i class="bi bi-trash3" ></i>
+                                    </button>
+                                </form> --}}
                             </div>
                             <div class="icnQs">
-                                <span role="button" class="cursor-pointer p-1 flex hover:opacity-30">
+                                <span role="button" class="icnQsClassInfo cursor-pointer p-1 flex hover:opacity-30" data-class-id="{{$class->class_id}}">
                                     <i class="bi bi-question-circle-fill text-2xl" ></i>                                    
                                 </span>
-                            </div>
-                        </div>
-                        <div class="contentClass group aspect-[3/4] bg-white regular-shadow border rounded-2xl relative" data-class-id="{{$class->class_id}}">
-                            <div class="lazy-placeholder w-full h-full animate-pulse relative">
-                                <div class="flex items-center justify-center w-full h-full bg-gray-300 rounded">
-                                    <svg class="w-10 h-10 text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
-                                        <path d="M18 0H2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm-5.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm4.376 10.481A1 1 0 0 1 16 15H4a1 1 0 0 1-.895-1.447l3.5-7A1 1 0 0 1 7.468 6a.965.965 0 0 1 .9.5l2.775 4.757 1.546-1.887a1 1 0 0 1 1.618.1l2.541 4a1 1 0 0 1 .028 1.011Z"/>
-                                    </svg>
-                                </div>
-                                <div class="lzLR flex items-center gap-2 absolute bg-gray-200 py-1 px-4 rounded-xl right-[5%] top-[5%] -translate-x-[5%] -translate-y-[5%] ">
-                                    <div class="bg-gray-300 w-8 h-8 rounded-lg"></div>
-                                    <div class="bg-gray-300 w-8 h-8 rounded-lg"></div>
-                                </div>
-                                <div class="bg-gray-200 w-3/4 py-6 rounded-xl absolute bottom-[5%] left-1/2 -translate-y-[5%] -translate-x-1/2"></div>
-                            </div>
-                            <div class="contentItems w-full h-full dvClass hidden" data-class-id="{{$class->class_id}}">
-                                <img src="{{asset('storage/images/classes/' . $class->name_files )}}" alt="" class="lozad supImg w-full h-full object-cover object-center relative" loading="lazy">
-                                <a href="/kelas/siswa/{{$class->class_grade}}/{{$class->class_tag}}?ic={{$class->class_id}}" class="block w-full h-full absolute inset-0 group-hover:bg-black/30 transition-all" data-class-grade="{{$class->class_grade}}" data-class-id="{{$class->class_id}}">
-                                    <p class="gradeAndTagClass w-3/4 py-2 text-center font-bold bg-white rounded-xl absolute -bottom-full left-1/2 translate-y-full -translate-x-1/2 transition-all group-hover:bottom-[5%] group-hover:-translate-y-[5%]">
-                                        {{$class->class_grade . ' ' . $class->class_tag}}
-                                    </p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="itemClass relative group overflow-hidden">
-                        <div class="questionSummaryClass items-center absolute p-2 rounded-bl-xl bg-white right-0 translate-x-0 z-20 border-l border-b hidden">
-                            <div class="button-editDel -z-10 flex items-center absolute rounded-l-lg bg-white overflow-hidden -right-full translate-x-full group-hover:right-[36%] group-hover:-translate-x-[36%] transition-all">
-                                <span role="button" class="editBtClass px-3 flex bg-white p-2 hover:bg-gray-200" data-class-id="{{$class->class_id}}">
-                                    <i class="bi bi-pencil"></i>
-                                </span>
-                                <span role="button" class="delBtClass px-3 flex bg-white p-2 hover:bg-gray-200" data-class-id="{{$class->class_id}}">
-                                    <i class="bi bi-trash3"></i>
-                                </span>
-                            </div>
-                            <div class="icnQs">
-                                <span role="button" class="cursor-pointer p-1 flex hover:opacity-30">
-                                    <i class="bi bi-question-circle-fill text-2xl" ></i>                                    
-                                </span>
+                                {{-- <form action="/kelas/info" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="classId" value="{{$class->class_id}}">
+                                    <button type="submit" class="cursor-pointer p-1 flex hover:opacity-30" data-class-id="{{$class->class_id}}">
+                                        <i class="bi bi-question-circle-fill text-2xl" ></i>
+                                    </button>
+                                </form> --}}
                             </div>
                         </div>
                         <div class="contentClass group aspect-[3/4] bg-white regular-shadow border rounded-2xl relative" data-class-id="{{$class->class_id}}">
@@ -167,7 +234,7 @@
             </div>
             <div class="list-class mt-6 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-2 sm:gap-5 relative @if (count($tempClassVIII) > 4) hidden @endif">
                 @foreach ($tempClassVIII as $class)
-                    <div class="itemClass relative group overflow-hidden">
+                    <div class="itemClass relative group overflow-hidden  transition-all duration-500" data-class-id="{{$class->class_id}}">
                         <div class="questionSummaryClass items-center absolute p-2 rounded-bl-xl bg-white right-0 translate-x-0 z-20 border-l border-b hidden">
                             <div class="button-editDel -z-10 flex items-center absolute rounded-l-lg bg-white overflow-hidden -right-full translate-x-full group-hover:right-[36%] group-hover:-translate-x-[36%] transition-all">
                                 <span role="button" class="editBtClass px-3 flex bg-white p-2 hover:bg-gray-200" data-class-id="{{$class->class_id}}">
@@ -178,7 +245,7 @@
                                 </span>
                             </div>
                             <div class="icnQs">
-                                <span role="button" class="cursor-pointer p-1 flex hover:opacity-30">
+                                <span role="button" class="icnQsClassInfo cursor-pointer p-1 flex hover:opacity-30" data-class-id="{{$class->class_id}}">
                                     <i class="bi bi-question-circle-fill text-2xl" ></i>                                    
                                 </span>
                             </div>
@@ -235,7 +302,7 @@
             </div>
             <div class="list-class mt-6 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-2 sm:gap-5 relative @if (count($tempClassIX) > 4) hidden @endif">
                 @foreach ($tempClassIX as $class)
-                    <div class="itemClass relative group overflow-hidden">
+                    <div class="itemClass relative group overflow-hidden  transition-all duration-500" data-class-id="{{$class->class_id}}">
                         <div class="questionSummaryClass items-center absolute p-2 rounded-bl-xl bg-white right-0 translate-x-0 z-20 border-l border-b hidden">
                             <div class="button-editDel -z-10 flex items-center absolute rounded-l-lg bg-white overflow-hidden -right-full translate-x-full group-hover:right-[36%] group-hover:-translate-x-[36%] transition-all">
                                 <span role="button" class="editBtClass px-3 flex bg-white p-2 hover:bg-gray-200" data-class-id="{{$class->class_id}}">
@@ -246,7 +313,7 @@
                                 </span>
                             </div>
                             <div class="icnQs">
-                                <span role="button" class="cursor-pointer p-1 flex hover:opacity-30">
+                                <span role="button" class="icnQsClassInfo cursor-pointer p-1 flex hover:opacity-30" data-class-id="{{$class->class_id}}">
                                     <i class="bi bi-question-circle-fill text-2xl" ></i>                                    
                                 </span>
                             </div>
@@ -278,7 +345,7 @@
             </div>
         </div>
     </section>
-    <section id="pop-upFormAdd" class="pop-upFormAdd lozad fixed w-full xl:w-1/2 max-h-full left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2  px-8 py-6 bg-white border border-black rounded-2xl overflow-auto z-50 hidden">
+    <div id="pop-upFormAdd" class="pop-upFormAdd lozad fixed w-full xl:w-1/2 max-h-full left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2  px-8 py-6 bg-white border border-black rounded-2xl overflow-auto z-50 hidden">
         <div class="mx-auto">
             <span role="button" id="closeForm" type="button" class="icon border border-black rounded-lg absolute top-[5%] right-[5%] -translate-x-[5%] -translate-y-[5%]">
                 <i class="bi bi-x text-5xl"></i>
@@ -373,14 +440,32 @@
                 <button type="submit" class="block border border-black py-2 px-12 rounded-xl mx-auto hover:bg-gray-200"> Simpan </button>
             </form>
         </div>
-    </section>
-    <div id="overlayPopUp" class="overlayPopUp hidden w-full h-full bg-black/30 fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-40"></div>
+    </div>
+    <div class="infoClassPopup fixed w-full xl:w-1/2 min-h-[32rem] max-h-full left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-white border border-black rounded-2xl overflow-auto z-50" style="display: none" role="dialog">
+        <div class="px-8 py-6 relative">
+            <div class="closeClassInfo text-6xl absolute right-0 top-0 -translate-x-0 -translate-y-0 z-10 bg-white rounded-lg">
+                <span role="button" class="bi bi-x"></span>
+            </div>
+        </div>
+    </div>
+    <div class="deleteClassPopupAlert fixed bg-orange-50 w-full xl:w-1/2 min-h-[32rem] max-h-full lg:max-h-[32rem] left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-2xl overflow-auto z-50 shadow-gray-500 shadow-lg" style="display: none" role="alertdialog">
+        <div class="px-8 py-6 relative">
+            <div class="px-6 py-6 flex items-center gap-2 text-red-500 absolute left-0 top-0 -translate-x-0 -translate-y-0 z-10 bg-orange-50 rounded-lg">
+                <i class="bi bi-exclamation-circle-fill text-4xl"></i>
+                <strong>Peringatan</strong>
+            </div>
+            <div class="closeClassAlertDelete text-6xl text-gray-600 absolute right-0 top-0 -translate-x-0 -translate-y-0 z-10 bg-orange-50 rounded-lg">
+                <span role="button" class="bi bi-x"></span>
+            </div>
+        </div>
+    </div>
+    
 @endsection
 @section('custom-script')
-    <script src="{{asset('assets/js/students/classGrouplist.js')}}"></script>
-    <script src="{{asset('assets/js/students/classForm.js')}}"></script>
-    <script src="{{asset('assets/js/students/class.js')}}"></script>
-    <script src="{{asset('assets/js/students/classEdit.js')}}"></script>
-    <script src="{{asset('assets/js/students/classDelete.js')}}"></script>
-    {{-- <script src="assets/js/students/formsAdd.js"></script> --}}
+    <script src="{{asset('assets/js/kelas/classGrouplist.js')}}"></script>
+    <script src="{{asset('assets/js/kelas/classForm.js')}}"></script>
+    <script src="{{asset('assets/js/kelas/class.js')}}"></script>
+    <script src="{{asset('assets/js/kelas/classInfo.js')}}"></script>
+    <script src="{{asset('assets/js/kelas/classEdit.js')}}"></script>
+    <script src="{{asset('assets/js/kelas/classDelete.js')}}"></script>
 @endsection

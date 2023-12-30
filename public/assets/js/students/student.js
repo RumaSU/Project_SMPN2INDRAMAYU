@@ -10,7 +10,7 @@ $(document).ready(function () {
             'X-CSRF-TOKEN': getCsrfToken()
         }
     });
-    $(".itemStudent").click(function() {
+    $(".contentStudent, .icnQsStudentInfo").click(function() {
         popupContentDisplay.hide();
         var $studentId = $(this).data('studentId');
         popupRoot.show();

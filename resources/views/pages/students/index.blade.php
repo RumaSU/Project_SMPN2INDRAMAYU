@@ -67,9 +67,9 @@
                     <img src="{{asset('storage/images/teachers/' . $teacherClass->name_files)}}" alt="" class="w-full h-full object-cover object-center rounded-[100%]">
                 </div>
                 <div class="editImgTe absolute right-[5%] top-[15%] -translate-x-[5%] -translate-y-[15%] opacity-0 transition-opacity group-hover:opacity-100">
-                    <button class="editB border border-black bg-white p-2 rounded-lg hover:bg-gray-200">
+                    <span role="button" class="editBImgTeacher bg-white p-2 rounded-lg hover:bg-gray-200">
                         <i class="bi bi-pencil"></i>
-                    </button>
+                    </span>
                 </div>
             </div>
             <h2> {{$teacherClass->name}} </h2>
@@ -121,34 +121,65 @@
     </section>
     <section class="listStudents mt-8 px-4 space-y-12">
         {{-- <div class="list-items flex flex-wrap gap-5"> --}}
-        <div class="list-student mt-6 grid grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-2 sm:gap-5 relative">
+        <div class="list-student mt-6 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-2 sm:gap-5 relative">
             @if ($listStudents !== null)
                 @foreach ($listStudents as $student)
-                    <div class="itemStudent group aspect-[3/4] bg-white regular-shadow border rounded-2xl overflow-hidden relative" aria-haspopup="true" data-student-id={{$student->student_id}}>
-                        <div class="lazy-placeholder w-full h-full animate-pulse relative">
-                            <div class="flex items-center justify-center w-full h-full bg-gray-300 rounded">
-                                <svg class="w-10 h-10 text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
-                                    <path d="M18 0H2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm-5.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm4.376 10.481A1 1 0 0 1 16 15H4a1 1 0 0 1-.895-1.447l3.5-7A1 1 0 0 1 7.468 6a.965.965 0 0 1 .9.5l2.775 4.757 1.546-1.887a1 1 0 0 1 1.618.1l2.541 4a1 1 0 0 1 .028 1.011Z"/>
-                                </svg>
-                            </div>
-                            <div class="lzLR flex items-center gap-2 absolute bg-gray-200 py-1 px-4 rounded-xl right-[5%] top-[5%] -translate-x-[5%] -translate-y-[5%] ">
-                                <div class="bg-gray-300 w-8 h-8 rounded-lg"></div>
-                                <div class="bg-gray-300 w-8 h-8 rounded-lg"></div>
-                            </div>
-                            <div class="bg-gray-200 w-3/4 py-6 rounded-xl absolute bottom-[5%] left-1/2 -translate-y-[5%] -translate-x-1/2"></div>
-                        </div>
-                        <div class="contentItems w-full h-full hidden" data-student-id={{$student->student_id}}>
-                            <div class="button-editDel flex gap-2 items-center absolute bg-black/40 py-1 px-4 rounded-xl z-10 -right-full top-[5%] -translate-x-[5%] translate-y-full transition-all group-hover:right-[5%] group-hover:translate-x-[5%] group-hover:top-[5%] group-hover:translate-y-[5%]">
-                                <span role="button" class="editBtClass border border-black bg-white p-2 rounded-lg hover:bg-gray-200">
+                    <div class="itemStudent relative group transition-all overflow-hidden duration-500" aria-haspopup="true">
+                        <div class="questionSummaryStudent items-center absolute p-2 rounded-bl-xl bg-white right-0 translate-x-0 z-20 border-l border-b hidden">
+                            <div class="button-editDel text-sm md:text-base -z-10 flex items-center absolute rounded-l-lg bg-white overflow-hidden -right-full top-0 md:top-auto translate-x-full group-hover:right-[29%] md:group-hover:right-[36%] group-hover:-translate-x-[29%] md:group-hover:-translate-x-[36%] transition-all">
+                                <span role="button" class="editBtStudent px-3 flex bg-white p-2 hover:bg-gray-200" data-student-id="{{$student->student_id}}">
                                     <i class="bi bi-pencil"></i>
                                 </span>
-                                <span role="button" class="delBtClass border border-black bg-white p-2 rounded-lg hover:bg-gray-200">
+                                <span role="button" class="delBtStudent px-3 flex bg-white p-2 hover:bg-gray-200" data-student-id="{{$student->student_id}}">
                                     <i class="bi bi-trash3"></i>
                                 </span>
+                                {{-- <form action="/kelas/studentlist" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="classId" value="{{$student->student_id}}">
+                                    <button type="submit" class="cursor-pointer px-3 flex bg-white p-2 hover:bg-gray-200" data-student-id="{{$student->student_id}}">
+                                        <i class="bi bi-trash3" ></i>
+                                    </button>
+                                </form> --}}
                             </div>
-                            <img src="{{asset('storage/images/students/' . $student->name_files)}}" alt="" class="lozad supImg w-full h-full object-cover object-center relative" loading="lazy">
-                            <div class="block w-full h-full absolute inset-0 group-hover:bg-black/30 transition-all" data-student-id={{$student->student_id}} data-nis="{{$student->nis}}">
-                                <p class="nameStudent w-3/4 py-2 text-center font-bold bg-white rounded-xl z-10 absolute -bottom-full left-1/2 translate-y-full -translate-x-1/2 transition-all group-hover:bottom-[5%] group-hover:-translate-y-[5%]">{{$student->name}}</p>
+                            <div class="icnQs">
+                                <span role="button" class="icnQsStudentInfo cursor-pointer md:p-1 flex hover:opacity-30" data-student-id="{{$student->student_id}}">
+                                    <i class="bi bi-question-circle-fill md:text-2xl" ></i>                                    
+                                </span>
+                                {{-- <form action="/kelas/info" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="classId" value="{{$class->class_id}}">
+                                    <button type="submit" class="cursor-pointer p-1 flex hover:opacity-30" data-class-id="{{$class->class_id}}">
+                                        <i class="bi bi-question-circle-fill text-2xl" ></i>
+                                    </button>
+                                </form> --}}
+                            </div>
+                        </div>
+                        <div class="contentStudent group aspect-[3/4] bg-white regular-shadow border rounded-md md:rounded-2xl overflow-hidden relative" data-student-id={{$student->student_id}}>
+                            <div class="lazy-placeholder w-full h-full animate-pulse relative">
+                                <div class="flex items-center justify-center w-full h-full bg-gray-300 rounded">
+                                    <svg class="w-10 h-10 text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
+                                        <path d="M18 0H2a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2Zm-5.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm4.376 10.481A1 1 0 0 1 16 15H4a1 1 0 0 1-.895-1.447l3.5-7A1 1 0 0 1 7.468 6a.965.965 0 0 1 .9.5l2.775 4.757 1.546-1.887a1 1 0 0 1 1.618.1l2.541 4a1 1 0 0 1 .028 1.011Z"/>
+                                    </svg>
+                                </div>
+                                <div class="lzLR flex items-center gap-2 absolute bg-gray-200 py-1 px-4 rounded-xl right-[5%] top-[5%] -translate-x-[5%] -translate-y-[5%] ">
+                                    <div class="bg-gray-300 w-8 h-8 rounded-lg"></div>
+                                    <div class="bg-gray-300 w-8 h-8 rounded-lg"></div>
+                                </div>
+                                <div class="bg-gray-200 w-3/4 py-6 rounded-xl absolute bottom-[5%] left-1/2 -translate-y-[5%] -translate-x-1/2"></div>
+                            </div>
+                            <div class="contentItems w-full h-full hidden" data-student-id={{$student->student_id}}>
+                                {{-- <div class="button-editDel flex gap-2 items-center absolute bg-black/40 py-1 px-4 rounded-xl z-10 -right-full top-[5%] -translate-x-[5%] translate-y-full transition-all group-hover:right-[5%] group-hover:translate-x-[5%] group-hover:top-[5%] group-hover:translate-y-[5%]">
+                                    <span role="button" class="editBtClass border border-black bg-white p-2 rounded-lg hover:bg-gray-200">
+                                        <i class="bi bi-pencil"></i>
+                                    </span>
+                                    <span role="button" class="delBtClass border border-black bg-white p-2 rounded-lg hover:bg-gray-200">
+                                        <i class="bi bi-trash3"></i>
+                                    </span>
+                                </div> --}}
+                                <img src="{{asset('storage/images/students/' . $student->name_files)}}" alt="" class="supImg w-full h-full object-cover object-center relative" loading="lazy">
+                                <div class="block w-full h-full absolute inset-0 group-hover:bg-black/30 transition-all" data-student-id={{$student->student_id}} data-nis="{{$student->nis}}">
+                                    <p class="nameStudent w-full md:w-3/4 py-2 text-center text-sm md:text-base font-bold bg-white md:rounded-xl z-10 absolute bottom-0 md:-bottom-full left-1/2 -translate-y-0 md:translate-y-full -translate-x-1/2 transition-all md:group-hover:bottom-[5%] md:group-hover:-translate-y-[5%]">{{$student->name}}</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -170,13 +201,13 @@
             @endif
             <div class="group aspect-[3/4] bg-white regular-shadow flex justify-center items-center border rounded-2xl overflow-hidden relative hover:bg-gray-500/25">
                 <div class="add-icon">
-                    <i class="bi bi-plus-circle text-8xl opacity-50"></i>
+                    <i class="bi bi-plus-circle text-4xl md:text-8xl opacity-50"></i>
                 </div>
                 <span role="button" class="buttonAddStudent block w-full h-full inset-0 absolute z-10"></span>
             </div>
         </div>
     </section>
-    <section id="pop-upFormAddStudent" class="pop-upFormAddStudent fixed w-full lg:w-1/2 max-h-full left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2  px-8 py-6 bg-white lg:border lg:border-black rounded-2xl overflow-auto z-50 hidden">
+    <section id="pop-upFormAddStudent" class="pop-upFormAddStudent fixed w-full lg:w-1/2 max-h-full left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2  px-8 py-6 bg-white lg:border lg:border-black rounded-2xl overflow-auto z-50" style="display: none">
         <div class="hdrPopup py-4">
             <div class="titlePopupAdd">
                 <div class="t text-2xl">
@@ -184,17 +215,70 @@
                 </div>
             </div>
             <div class="clsFrmAdd">
-                <button id="btrpp-clsFrm" type="button" class="icon rounded-lg absolute top-[5%] right-[5%] -translate-x-[5%] -translate-y-[5%]">
+                <span role="button" id="btrpp-clsFrm" type="button" class="icon rounded-lg absolute top-[5%] right-[5%] -translate-x-[5%] -translate-y-[5%]">
                     <i class="bi bi-x text-5xl"></i>
-                </button>
+                </span>
             </div>
         </div>
-        <div class="frmAddStudent mx-auto">
-            <form action="{{route('storeStudents', ['classGrade' => $classGrade, 'classTag' => $classTag])}}?ic={{$idClass}}" method="POST" class="form-addClass space-y-6" enctype="multipart/form-data">
+        {{-- <div class="lazyLoadFormStudent animate-pulse">
+            <div class="topLoad">
+                <div class="aspect-square w-full md:w-80 bg-gray-200 rounded-xl mx-auto"></div>
+            </div>
+            <div class="middleLoad mt-4">
+                <div class="flex flex-col-reverse lg:flex-row lg:items-center gap-2">
+                    <div class="w-full space-y-1.5">
+                        <div class="w-32 h-6 bg-gray-200 rounded-lg"></div>
+                        <div class="w-full h-12 bg-gray-200 rounded-lg"></div>
+                    </div>
+                    <div class="space-y-1.5">
+                        <div class="w-24 h-6 bg-gray-200 rounded-lg"></div>
+                        <div class="flex-shrink-0 w-48 h-12 bg-gray-200 rounded-lg"></div>
+                    </div>
+                </div>
+                <div class="w-full mt-4 space-y-1.5">
+                    <div class="w-32 h-6 bg-gray-200 rounded-lg"></div>
+                    <div class="w-full h-12 bg-gray-200 rounded-lg"></div>
+                </div>
+            </div>
+            <div class="bottomLoad mt-12">
+                <div class="w-24 h-10 bg-gray-200 rounded-lg"></div>
+                <div class="grid 2xl:grid-cols-2 gap-4 px-4 mt-6">
+                    <div class="inline-flex items-center gap-2">
+                        <div class="w-12 h-12 bg-gray-200 rounded-[100%]"></div>
+                        <div class="w-24 lg:w-32 h-8 bg-gray-200 rounded-lg"></div>
+                        <div class="w-20 h-8 bg-gray-200 rounded-full"></div>
+                    </div>
+                    <div class="inline-flex items-center gap-2">
+                        <div class="w-12 h-12 bg-gray-200 rounded-[100%]"></div>
+                        <div class="w-20 lg:w-40 h-8 bg-gray-200 rounded-lg"></div>
+                        <div class="w-20 h-8 bg-gray-200 rounded-full"></div>
+                    </div>
+                    <div class="inline-flex items-center gap-2">
+                        <div class="w-12 h-12 bg-gray-200 rounded-[100%]"></div>
+                        <div class="w-28 lg:w-48 h-8 bg-gray-200 rounded-lg"></div>
+                        <div class="w-20 h-8 bg-gray-200 rounded-full"></div>
+                    </div>
+                    <div class="inline-flex items-center gap-2">
+                        <div class="w-12 h-12 bg-gray-200 rounded-[100%]"></div>
+                        <div class="w-24 lg:w-36 h-8 bg-gray-200 rounded-lg"></div>
+                        <div class="w-20 h-8 bg-gray-200 rounded-full"></div>
+                    </div>
+                    <div class="inline-flex items-center gap-2">
+                        <div class="w-12 h-12 bg-gray-200 rounded-[100%]"></div>
+                        <div class="w-24 h-8 bg-gray-200 rounded-lg"></div>
+                        <div class="w-20 h-8 bg-gray-200 rounded-full"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="w-36 h-11 rounded-lg bg-gray-200 mx-auto mt-6"></div>
+        </div> --}}
+        <div class="frmAddStudent mx-auto" style="display: none">
+            <form action="" method="POST" class="form-addClass space-y-6" enctype="multipart/form-data">
                 @csrf
+                <input type="hidden" id="_tokenFormStudent" name="_tokenFormStudent">
                 <div class="frmStdnt">
                     <div class="imgStudent block">
-                        <div class="group bg-white regular-shadow w-80 h-80 border-dashed rounded-2xl overflow-hidden relative mx-auto">
+                        <div class="group bg-white regular-shadow aspect-square aspect-[1/1] w-full md:w-80 border-dashed rounded-2xl overflow-hidden relative mx-auto">
                             <div class="btnResetImage flex absolute bg-black/40 py-1 px-4 rounded-xl z-10 -right-full top-[5%] -translate-x-[5%] translate-y-full transition-all group-hover:right-[5%] group-hover:translate-x-[5%] group-hover:top-[5%] group-hover:translate-y-[5%]">
                                 <span role="button" id="resetImageStudent" class="resetImageStudent border border-black bg-white p-0.5 rounded-lg hover:bg-gray-200 text-2xl">
                                     <i class="bi bi-arrow-clockwise flex"></i>
@@ -207,7 +291,7 @@
                                     Add Image
                                 </label>
                             </label>
-                            <input type="file" name="imgFrmStudent" id="imgFrmStudent" accept="image/*" class="w-15 h-15 border border-black sr-only" onchange="previewFile(event)" value="">
+                            <input type="file" name="imgFrmStudent" id="imgFrmStudent" accept="image/*" class="w-15 h-15 border border-black sr-only" value="">
                         </div>
                     </div>
                     <div class="nmeAndNisStdnt space-y-2">
@@ -545,19 +629,6 @@
             </div>
         </div>
     </div>
-    {{-- <div id="confDelStudent" class="flex flex-col justify-center items-center gap-[10%] fixed text-center overflow-hidden z-50 p-6 w-full h-full lg:w-1/3 lg:h-1/3 bg-white border border-black rounded-3xl aspect-square" style="top: 200%; left:50%; transform:translate(-50%, -50%); visibility: hidden; opacity: 0; transition: all .3s ease-in-out">
-        <div class="close-btn absolute py-1 px-4 rounded-xl z-10 right-[2%] top-[5%] -translate-x-[2%] -translate-y-[5%]" onclick="closeExcelPopUp()">
-            <i class="bi bi-x-circle-fill p-2 text-red-600 bg-white border border-black rounded-xl cursor-pointer" onclick="closeExcelPopUp()"></i>
-        </div>
-        <h1 class="text-lg 2xl:text-2xl font-bold">Konfirmasi Upload File</h1>
-        <p class="line-clamp-1 overflow-hidden overflow-ellipsis max-w-[80%]">
-            File : <label for="fmtExcel" id="labsFmtExcel" class="cursor-pointer font-bold px-4 py-2 transition duration-300 ease-in-out relative after:absolute after:w-full after:h-full after:border-2 after:rounded-xl after:border-transparent after:hover:border-sky-400 after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:blur-[1px] after:z-10">text.xlsx</label>
-        </p>
-        <div class="btnCaSb flex items-center gap-6">
-            <button type="button" class="text-sm py-2 px-6 border-2 border-gray-600 bg-gray-100 rounded-lg flex items-center hover:bg-sky-600 hover:border-sky-800" onclick="closeExcelPopUp()">Cancel</button>
-            <button type="button" class="text-sm text-white py-2 px-6 border-2 border-sky-600 bg-sky-400 rounded-lg flex items-center hover:bg-sky-600 hover:border-sky-800" onclick="document.getElementById('sbFmtExcel').click()">Submit</button>
-        </div>
-    </div> --}}
     <div class="foo mb-96"></div>
 @endsection
 @section('custom-script')

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ChartController;
+use App\Http\Controllers\LoadContent;
 use App\Http\Controllers\ClassesModelsController;
 use App\Http\Controllers\OsisModelsController;
 use App\Http\Controllers\ProfileModelsController;
@@ -28,7 +29,14 @@ Route::get('/', function () {
 });
 
 Route::post('/kelas/update', [ClassesModelsController::class, 'update']) -> name('updateClass');
-Route::delete('/kelas/delete', [ClassesModelsController::class, 'destroy']) -> name('deleteClass');
+Route::delete('/kelas/delete', [ClassesModelsController::class, 'actionDeleteClass']) -> name('deleteClass');
+
+Route::controller(LoadContent::class)->group(function() {
+    Route::get('/kelas/infoload', 'classInfo');
+    Route::get('/kelas/deleteload', 'deleteInfo');
+    Route::get('/kelas/alertload', 'alertInfo');
+    Route::get('/siswa/formload', 'studentForm');
+});
 
 Route::controller(ClassesModelsController::class)->group(function() {
     Route::get('/kelas', 'index') -> name('viewClass');
@@ -36,9 +44,11 @@ Route::controller(ClassesModelsController::class)->group(function() {
     // Route::post('/kelas/update', 'update') -> name('updateClass');
     // Route::delete('/kelas/delete', 'destroy')->name('delClass');
     Route::post('/kelas/get', 'getDataClass');
+    Route::post('/kelas/studentlist', 'getStudentList');
     
     Route::get('/kelas/list', 'getListClass');
     Route::get('/kelas/tag', 'tagClass')->name('ajaxClassTag');
+    Route::post('/kelas/info', 'show')->name('classInfo');
     Route::get('/kelas/pendidik', 'listTeacher')->name('ajaxClassGetTeachers');
     Route::post('/kelas/pendidik', 'listTeacherOnInput')->name('ajaxClassGetTeachersOnInput');
     Route::get('/kelas/pendidik/image', 'teacherImage')->name('ajaxClassGetTeachersImages');
@@ -46,6 +56,7 @@ Route::controller(ClassesModelsController::class)->group(function() {
 
 Route::controller(StudentsModelsController::class)->group(function() {
     Route::post('/siswa', 'show')->name('siswaData');
+    Route::post('/siswa/formtoken', 'createTokenForm');
     Route::get('/kelas/siswa/{classGrade}/{classTag}', 'index')->name('student');
     Route::post('/kelas/siswa/{classGrade}/{classTag}/store', 'store')->name('storeStudents');
 });

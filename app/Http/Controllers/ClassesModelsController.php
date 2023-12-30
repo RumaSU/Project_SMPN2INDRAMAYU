@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ClassesModels;
 use App\Models\ClassesImagesModels;
 use App\Models\ClassesStudentsModels;
+use App\Models\StudentsModels;
 use App\Models\TeachersModels;
 use App\Models\TeachersImagesModels;
 use App\Models\TeachersSocmedModels;
@@ -12,6 +13,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Date;
 use Illuminate\Validation\Rule;
 use Ramsey\Uuid\Uuid;
 
@@ -19,6 +22,9 @@ use function Laravel\Prompts\select;
 
 class ClassesModelsController extends Controller
 {
+    
+    private string $tokenForDeleteClass;
+    
     /**
      * Display a listing of the resource.
      */
@@ -255,14 +261,21 @@ class ClassesModelsController extends Controller
                             $image = $request->file('imgClass');
                             $imageName = $image->hashName(); // Menamai gambar
                             $image->storeAs('public/images/classes/'. $imageName);
-                            $image->move(public_path('media'), $imageName);
+                            // $image->move(public_path('media'), $imageName);
                             ClassesImagesModels::where('class_id', $classId)->update([
                                 'name_files' => $imageName,
                             ]);
                         }
                     }
                     if($classImageCreate) {
-                        return redirect('/kelas')->with('successAdd', 'Success add ' . $classCreate->class_grade . ' ' . $classCreate->class_tag);
+                        $dataAlert = [
+                            'classes' => $classCreate->class_grade . ' ' . $classCreate->class_tag,
+                            'year' => $classCreate->year,
+                            'teacherName' => TeachersModels::where('teacher_id', $classCreate->teacher_id)->select('name')->value('name'),
+                        ];
+                        session()->flash('successAdd', $dataAlert);
+                        return redirect('/kelas');
+                        // return redirect('/kelas')->with('successAdd', 'Success add ' . $classCreate->class_grade . ' ' . $classCreate->class_tag);
                     } else {
                         ClassesModels::where('class_id', $classId)->delete();
                         return redirect('/kelas')->with('errorSomething', 'Error add ' . $classCreate->class_grade . ' ' . $classCreate->class_tag);
@@ -289,9 +302,67 @@ class ClassesModelsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(ClassesModels $classesModels)
+    public function show(Request $request)
     {
-        //
+        $checkRequest = $request->validate([
+            'classId' => 'required|string'
+        ]);
+        if($checkRequest) {
+            $classId = $request->classId;
+            $classInfo = ClassesModels::where('classes.class_id' , $classId)
+                ->leftJoin('classes_images', 'classes.class_id', '=', 'classes_images.class_id')
+                ->select(
+                    'classes.class_id',
+                    'classes.class_grade',
+                    'classes.class_tag',
+                    'classes.year',
+                    'classes.teacher_id',
+                    'classes_images.name_files',
+                )
+                ->first();
+            if($classInfo) {
+                $teacherId = $classInfo->teacher_id;
+                $teacherInfo = TeachersModels::where('teachers.teacher_id' , $teacherId)
+                    ->leftJoin('teachers_images', 'teachers.teacher_id', '=', 'teachers_images.teacher_id')
+                    ->select(
+                        'teachers.name', 
+                        'teachers.nip',
+                        'teachers_images.name_files',
+                    )
+                    ->first();
+                $teacherSocmedInfo = TeachersModels::where('teachers.teacher_id' , $teacherId)
+                    ->leftJoin('teachers_socmed', 'teachers.teacher_id', '=', 'teachers_socmed.teacher_id')
+                    ->select(
+                        'teachers.email',
+                        'teachers_socmed.facebook',
+                        'teachers_socmed.instagram',
+                        'teachers_socmed.twitter',
+                        'teachers_socmed.tiktok',
+                        'teachers_socmed.youtube',
+                    )
+                    ->first();
+                $listStudent = ClassesStudentsModels::where('classes_students.class_id', $classId)
+                    ->leftJoin('students', 'students.student_id', '=', 'classes_students.student_id')
+                    ->select(
+                        'students.name',
+                    )
+                    ->take(5)
+                    ->get();
+                $countStudent = ClassesStudentsModels::where('classes_students.class_id', $classId)
+                    ->leftJoin('students', 'students.student_id', '=', 'classes_students.student_id')
+                    ->select(
+                        'students.name',
+                    )
+                    ->count();
+                return response()->json([
+                    'classInfo' => $classInfo, 
+                    'teacherInfo' =>$teacherInfo, 
+                    'teacherSocmedInfo' => $teacherSocmedInfo, 
+                    'listStudent' => $listStudent,
+                    'countStudent' => $countStudent,
+                ]);
+            }
+        }
     }
 
     /**
@@ -323,14 +394,31 @@ class ClassesModelsController extends Controller
                     'descClass' => 'nullable|string',
                 ]);
                 if($validateRequest){
+                    $whatsUpdate = [];
                     $columnClasses  = ['teacher_id', 'class_grade', 'class_tag', 'description', 'year'];
                     $requestClasses = ['teacherList', 'chooseClass', 'tagClass', 'descClass', 'classYear'];
                     foreach($columnClasses as $idx => $column) {
-                        if ($request->input($requestClasses[$idx]) != ClassesModels::where('class_id', $classId)->where($column, $request->input($requestClasses[$idx]))->exists()) {
+                        $existValue = ClassesModels::where('class_id', $classId)->value($column);
+                        $nowValue = $request->input($requestClasses[$idx]);
+                        // if ($request->input($requestClasses[$idx]) != ClassesModels::where('class_id', $classId)->where($column, $request->input($requestClasses[$idx]))->exists()) {
+                        //     ClassesModels::where('class_id', $classId)
+                        //         ->update([
+                        //             $column => $request->input($requestClasses[$idx]),
+                        //         ]);
+                        //     $whatsUpdate[] = ["$column" => $temporaryData[0]["$column"] . ' -> ' . $request->input($requestClasses[$idx])];
+                        // }
+                        if ($existValue !== $nowValue) {
                             ClassesModels::where('class_id', $classId)
                                 ->update([
                                     $column => $request->input($requestClasses[$idx]),
                                 ]);
+                            if ($column === 'teacher_id') {
+                                $existTeacher = TeachersModels::where('teacher_id', $existValue)->value('name');
+                                $updateTeacher = TeachersModels::where('teacher_id', $nowValue)->value('name');
+                                $whatsUpdate[$column] = "Wali kelas <strong>$existTeacher</strong> berganti menjadi <strong>$updateTeacher</strong>";
+                            } else {
+                                $whatsUpdate[$column] = "<strong>$existValue</strong> menjadi <strong>$nowValue</strong>";
+                            }
                         }
                     }
                     if(!empty($request->imgClass)) {
@@ -341,6 +429,7 @@ class ClassesModelsController extends Controller
                             $nameFileDatabase = ClassesImagesModels::select('name_files')->where('class_id', '=' , $classId)->first();
                             if($nameFileDatabase == 'default.png') {
                                 $succedStore = $this->storeImage($request->file('imgClass'), $classId);
+                                $whatsUpdate[] = 'name_files';
                                 if (!$succedStore) {
                                     $this->rollbackData($temporaryData, $classId);
                                     return redirect()->back()->with('errorSomething', 'Image not store');
@@ -350,6 +439,7 @@ class ClassesModelsController extends Controller
                                 $deleteImage = Storage::delete('public/images/classes/' . $nameFileDatabase);
                                 if($deleteImage) {
                                     $succedStore = $this->storeImage($request->file('imgClass'), $classId);
+                                    $whatsUpdate[] = 'name_files';
                                     if (!$succedStore) {
                                         $this->rollbackData($temporaryData, $classId);
                                         return redirect()->back()->with('errorSomething', 'Image not store');
@@ -364,19 +454,9 @@ class ClassesModelsController extends Controller
                             return redirect()->back()->with('errorSomething', 'Image invalid');
                         }
                     }
-                    echo "request is valid <br>";
-                    $columnClasses  = ['teacher_id', 'class_grade', 'class_tag', 'description', 'year'];
-                    $requestClasses = ['teacherList', 'chooseClass', 'tagClass', 'descClass', 'classYear'];
-                    foreach($columnClasses as $idx => $column) {
-                        $valueModel =  ClassesModels::where('class_id', $classId)->first();
-                        if ($valueModel) {
-                            echo "Request = " . $request->input($requestClasses[$idx]) . "<br>";
-                            echo "Value Model = " . $valueModel->$column . "<br><br>";
-                        } else {
-                            echo "No data found for class_id = $classId . <br>";
-                        }
-                    }
-                    return redirect()->back()->with('updateSomething', 'Data now update');
+                    session()->flash('updateSomething', $whatsUpdate);
+                    return redirect()->back();
+                    // return redirect()->back()->with('updateSomething', 'Data now update');
                 }
                 else {
                     $this->rollbackData($temporaryData, $classId);
@@ -451,65 +531,182 @@ class ClassesModelsController extends Controller
     }
     
     
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function listStudentWhenDelete(Request $request) {
-        //
+    public function getStudentList(Request $request) {
+        $checkRequest = ClassesModels::where('class_id', $request->classId)->select('class_id')->value('class_id');
+        if($checkRequest) {
+            $listStudent = ClassesStudentsModels::where('classes_students.class_id', $checkRequest)
+                ->leftJoin('students', 'students.student_id', '=', 'classes_students.student_id')
+                ->select('students.name')
+                ->get();
+            $tokenDelete = $this->createTokenDelete($checkRequest);
+                
+            return response()->json(['listStudent' => $listStudent, 'tokenDeleteClass' => $tokenDelete]);
+        }
+        
+        return response()->json(['alertNoClass' => 'Request not found']);
     }
     
-    public function destroy(Request $request)
-    {
-        $isIdTrue = $request->validate([
-            'classId' => 'required',
+    public function getClassList() {
+        $classList = ClassesModels::select('class_id')->distinct()->get();
+        return $classList;
+    }
+    
+    public function actionDeleteClass(Request $request) {
+        $classList = $this->getClassList()->pluck('class_id')->toArray();
+        $validActionDel = $request->validate([
+            'acd' => 'required|in:Hide,Delete',
+            'tokenClassDelete' => 'required|string',
+            'classId' => ['required', Rule::in($classList)],
         ]);
-        if ($isIdTrue) {
-            $classes = ClassesModels::where('class_id', $request->classId)
-                ->firstOrFail();
-            if ($classes) {
-                $isStudent = $this->isStudentsOnThere($classes->class_id);
-                if($isStudent === NULL) {
-                    // $image = ClassesImagesModels::where('class_id', $classes->class_id)->first();
-                    $image = ClassesImagesModels::where('class_id', $classes->class_id)->first();
-                    if ($image && $image->name_files != 'default.png') {
-                        $this->deleteImage($image->name_files);
-                    }
-                    $classes->delete();
-                    $nowData = DB::table('classes')->where('status', '=', 'Aktif')->count('class_id');
-                    return response()->json(['succedSomething' => 'Data berhasil dihapus', 'nowData' => $nowData], 200);
-                } else {
-                    $nowData = DB::table('classes')->where('status', '=', 'Aktif')->count('class_id');
-                    $this->ifStudentsOnThere($classes->class_id);
-                    return response()->json(['succedSomething' => 'Data berhasil disembunyikan', 'nowData' => $nowData], 200);
+        if($validActionDel) {
+            $classId = $request->classId;
+            $checkTokenDelete = $this->checkTokenDelete($request->tokenClassDelete);
+            if($checkTokenDelete) {
+                if($validActionDel['acd'] === 'Hide') {
+                    $this->hideClassStudent($classId);
+                }
+                if($validActionDel['acd'] === 'Delete') {
+                    $this->deleteClassStudent($classId);
                 }
             }
-    
-            return response()->json(['errorSomething' => 'Data tidak ditemukan'], 400);
-        } else {
-            return response()->json(['errorSomething' => 'Data tidak ditemukan'], 400);
         }
     }
     
-    public function isStudentsOnThere($class_id) {
-        $searchIsStudentInThere = ClassesStudentsModels::where('class_id', $class_id)->first();
-        return $searchIsStudentInThere;
+    public function hideClassStudent($classId) {
+        $tempClassInfo = $this->getDataClassDeleteHide($classId);
+        
+        ClassesModels::where('class_id', $classId)
+            ->update([ 
+                'status' => 'Tidak Aktif',
+            ]);
+        echo $tempClassInfo;
+        return response()->json($tempClassInfo);
     }
     
-    public function ifStudentsOnThere($class_id) {
-        ClassesModels::where('class_id', $class_id)
-            ->update([ 
-                'status' => 'Tidak Aktif', 
-            ]);
-        return;
+    public function deleteClassStudent($classId) {
+        $tempClassInfo = $this->getDataClassDeleteHide($classId);
+        
+        $classes = ClassesModels::where('class_id', $classId)
+            ->firstOrFail();
+        if ($classes) {
+            ClassesStudentsModels::where('class_id', $classId)
+                ->update([
+                    'class_id' => '',
+                ]);
+            
+            $image = ClassesImagesModels::where('class_id', $classes->class_id)->first();
+            if ($image && $image->name_files != 'default.png') {
+                $this->deleteImage($image->name_files);
+            }
+            $classes->delete();
+            $nowData = DB::table('classes')->where('status', '=', 'Aktif')->count('class_id');
+            // return response()->json(['succedSomething' => 'Data berhasil dihapus', 'nowData' => $nowData], 200);
+            echo $tempClassInfo;
+            return response()->json($tempClassInfo);
+        }
+
+        return response()->json(['errorSomething' => 'Data tidak ditemukan'], 400);
     }
+    
+    public function getDataClassDeleteHide($classId) {
+        $classesInfo = ClassesModels::where('class_id', $classId)->select('class_grade', 'class_tag', 'year')->first();
+        $classGrade = $classesInfo->class_grade . ' ' . $classesInfo->class_tag;
+        $classYear = $classesInfo->year;
+        
+        // setlocale(LC_TIME, 'id_ID'); // Mengatur locale menjadi bahasa Indonesia ('id_ID')
+        // $date = strftime('%A, %d %B %Y'); // Mengambil tanggal dalam format hari, tanggal bulan tahun dalam bahasa Indonesia
+        $studentInfo = ClassesStudentsModels::where('class_id', $classId)->count('student_id');
+        $dateDelete = Date('l, d F Y');
+        
+        // return [
+        //     'classGrade' => $classGrade,
+        //     'yearInfo' => $classYear,
+        //     'studentInfo' => $studentInfo,
+        //     'dateDelete' => $dateDelete, 
+        // ];
+        return 
+            $classGrade . '$+=/?2!' .
+            $classYear . '$+=/?2!' .
+            $studentInfo . '$+=/?2!' .
+            $dateDelete
+        ;
+    }
+    
+    // public function destroy(Request $request)
+    // {
+    //     $isIdTrue = $request->validate([
+    //         'classId' => 'required',
+    //     ]);
+    //     if ($isIdTrue) {
+    //         $classes = ClassesModels::where('class_id', $request->classId)
+    //             ->firstOrFail();
+    //         if ($classes) {
+    //             $isStudent = $this->isStudentsOnThere($classes->class_id);
+    //             if($isStudent === NULL) {
+    //                 // $image = ClassesImagesModels::where('class_id', $classes->class_id)->first();
+    //                 $image = ClassesImagesModels::where('class_id', $classes->class_id)->first();
+    //                 if ($image && $image->name_files != 'default.png') {
+    //                     $this->deleteImage($image->name_files);
+    //                 }
+    //                 $classes->delete();
+    //                 $nowData = DB::table('classes')->where('status', '=', 'Aktif')->count('class_id');
+    //                 return response()->json(['succedSomething' => 'Data berhasil dihapus', 'nowData' => $nowData], 200);
+    //             } else {
+    //                 $nowData = DB::table('classes')->where('status', '=', 'Aktif')->count('class_id');
+    //                 $this->ifStudentsOnThere($classes->class_id);
+    //                 return response()->json(['succedSomething' => 'Data berhasil disembunyikan', 'nowData' => $nowData], 200);
+    //             }
+    //         }
+    
+    //         return response()->json(['errorSomething' => 'Data tidak ditemukan'], 400);
+    //     } else {
+    //         return response()->json(['errorSomething' => 'Data tidak ditemukan'], 400);
+    //     }
+    // }
+    
+    // public function isStudentsOnThere($class_id) {
+    //     $searchIsStudentInThere = ClassesStudentsModels::where('class_id', $class_id)->first();
+    //     return $searchIsStudentInThere;
+    // }
+    
+    // public function ifStudentsOnThere($class_id) {
+    //     ClassesModels::where('class_id', $class_id)
+    //         ->update([ 
+    //             'status' => 'Tidak Aktif', 
+    //         ]);
+    //     return;
+    // }
     
     public function deleteImage($nameFiles) {
-        $filePath = 'public/images/classes/' . $nameFiles;
+        $filePath = 'images/classes/' . $nameFiles;
         if (Storage::exists($filePath)) {
             Storage::delete($filePath);
             return true; // Penghapusan berhasil
         }
         return false; // Penghapusan gagal
+    }
+    
+    public function createTokenDelete($classId) {
+        $uuidToken = Uuid::uuid4()->toString();
+        $tokenDelete = $uuidToken . $classId;
+        $md5Hash = md5(rand() . $tokenDelete);
+        
+        // Simpan nilai dalam cache
+        Cache::put('tokenForDeleteClass', $md5Hash, now()->addMinutes(10)); // Simpan selama 60 menit
+        return $md5Hash;
+    }
+    
+    public function getTokenDelete() {
+        return Cache::get('tokenForDeleteClass');
+    }
+    
+    public function checkTokenDelete($tokenDelete) {
+        $nowTokenDelete = $this->getTokenDelete();
+        if ($tokenDelete === $nowTokenDelete) {
+            return true;
+        } else {
+            return false;
+        }
     }
     
     public function checkRoute() {
@@ -523,4 +720,5 @@ class ClassesModelsController extends Controller
         
         return "Error";
     }
+        
 }

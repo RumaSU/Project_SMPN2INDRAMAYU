@@ -19,7 +19,7 @@
             </li>
             <li class=" relative">
                 <div class="gotoProfile  group">
-                    <a href="" class="py-1.5 px-4 group">Profil</a>
+                    <a href="/profil" class="py-1.5 px-4 group">Profil</a>
                     <div id="dropDownProfile" class="dropDownProfile absolute w-48 -right-14 transition-all duration-400 ease-in-out z-10 invisible opacity-0 group-hover:visible group-hover:opacity-100">
                         <div class="p-4 text-sm font-normal mt-4 w-48  border border-black rounded-md bg-white">
                             <div class="py-1 flex">
