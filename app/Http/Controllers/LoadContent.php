@@ -32,4 +32,7 @@ class LoadContent extends Controller
     public function alertStudentInfo() {
         return view('pages.students.alert');
     }
+    public function profileViMiForm() {
+        return view('pages.profile.form');
+    }
 }

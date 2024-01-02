@@ -1,214 +1,315 @@
 @extends('layouts.main.main')
 @section('link-rel')
     <link rel="stylesheet" href="assets/css/profil/photoSH.css">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <style>
+        .inpNumStSch::-webkit-outer-spin-button, .inpNumStSch::-webkit-inner-spin-button{-webkit-appearance: none; margin:0;}
+    </style>
 @endsection
 @section('content')
-    <section class="imgSchool-profiles relative">
-        <div class="img-profiles flex items-center justify-center relative text-center text-white h-96 bg-cover bg-center bg-no-repeat after:absolute after:top-0 after:left-0 after:bg-black/60 after:w-full after:h-full"
-            style="background-image: url('assets/img/main/126465066756.jpg');">
+    @php
+        $txDtNpsn = isset($dataSt) ? $dataSt->npsn : 0;
+        $txDtWdtSch = isset($dataSt) ? $dataSt->wdth_sch : 0;
+        $imgViMiImg = isset($imgViMi) ? $imgViMi->name_files : 'default.png';
+        $imgStrOrgLft = isset($imgStrOrg) ? $imgStrOrg->imgleft : 'default.png';
+        $imgStrOrgRght = isset($imgStrOrg) ? $imgStrOrg->imgright : 'default.png';
+    @endphp
+    <section class="topHeaderPageProfileSchool flex items-center justify-center relative overflow-hidden  text-center text-white h-80 lg:h-[28rem]">
+        <div class="lazy-placeholder animate-pulse w-full h-full absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-gray-300">
+            <div class="txPlace absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 flex flex-col justify-center items-center gap-2">
+                <div class="bg-gray-200 w-56 py-6 rounded-xl"></div>                
+                <div class="bg-gray-200 w-32 py-2 rounded-md"></div>                
+            </div>
+        </div>
+        <div class="cntnTopImage" style="display: none">
+            <div class="imageFullBgSchool absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full -z-10">
+                <div class="ovTop bg-black/60 w-full h-full absolute left-0 top-1/2 -translate-y-1/2"></div>
+                <img src="{{asset('assets/img/main/126465066756.jpg')}}" alt="" class="lazyLoadThisPage w-full h-full object-cover object-center">            
+            </div>
             <div class="content relative z-10 selft-center">
-                <h1 class="text-4xl font-bold">Profil Sekolah </h1>
+                <h1 class="text-4xl font-bold">Profil Sekolah</h1>
             </div>
-        </div>
-        {{-- <div class="profiles text-center text-xl font-bold space-y-4 absolute z-10 left-1/2 bottom-0 -translate-x-1/2" >
-            <div class="imgSch mx-auto w-72 relative group">
-                <div class="aspect-square rounded-[100%] overflow-hidden border-4 p-2 bg-white relative">
-                    <img src="assets/img/main/126465066756.jpg" alt="" class="w-full h-full object-cover object-center rounded-[100%]" onclick="openPopup('assets/img/main/126465066756.jpg')">
-                </div>
-                <div class="editimgSch absolute right-[5%] top-[15%] -translate-x-[5%] -translate-y-[15%] opacity-0 transition-opacity group-hover:opacity-100">
-                    <button class="editB border border-black bg-white p-2 rounded-lg hover:bg-gray-200">
-                        <i class="bi bi-pencil"></i>
-                    </button>
-                </div>
-            </div>
-        </div> --}}
-        {{-- <div class="justBox border-2 border-black w-72 aspect-square bg-white/50 absolute z-10 left-1/2 top-[40%] -translate-x-1/2 -translate-y-[40%]"></div> --}}
-        {{-- <div class="imgSch mx-auto w-72 group text-center text-xl font-bold absolute z-10 left-1/2 top-3/4 -translate-x-1/2 -translate-y-3/4"> --}}
-        <div class="imgSch mx-auto w-72 -mt-36 group text-center text-xl font-bold relative">
-            <div class="aspect-square rounded-[100%] overflow-hidden border-4 p-2 bg-white relative">
-                <img src="assets/img/main/126465066756.jpg" alt="" class="w-full h-full object-cover object-center rounded-[100%]" onclick="openPopup(this.src)">
-            </div>
-            <div class="editimgSch absolute right-[5%] top-[15%] -translate-x-[5%] -translate-y-[15%] opacity-0 transition-opacity group-hover:opacity-100">
-                <button class="editB border border-black bg-white p-2 rounded-lg hover:bg-gray-200">
-                    <i class="bi bi-pencil"></i>
-                </button>
-            </div>
-        </div>
-        <div class="titleProfiles text-center font-bold mt-12">
-            <h2 class="text-4xl">SMP NEGERI 2 INDRAMAYU</h2>
-            <h3 class="text-2xl">INDRAMAYU - JAWABARAT</h3>
         </div>
     </section>
-    <section class="viMi-Schools mt-24">
-        <div class="flex flex-col lg:flex-row items-center justify-center lg:px-48 space-y-16 lg:space-y-0 relative">
-            <div class="visiMisi mx-auto lg:w-1/2 h-auto">
-                <div class="titleViMi w-48 py-4 px-6 bg-blue-400 text-center text-white font-bold rounded-2xl">
-                    VISI MISI
+    <div class="schoolNameWthLogo mt-6 transition-transform lg:mt-0 lg:-translate-y-1/3">
+        <div class="schollLogoBall">
+            <div class="mg aspect-square aspect-[1/1] w-72 mx-auto rounded-[100%] p-1 border-2 bg-white overflow-hidden">
+                <div class="lazy-placeholder flex items-center justify-center w-full h-full rounded-[100%] bg-gray-200 animate-pulse">
+                    <i class="bi bi-image-fill text-4xl text-gray-400"></i>
                 </div>
-                <div class="visi group relative mt-2 ml-6 inline-block">
-                    <div class="VisiCtn cursor-default select-none">
-                        <p class="">Lorem Ipsum Dolor Amet</p>
-                    </div>
-                    <div class="editVisiCtn absolute z-10 -right-[15%] -top-1/3 translate-x-[15%] -translate-y-1/3 invisible opacity-0 transition-all group-hover:visible group-hover:opacity-100">
-                        <button class="editB px-2 py-1 after:absolute after:w-full after:h-full after:group-hover:border-2 after:rounded-xl after:group-hover:border-sky-400 after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:blur-[1px] after:z-10">
+                <img src="{{asset('assets/img/dumb/imgtemp 1.jpg')}}" style="display: none" alt="" class="lazyLoadThisPage w-full h-full object-cover object-center rounded-[100%]" onclick="openPopup(this.src)">
+            </div>
+        </div>
+        <div class="schoolName mt-12">
+            <div class="contentName uppercase text-center font-bold space-y-2">
+                <div class="nameS">
+                    <h2 class="text-5xl">SMPN 2 INDRAMAYU</h2>
+                </div>
+                <div class="locSch">
+                    <h3 class="text-2xl">INDRAMAYU - JAWABARAT</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="viMi-Schools mt-8">
+        {{-- <div class="contentViMiWthSchool border border-black flex flex-col lg:flex-row items-center justify-center lg:px-48 space-y-16 lg:space-y-0 relative"> --}}
+        <div class="contentViMiWthSchool lg:grid flex flex-col-reverse gap-8 lg:gap-0 lg:grid-cols-2 lg:space-y-0 relative w-10/12 mx-auto">
+            <div class="visiMisi min-h-[24rem]">
+                <div class="titleViMi relative w-fit group">
+                    <div class="biEdit hidden xl:block opacity-0 invisible transition-all group-hover:opacity-100 group-hover:visible">
+                        <span role="button" class="btnEdVisiMisi absolute right-0 p-1.5 border-2 translate-x-1/2 -translate-y-1/2 bg-white rounded-lg hover:bg-gray-200">
                             <i class="bi bi-pencil"></i>
-                        </button>
+                        </span>
                     </div>
-                </div>
-                <div class="misi mt-4 text-sm space-y-6 leading-4 select-none">
-                    <div class="misi-1 relative group pl-2 flex justify-evenly items-center gap-4">
-                        <i class="bi bi-check-circle-fill text-3xl text-blue-400"></i>
-                        <p>Lorem ipsum dolor sit amet, consectur adipiscing elit, sed do eiusmod tempor incidunt ut labore et dolore magna aliqua</p>
-                        <div class="editMs1Ctn absolute z-10 -right-[5%] lg:right-0 -top-1/3 translate-x-[5%] lg:translate-x-0 -translate-y-1/3 invisible opacity-0 transition-all group-hover:visible group-hover:opacity-100">
-                            <button class="editB p-2 after:absolute after:w-full after:h-full after:group-hover:border-2 after:rounded-xl after:group-hover:border-sky-400 after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:blur-[1px] after:z-10">
-                                <i class="bi bi-pencil"></i>
-                            </button>
+                    <div class="cntn uppercase flex items-center gap-4">
+                        <div class="tCntn w-48 py-4 bg-blue-600 text-center text-white font-bold rounded-2xl">
+                            <h3>Visi & Misi</h3>
                         </div>
-                    </div>
-                    <div class="misi-2 relative group pl-2 flex justify-evenly items-center gap-4">
-                        <i class="bi bi-check-circle-fill text-3xl text-blue-400"></i>
-                        <p>Lorem ipsum dolor sit amet, consectur adipiscing elit, sed do eiusmod tempor incidunt ut labore et dolore magna aliqua</p>
-                        <div class="editMs1Ctn absolute z-10 -right-[5%] lg:right-0 -top-1/3 translate-x-[5%] lg:translate-x-0 -translate-y-1/3 invisible opacity-0 transition-all group-hover:visible group-hover:opacity-100">
-                            <button class="editB p-2 after:absolute after:w-full after:h-full after:group-hover:border-2 after:rounded-xl after:group-hover:border-sky-400 after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:blur-[1px] after:z-10">
-                                <i class="bi bi-pencil"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="misi-3 relative group pl-2 flex justify-evenly items-center gap-4">
-                        <i class="bi bi-check-circle-fill text-3xl text-blue-400"></i>
-                        <p>Lorem ipsum dolor sit amet, consectur adipiscing elit, sed do eiusmod tempor incidunt ut labore et dolore magna aliqua</p>
-                        <div class="editMs1Ctn absolute z-10 -right-[5%] lg:right-0 -top-1/3 translate-x-[5%] lg:translate-x-0 -translate-y-1/3 invisible opacity-0 transition-all group-hover:visible group-hover:opacity-100">
-                            <button class="editB p-2 after:absolute after:w-full after:h-full after:group-hover:border-2 after:rounded-xl after:group-hover:border-sky-400 after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:blur-[1px] after:z-10">
-                                <i class="bi bi-pencil"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="misi-4 relative group pl-2 flex justify-evenly items-center gap-4">
-                        <i class="bi bi-check-circle-fill text-3xl text-blue-400"></i>
-                        <p>Lorem ipsum dolor sit amet, consectur adipiscing elit, sed do eiusmod tempor incidunt ut labore et dolore magna aliqua</p>
-                        <div class="editMs1Ctn absolute z-10 -right-[5%] lg:right-0 -top-1/3 translate-x-[5%] lg:translate-x-0 -translate-y-1/3 invisible opacity-0 transition-all group-hover:visible group-hover:opacity-100">
-                            <button class="editB p-2 after:absolute after:w-full after:h-full after:group-hover:border-2 after:rounded-xl after:group-hover:border-sky-400 after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:blur-[1px] after:z-10">
-                                <i class="bi bi-pencil"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="misi-5 relative group pl-2 flex justify-evenly items-center gap-4">
-                        <i class="bi bi-check-circle-fill text-3xl text-blue-400"></i>
-                        <p>Lorem ipsum dolor sit amet, consectur adipiscing elit, sed do eiusmod tempor incidunt ut labore et dolore magna aliqua</p>
-                        <div class="editMs1Ctn absolute z-10 -right-[5%] lg:right-0 -top-1/3 translate-x-[5%] lg:translate-x-0 -translate-y-1/3 invisible opacity-0 transition-all group-hover:visible group-hover:opacity-100">
-                            <button class="editB p-2 after:absolute after:w-full after:h-full after:group-hover:border-2 after:rounded-xl after:group-hover:border-sky-400 after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:blur-[1px] after:z-10">
-                                <i class="bi bi-pencil"></i>
-                            </button>
+                        <div class="btnEdVisiMisi block xl:hidden border-2 w-32 py-2 text-center text-sm rounded-xl bg-gray-100 hover:bg-gray-300">
+                            <span role="button">
+                                <div class="t">Edit</div>
+                            </span>
                         </div>
                     </div>
                 </div>
+                <div class="visiProfile group mt-2 px-6 relative">
+                    <div class="VisiCtn cursor-default select-none">
+                        <p class="line-clamp-4">
+                            @if (isset($dataVi))
+                                {{$dataVi->visi}}
+                            @else
+                                Disini adalah tempat visinya
+                            @endif
+                        </p>
+                    </div>
+                </div>
+                <div class="liMiProfile mt-4 text-sm space-y-4 leading-4 select-none">
+                    @if (isset($dataMi))
+                        @foreach ($dataMi as $idx => $misi)
+                            <div class="misi-{{$idx}} relative group pl-2 flex items-center gap-4">
+                                <i class="bi bi-check-circle-fill text-3xl text-blue-600"></i>
+                                <p>{{$misi->misi}}</p>
+                            </div>
+                        @endforeach
+                    @else
+                        <div class="misi-itm relative group pl-2 flex items-center gap-4">
+                            <i class="bi bi-check-circle-fill text-3xl text-blue-600"></i>
+                            <p>Disinilah tempat misi sekolahnya</p>
+                        </div>
+                    @endif
+                </div>
+                <div class="frmViMiProfile mt-2 px-6"></div>
             </div>
-            <div class="phtShAct w-1/2 relative select-none">
-                {{-- <div class="phSh mx-auto border border-black aspect-square absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"> --}}
-                <div class="phSh ml-8 aspect-square w-96">
-                    <img src="assets/img/main/126465066756.jpg" alt="" class="w-full h-full object-cover object-center rounded-2xl shadow-xl shadow-gray-500" onclick="openPopup(this.src)">
-                    {{-- <div class="ActSch text-center flex justify-center items-center shadow-md shadow-black p-3 w-32 aspect-square bg-sky-400 rounded-2xl border absolute -left-[25%] -bottom-[12.5%] translate-x-[25%] translate-y-[12.5%]"> --}}
-                    <div class="ActSch text-center flex justify-center items-center shadow-md shadow-black w-32 border border-black aspect-square bg-sky-400 rounded-2xl relative">
-                        {{-- <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"> --}}
-                        <div class="relative z-10 space-y-4 text-white">
-                            <p class="relative text-sm font-bold">Akreditasi</p>
-                            <p class="Acdts relative text-6xl font-bold">
-                                A
-                            </p>
-                        </div>
-                        <i class="bi bi-award text-7xl text-sky-500 absolute left-0 top-0 -translate-x-0 -translate-y-0"></i>
+            <div class="squarePhoto">
+                <div class="frmHiddenEditImg">
+                </div>
+                <div class="contentPhoto grid grid-cols-7 grid-rows-7 w-[28rem] aspect-square aspect-[1/1] mx-auto group relative">
+                    <div class="spnEditrReset absolute right-0 flex items-center gap-2 translate-x-1/4 -translate-y-1/2 z-[2] invisible opacity-0 transition-all group-hover:visible group-hover:opacity-100">
+                        <span role="button" id="_btnResetImageViMi" class="border block p-2 bg-white rounded-lg hover:bg-gray-200" data-action-vimi-reset="vimi_Img?act=viImg2+2fdqj3u-2n">
+                            <i class="bi bi-arrow-clockwise text-2xl"></i>
+                        </span>
+                        <span role="button" id="_btnInpImageViMi" class="border block p-2 bg-white rounded-lg hover:bg-gray-200">
+                            <i class="bi bi-pencil text-2xl"></i>
+                        </span>
                     </div>
+                    <div class="imgSchool overflow-hidden" style="grid-area: 1 / 2 / 7 / 8">
+                        <div class="lazy-placeholder flex items-center justify-center w-full h-full rounded-lg bg-gray-200 animate-pulse">
+                            <i class="bi bi-image-fill text-4xl text-gray-400"></i>
+                        </div>
+                        <img src="{{asset('storage/images/pages/profile/' . $imgViMiImg)}}" style="display: none" alt="" id="_imgViMiView" class="lazyLoadThisPage w-full h-full object-cover object-center rounded-lg">
+                    </div>
+                    <div class="acredSch select-none z-[2]" style="grid-area: 6 / 1 / 8 / 4">
+                        <div class="bg-blue-500 w-full h-full rounded-lg grid grid-cols-3 grid-rows-3 overflow-hidden">
+                            <div class="acrCont z-[2] flex flex-col items-center justify-center text-white font-bold" style="grid-area: 2 / 2 / 3 / 3">
+                                <div class="ta text-lg">Akreditasi</div>
+                                <div class="tc text-6xl">A</div>
+                            </div>
+                            <div class="biAc translate-x-1/2 translate-y-[15%]" style="grid-area: 1 / 1 / -1 / -1">
+                                <i class="bi bi-award-fill text-blue-400 text-9xl"></i>
+                            </div>
+                            <div class="biAc -translate-x-1/4 -translate-y-1/4" style="grid-area: 1 / 1 / 2 / 2">
+                                <i class="bi bi-award text-blue-400 text-5xl"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <form action="{{route('saveVisiMisiImage')}}" method="POST" enctype="multipart/form-data" class="self-center" style="grid-area: 7 / 6 / 8 / 8">
+                        @csrf
+                        <input type="hidden" name="_tokenResetImgViMi" id="_tokenResetImgViMi" class="hidden sr-only">
+                        <input type="file" name="_filImgViMi" id="_filImgViMi" class="hidden sr-only" accept="image/*">
+                        <button type="submit" id="_btnSubmitImageViMi" class="transition-all w-full opacity-0 invisible" style="display: none">
+                            <div class="t border-2 w-full py-2 rounded-xl transition-all bg-gray-100 hover:bg-gray-300">Simpan</div>
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
     </section>
-    <hr class="mt-28 mx-auto w-3/4 border-[1.5px] border-black/40 rounded-2xl">
+    <hr class="mt-12 mx-auto w-3/4 border-[1.5px] border-black/40 rounded-2xl">
     <section class="mt-12">
-        <div class="flex justify-center items-center gap-24">
-            <div class="npsnSch flex gap-4">
-                <div class="imgIcP w-20">
-                    <img src="assets/img/icon/pen.png" alt="">
+        <div class="flex flex-col-reverse xl:flex-row gap-12 w-10/12 mx-auto relative group">
+            <div class="frmEdStsPrflSch flex items-center flex-col xl:flex-row-reverse xl:absolute gap-2 top-0 right-0 -translate-x-0 -translate-y-0 xl:opacity-0 xl:invisible transition-all group-hover:opacity-100 group-hover:visible">
+                <div class="frmInpHdnStatsProfileSch w-full md:w-1/2 xl:w-fit">
+                    <form action="{{route('saveStSchool')}}" method="post">
+                        @csrf
+                        <input type="number" min="0" max="" name="npsnPrflSch" id="npsnPrflSch" class="inpNumStSch hidden sr-only">
+                        <input type="number" min="0" max="" name="WdthPrflSch" id="WdthPrflSch" class="inpNumStSch hidden sr-only">
+                        <button type="submit" class="w-full border-2 border-gray-400 bg-gray-200 px-12 py-1 block text-center rounded-lg">
+                            <div class="t">Simpan</div>
+                        </button>
+                    </form>
                 </div>
-                <div class="dctnNpsn max-w-[11rem] flex flex-col justify-between">
-                    <p class="text-xl font-bold"> 20216018 </p>
-                    <p class="text-xs leading-3">Nomor Pokok Sekolah Nasional (NPSN)</p>
+                <div class="edStats w-full md:w-1/2 xl:w-fit">
+                    <span role="button" id="edStatProfileSch" class="border-2 border-gray-400 bg-gray-200 px-12 py-1 block text-center rounded-lg">
+                        <div class="t">Edit</div>
+                    </span>
+                    <span role="button" id="edCanclStatProfileSch" style="display: none" class="border-2 border-gray-400 bg-gray-200 px-12 py-1 block text-center rounded-lg">
+                        <div class="t">Cancel</div>
+                    </span>
                 </div>
             </div>
-            <div class="arSch flex gap-4">
-                <div class="imgIcLr w-20">
-                    <img src="assets/img/icon/layer.png" alt="">
+            <div class="stContn w-full flex flex-col lg:flex-row justify-center lg:items-center gap-6 lg:gap-24">
+                <div class="npsnSch flex gap-4">
+                    <div class="imgIcP w-20">
+                        <img src="assets/img/icon/pen.png" alt="">
+                    </div>
+                    <div class="dctnNpsn max-w-[11rem] flex flex-col justify-between">
+                        <p class="otpStScha text-xl font-bold"> {{$txDtNpsn}} </p>
+                        <input type="number" max="9999999999" id="tmpNpnPrfSch" class="inpNumStSch tmpInpStScha rounded-lg font-bold" style="display: none">
+                        <p class="text-xs leading-3">Nomor Pokok Sekolah Nasional (NPSN)</p>
+                    </div>
                 </div>
-                <div class="dctnAr max-w-[11rem] flex flex-col justify-between">
-                    <p class="text-xl font-bold"> 1000 m<sup>2</sup> </p>
-                    <p class="text-xs leading-3">Luas Tanah</p>
+                <div class="arSch flex gap-4">
+                    <div class="imgIcLr w-20">
+                        <img src="assets/img/icon/layer.png" alt="">
+                    </div>
+                    <div class="dctnAr max-w-[11rem] flex flex-col justify-between">
+                        <div class="t flex items-center gap-1 font-bold">
+                            <p class="otpStScha text-xl"> {{$txDtWdtSch}} </p>
+                            <input type="number" max="99999" id="tmpWdhPrfSch" class="inpNumStSch tmpInpStScha rounded-lg w-24" style="display: none;">
+                            <div class="sp">
+                                m<sup>2</sup>
+                            </div>
+                        </div>
+                        <p class="text-xs leading-3">Luas Tanah</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
     <section class="mt-20">
         <div class="shrcRcEksTe relative h-96">
-            <div class="img-bg flex items-center justify-center relative text-center text-white h-96 bg-cover bg-top bg-no-repeat after:absolute after:top-0 after:left-0 after:bg-blue-700/80 after:w-full after:h-full"
-                style="background-image: url('assets/img/main/126465066756.jpg');">
-                <div class="content relative z-10 self-center">
-                    <div class="ctnShrc flex flex-col lg:flex-row justify-center items-center gap-8 relative z-10 text-white h-full p-12">
-                        <div class="rngKl flex gap-4 justify-center items-center max-w-[450px]">
-                            <div class="nbr-Kl text-4xl xl:text-7xl font-bold">
-                                {26}
-                            </div>
-                            <div class="descChild space-y-8 text-left">
-                                <a href="" class="text-xl block group relative font-bold">
-                                    Ruang Kelas
-                                    <i class="bi bi-arrow-right hidden lg:block text-4xl transition-all absolute right-[10%] top-1/2 -translate-x-[10%] -translate-y-1/2 group-hover:right-0 group-hover:-translate-x-0"></i>
-                                </a>
-                                <p class="text-sm leading-4 line-clamp-2">Serta fasilitas penunjang kegiatan belajar mengajar lainnya</p>
-                            </div>
+            <div class="contentShrcRcEksTe absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[2] text-white w-full">
+                <div class="ctnShrc flex flex-col lg:flex-row justify-center items-center gap-8 relative z-10 h-full p-12">
+                    <div class="rngKl flex gap-4 justify-center items-center max-w-[450px]">
+                        <div class="nbr-Kl text-4xl xl:text-7xl font-bold">
+                            {26}
                         </div>
-                        <div class="rngEks flex gap-4 justify-center items-center max-w-[450px]">
-                            <div class="nbr-Kl text-4xl xl:text-7xl font-bold">
-                                {26}
-                            </div>
-                            <div class="descChild space-y-8 text-left">
-                                <a href="" class="text-xl block group relative font-bold">
-                                    Ekstrakurikuer
-                                    <i class="bi bi-arrow-right hidden lg:block text-4xl transition-all absolute right-[10%] top-1/2 -translate-x-[10%] -translate-y-1/2 group-hover:right-0 group-hover:-translate-x-0"></i>
-                                </a>
-                                <p class="text-sm leading-4 line-clamp-2">Membantu peserta didik menyalurkan minat dan bakatnya.</p>
-                            </div>
+                        <div class="descChild space-y-8 text-left">
+                            <a href="" class="text-xl block group relative font-bold">
+                                Ruang Kelas
+                                <i class="bi bi-arrow-right hidden lg:block text-4xl transition-all absolute right-[10%] top-1/2 -translate-x-[10%] -translate-y-1/2 group-hover:right-0 group-hover:-translate-x-0"></i>
+                            </a>
+                            <p class="text-sm leading-4 line-clamp-2">Serta fasilitas penunjang kegiatan belajar mengajar lainnya</p>
                         </div>
-                        <div class="rngTe flex gap-4 justify-center items-center max-w-[450px]">
-                            <div class="nbr-Kl text-4xl xl:text-7xl font-bold">
-                                {26}
-                            </div>
-                            <div class="descChild space-y-8 text-left">
-                                <a href="" class="text-xl block group relative font-bold">
-                                    Pendidik
-                                    <i class="bi bi-arrow-right hidden lg:block text-4xl transition-all absolute right-[10%] top-1/2 -translate-x-[10%] -translate-y-1/2 group-hover:right-0 group-hover:-translate-x-0"></i>
-                                </a>
-                                <p class="text-sm leading-4 line-clamp-2">Melalui Kualifikasi dan memiliki sertifikat sesuai bidangnya.</p>
-                            </div>
+                    </div>
+                    <div class="rngEks flex gap-4 justify-center items-center max-w-[450px]">
+                        <div class="nbr-Kl text-4xl xl:text-7xl font-bold">
+                            {26}
+                        </div>
+                        <div class="descChild space-y-8 text-left">
+                            <a href="" class="text-xl block group relative font-bold">
+                                Ekstrakurikuer
+                                <i class="bi bi-arrow-right hidden lg:block text-4xl transition-all absolute right-[10%] top-1/2 -translate-x-[10%] -translate-y-1/2 group-hover:right-0 group-hover:-translate-x-0"></i>
+                            </a>
+                            <p class="text-sm leading-4 line-clamp-2">Membantu peserta didik menyalurkan minat dan bakatnya.</p>
+                        </div>
+                    </div>
+                    <div class="rngTe flex gap-4 justify-center items-center max-w-[450px]">
+                        <div class="nbr-Kl text-4xl xl:text-7xl font-bold">
+                            {26}
+                        </div>
+                        <div class="descChild space-y-8 text-left">
+                            <a href="" class="text-xl block group relative font-bold">
+                                Pendidik
+                                <i class="bi bi-arrow-right hidden lg:block text-4xl transition-all absolute right-[10%] top-1/2 -translate-x-[10%] -translate-y-1/2 group-hover:right-0 group-hover:-translate-x-0"></i>
+                            </a>
+                            <p class="text-sm leading-4 line-clamp-2">Melalui Kualifikasi dan memiliki sertifikat sesuai bidangnya.</p>
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="bgImage h-full">
+                <div class="ovBg bg-blue-800/80 w-full h-full absolute left-0"></div>
+                <img src="{{asset('assets/img/main/126465066756.jpg')}}" alt="" class="w-full h-full object-cover object-center">
             </div>
         </div>
     </section>
     <section class="mt-20">
-        <div class="strOrg px-24 flex flex-col lg:flex-row items-center">
-            <div class="chrt-fTeSt mt-12 w-1/2">
-                <div class="titleSct">
-                    <div class="tSct w-fit py-3 px-6 bg-blue-400 rounded-xl text-white font-bold">
-                        <p>Struktur Organisasi</p>
+        <div class="strOrg">
+            <div class="containerStrOrg w-10/12 mx-auto">
+                <div class="titleStrOrg relative w-fit group flex items-center gap-6">
+                    {{-- <div class="biEdit opacity-0 invisible transition-all group-hover:opacity-100 group-hover:visible">
+                        <span role="button" class="absolute right-0 p-1.5 border-2 translate-x-1/2 -translate-y-1/2 bg-white rounded-lg hover:bg-gray-200">
+                            <i class="bi bi-pencil"></i>
+                        </span>
+                    </div> --}}
+                    <div class="cntn px-6 py-4 bg-blue-600 text-center text-white font-bold rounded-2xl uppercase">
+                        <h3>Struktur Organisasi</h3>
+                    </div>
+                    <div class="frmHiddenEditImg">
+                        <form action="{{route('saveOrResetStrOrgImage')}}" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <input type="hidden" name="_tokenResetLftImg" id="_tokenResetLftImg" class="hidden sr-only">
+                            <input type="hidden" name="_tokenResetRghtImg" id="_tokenResetRghtImg" class="hidden sr-only">
+                            <input type="file" name="_filLftImg" id="_filLftImg" class="hidden sr-only" accept="image/*">
+                            <input type="file" name="_filRghtImg" id="_filRghtImg" class="hidden sr-only" accept="image/*">
+                            <button type="submit" id="_btnSubmitImageOrgStrc" class="transition-all opacity-0 invisible" style="display: none">
+                                <div class="t border-2 px-6 lg:px-8 py-2 rounded-xl transition-all bg-gray-100 hover:bg-gray-300">Simpan</div>
+                            </button>
+                        </form>
                     </div>
                 </div>
-                <div class="chrtImg p-4">
-                    <div class="theChrtImg mx-auto aspect-square overflow-hidden max-w-4xl rounded-2xl relative">
-                        <img src="assets/img/dumb/imgtemp 1.jpg" alt="" class="w-full h-full object-cover object-center" onclick="openPopup(this.src)">                        
+                <div class="contentStrOrg grid xl:grid-cols-2 gap-6 xl:gap-0 mt-6">
+                    <div class="lftChrtOrg ">
+                        <div class="conEl relative w-fit mx-auto overflow-hidden group">
+                            <div class="spnEditrReset absolute right-0 flex items-center gap-2 z-[2] invisible opacity-0 transition-all group-hover:visible group-hover:opacity-100">
+                                <span role="button" id="_btnResetImageLft" class="border block p-2 bg-white rounded-lg hover:bg-gray-200" data-action-orgstrc-reset="StrOrg_Img?act=lftImg+29ndf8821sx">
+                                    <i class="bi bi-arrow-clockwise text-2xl"></i>
+                                </span>
+                                <span role="button" id="_btnInpImageLft" class="border block p-2 bg-white rounded-lg hover:bg-gray-200">
+                                    <i class="bi bi-pencil text-2xl"></i>
+                                </span>
+                            </div>
+                            <div class="mgSogImg p-4">
+                                <div class="aspect-[3/4] w-[32rem] overflow-hidden rounded-xl">
+                                    <div class="lazy-placeholder flex items-center justify-center w-full h-full bg-gray-200 animate-pulse">
+                                        <i class="bi bi-image-fill text-4xl text-gray-400"></i>
+                                    </div>
+                                    <img src="{{asset('storage/images/pages/profile/' . $imgStrOrgLft)}}" style="display: none" alt="" id="_imgStrcOrgLft" class="lazyLoadThisPage w-full h-full object-center object-cover origin-center hover:scale-110 transition-all">
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="fTeStImg p-4 w-1/2">
-                <div class="thefImg mx-auto aspect-square overflow-hidden max-w-2xl rounded-2xl relative float-right">
-                    <img src="assets/img/dumb/imgtemp 2.jpg" alt="" class="w-full h-full object-cover object-center" onclick="openPopup(this.src)">                   
+                    <div class="rghtImgssa flex items-center">
+                        <div class="conEl relative w-fit mx-auto overflow-hidden group">
+                            <div class="spnEditrReset absolute right-0 flex items-center gap-2 z-[2]  invisible opacity-0 transition-all group-hover:visible group-hover:opacity-100">
+                                <span role="button" id="_btnResetImageRght" class="border block p-2 bg-white rounded-lg hover:bg-gray-200" data-action-orgstrc-reset="StrOrg_Img?act=rghtImg+2i8jdfnq82sc">
+                                    <i class="bi bi-arrow-clockwise text-2xl"></i>
+                                </span>
+                                <span role="button" id="_btnInpImageRght" class="border block p-2 bg-white rounded-lg hover:bg-gray-200">
+                                    <i class="bi bi-pencil text-2xl"></i>
+                                </span>
+                            </div>
+                            <div class="mgsImg p-6">
+                                <div class="aspect-video aspect-[16/9] min-h-40 overflow-hidden rounded-xl">
+                                    <div class="lazy-placeholder flex items-center justify-center w-full h-96 bg-gray-200 animate-pulse">
+                                        <i class="bi bi-image-fill text-4xl text-gray-400"></i>
+                                    </div>
+                                    <img src="{{asset('storage/images/pages/profile/' . $imgStrOrgRght)}}" style="display: none" alt="" id="_imgStrcOrgRght" class="lazyLoadThisPage w-full h-full object-center object-cover origin-center hover:scale-110 transition-all">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -249,197 +350,15 @@
                             </div>
                         </div>
                     </div>
-                    <div class="mgItems1 w-56">
-                        <div class="imgItmMg">
-                            <div class="thImgItm aspect-[3.5/4] overflow-hidden">
-                                <img src="assets/img/dumb/imgtemp 3.jpg" alt="" class="w-full h-full object-cover object-center" onclick="openPopup(this.src)">
-                            </div>
-                        </div>
-                        <div class="nJItm">
-                            <div class="nmItm">
-                                <strong>Nama</strong>
-                            </div>
-                            <div class="jbItm">
-                                <p>Jabatannya</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mgItems1 w-56">
-                        <div class="imgItmMg">
-                            <div class="thImgItm aspect-[3.5/4] overflow-hidden">
-                                <img src="assets/img/dumb/imgtemp 3.jpg" alt="" class="w-full h-full object-cover object-center" onclick="openPopup(this.src)">
-                            </div>
-                        </div>
-                        <div class="nJItm">
-                            <div class="nmItm">
-                                <strong>Nama</strong>
-                            </div>
-                            <div class="jbItm">
-                                <p>Jabatannya</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mgItems1 w-56">
-                        <div class="imgItmMg">
-                            <div class="thImgItm aspect-[3.5/4] overflow-hidden">
-                                <img src="assets/img/dumb/imgtemp 3.jpg" alt="" class="w-full h-full object-cover object-center" onclick="openPopup(this.src)">
-                            </div>
-                        </div>
-                        <div class="nJItm">
-                            <div class="nmItm">
-                                <strong>Nama</strong>
-                            </div>
-                            <div class="jbItm">
-                                <p>Jabatannya</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mgItems1 w-56">
-                        <div class="imgItmMg">
-                            <div class="thImgItm aspect-[3.5/4] overflow-hidden">
-                                <img src="assets/img/dumb/imgtemp 3.jpg" alt="" class="w-full h-full object-cover object-center" onclick="openPopup(this.src)">
-                            </div>
-                        </div>
-                        <div class="nJItm">
-                            <div class="nmItm">
-                                <strong>Nama</strong>
-                            </div>
-                            <div class="jbItm">
-                                <p>Jabatannya</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mgItems1 w-56">
-                        <div class="imgItmMg">
-                            <div class="thImgItm aspect-[3.5/4] overflow-hidden">
-                                <img src="assets/img/dumb/imgtemp 3.jpg" alt="" class="w-full h-full object-cover object-center" onclick="openPopup(this.src)">
-                            </div>
-                        </div>
-                        <div class="nJItm">
-                            <div class="nmItm">
-                                <strong>Nama</strong>
-                            </div>
-                            <div class="jbItm">
-                                <p>Jabatannya</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mgItems1 w-56">
-                        <div class="imgItmMg">
-                            <div class="thImgItm aspect-[3.5/4] overflow-hidden">
-                                <img src="assets/img/dumb/imgtemp 3.jpg" alt="" class="w-full h-full object-cover object-center" onclick="openPopup(this.src)">
-                            </div>
-                        </div>
-                        <div class="nJItm">
-                            <div class="nmItm">
-                                <strong>Nama</strong>
-                            </div>
-                            <div class="jbItm">
-                                <p>Jabatannya</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mgItems1 w-56">
-                        <div class="imgItmMg">
-                            <div class="thImgItm aspect-[3.5/4] overflow-hidden">
-                                <img src="assets/img/dumb/imgtemp 3.jpg" alt="" class="w-full h-full object-cover object-center" onclick="openPopup(this.src)">
-                            </div>
-                        </div>
-                        <div class="nJItm">
-                            <div class="nmItm">
-                                <strong>Nama</strong>
-                            </div>
-                            <div class="jbItm">
-                                <p>Jabatannya</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mgItems1 w-56">
-                        <div class="imgItmMg">
-                            <div class="thImgItm aspect-[3.5/4] overflow-hidden">
-                                <img src="assets/img/dumb/imgtemp 3.jpg" alt="" class="w-full h-full object-cover object-center" onclick="openPopup(this.src)">
-                            </div>
-                        </div>
-                        <div class="nJItm">
-                            <div class="nmItm">
-                                <strong>Nama</strong>
-                            </div>
-                            <div class="jbItm">
-                                <p>Jabatannya</p>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
     </section>
     <div class="foo mb-96"></div>
-    <section id="pop-upFormAdd" class="pop-upFormAdd hidden fixed w-1/2 max-h-full left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2  px-8 py-6 bg-white border border-black rounded-2xl overflow-auto z-50">
-        <div class="mx-auto">
-            <button id="btrpp" type="button" class="icon border border-black rounded-lg absolute top-[5%] right-[5%] -translate-x-[5%] -translate-y-[5%]" onclick="closePopUpForm(this)">
-                <i class="bi bi-x text-5xl"></i>
-            </button>
-            <form action="{{ route('storeClass') }}" method="POST" class="form-addClass space-y-6" enctype="multipart/form-data">
-                @csrf
-                <input type="hidden" name="classList" id="classInput" value="VII">
-                <div class="imgClass block">
-                    <div class="group bg-white regular-shadow w-80 h-80 border-dashed rounded-2xl overflow-hidden relative mx-auto">
-                        <div class="button-editDel absolute bg-black/40 py-1 px-4 rounded-xl z-10 -right-full top-[5%] -translate-x-[5%] translate-y-full transition-all group-hover:right-[5%] group-hover:translate-x-[5%] group-hover:top-[5%] group-hover:translate-y-[5%]">
-                            <label for="imgClass"  class="editB border border-black bg-white p-2 rounded-lg hover:bg-gray-200 cursor-pointer">
-                                <i class="bi bi-pencil"></i>
-                            </label>
-                            <button type="button" class="delB border border-black bg-white p-2 rounded-lg hover:bg-gray-200">
-                                <i class="bi bi-trash3"></i>
-                            </button>
-                        </div>
-                        <img src="" alt="" id="previewImage" class="supImg w-full h-full object-cover object-center relative bg-gray-400/50">
-                        <label for="imgClass" class="block w-full h-full absolute inset-0 group-hover:bg-black/30 transition-all cursor-pointer">
-                            <label for="imgClass" class="itemClass w-3/4 py-2 text-white text-center font-bold cursor-pointer bg-blue-400 rounded-xl z-10 absolute -bottom-full left-1/2 translate-y-full -translate-x-1/2 transition-all group-hover:bottom-[5%] group-hover:-translate-y-[5%] hover:bg-cyan-500">
-                                <i class="bi bi-plus-circle text-lg"></i>
-                                Add Image
-                            </label>
-                        </label>
-                        <input type="file" name="imgClass" id="imgClass" accept="image/*" class="w-15 h-15 border border-black sr-only" onchange="previewFile(event)" value="">
-                    </div>
-                </div>
-                <div class="teClass">
-                    <div class="theLabels">
-                        <label for="teacher" class="teachers font-bold">Wali Kelas</label>
-                    </div>
-                    <input type="text" id="teacher" class="border w-full py-2 px-4 rounded-lg">
-                </div>
-                <div class="tagClass">
-                    <div class="theLabels">
-                        <label for="tagClass" class="tagClass font-bold">Tag</label>
-                    </div>
-                    <input type="text" name="tagClass" id="tagClass" class="border w-full py-2 px-4 rounded-lg">
-                </div>
-                <div class="descClass">
-                    <div class="theLabels">
-                        <label for="desc" class="descClass font-bold" >Deskripsi Kelas</label>
-                    </div>
-                    <textarea name="desc" id="desc" rows="3" class="border w-full h-auto py-2 px-4 rounded-lg resize-none" maxlength="250"></textarea>
-                </div>
-                <button type="submit" class="block border border-black py-2 px-12 rounded-xl mx-auto hover:bg-blue-400"> Simpan </button>
-            </form>
-        </div>
-    </section>
-    <div id="confInpExcForm" class="flex flex-col justify-center items-center gap-[10%] fixed text-center overflow-hidden z-50 p-6 w-full h-full lg:w-1/3 lg:h-1/3 bg-white border border-black rounded-3xl aspect-square" style="top: 200%; left:50%; transform:translate(-50%, -50%); visibility: hidden; opacity: 0; transition: all .3s ease-in-out">
-        <div class="close-btn absolute py-1 px-4 rounded-xl z-10 right-[2%] top-[5%] -translate-x-[2%] -translate-y-[5%]" onclick="closeExcelPopUp()">
-            <i class="bi bi-x-circle-fill p-2 text-red-600 bg-white border border-black rounded-xl cursor-pointer" onclick="closeExcelPopUp()"></i>
-        </div>
-        <h1 class="text-lg 2xl:text-2xl font-bold">Konfirmasi Upload File</h1>
-        <p class="line-clamp-1 overflow-hidden overflow-ellipsis max-w-[80%]">
-            File : <label for="fmtExcel" id="labsFmtExcel" class="cursor-pointer font-bold px-4 py-2 transition duration-300 ease-in-out relative after:absolute after:w-full after:h-full after:border-2 after:rounded-xl after:border-transparent after:hover:border-sky-400 after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:blur-[1px] after:z-10">text.xlsx</label>
-        </p>
-        <div class="btnCaSb flex items-center gap-6">
-            <button type="button" class="text-sm py-2 px-6 border-2 border-gray-600 bg-gray-100 rounded-lg flex items-center hover:bg-sky-600 hover:border-sky-800" onclick="closeExcelPopUp()">Cancel</button>
-            <button type="button" class="text-sm text-white py-2 px-6 border-2 border-sky-600 bg-sky-400 rounded-lg flex items-center hover:bg-sky-600 hover:border-sky-800" onclick="document.getElementById('sbFmtExcel').click()">Submit</button>
-        </div>
-    </div>
 @endsection
 @section('custom-script')
-    <script src="assets/js/students/formsInpExcel.js"></script>
-    <script src="assets/js/students/grouplist.js"></script>
-    <script src="assets/js/students/formsAdd.js"></script>
+    <script src="{{asset('assets/js/profile/profile.js')}}"></script>
+    <script src="{{asset('assets/js/profile/profile_misi.js')}}"></script>
+    <script src="{{asset('assets/js/profile/profile_strorg.js')}}"></script>
+    <script src="{{asset('assets/js/profile/profile_stat.js')}}"></script>
 @endsection

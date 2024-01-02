@@ -28,18 +28,22 @@ Route::get('/', function () {
     return view('pages.homepage.index');
 });
 
-Route::post('/kelas/update', [ClassesModelsController::class, 'update']) -> name('updateClass');
-Route::delete('/kelas/delete', [ClassesModelsController::class, 'actionDeleteClass']) -> name('deleteClass');
+/** 
+ * Controller for load content
+ * Just get full page element on there
+*/
+Route::get('/kelas/infoload', [LoadContent::class, 'classInfo']);
+Route::get('/kelas/deleteload', [LoadContent::class, 'deleteClassInfo']);
+Route::get('/kelas/alertload', [LoadContent::class, 'alertClassInfo']);
+Route::get('/siswa/formload', [LoadContent::class, 'studentForm']);
+Route::get('/siswa/deleteload', [LoadContent::class, 'studentDelete']);
+Route::get('/siswa/alertload', [LoadContent::class, 'alertStudentInfo']);
+Route::get('/profile/formload', [LoadContent::class, 'profileViMiForm']);
 
-Route::controller(LoadContent::class)->group(function() {
-    Route::get('/kelas/infoload', 'classInfo');
-    Route::get('/kelas/deleteload', 'deleteClassInfo');
-    Route::get('/kelas/alertload', 'alertClassInfo');
-    Route::get('/siswa/formload', 'studentForm');
-    Route::get('/siswa/deleteload', 'studentDelete');
-    Route::get('/siswa/alertload', 'alertStudentInfo');
-});
 
+/**
+ * Control Route for Classes
+*/
 Route::controller(ClassesModelsController::class)->group(function() {
     Route::get('/kelas', 'index') -> name('viewClass');
     Route::post('/kelas', 'store') -> name('storeClass');
@@ -55,7 +59,13 @@ Route::controller(ClassesModelsController::class)->group(function() {
     Route::post('/kelas/pendidik', 'listTeacherOnInput')->name('ajaxClassGetTeachersOnInput');
     Route::get('/kelas/pendidik/image', 'teacherImage')->name('ajaxClassGetTeachersImages');
 });
+Route::post('/kelas/update', [ClassesModelsController::class, 'update']) -> name('updateClass');
+Route::delete('/kelas/delete', [ClassesModelsController::class, 'actionDeleteClass']) -> name('deleteClass');
 
+
+/**
+ * Control Route for Students
+*/
 Route::controller(StudentsModelsController::class)->group(function() {
     Route::post('/siswa', 'show')->name('siswaData');
     Route::post('/siswa/infodata', 'getDataStudent')->name('siswaData');
@@ -83,7 +93,9 @@ Route::controller(StudentsModelsController::class)->group(function() {
 // Route::post('/kelas/siswa/get', [StudentsModelsController::class, 'siswaData'])->name('siswaData');
 // Route::post('/kelas/{classGrade}/{classTag}', [StudentsModelsController::class, 'index'])->name('storeStudents');
 
-// Route Teachers and Staff Teachers
+/**
+ * Control Route for Teachers and Staff
+*/
 Route::controller(TeachersModelsController::class)->group(function() {
     Route::get('/pendidik', 'index')->name('pendidik.index');
     Route::get('/pendidik/getCount', 'getCount')->name('pendidik.count');
@@ -101,11 +113,24 @@ Route::controller(TeachersModelsController::class)->group(function() {
 });
 
 
-// Route Students
-Route::get('/kelas/siswa', [StudentsModelsController::class, 'index']) -> name('ListStudents');
-
-// Route profile
+/**
+ * Control Route for Profile page
+*/
 Route::get('/profil', [ProfileModelsController::class,'index']);
+Route::post('/profil/stsch', [ProfileModelsController::class,'storeDataSt'])->name('saveStSchool');
+Route::post('/profil/vimi', [ProfileModelsController::class,'storeVisiMisi'])->name('saveVisiMisi');
+Route::post('/profil/vimi/img', [ProfileModelsController::class,'storeImgViMi'])->name('saveVisiMisiImage');
+Route::post('/profil/strorg/img', [ProfileModelsController::class,'storeOrResetImgOrgStrc'])->name('saveOrResetStrOrgImage');
+/**
+ * Controll Route for Profil page using ajax
+ */
+Route::get('/profil/getdatast', [ProfileModelsController::class,'getdatast']);
+Route::get('/profil/getdatavimi', [ProfileModelsController::class,'getDataViMi']);
+Route::post('/profil/resetimgtoken', [ProfileModelsController::class,'createTokenResetImage']);
+
+
+
+
 Route::get('/osis', [OsisModelsController::class,'index']);
 
 Route::view('/testing', 'pages.students.index');
