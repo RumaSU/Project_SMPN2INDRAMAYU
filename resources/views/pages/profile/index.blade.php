@@ -17,14 +17,14 @@
     <section class="topHeaderPageProfileSchool flex items-center justify-center relative overflow-hidden  text-center text-white h-80 lg:h-[28rem]">
         <div class="lazy-placeholder animate-pulse w-full h-full absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-gray-300">
             <div class="txPlace absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 flex flex-col justify-center items-center gap-2">
-                <div class="bg-gray-200 w-56 py-6 rounded-xl"></div>                
-                <div class="bg-gray-200 w-32 py-2 rounded-md"></div>                
+                <div class="bg-gray-200 w-56 py-6 rounded-xl"></div>
+                <div class="bg-gray-200 w-32 py-2 rounded-md"></div>
             </div>
         </div>
         <div class="cntnTopImage" style="display: none">
             <div class="imageFullBgSchool absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full -z-10">
                 <div class="ovTop bg-black/60 w-full h-full absolute left-0 top-1/2 -translate-y-1/2"></div>
-                <img src="{{asset('assets/img/main/126465066756.jpg')}}" alt="" class="lazyLoadThisPage w-full h-full object-cover object-center">            
+                <img src="{{asset('assets/img/main/126465066756.jpg')}}" alt="" class="lazyLoadThisPage w-full h-full object-cover object-center">
             </div>
             <div class="content relative z-10 selft-center">
                 <h1 class="text-4xl font-bold">Profil Sekolah</h1>
@@ -202,7 +202,11 @@
                 <div class="ctnShrc flex flex-col lg:flex-row justify-center items-center gap-8 relative z-10 h-full p-12">
                     <div class="rngKl flex gap-4 justify-center items-center max-w-[450px]">
                         <div class="nbr-Kl text-4xl xl:text-7xl font-bold">
-                            {26}
+                            @if (isset($countArr['cntClass']))
+                                {{ $countArr['cntClass'] }}
+                            @else
+                                0
+                            @endif
                         </div>
                         <div class="descChild space-y-8 text-left">
                             <a href="" class="text-xl block group relative font-bold">
@@ -212,7 +216,7 @@
                             <p class="text-sm leading-4 line-clamp-2">Serta fasilitas penunjang kegiatan belajar mengajar lainnya</p>
                         </div>
                     </div>
-                    <div class="rngEks flex gap-4 justify-center items-center max-w-[450px]">
+                    {{-- <div class="rngEks  gap-4 justify-center items-center max-w-[450px] hidden">
                         <div class="nbr-Kl text-4xl xl:text-7xl font-bold">
                             {26}
                         </div>
@@ -223,10 +227,14 @@
                             </a>
                             <p class="text-sm leading-4 line-clamp-2">Membantu peserta didik menyalurkan minat dan bakatnya.</p>
                         </div>
-                    </div>
+                    </div> --}}
                     <div class="rngTe flex gap-4 justify-center items-center max-w-[450px]">
                         <div class="nbr-Kl text-4xl xl:text-7xl font-bold">
-                            {26}
+                            @if (isset($countArr['cntTeacher']))
+                                {{ $countArr['cntTeacher'] }}
+                            @else
+                                0
+                            @endif
                         </div>
                         <div class="descChild space-y-8 text-left">
                             <a href="" class="text-xl block group relative font-bold">

@@ -38,7 +38,22 @@ class ProfileModelsController extends Controller
             $dataSt = ProfileStModels::where('page_profile_id', $dataVi->page_profile_id)->select('npsn', 'wdth_sch')->latest('created_at')->first();
             $imgViMi = ProfileVisiMisiImageModels::where('page_profile_id', $dataVi->page_profile_id)->select('name_files')->latest('created_at')->first();
             $imgStrOrg = ProfileStrOrgImageModels::where('page_profile_id', $dataVi->page_profile_id)->select('imgleft', 'imgright')->latest('created_at')->first();
-            return view("pages.profile.index", compact('dataVi', 'dataMi', 'dataSt','imgViMi','imgStrOrg'));
+            $countClass = ClassesModels::latest('year')->count('class_id');
+            $countTeachers = ClassesModels::where('status', 'Aktif')
+                ->where('is_published', '=', true)
+                ->count('teacher_id');
+            $countArr = [
+                'cntClass' => $countClass,
+                'cntTeacher' => $countTeachers,
+            ];
+            return view("pages.profile.index", compact(
+                'dataVi',
+                'dataMi',
+                'dataSt',
+                'imgViMi',
+                'imgStrOrg',
+                'countArr',
+            ));
         }
         return view("pages.profile.index", compact('dataVi'));
     }
@@ -48,7 +63,7 @@ class ProfileModelsController extends Controller
     */
     public function getDataViMi() {
         $dataVi = ProfileModels::latest('created_at')->first();
-        
+
         if($dataVi) {
             $dataMi = ProfileMisiModels::where('page_profile_id', $dataVi->page_profile_id)->get();
             return response()->json([
@@ -64,8 +79,8 @@ class ProfileModelsController extends Controller
             'dataStSch' => $dataSch,
         ]);
     }
-    
-     
+
+
     public function storeDataSt(Request $request) {
         $validInp = Validator::make([
             'npsnPrflSch' => $request->npsnPrflSch,
@@ -74,13 +89,13 @@ class ProfileModelsController extends Controller
             'npsnPrflSch' => 'nullable|numeric|max:9999999999',
             'WdthPrflSch' => 'nullable|numeric|max:99999',
         ]);
-        
+
         if ($validInp) {
             $dataPage = $this->getDataPageProfile();
             $idProfileSt = Uuid::uuid4()->toString();
             $ciNpsn = isset($request->npsnPrflSch) ? $request->npsnPrflSch : 0;
             $ciWdhSc = isset($request->WdthPrflSch) ? $request->WdthPrflSch : 0;
-            
+
             $this->dataBeforeStorePageProfile($idProfileSt, $dataPage);
             $this->dataBeforeStorePageProfileMisi($idProfileSt, $dataPage);
             $this->dataBeforeStorePageProfileViMiImage($idProfileSt, $dataPage);
@@ -90,11 +105,11 @@ class ProfileModelsController extends Controller
                 'wdth_sch' => $ciWdhSc,
                 'page_profile_id' => $idProfileSt,
             ]);
-            
+
             return redirect()->back();
         }
     }
-    
+
     /**
      *  Function token
      */
@@ -102,37 +117,37 @@ class ProfileModelsController extends Controller
         $uuidToken = Uuid::uuid4()->toString();
         $tokenForm = $uuidToken . $request->dataAction;
         $md5Hash = md5(rand() . $tokenForm);
-        
+
         $cacheKey = 'resetImg' . $request->dataAction;
-        
+
         // Menyimpan nilai dalam cache sebagai array yang bersarang
         $cachedData = Cache::get('tokenResetImg', []);
-        
+
         $cachedData[$cacheKey] = $md5Hash;
         // Simpan nilai dalam cache
         Cache::put('tokenResetImg', $cachedData, now()->addMinutes(10)); // Simpan selama 60 menit
         return response()->json(['tokenImage' => $md5Hash]);
     }
-    
+
     public function checkToken($keyToken, $requestToken) {
         // Mengambil data dari cache
         $cachedData = Cache::get('tokenResetImg', []);
-    
+
         if (array_key_exists($keyToken, $cachedData)) {
             $savedToken = $cachedData[$keyToken];
-    
+
             // Memeriksa apakah token yang disimpan cocok dengan yang diberikan
             if ($savedToken === $requestToken) {
                 // Token cocok, lakukan tindakan yang diinginkan
                 return true;
             }
         }
-    
+
         // Jika tidak cocok atau tidak ada dalam cache
         return false;
     }
 
-    
+
     /**
      * Store a newly created resource in storage.
      */
@@ -146,7 +161,7 @@ class ProfileModelsController extends Controller
         if($validViInp->passes()) {
             $idProfile = Uuid::uuid4()->toString();
             $isViCreate = false;
-            
+
             $dataVi = ProfileModels::orderBy('created_at', 'desc')->value('visi');
             if($request->visiProfil != $dataVi) {
                 ProfileModels::create([
@@ -156,10 +171,10 @@ class ProfileModelsController extends Controller
                 $this->dataBeforeStorePageProfileViMiImage($idProfile, $dataPage);
                 $this->dataBeforeStorePageProfileStrcImg($idProfile, $dataPage);
                 $this->dataBeforeStorePageProfileSt($idProfile, $dataPage);
-                
+
                 $isViCreate = true;
             }
-            
+
             $nameMiInput = preg_grep('/^misiProfil_\d+/', array_keys($request->all()));
             if($isViCreate) {
                 if($nameMiInput) {
@@ -191,11 +206,11 @@ class ProfileModelsController extends Controller
                 $this->dataBeforeStorePageProfileStrcImg($idProfile, $dataPage);
                 $this->dataBeforeStorePageProfileSt($idProfile, $dataPage);
             }
-            
+
             return redirect()->back();
         }
     }
-    
+
     /**
      * Function store image in page
      */
@@ -207,16 +222,16 @@ class ProfileModelsController extends Controller
             '_tokenResetImgViMi' => 'nullable|string',
             '_filImgViMi' => 'nullable|image',
         ]);
-        
+
         if($validImage->passes()) {
             $dataPage = $this->getDataPageProfile();
             $idViMiImg = Uuid::uuid4()->toString();
-            
+
             if($request->hasFile('_filImgViMi')) {
                 $image = $request->file('_filImgViMi');
                 $imageName = time() . '_' . $image->getClientOriginalName(); // Menamai gambar
                 $image->storeAs('public/images/pages/profile/'. $imageName);
-                
+
                 $this->dataBeforeStorePageProfile($idViMiImg, $dataPage);
                 $this->dataBeforeStorePageProfileMisi($idViMiImg, $dataPage);
                 ProfileVisiMisiImageModels::create([
@@ -236,14 +251,14 @@ class ProfileModelsController extends Controller
                 $this->dataBeforeStorePageProfileStrcImg($idViMiImg, $dataPage);
                 $this->dataBeforeStorePageProfileSt($idViMiImg, $dataPage);
             }
-            
+
             return redirect()->back();
         } else {
-            
+
         }
     }
-    
-    
+
+
     /**
      * Function store image struct org
      */
@@ -259,12 +274,12 @@ class ProfileModelsController extends Controller
             '_filLftImg' => 'nullable|image',
             '_filRghtImg' => 'nullable|image',
         ]);
-        
+
         if($validImage->passes()) {
             $dataPage = $this->getDataPageProfile();
             $idProfStrOrg = Uuid::uuid4()->toString();
             $isImgStore = false;
-            
+
             if($request->_filLftImg || $request->_filRghtImg) {
                 $this->storePageProfilImgStrgOrg($request, $idProfStrOrg, $dataPage);
                 $isImgStore = true;
@@ -272,10 +287,10 @@ class ProfileModelsController extends Controller
             if($request->_tokenResetLftImg || $request->_tokenResetRghtImg) {
                 $this->resetImgPageProfileStrgOrg($request, $idProfStrOrg, $dataPage, $isImgStore);
             }
-            
+
             return redirect()->back();
         } else {
-            
+
         }
     }
     public function storePageProfilImgStrgOrg($request, $idProfStrOrg, $dataPage) {
@@ -285,7 +300,7 @@ class ProfileModelsController extends Controller
             $image = $request->file('_filLftImg');
             $imageName = time() . '_' . $image->getClientOriginalName(); // Menamai gambar
             $image->storeAs('public/images/pages/profile/'. $imageName);
-            
+
             $this->dataBeforeStorePageProfile($idProfStrOrg, $dataPage);
             $this->dataBeforeStorePageProfileMisi($idProfStrOrg, $dataPage);
             $this->dataBeforeStorePageProfileViMiImage($idProfStrOrg, $dataPage);
@@ -308,7 +323,7 @@ class ProfileModelsController extends Controller
             $image = $request->file('_filRghtImg');
             $imageName = time() . '_' . $image->getClientOriginalName(); // Menamai gambar
             $image->storeAs('public/images/pages/profile/'. $imageName);
-            
+
             if($isLfImgCrt) {
                 ProfileStrOrgImageModels::where('page_profile_id', $idProfStrOrg)->update([
                     'imgright' => $imageName,
@@ -330,7 +345,7 @@ class ProfileModelsController extends Controller
                         'page_profile_id' => $idProfStrOrg,
                     ]);
                 }
-                
+
             }
         }
     }
@@ -340,7 +355,7 @@ class ProfileModelsController extends Controller
             $keyToken = 'resetImg' . 'StrOrg_Img?act=lftImg+29ndf8821sx';
             $requestToken = $request->_tokenResetLftImg;
             $isTokenValid = $this->checkToken($keyToken, $requestToken);
-            
+
             if($isTokenValid) {
                 if($isImgStore) {
                     ProfileStrOrgImageModels::where('page_profile_id', $idProfStrOrg)->update([
@@ -357,7 +372,7 @@ class ProfileModelsController extends Controller
                         'page_profile_id' => $idProfStrOrg,
                     ]);
                 }
-                
+
                 $isLftReq = true;
             }
         }
@@ -390,8 +405,8 @@ class ProfileModelsController extends Controller
             }
         }
     }
-    
-    
+
+
     /**
      * Store data before
     */
@@ -459,7 +474,7 @@ class ProfileModelsController extends Controller
             ]);
         }
     }
-    
+
     public function getDataPageProfile() {
         $dataPageProfile = ProfileModels::latest('created_at')->first();
         if($dataPageProfile) {
@@ -467,7 +482,7 @@ class ProfileModelsController extends Controller
             $dataPageViMiImage = ProfileVisiMisiImageModels::where('page_profile_id', $dataPageProfile->page_profile_id)->first();
             $dataPageStrctImg = ProfileStrOrgImageModels::where('page_profile_id', $dataPageProfile->page_profile_id)->first();
             $dataPageSt = ProfileStModels::where('page_profile_id', $dataPageProfile->page_profile_id)->first();
-            
+
             $arrDataPage = [
                 $dataPageProfile,
                 $dataPageMisi,
@@ -475,7 +490,7 @@ class ProfileModelsController extends Controller
                 $dataPageStrctImg,
                 $dataPageSt,
             ];
-            
+
             return $arrDataPage;
         }
     }

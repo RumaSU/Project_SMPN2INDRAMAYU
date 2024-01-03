@@ -39,15 +39,15 @@
                 </div>
             </div>
             <div class="listImg">
-                <img src="assets/img/main/126465066756.jpg" alt="img1"
+                <img src="{{ asset('assets/img/main/126465066756.jpg') }}" alt="img1"
                     class="object-cover object-center aspect-square rounded-lg text-center items-center">
-                <img src="assets/img/main/example-image2.png" alt="img1"
+                <img src="{{ asset('assets/img/main/example-image2.png') }}" alt="img1"
                     class="object-cover object-center aspect-square rounded-lg text-center items-center hidden">
-                <img src="assets/img/main/example-image.jpg" alt="img2"
+                <img src="{{ asset('assets/img/main/example-image.jpg') }}" alt="img2"
                     class="object-cover object-center aspect-square rounded-lg text-center items-center hidden">
-                <img src="assets/img/main/vecteezy_abstract-black-and-white-pattern-like-psychedelic_.jpg" alt="img3"
+                <img src="{{ asset('assets/img/main/vecteezy_abstract-black-and-white-pattern-like-psychedelic_.jpg') }}" alt="img3"
                     class="object-cover object-center aspect-square rounded-lg text-center items-center hidden">
-                <img src="assets/img/icon/add-b.png" alt="img4"
+                <img src="{{ asset('assets/img/icon/add-b.png') }}" alt="img4"
                     class="object-cover object-center aspect-square rounded-lg text-center items-center hidden">
             </div>
         </div>
@@ -68,7 +68,7 @@
             </div>
             <div class="bg-white drop-shadow-xl p-8 text-center rounded-lg w-48 md:w-72">
                 <div class="theImg flex justify-center items-center mb-6">
-                    <img src="assets/img/icon/monitor.png" alt="" class="w-32 object-contain">
+                    <img src="{{ asset('assets/img/icon/monitor.png') }}" alt="" class="w-32 object-contain">
                 </div>
                 <strong class="text-bold" style="font-size: .95rem">SARANA DAN PRASARANA</strong>
                 <p class="mt-5 text-sm text-gray-500 line-clamp-4 md:line-clamp-none">Lihat fasilitas dan infrastruktur yang
@@ -76,7 +76,7 @@
             </div>
             <div class="bg-white drop-shadow-xl p-8 text-center rounded-lg w-48 md:w-72">
                 <div class="theImg flex justify-center items-center mb-6">
-                    <img src="assets/img/icon/newspaper.png" alt="" class="w-32 object-contain">
+                    <img src="{{ asset('assets/img/icon/newspaper.png') }}" alt="" class="w-32 object-contain">
                 </div>
                 <strong class="text-bold" style="font-size: .95rem">VISI MISI</strong>
                 <p class="mt-5 text-sm text-gray-500 line-clamp-4 md:line-clamp-none">Dapatkan berita terbaru, pengumuman
@@ -84,7 +84,7 @@
             </div>
             <div class="bg-white drop-shadow-xl p-8 text-center rounded-lg w-48 md:w-72">
                 <div class="theImg flex justify-center items-center mb-6">
-                    <img src="assets/img/icon/target.png" alt="" class="w-32 object-contain">
+                    <img src="{{ asset('assets/img/icon/target.png') }}" alt="" class="w-32 object-contain">
                 </div>
                 <strong class="text-bold" style="font-size: .95rem">GALERI</strong>
                 <p class="mt-5 text-sm text-gray-500 line-clamp-4 md:line-clamp-none">Jelajahi koleksi foto dari berbagai
@@ -99,13 +99,13 @@
                 <div class="blur-effect absolute w-[250px] h-[370px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#AFAFAF]"
                     style="background: linear-gradient(30deg, rgba(255, 255, 255, 0.00) 50%, rgba(255, 255, 255, 0.00) 85.94%, #FFF 95.31%, #FFF 100%), linear-gradient(331deg, rgba(255, 255, 255, 0.00) 50%, rgba(255, 255, 255, 0.00) 85.56%, #FFF 94.83%, #FFF 99.47%), linear-gradient(0deg, rgba(255, 255, 255, 0.00) 50%, rgba(255, 255, 255, 0.00) 50%, rgba(255, 255, 255, 0.00) 94.88%, #FFF 100%), linear-gradient(90deg, rgba(255, 255, 255, 0.00) 50%, rgba(255, 255, 255, 0.00) 50.01%, rgba(255, 255, 255, 0.00) 94.88%, #FFF 100%), linear-gradient(270deg, rgba(255, 255, 255, 0.00) 50%, rgba(255, 255, 255, 0.00) 50%, rgba(255, 255, 255, 0.00) 94.88%, #FFF 100%), linear-gradient(209deg, rgba(255, 255, 255, 0.00) 50%, rgba(255, 255, 255, 0.00) 50.01%, #FFF 87.5%, #FFF 100%), linear-gradient(151deg, rgba(255, 255, 255, 0.00) 50%, rgba(255, 255, 255, 0.88) 83.33%, #FFF 89.56%, #FFF 100%);">
                 </div>
-                <img src="assets/img/main/126465066756.jpg" class="object-center object-cover w-full h-full" alt="">
+                <img src="{{ asset('assets/img/main/126465066756.jpg') }}" class="object-center object-cover w-full h-full" alt="">
             </div>
         </div>
         <div
             class="quote-principle align-self-center self-center p-4 w-[600px] h-[400px] lg:w-[800px] lg:h-[600px] shadow-xl rounded-xl relative ">
             <div class="icon-quote absolute left-[8%] top-[8%] -translate-x-[8%] -translate-y-[8%]">
-                <img src="assets/img/icon/quote.png" class="w-[75px] h-[75px]" alt="">
+                <img src="{{ asset('assets/img/icon/quote.png') }}" class="w-[75px] h-[75px]" alt="">
             </div>
             <div
                 class="quote mt-24 lg:mt-32 self-center w-3/4 h-1/2 mx-auto text-base lg:text-lg border-2 border-dashed border-black/40 p-4 rounded-2xl">
@@ -176,13 +176,13 @@
             <div class="chooseSHAct-Insfra relative mt-5 flex items-center justify-center gap-6 after:absolute after:-bottom-1.5 after:left-1/2 after:-translate-x-1/2 after:translate-y-1.5 after:border-b-2 after:border-[#0066FF] after:w-1/3 after:h-auto">
                 <button type="button" class="galAct bg-transparent px-12 py-2 rounded-xl hover:bg-gray-400/[15%]" onclick="shAct()">
                     <div class="titleAct inline-flex items-center gap-3 text-xl">
-                        <img src="assets/img/icon/icon baloon chats.svg" alt="" class="w-[50px]">
+                        <img src="{{ asset('assets/img/icon/icon baloon chats.svg') }}" alt="" class="w-[50px]">
                         Kegiatan
                     </div>
                 </button>
                 <button type="button" class="galInsfra bg-transparent px-12 py-2 rounded-xl hover:bg-gray-400/[15%]" onclick="shInsfra()">
                     <div class="titleInsfra inline-flex items-center gap-3 text-xl">
-                        <img src="assets/img/icon/icon-megaphone b.png" alt="" class="w-[50px]">
+                        <img src="{{ asset('assets/img/icon/icon-megaphone b.png') }}" alt="" class="w-[50px]">
                         Sarpras
                     </div>
                 </button>
@@ -214,9 +214,9 @@
                             <img src="assets/img/dumb/imgtemp 3.jpg" alt=""
                                 class="aspect-video object-cover object-center">
                         </div> --}}
-                        <img src="assets/img/dumb/imgtemp 1.jpg" alt="" class="h-36 md:h-40 lg:h-44 max-w-full object-cover object-center aspect-ratio aspect-square overflow-hidden">
-                        <img src="assets/img/dumb/imgtemp 2.jpg" alt="" class="h-36 md:h-40 lg:h-44 max-w-full object-cover object-center aspect-ratio aspect-video overflow-hidden">
-                        <img src="assets/img/dumb/imgtemp 3.jpg" alt="" class="h-36 md:h-40 lg:h-44 max-w-full object-cover object-center aspect-ratio aspect-[9/16] overflow-hidden">
+                        <img src="{{ asset('assets/img/dumb/imgtemp 1.jpg') }}" alt="" class="h-36 md:h-40 lg:h-44 max-w-full object-cover object-center aspect-ratio aspect-square overflow-hidden">
+                        <img src="{{ asset('assets/img/dumb/imgtemp 2.jpg') }}" alt="" class="h-36 md:h-40 lg:h-44 max-w-full object-cover object-center aspect-ratio aspect-video overflow-hidden">
+                        <img src="{{ asset('assets/img/dumb/imgtemp 3.jpg') }}" alt="" class="h-36 md:h-40 lg:h-44 max-w-full object-cover object-center aspect-ratio aspect-[9/16] overflow-hidden">
                         {{-- <img src="assets/img/dumb/imgtemp 4.jpg" alt="" class="max-h-60 max-w-full object-cover object-center aspect-ratio aspect-square"> --}}
                     </div>
                 </div>
@@ -229,10 +229,10 @@
                             class="text-xs text-white font-bold bg-[#0033CC] px-8 py-4 rounded-lg hover:contrast-200">Selengkapnya</a>
                     </div>
                     <div class="exampleImageInsfra flex flex-wrap justify-center items-center gap-1 px-12 lg:px-0 w-full h-72 lg:w-1/2 relative overflow-hidden">
-                        <img src="assets/img/dumb/imgtemp 1.jpg" alt="" class="h-36 md:h-40 lg:h-44 max-w-full object-cover object-center aspect-ratio aspect-square overflow-hidden">
-                        <img src="assets/img/dumb/imgtemp 2.jpg" alt="" class="h-36 md:h-40 lg:h-44 max-w-full object-cover object-center aspect-ratio aspect-video overflow-hidden">
-                        <img src="assets/img/dumb/imgtemp 3.jpg" alt="" class="h-36 md:h-40 lg:h-44 max-w-full object-cover object-center aspect-ratio aspect-[9/16] overflow-hidden">
-                        <img src="assets/img/dumb/imgtemp 4.jpg" alt="" class="h-36 md:h-40 lg:h-44 max-w-full object-cover object-center aspect-ratio aspect-[4/3] overflow-hidden">
+                        <img src="{{ asset('assets/img/dumb/imgtemp 1.jpg') }}" alt="" class="h-36 md:h-40 lg:h-44 max-w-full object-cover object-center aspect-ratio aspect-square overflow-hidden">
+                        <img src="{{ asset('assets/img/dumb/imgtemp 2.jpg') }}" alt="" class="h-36 md:h-40 lg:h-44 max-w-full object-cover object-center aspect-ratio aspect-video overflow-hidden">
+                        <img src="{{ asset('assets/img/dumb/imgtemp 3.jpg') }}" alt="" class="h-36 md:h-40 lg:h-44 max-w-full object-cover object-center aspect-ratio aspect-[9/16] overflow-hidden">
+                        <img src="{{ asset('assets/img/dumb/imgtemp 4.jpg') }}" alt="" class="h-36 md:h-40 lg:h-44 max-w-full object-cover object-center aspect-ratio aspect-[4/3] overflow-hidden">
                     </div>
                 </div>
             </div>
@@ -240,6 +240,6 @@
     </section>
 @endsection
 @section('custom-script')
-    <script src="assets/js/homepage/slidePhoto.js"></script>
-    <script src="assets/js/homepage/galAct-Insfra.js"></script>
+    <script src="{{ asset('assets/js/homepage/slidePhoto.js') }}"></script>
+    <script src="{{ asset('assets/js/homepage/galAct-Insfra.js') }}"></script>
 @endsection

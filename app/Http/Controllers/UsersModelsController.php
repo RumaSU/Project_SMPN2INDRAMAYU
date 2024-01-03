@@ -41,6 +41,14 @@ class UsersModelsController extends Controller
         if($validateRequest){
             $sessionNow = session()->get("register_token");
             if (($sessionNow == $request->register_token) && ($sessionNow == $hashToken)){
+                // Check if email is already in use
+            $existingUser = UsersModels::where('email', $validateRequest['email'])->first();
+
+        if ($existingUser) {
+            // Email is already in use, handle the error as needed
+            return redirect()->back()->withErrors(['email' => 'Email is already in use.']);
+        }
+            // Continue with the registration process
                 $request->session()->put("validateEmail", $validateRequest);
 
                 $validateToken=md5(implode(', ', $validateRequest));
@@ -60,8 +68,6 @@ class UsersModelsController extends Controller
         return redirect('/register');
 
     }
-
-
     /**
      * Store a newly created resource in storage.
      */
@@ -72,7 +78,7 @@ class UsersModelsController extends Controller
         if(($hashToken == $checkRegisterToken) && ($validateToken == $checkValidateToken)){
             $validateRequest=$request->validate([
                 'nama' => 'required|max:255',
-                'nisNip' => 'required|max:255',
+                'nisNip' => 'required|unique:users_data,nis_nip|max:255',
                 'noTelp' => 'required|max:255',
             ]);
             if ($validateRequest){
@@ -95,7 +101,7 @@ class UsersModelsController extends Controller
                     'roles'=>"User",
                 ]);
                 if ($insertUser && $insertData && $insertType){
-                    return view('pages.homepage.index');
+                    return redirect('/');
                 }
 
             }
