@@ -39,6 +39,7 @@ Route::get('/siswa/formload', [LoadContent::class, 'studentForm']);
 Route::get('/siswa/deleteload', [LoadContent::class, 'studentDelete']);
 Route::get('/siswa/alertload', [LoadContent::class, 'alertStudentInfo']);
 Route::get('/profile/formload', [LoadContent::class, 'profileViMiForm']);
+Route::get('/osis/formload', [LoadContent::class, 'osisTeGuidForm']);
 
 
 /**
@@ -130,8 +131,18 @@ Route::post('/profil/resetimgtoken', [ProfileModelsController::class,'createToke
 
 
 
-
+/**
+ * Control Route for Osis page
+ */
 Route::get('/osis', [OsisModelsController::class,'index']);
+Route::post('/osis/chsteguide', [OsisModelsController::class,'index'])->name('store osis teacher guide with quote');
+/**
+ * Controll Route for Osis page using ajax
+ */
+Route::post('/osis/listTeacher', [OsisModelsController::class,'getListTeacher']);
+Route::post('/osis/liststudent', [OsisModelsController::class,'getListStudent']);
+Route::post('/osis/getdateacher', [OsisModelsController::class,'getDataTeacher']);
+Route::post('/osis/searchteacher', [OsisModelsController::class,'searchTeacher']);
 
 Route::view('/testing', 'pages.students.index');
 Route::view('/siswa', 'pages.classes.index');

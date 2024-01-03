@@ -635,50 +635,6 @@ class ClassesModelsController extends Controller
         ;
     }
     
-    // public function destroy(Request $request)
-    // {
-    //     $isIdTrue = $request->validate([
-    //         'classId' => 'required',
-    //     ]);
-    //     if ($isIdTrue) {
-    //         $classes = ClassesModels::where('class_id', $request->classId)
-    //             ->firstOrFail();
-    //         if ($classes) {
-    //             $isStudent = $this->isStudentsOnThere($classes->class_id);
-    //             if($isStudent === NULL) {
-    //                 // $image = ClassesImagesModels::where('class_id', $classes->class_id)->first();
-    //                 $image = ClassesImagesModels::where('class_id', $classes->class_id)->first();
-    //                 if ($image && $image->name_files != 'default.png') {
-    //                     $this->deleteImage($image->name_files);
-    //                 }
-    //                 $classes->delete();
-    //                 $nowData = DB::table('classes')->where('status', '=', 'Aktif')->count('class_id');
-    //                 return response()->json(['succedSomething' => 'Data berhasil dihapus', 'nowData' => $nowData], 200);
-    //             } else {
-    //                 $nowData = DB::table('classes')->where('status', '=', 'Aktif')->count('class_id');
-    //                 $this->ifStudentsOnThere($classes->class_id);
-    //                 return response()->json(['succedSomething' => 'Data berhasil disembunyikan', 'nowData' => $nowData], 200);
-    //             }
-    //         }
-    
-    //         return response()->json(['errorSomething' => 'Data tidak ditemukan'], 400);
-    //     } else {
-    //         return response()->json(['errorSomething' => 'Data tidak ditemukan'], 400);
-    //     }
-    // }
-    
-    // public function isStudentsOnThere($class_id) {
-    //     $searchIsStudentInThere = ClassesStudentsModels::where('class_id', $class_id)->first();
-    //     return $searchIsStudentInThere;
-    // }
-    
-    // public function ifStudentsOnThere($class_id) {
-    //     ClassesModels::where('class_id', $class_id)
-    //         ->update([ 
-    //             'status' => 'Tidak Aktif', 
-    //         ]);
-    //     return;
-    // }
     
     public function deleteImage($nameFiles) {
         $filePath = 'public/images/classes/' . $nameFiles;

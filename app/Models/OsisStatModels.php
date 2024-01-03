@@ -5,13 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class OsisModels extends Model
+class OsisStatModels extends Model
 {
     use HasFactory;
-    protected $table="page_osis";
+    protected $table="page_osis_stat";
     protected $casts = [
         'page_osis_id' => 'string',
     ];
-    protected $primaryKey="page_osis_id";
-    protected $fillable=["page_osis_id", "page_logo", "page_description", "page_strct_img"];
+    protected $fillable=["page_osis_id", "osis_leader", "facebook", "instagram", "twitter", "tiktok", "youtube",];
 }

@@ -35,4 +35,8 @@ class LoadContent extends Controller
     public function profileViMiForm() {
         return view('pages.profile.form');
     }
+    
+    public function osisTeGuidForm() {
+        return view('pages.osis.form');
+    }
 }

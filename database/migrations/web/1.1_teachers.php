@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('email')->nullable();
             $table->date('years_sign');
             $table->enum('status', ["Aktif", "Tidak Aktif"])->default("Aktif");
+            $table->boolean('is_published')->default(true);
             $table->timestamps();
         });
     }

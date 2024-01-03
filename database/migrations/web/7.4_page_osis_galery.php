@@ -11,15 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('classes', function (Blueprint $table) {
-            $table->uuid('class_id')->primary();
-            $table->uuid('teacher_id')->nullable();
-            $table->string('class_grade');
-            $table->string('class_tag');
-            $table->text('description')->nullable();
-            $table->enum('status', ['Aktif', 'Tidak Aktif'])->default('Aktif');
+        Schema::create('page_osis_galery', function (Blueprint $table) {
+            $table->uuid('page_osis_galery_id')->primary();
+            $table->string('title_galery');
+            $table->string('name_file', 512);
+            $table->uuid('connect_pgos_gal_id')->nullable();
             $table->boolean('is_published')->default(true);
-            $table->year('year');
             $table->timestamps();
         });
     }
