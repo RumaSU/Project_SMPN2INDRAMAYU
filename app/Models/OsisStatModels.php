@@ -12,5 +12,5 @@ class OsisStatModels extends Model
     protected $casts = [
         'page_osis_id' => 'string',
     ];
-    protected $fillable=["page_osis_id", "osis_leader", "facebook", "instagram", "twitter", "tiktok", "youtube",];
+    protected $fillable=["page_osis_id", "osis_leader_id", "facebook", "instagram", "twitter", "tiktok", "youtube",];
 }

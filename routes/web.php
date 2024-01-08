@@ -135,7 +135,10 @@ Route::post('/profil/resetimgtoken', [ProfileModelsController::class,'createToke
  * Control Route for Osis page
  */
 Route::get('/osis', [OsisModelsController::class,'index']);
+Route::post('/osis/store-logo-desc', [OsisModelsController::class,'storeDescOsisLogo'])->name('storeOsisLogoDesc');
+Route::post('/osis/store-teguide', [OsisModelsController::class,'storeTeGuideOsis'])->name('storeOsisTeGuide');
 Route::post('/osis/chsteguide', [OsisModelsController::class,'index'])->name('store osis teacher guide with quote');
+// $storeDescOsisLogo;
 /**
  * Controll Route for Osis page using ajax
  */
@@ -143,6 +146,10 @@ Route::post('/osis/listTeacher', [OsisModelsController::class,'getListTeacher'])
 Route::post('/osis/liststudent', [OsisModelsController::class,'getListStudent']);
 Route::post('/osis/getdateacher', [OsisModelsController::class,'getDataTeacher']);
 Route::post('/osis/searchteacher', [OsisModelsController::class,'searchTeacher']);
+Route::get('/osis/page/logodesc', [OsisModelsController::class,'ajxPageOsisLgDesc']);
+Route::get('/osis/member/formload', [OsisModelsController::class, 'osisStudentChooseForm']);
+Route::get('/osis/member/contentload', [OsisModelsController::class, 'osisStudentChooseContent']);
+
 
 Route::view('/testing', 'pages.students.index');
 Route::view('/siswa', 'pages.classes.index');
@@ -161,6 +168,8 @@ Route::view('/berita/testing', 'pages.news.newsOpen.index');
 // Route::get('/kelasAjax', [ClassesModelsController::class, 'index']) -> name('ListClass');
 // Route::post('/kelasAjax/add/', [ClassesModelsController::class, 'store']) -> name('storeClass');
 Route::get('/login', [UsersModelsController::class,"index"]);
+Route::post('/login/authenticate', [UsersModelsController::class,"authenticate"]);
+
 Route::get('/register', [UsersModelsController::class,"createEmail"]);
 Route::post('/register/{hashToken}', [UsersModelsController::class,"validateEmail"]);
 Route::get('/register/{hashToken}/data', [UsersModelsController::class, 'createData'])->name('register.data');

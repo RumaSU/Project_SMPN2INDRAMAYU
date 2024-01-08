@@ -22,6 +22,11 @@
     @yield('link-rel')
 </head>
 <body>
+    {{-- @auth
+        {{ auth()->user() }}
+        <br>
+        {{ auth()->user()->roles[0]->roles }}
+    @endauth --}}
     <header>
         @include('layouts.main.header')
     </header>
@@ -31,9 +36,11 @@
     <main class="min-h-screen">
         @yield('content')
     </main>
+    @yield('popupContent')
     {{-- <footer class="mt-10">
         @include('layouts.main.footer')
     </footer> --}}
+    
 
     {{-- <div id="imagePopup" class="fixed overflow-hidden z-50 w-[80%] h-[80%] bg-white rounded-md group" style="top: 200%; left:50%; transform:translate(-50%, -50%); visibility: hidden; opacity: 0; transition: all .3s ease-in-out"> --}}
     {{-- <div id="imagePopup" class="fixed overflow-hidden z-50 w-full h-full md:w-[80%] md:h-[80%] bg-white rounded-md group" style="top: 200%; left:50%; transform:translate(-50%, -50%); visibility: hidden; opacity: 0; transition: all .3s ease-in-out"> --}}

@@ -3,6 +3,14 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
 @section('content')
+    @php
+        $osisLogo = (isset($dataPage->page_logo)) ? 'storage/images/pages/osis/' . $dataPage->page_logo : 'storage/images/pages/osis/default.png';
+        $osisDesc = (isset($dataPage->page_description)) ? $dataPage->page_description : 'Description this page osis';
+        
+        $teacherImage = (isset($dataTeGuide->name_files)) ? 'storage/images/teachers/' . $dataTeGuide->name_files : 'storage/images/teachers/default.png';
+        $teacherName = (isset($dataTeGuide->name)) ? $dataTeGuide->name : 'Name Person';
+        $teacherQuote = (isset($dataTeGuide->quote)) ? $dataTeGuide->quote : 'This is quote';
+    @endphp
     {{-- <section class="imgOssool-profiles relative">
         <div class="img-profiles flex items-center justify-center relative text-center text-white h-96 bg-cover bg-center bg-no-repeat after:absolute after:top-0 after:left-0 after:bg-black/60 after:w-full after:h-full"
             style="background-image: url('assets/img/main/126465066756.jpg');">
@@ -64,19 +72,14 @@
                     {{-- <div class="lazy-placeholder flex items-center justify-center w-full h-full rounded-[100%] bg-gray-200 animate-pulse">
                         <i class="bi bi-image-fill text-4xl text-gray-400"></i>
                     </div> --}}
-                    <img src="{{asset('assets/img/dumb/imgtemp 1.jpg')}}" style="display: " alt="" class="lazyLoadThisPage w-full h-full object-cover object-center rounded-[100%]" onclick="openPopup(this.src)">
+                    <img src="{{asset($osisLogo)}}" style="display: " alt="" class="lazyLoadThisPage w-full h-full object-cover object-center rounded-[100%] p-1 border-2" onclick="openPopup(this.src)">
                 </div>
             </div>
             <div class="osisDesc mt-6 w-9/12 mx-auto">
                 <div class="contentDesc text-base text-center font-bold space-y-2">
                     <div class="t">
                         <p class="line-clamp-6">
-                            Osis adalah wadah Pembinaan Kesiswaan di sekolah untuk pengembangan minat, bakat serta potensi Peserta Didik.
-                            Osis adalah wadah Pembinaan Kesiswaan di sekolah untuk pengembangan minat, bakat serta potensi Peserta Didik.
-                            Osis adalah wadah Pembinaan Kesiswaan di sekolah untuk pengembangan minat, bakat serta potensi Peserta Didik.
-                            Osis adalah wadah Pembinaan Kesiswaan di sekolah untuk pengembangan minat, bakat serta potensi Peserta Didik.
-                            Osis adalah wadah Pembinaan Kesiswaan di sekolah untuk pengembangan minat, bakat serta potensi Peserta Didik.
-                            Osis adalah wadah Pembinaan Kesiswaan di sekolah untuk pengembangan minat, bakat serta potensi Peserta Didik.
+                            {{$osisDesc}}
                         </p>
                     </div>
                 </div>
@@ -87,7 +90,7 @@
                 </span>
             </div>
         </div>
-        <div class="containerFrmSchllLogoBall w-10/12 mx-auto" style="display: none"></div>
+        <div class="containerFrmOsisLogoBall w-10/12 mx-auto" style="display: none"></div>
     </div>
     <hr class="mt-12 mx-auto w-[90%] border-[1.5px] border-black/40 rounded-2xl">
     <section class="cTea mt-12 flex flex-col lg:flex-row justify-center items-center gap-4 lg:gap-16">
@@ -96,7 +99,7 @@
                 <div class="blur-effect absolute w-[250px] h-[370px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#AFAFAF]"
                     style="background: linear-gradient(30deg, rgba(255, 255, 255, 0.00) 50%, rgba(255, 255, 255, 0.00) 85.94%, #FFF 95.31%, #FFF 100%), linear-gradient(331deg, rgba(255, 255, 255, 0.00) 50%, rgba(255, 255, 255, 0.00) 85.56%, #FFF 94.83%, #FFF 99.47%), linear-gradient(0deg, rgba(255, 255, 255, 0.00) 50%, rgba(255, 255, 255, 0.00) 50%, rgba(255, 255, 255, 0.00) 94.88%, #FFF 100%), linear-gradient(90deg, rgba(255, 255, 255, 0.00) 50%, rgba(255, 255, 255, 0.00) 50.01%, rgba(255, 255, 255, 0.00) 94.88%, #FFF 100%), linear-gradient(270deg, rgba(255, 255, 255, 0.00) 50%, rgba(255, 255, 255, 0.00) 50%, rgba(255, 255, 255, 0.00) 94.88%, #FFF 100%), linear-gradient(209deg, rgba(255, 255, 255, 0.00) 50%, rgba(255, 255, 255, 0.00) 50.01%, #FFF 87.5%, #FFF 100%), linear-gradient(151deg, rgba(255, 255, 255, 0.00) 50%, rgba(255, 255, 255, 0.88) 83.33%, #FFF 89.56%, #FFF 100%);">
                 </div>
-                <img src="{{asset('storage/images/teachers/default.png')}}" id="imgTeacherOsisGuide" class="object-center object-cover w-full h-full" alt="">
+                <img src="{{asset($teacherImage)}}" id="imgTeacherOsisGuide" class="object-center object-cover w-full h-full" alt="">
             </div>
         </div>
         <div class="quote-cTea w-11/12 lg:w-1/2 shadow-gray-700 shadow-md rounded-xl relative group">
@@ -117,14 +120,13 @@
                     <div class="quote mt-6 mx-auto text-base lg:text-lg border-2 border-dashed border-black/40 p-4 rounded-2xl relative group">
                         <div class="h-full  relative group">
                             <blockquote class="line-clamp-[8]">
-                                Lorem ipsum dolor amet
-                                Osis adalah wadah Pembinaan Kesiswaan di sekolah untuk pengembangan minat, bakat serta potensi Peserta Didik.
+                                {{$teacherQuote}}
                             </blockquote>
                         </div>
                     </div>
                     <div class="detail-person w-3/4 mt-4 mx-auto">
                         <div class="name-person text-base lg:text-xl text-[#4f4f4f]">
-                            <strong>Name person</strong>
+                            <strong>{{$teacherName}}</strong>
                         </div>
                         <div class="position-person text-[12px] lg:text-[16px] text-[#808080]">
                             Pembina Osis
@@ -169,11 +171,11 @@
                 <div class="it3-scmeEks w-64 lg:w-54 p-6 rounded-lg hover:bg-gray-300/60">
                     <div class="tdat relative group">
                         <strong class="tiLeEks">Sosial Media</strong>
-                        <div class="pcEdDatLeEks absolute left-full top-1/2 -translate-x-full -translate-y-1/2">
+                        {{-- <div class="pcEdDatLeEks absolute left-full top-1/2 -translate-x-full -translate-y-1/2">
                             <span role="button" class="edStatOsis p-2 relative after:absolute after:w-full after:h-full after:group-hover:border-2 after:rounded-xl after:group-hover:border-sky-400 after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:blur-[1px] after:z-10">
                                 <i class="bi bi-pencil"></i>
                             </span>
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="liSocmedEks">
                         <ul class="flex items-center gap-2 text-2xl">
@@ -196,8 +198,8 @@
                     </div>
                 </div>
             </div>
-            <div id="containerFormStatOsis" class="containerFrmDeSum border border-black" style="display: none">
-                {{-- <form action="" method="POST" class="">
+            {{-- <div id="containerFormStatOsis" class="containerFrmDeSum border border-black" style="display: none">
+                <form action="" method="POST" class="">
                     <div class="flex flex-col md:flex-row justify-center items-center h-full gap-6 select-none">
                         <div class="cntrChsLeOs p-6 rounded-lg">
                             <div class="searchStd bg-white rounded-lg flex items-center gap-2 p-2">
@@ -284,8 +286,8 @@
                             </div>
                         </div>
                     </div>
-                </form> --}}
-            </div>
+                </form>
+            </div> --}}
         </div>
     </section>
     <hr class="mt-28 mx-auto w-3/4 border-[1.5px] border-black/40 rounded-2xl">
@@ -369,7 +371,194 @@
     </section>
     <div class="foo mb-96"></div>
 @endsection
+@section('popupContent')
+    <div class="containerEdiStatOsis">
+        {{-- <div class="contentEdSt bg-white w-full xl:w-1/2 h-full xl:h-auto rounded-none xl:rounded-lg transition-all p-3 fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 shadow-xl shadow-black z-[9999]" style="display: none">
+            <div class="clsEd flex justify-between items-center border-b border-black">
+                <div class="text xl">
+                    <strong>Edit Anggota Osis</strong>
+                </div>
+                <div class="icEx">
+                    <span role="button" id="clsPopupChsStdntOsis" class="block">
+                        <i class="bi bi-x text-6xl"></i>
+                    </span>
+                </div>
+            </div>
+            <div id="containerFormStatOsis">
+                <div class="lazyLoadPopStatContainer h-72" style="display: ">
+                    <div class="flex items-center justify-center h-full">
+                        <div class="block relative">
+                            <div class="border-8 border-gray-600 border-dotted p-12 rounded-[100%] animate-spin"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="frmEd" style="display: ">
+                    <form action="" method="POST" class="">
+                        <div class="cntnFrm">
+                            <div class="cntChsLeOs mt-4 relative">
+                                <div class="chsTChsLeStd flex justify-between items-center gap-2">
+                                    <div class="tChs">
+                                        <strong>Ketua Osis</strong>
+                                    </div>
+                                    <div class="wrpSearchStd">
+                                        <div class="liChsLeStdnt">
+                                            <input type="checkbox" id="shwLiChsLeStdnt" class="peer hidden sr-only">
+                                            <label role="button" for="shwLiChsLeStdnt" class="p-2 block bg-white rounded-lg relative *:peer-checked:-rotate-90 w-fit border border-black">
+                                                <div class="d transition-all">
+                                                    <i class="bi bi-chevron-left text-lg"></i>
+                                                </div>
+                                            </label>
+                                            <div class="liStdntChsLe mt-2 absolute left-0 z-[4] bg-white rounded-lg p-2 w-full h-0 opacity-0 invisible transition-all peer-checked:h-auto peer-checked:opacity-100 peer-checked:visible border border-black">
+                                                <div class="searchStd">
+                                                    <div class="searchStd rounded-lg flex items-center gap-2 p-2">
+                                                        <i class="bi bi-search"></i>
+                                                        <input type="text" id="searchStdLe" class="rounded-lg w-full" placeholder="Cari siswa...">
+                                                    </div>
+                                                </div>
+                                                <ul class="grid gap-1 py-4 h-52 overflow-y-scroll" style="display: ">
+                                                    @for ($i=1; $i<10; $i++)
+                                                        <li>
+                                                            <label for="chsLeOsisStdn_{{$i}}" class="cursor-pointer relative block">
+                                                                <input type="radio" name="stdntLeOsis" id="chsLeOsisStdn_{{$i}}" value="" class="hidden sr-only peer">
+                                                                <div class="cnt relative bg-white flex items-center p-1 gap-2 rounded-xl overflow-hidden transition-all hover:bg-gray-300 peer-checked:bg-green-200 peer-checked:shadow-gray-500 peer-checked:shadow-sm">
+                                                                    <div class="imgTe aspect-[1/1] w-12 rounded-[100%] overflow-hidden">
+                                                                        <img src="{{asset('assets/img/dumb/imgtemp '. $i .'.jpg')}}" alt="" class="w-full h-full object-cover object-center">
+                                                                    </div>
+                                                                    <p class="w-full select-none">kjsaf ajsf afjwl f {{$i}} </p>
+                                                                </div>
+                                                                <div class="ic absolute right-3 top-1/2 -translate-y-1/2 transition-all opacity-0 invisible peer-checked:opacity-100 peer-checked:visible">
+                                                                    <i class="bi bi-check-circle-fill text-green-600 text-xl"></i>
+                                                                </div>
+                                                            </label>
+                                                        </li>
+                                                    @endfor
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="cntStdntLeChsd mt-4">
+                                    <div class="itmStdntChsd px-4">
+                                        <div class="lazyLoadPopStatItem px-4 animate-pulse">
+                                            <div class="std flex items-center gap-2 w-full">
+                                                <div class="imgStdChsd flex items-center justify-center aspect-[1/1] w-16 rounded-[100%] p-1 shrink-0 bg-gray-200 overflow-hidden">
+                                                    <i class="bi bi-image text-gray-400"></i>
+                                                </div>
+                                                <div class="nm w-36 h-8 bg-gray-200 rounded-lg"></div>
+                                            </div>
+                                        </div>
+                                        <div class="cntnItmStdntChsd px-4" style="display: none">
+                                            <input type="hidden" name="studentChsdLeStdn" value="" class="inpValStdChs">
+                                            <div class="infStdChsd flex justify-between gap-2 ">
+                                                <div class="std flex items-center gap-2 w-full">
+                                                    <div class="imgStdChsd aspect-[1/1] w-16 p-1 shrink-0">
+                                                        <img src="{{asset('assets/img/dumb/imgtemp 1.jpg')}}" alt="" class="w-full h-full rounded-[100%] overflow-hidden">
+                                                    </div>
+                                                    <div class="nm w-full">
+                                                        <div class="t">Namanya</div>
+                                                    </div>
+                                                </div>
+                                                <div class="delThis shrink-0 flex justify-center items-center">
+                                                    <span role="button" class="btnDelStdntChsd">
+                                                        <i class="bi bi-trash-fill text-red-600 text-xl p-3"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cntrChsMemOs mt-4 relative">
+                                <div class="tbleCntnStdntChossed">
+                                    <div class="sStChsd flex items-center gap-2 ">
+                                        <div class="searchStudentStdChsd rounded-lg flex items-center gap-2 p-2 ">
+                                            <i class="bi bi-search"></i>
+                                            <input type="text" id="searchStdMemChsd" class="rounded-lg" placeholder="Cari siswa...">
+                                        </div>
+                                        <div class="wrpSearchLiChsMemOs">
+                                            <div class="liChsMembrStdnt">
+                                                <input type="checkbox" id="shwLiChsMemrStdnt" class="peer hidden sr-only">
+                                                <label role="button" for="shwLiChsMemrStdnt" class="p-2 block bg-white rounded-lg relative *:peer-checked:-rotate-90 border border-black">
+                                                    <div class="d transition-all">
+                                                        <i class="bi bi-chevron-left text-lg"></i>
+                                                    </div>
+                                                </label>
+                                                <div class="liStdntChsMemr mt-2 absolute left-0 z-[4] bg-white rounded-lg p-2 w-full h-0 opacity-0 invisible transition-all peer-checked:h-auto peer-checked:opacity-100 peer-checked:visible border border-black">
+                                                    <div class="searchStd">
+                                                        <div class="searchStd rounded-lg flex items-center gap-2 p-2">
+                                                            <i class="bi bi-search"></i>
+                                                            <input type="text" id="searchStdMem" class="rounded-lg w-full" placeholder="Cari siswa...">
+                                                        </div>
+                                                    </div>
+                                                    <ul class="grid xl:grid-cols-2 gap-1 py-4 h-52 overflow-y-scroll" style="display: ">
+                                                        @for ($i=1; $i<10; $i++)
+                                                            <li>
+                                                                <label for="chsMemOsisStdn_{{$i}}" class="cursor-pointer relative block">
+                                                                    <input type="checkbox" id="chsMemOsisStdn_{{$i}}" data-student-id="student_id_{{$i}}" value="" class="hidden sr-only peer">
+                                                                    <div class="cnt relative bg-white flex items-center p-1 gap-2 rounded-xl overflow-hidden transition-all hover:bg-gray-300 peer-checked:bg-green-200 peer-checked:shadow-gray-500 peer-checked:shadow-sm">
+                                                                        <div class="imgTe aspect-[1/1] w-12 rounded-[100%] overflow-hidden">
+                                                                            <img src="{{asset('assets/img/dumb/imgtemp '. $i .'.jpg')}}" alt="" class="w-full h-full object-cover object-center">
+                                                                        </div>
+                                                                        <p class="w-full select-none">kjsaf ajsf afjwl f {{$i}} </p>
+                                                                    </div>
+                                                                    <div class="ic absolute right-3 top-1/2 -translate-y-1/2 transition-all opacity-0 invisible peer-checked:opacity-100 peer-checked:visible">
+                                                                        <i class="bi bi-check-circle-fill text-green-600 text-xl"></i>
+                                                                    </div>
+                                                                </label>
+                                                            </li>
+                                                        @endfor
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="liStdntChsd h-56 overflow-y-scroll">
+                                        <ul class="grid lg:grid-cols-2 gap-1 py-4 h-52 overflow-y-scroll" style="display: ">
+                                            @for ($i=1; $i<10; $i++)
+                                                <li class="itmStdntChsd">
+                                                    <div class="lazyLoadPopStatItem px-4 animate-pulse">
+                                                        <div class="std flex items-center gap-2 w-full">
+                                                            <div class="imgStdChsd flex items-center justify-center aspect-[1/1] w-16 rounded-[100%] p-1 shrink-0 bg-gray-200 overflow-hidden">
+                                                                <i class="bi bi-image text-gray-400"></i>
+                                                            </div>
+                                                            <div class="nm w-48 h-8 bg-gray-200 rounded-lg"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="cntnItmStdntChsd px-4" style="display: none">
+                                                        <input type="hidden" name="studentChsId_{{$i}}" value="" class="inpValStdChs">
+                                                        <div class="infStdChsd flex justify-between gap-2 ">
+                                                            <div class="std flex items-center gap-2 w-full">
+                                                                <div class="imgStdChsd aspect-[1/1] w-16 p-1 shrink-0">
+                                                                    <img src="{{asset('assets/img/dumb/imgtemp ' . $i . '.jpg')}}" alt="" class="w-full h-full rounded-[100%] overflow-hidden">
+                                                                </div>
+                                                                <div class="nm w-full">
+                                                                    <div class="t">Namanya{{$i}}</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="delThis shrink-0 flex justify-center items-center">
+                                                                <span role="button" class="btnDelStdntChsd">
+                                                                    <i class="bi bi-trash-fill text-red-600 text-xl p-3"></i>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            @endfor
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div> --}}
+    </div>
+@endsection
 @section('custom-script')
     <script src="{{asset('assets/js/osis/osis.js')}}"></script>
-    <script src="{{asset('assets/js/osis/osis_teguid.js')}}"></script>
+    <script src="{{asset('assets/js/osis/_moderator_osis_pagetop.js')}}"></script>
+    <script src="{{asset('assets/js/osis/_moderator_osis_teguid.js')}}"></script>
+    <script src="{{asset('assets/js/osis/_moderator_osis_student.js')}}"></script>
 @endsection

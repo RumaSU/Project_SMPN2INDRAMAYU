@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('page_osis_head_bg', function (Blueprint $table) {
-            $table->string('page_head_img', 512);
+            $table->text('page_head_img')->default('default.png');
             $table->uuid('page_osis_id');
             $table->foreign("page_osis_id")->references("page_osis_id")->on("page_osis")->onDelete("cascade");
             $table->timestamps();

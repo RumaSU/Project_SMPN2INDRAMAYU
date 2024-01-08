@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('page_osis_stat', function (Blueprint $table) {
-            $table->uuid('osis_leader');
-            $table->foreign('osis_leader')->references('student_id')->on('students')->onDelete('cascade');
+            $table->uuid('osis_leader_id')->nullable();
+            $table->foreign('osis_leader_id')->references('student_id')->on('students')->onDelete('cascade');
             $table->text('facebook')->nullable();
             $table->text('instagram')->nullable();
             $table->text('twitter')->nullable();

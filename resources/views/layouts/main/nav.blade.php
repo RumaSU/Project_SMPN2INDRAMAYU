@@ -55,11 +55,13 @@
                     <a href="/galeri" class="py-1.5 px-4">Galeri</a>
                 </div>
             </li>
-            <li class="relative">
-                <div class="gotoLogin">
-                    <a href="/login" class="py-1.5 px-4">Login</a>
-                </div>
-            </li>
+            @guest
+                <li class="relative">
+                    <div class="gotoLogin">
+                        <a href="/login" class="py-1.5 px-4">Login</a>
+                    </div>
+                </li>
+            @endguest
         </ul>
     </div>
     <div class="ml-2 -my-1 flex lg:hidden">
@@ -116,11 +118,13 @@
                     <a href="/galeri" class="py-1.5 px-4 font-semibold">Galeri</a>
                 </div>
             </li>
-            <li class="relative group">
-                <div class="gotoLogin">
-                    <a href="/login" class="py-1.5 px-4 font-semibold">Login</a>
-                </div>
-            </li>
+            @guest
+                <li class="relative group">
+                    <div class="gotoLogin">
+                        <a href="/login" class="py-1.5 px-4 font-semibold">Login</a>
+                    </div>
+                </li>
+            @endguest
         </ul>
     </div>
 </div>

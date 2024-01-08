@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\OsisModels;
 use App\Models\OsisGaleryModels;
+use App\Models\OsisHeadBgModels;
 use App\Models\OsisMemberModels;
 use App\Models\OsisStatModels;
 use App\Models\OsisTeguideModels;
@@ -30,13 +31,55 @@ class OsisModelsController extends Controller
      */
     public function index()
     {
+        $dataPage = OsisModels::latest('created_at')->first();
+        if($dataPage) {
+            $dataTeGuide = OsisTeguideModels::where('page_osis_id', $dataPage->page_osis_id)->first();
+            $dataStat = OsisStatModels::where('page_osis_id', $dataPage->page_osis_id)->first();
+            $dataTeGuide = OsisTeguideModels::where('page_osis_teguide.page_osis_id', $dataPage->page_osis_id)
+                ->leftJoin('teachers', 'teachers.teacher_id', '=', 'page_osis_teguide.teacher_id')
+                ->leftJoin('teachers_images', 'teachers_images.teacher_id', '=', 'teachers.teacher_id')
+                ->select('teachers.name', 'teachers_images.name_files', 'page_osis_teguide.quote')
+                ->first();
+            // $imgStrOrg = OsisModels::where('page_osis_id', $dataPage->page_osis_id)->first();
+            $countOsisMember = OsisMemberModels::count('student_id');
+            // $countArr = [
+            //     'cntClass' => $countClass,
+            //     'cntTeacher' => $countTeachers,
+            // ];
+            return view("pages.osis.index", compact(
+                'dataPage',
+                'dataTeGuide',
+                'dataStat',
+                'countOsisMember',
+            ));
+        }
         return view("pages.osis.index");
     }
-    
+
+    /**
+     *  Function data json
+     */
     public function getListTeacher() {
+        $dataPage = $this->getDataPageProfile();
+        $teacherChoosed = NULL;
+        $listTeacher = NULL;
+        $quoteTeGuide = '';
+        
+        if($dataPage[3]) {
+            $teacherChoosed = TeachersModels::where('teachers.is_published', true)
+            ->where('teachers.status', '=', 'Aktif')
+            ->where('teachers.teacher_id', '=', $dataPage[3]->teacher_id)
+            ->leftJoin('teachers_images', 'teachers.teacher_id', '=', 'teachers_images.teacher_id')
+            ->select(
+                'teachers.teacher_id',
+                'teachers.name',
+                'teachers_images.name_files')
+            ->first();
+            $quoteTeGuide = $dataPage[3]->quote;
+        }
         $listTeacher = TeachersModels::where('teachers.is_published', true)
-            ->where('status', '=', 'Aktif')
-            ->where('is_published', '=', true)
+            ->where('teachers.status', '=', 'Aktif')
+            ->where('teachers.teacher_id', '!=', $teacherChoosed->teacher_id)
             ->leftJoin('teachers_images', 'teachers.teacher_id', '=', 'teachers_images.teacher_id')
             ->select(
                 'teachers.teacher_id',
@@ -44,6 +87,8 @@ class OsisModelsController extends Controller
                 'teachers_images.name_files')
             ->get();
         return response()->json([
+            'quote' => $quoteTeGuide,
+            'teacherChoosed' => $teacherChoosed,
             'listTeacher' => $listTeacher,
         ]);
     }
@@ -103,7 +148,21 @@ class OsisModelsController extends Controller
 
         return response()->json($results);
     }
+    
 
+    /**
+     *  Function list to store
+     */
+    public function getListTeacherIn() {
+        $listTeacher = TeachersModels::where('is_published', true)
+            ->where('status', '=', 'Aktif')
+            ->select(
+                'teachers.teacher_id',
+            )
+            ->get();
+        return $listTeacher;
+    }
+    
     
     /**
      * Store a newly created resource in storage.
@@ -111,64 +170,115 @@ class OsisModelsController extends Controller
     
     public function storeDescOsisLogo(Request $request) {
         $dataPage = $this->getDataPageProfile();
-        $validViInp = Validator::make([
+        $dataValInp = Validator::make([
             'lgoBallImg' => $request->lgoBallImg,
             'inpTxtDescOsis' => $request->inpTxtDescOsis,
         ], [
             'lgoBallImg' => 'nullable|image',
-            'inpTxtDescOsis' => 'nullable|string|max:512',
+            'inpTxtDescOsis' => 'nullable|string|max:1024',
         ]);
-        if($validViInp->passes()) {
-            $idProfile = Uuid::uuid4()->toString();
-            $isViCreate = false;
+        if($dataValInp->passes()) {
+
+            $idOsis = Uuid::uuid4()->toString();
+            $isNewCreate = false;
             
-            $dataVi = OsisModels::latest('created_at')->value('page_description');
-            if($request->inpTxtDescOsis != $dataVi) {
+            $dataPageDesc = OsisModels::latest('created_at')->value('page_description');
+            if($request->inpTxtDescOsis != $dataPageDesc) {
                 OsisModels::create([
-                    'page_osis_id' => $idProfile,
+                    'page_osis_id' => $idOsis,
                     'page_description' => $request->inpTxtDescOsis,
                 ]);
-                $this->dataBeforeStorePageProfileViMiImage($idProfile, $dataPage);
-                $this->dataBeforeStorePageProfileStrcImg($idProfile, $dataPage);
-                $this->dataBeforeStorePageProfileSt($idProfile, $dataPage);
+                $this->dataBeforeStorePageOsisHeadBg($idOsis, $dataPage);
+                $this->dataBeforeStorePageOsisStat($idOsis, $dataPage);
+                $this->dataBeforeStorePageOsisTeguide($idOsis, $dataPage);
                 
-                $isViCreate = true;
+                $isNewCreate = true;
             }
             
-            if($request->hasFile('inpTxtDescOsis')) {
-                if($isViCreate) {
-                    OsisModels::where('page_profile_id', $idProfile)->update([
-                        'page_logo' => $request->inpTxtDescOsis,
+            if($request->hasFile('lgoBallImg')) {
+                $image = $request->file('lgoBallImg');
+                $imageName = time() . '_' . $image->getClientOriginalName(); // Menamai gambar
+                
+                if($isNewCreate) {
+                    OsisModels::where('page_osis_id', $idOsis)->update([
+                        'page_logo' => $imageName,
+                    ]);
+                    $image->storeAs('public/images/pages/osis/'. $imageName);
+                } else {
+                    OsisModels::create([
+                        'page_osis_id' => $idOsis,
+                        'page_logo' => $imageName,
+                        'page_description' => $dataPage[0]->page_description,
+                    ]);
+                    $image->storeAs('public/images/pages/osis/'. $imageName);
+                    
+                    $this->dataBeforeStorePageOsisHeadBg($idOsis, $dataPage);
+                    $this->dataBeforeStorePageOsisStat($idOsis, $dataPage);
+                    $this->dataBeforeStorePageOsisTeguide($idOsis, $dataPage);
+                }
+            } else {
+                if($isNewCreate) {
+                    OsisModels::where('page_osis_id', $idOsis)->update([
+                        'page_logo' => $dataPage[0]->page_logo,
                     ]);
                 } else {
                     OsisModels::create([
-                        'page_osis_id' => $idProfile,
-                        'page_description' => $request->inpTxtDescOsis,
+                        'page_osis_id' => $idOsis,
+                        'page_logo' => $dataPage[0]->page_logo,
+                        'page_description' => $dataPage[0]->page_description,
                     ]);
+                    
+                    $this->dataBeforeStorePageOsisHeadBg($idOsis, $dataPage);
+                    $this->dataBeforeStorePageOsisStat($idOsis, $dataPage);
+                    $this->dataBeforeStorePageOsisTeguide($idOsis, $dataPage);
                 }
-            }
-            if($isViCreate) {
-                OsisModels::where('page_profile_id', $idProfile)->update([
-                    'page_logo' => $request->inpTxtDescOsis,
-                ]);
-            }
-            else {
-                $this->dataBeforeStorePageProfile($idProfile, $dataPage);
-                foreach ($nameMiInput as $nameInp) {
-                    if($request->input($nameInp)) {
-                        ProfileMisiModels::create([
-                            'misi' => $request->input($nameInp),
-                            'page_profile_id' => $idProfile,
-                        ]);
-                    }
-                }
-                $this->dataBeforeStorePageProfileViMiImage($idProfile, $dataPage);
-                $this->dataBeforeStorePageProfileStrcImg($idProfile, $dataPage);
-                $this->dataBeforeStorePageProfileSt($idProfile, $dataPage);
             }
             
-            return redirect()->back();
         }
+        
+        return redirect()->back();
+    }
+    public function storeTeGuideOsis(Request $request) {
+        $dataPage = $this->getDataPageProfile();
+        $listTeacherIn = $this->getListTeacherIn()->pluck('teacher_id')->toArray();
+        $dataValInp = Validator::make([
+            'teacherChoose' => $request->teacherChoose,
+            'txtInpQtTe' => $request->txtInpQtTe,
+        ], [
+            'teacherChoose' => ['nullable', Rule::in($listTeacherIn)],
+            'txtInpQtTe' => 'nullable|string|max:512',
+        ]);
+        if ($dataValInp->passes()) {
+            $idOsis = Uuid::uuid4()->toString();
+            $teacherId = NULL;
+            
+            if (isset($dataPage[3]->teacher_id)) {
+                $teacherId = $dataPage[3]->teacher_id;
+            }
+            if (isset($request->teacherChoose)) {
+                $teacherId = $request->teacherChoose;
+            }
+            
+            $this->dataBeforeStorePageOsis($idOsis, $dataPage);
+            $this->dataBeforeStorePageOsisHeadBg($idOsis, $dataPage);
+            $this->dataBeforeStorePageOsisStat($idOsis, $dataPage);
+            
+            OsisTeguideModels::create([
+                'page_osis_id' => $idOsis,
+                'teacher_id' => $teacherId,
+            ]);
+            
+            if(isset($request->txtInpQtTe)) {
+                OsisTeguideModels::where('page_osis_id', $idOsis)->update([
+                    'quote' => $request->txtInpQtTe,
+                ]);
+            } else {
+                OsisTeguideModels::where('page_osis_id', $idOsis)->update([
+                    'quote' => $dataPage[3]->quote,
+                ]);
+            }
+        }
+        return redirect()->back();
     }
     
     /**
@@ -374,91 +484,112 @@ class OsisModelsController extends Controller
     /**
      * Store data before
     */
-    /*
+    
 
-    public function dataBeforeStorePageProfile($idData, $dataPage) {
+    public function dataBeforeStorePageOsis($idData, $dataPage) {
         if(isset($dataPage[0])) {
             OsisModels::create([
-                'visi' => $dataPage[0]->visi,
-                'page_profile_id' => $idData,
+                'page_osis_id' => $idData,
+                'page_logo' => $dataPage[0]->page_logo,
+                'page_description' => $dataPage[0]->page_description,
+                'page_strct_img' => $dataPage[0]->page_strct_img,
             ]);
         } else {
             OsisModels::create([
-                'page_profile_id' => $idData,
+                'page_osis_id' => $idData,
             ]);
         }
     }
-    public function dataBeforeStorePageProfileMisi($idData, $dataPage) {
+    public function dataBeforeStorePageOsisHeadBg($idData, $dataPage) {
         if(isset($dataPage[1])) {
-            foreach ($dataPage[1] as $misiInp) {
-                ProfileMisiModels::create([
-                    'misi' => $misiInp->misi,
-                    'page_profile_id' => $idData,
-                ]);
-            }
+            OsisHeadBgModels::create([
+                'page_osis_id' => $idData,
+                'page_head_img' => $dataPage[1]->page_head_img,
+            ]);
         } else {
-            ProfileMisiModels::create([
-                'page_profile_id' => $idData,
+            OsisHeadBgModels::create([
+                'page_osis_id' => $idData,
             ]);
         }
     }
-    public function dataBeforeStorePageProfileViMiImage($idData, $dataPage) {
+    public function dataBeforeStorePageOsisStat($idData, $dataPage) {
         if(isset($dataPage[2])) {
-            ProfileVisiMisiImageModels::create([
-                'name_files' => $dataPage[2]->name_files,
-                'page_profile_id' => $idData,
+            OsisStatModels::create([
+                'page_osis_id' => $idData,
+                'osis_leader_id' => $dataPage[2]->osis_leader_id,
+                'facebook' => $dataPage[2]->facebook,
+                'instagram' => $dataPage[2]->instagram,
+                'twitter' => $dataPage[2]->twitter,
+                'tiktok' => $dataPage[2]->tiktok,
+                'youtube' => $dataPage[2]->youtube,
             ]);
         } else {
-            ProfileVisiMisiImageModels::create([
-                'page_profile_id' => $idData,
+            OsisStatModels::create([
+                'page_osis_id' => $idData,
             ]);
         }
     }
-    public function dataBeforeStorePageProfileStrcImg($idData, $dataPage) {
+    public function dataBeforeStorePageOsisTeguide($idData, $dataPage) {
         if(isset($dataPage[3])) {
-            ProfileStrOrgImageModels::create([
-                'imgleft' => $dataPage[3]->imgleft,
-                'imgright' => $dataPage[3]->imgright,
-                'page_profile_id' => $idData,
+            OsisTeguideModels::create([
+                'page_osis_id' => $idData,
+                'teacher_id' => $dataPage[3]->teacher_id,
+                'quote' => $dataPage[3]->quote,
             ]);
         } else {
-            ProfileStrOrgImageModels::create([
-                'page_profile_id' => $idData,
+            OsisTeguideModels::create([
+                'page_osis_id' => $idData,
             ]);
         }
     }
-    public function dataBeforeStorePageProfileSt($idData, $dataPage) {
-        if(isset($dataPage[4])) {
-            ProfileStModels::create([
-                'npsn' => $dataPage[4]->npsn,
-                'wdth_sch' => $dataPage[4]->wdth_sch,
-                'page_profile_id' => $idData,
-            ]);
-        } else {
-            ProfileStModels::create([
-                'page_profile_id' => $idData,
-            ]);
-        }
-    }
+    // public function dataBeforeStorePageProfileSt($idData, $dataPage) {
+    //     if(isset($dataPage[4])) {
+    //         ProfileStModels::create([
+    //             'npsn' => $dataPage[4]->npsn,
+    //             'wdth_sch' => $dataPage[4]->wdth_sch,
+    //             'page_osis_id' => $idData,
+    //         ]);
+    //     } else {
+    //         ProfileStModels::create([
+    //             'page_osis_id' => $idData,
+    //         ]);
+    //     }
+    // }
     
     public function getDataPageProfile() {
-        $dataPageProfile = OsisModels::latest('created_at')->first();
-        if($dataPageProfile) {
-            $dataPageMisi = ProfileMisiModels::where('page_profile_id', $dataPageProfile->page_profile_id)->select('misi')->get();
-            $dataPageViMiImage = ProfileVisiMisiImageModels::where('page_profile_id', $dataPageProfile->page_profile_id)->first();
-            $dataPageStrctImg = ProfileStrOrgImageModels::where('page_profile_id', $dataPageProfile->page_profile_id)->first();
-            $dataPageSt = ProfileStModels::where('page_profile_id', $dataPageProfile->page_profile_id)->first();
+        $dataPageOsis = OsisModels::latest('created_at')->first();
+        if($dataPageOsis) {
+            $dataPageHeadBg = OsisHeadBgModels::where('page_osis_id', $dataPageOsis->page_osis_id)->first();
+            $dataPageOsisStat = OsisStatModels::where('page_osis_id', $dataPageOsis->page_osis_id)->first();
+            $dataPageTeGuide = OsisTeguideModels::where('page_osis_id', $dataPageOsis->page_osis_id)->first();
             
             $arrDataPage = [
-                $dataPageProfile,
-                $dataPageMisi,
-                $dataPageViMiImage,
-                $dataPageStrctImg,
-                $dataPageSt,
+                $dataPageOsis,
+                $dataPageHeadBg,
+                $dataPageOsisStat,
+                $dataPageTeGuide,
             ];
             
             return $arrDataPage;
         }
     }
-    */
+    
+    public function ajxPageOsisLgDesc() {
+        $dataPage = OsisModels::latest('created_at')->select('page_logo', 'page_description')->first();
+        $isHaveLogo = (isset($dataPage->page_logo)) ? '/storage/images/pages/osis/' . $dataPage->page_logo : '/assets/img/icon/camera.png';
+        $isHaveDescription = (isset($dataPage->page_description)) ? $dataPage->page_description : '';
+        
+        return response()->json([
+            'logo' => $isHaveLogo,
+            'description' => $isHaveDescription,
+        ]);
+    }
+    
+    public function osisStudentChooseForm() {
+
+        return view('pages.osis.containerOsisStudent');
+    }
+    public function osisStudentChooseContent() {
+        return view('pages.osis.itemStudent');
+    }
 }

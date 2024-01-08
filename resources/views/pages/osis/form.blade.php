@@ -12,7 +12,8 @@
         <div class="bg-gray-200 py-6 w-48 rounded-lg"></div>
     </div>
 </div>
-<form action="" method="" style="display: none">
+<form action="{{route('storeOsisTeGuide')}}" method="POST" style="display: none">
+    @csrf
     <div class="cntFrm">
         <div class="flex flex-col items-center p-1 gap-2 w-10/12 teChosed relative rounded-xl overflow-hidden">
             <div class="cnt flex items-center w-full gap-2">
@@ -29,13 +30,13 @@
             </div>
         </div>
         <div class="liRadTChs relative group">
-            <input type="checkbox" name="toggleLiTea" id="toggleLiTea" class="peer hidden sr-only">
+            <input type="checkbox" id="toggleLiTea" class="peer hidden sr-only">
             
             <div class="searchBx flex items-center w-10/12 rounded-xl overflow-hidden border-2 border-gray-600 pr-4">
                 <label for="searchLiTe">
                     <i class="bi bi-search px-2"></i>
                 </label>
-                <input type="text" name="searchLiTe" maxlength="255" id="searchLiTe" placeholder="Search..." class="w-full border-none focus:ring-0 focus:ring-transparent">                                    
+                <input type="text" maxlength="255" id="searchLiTe" placeholder="Search..." class="w-full border-none focus:ring-0 focus:ring-transparent">                                    
             </div>
             <span role="button" class="h-0 w-0 *:peer-checked:-rotate-90">
                 <label for="toggleLiTea" class="biCvr p-2 bg-white transition-all absolute right-0 top-1/2 -translate-x-0 -translate-y-1/2">
@@ -85,10 +86,11 @@
         </div>
     </div>
 </form>
-<form action="" method="POST">
-    <div class="schollLogoBall">
-        <label for="lgoBallImg" class="mg block aspect-[1/1] w-72 mx-auto rounded-[100%] p-1 border-2 border-black bg-white overflow-hidden">
-            <input type="file" name="lgoBallImg" id="lgoBallImg" class="hidden sr-only">
+<form action="{{route('storeOsisLogoDesc')}}" method="POST" enctype="multipart/form-data">
+    @csrf
+    <div class="osisLogoBall">
+        <label for="lgoBallImg" class="mg block aspect-[1/1] w-72 mx-auto rounded-[100%] p-1 border-2 border-black bg-gray-50 overflow-hidden">
+            <input type="file" name="lgoBallImg" id="lgoBallImg" class="hidden sr-only" accept="image/*">
             <img src="{{asset('assets/img/icon/camera.png')}}" style="display: " alt="" id="prevBgBallOsis" class="lazyLoadThisPage w-full h-full object-cover object-center rounded-[100%] grayscale">
         </label>
     </div>

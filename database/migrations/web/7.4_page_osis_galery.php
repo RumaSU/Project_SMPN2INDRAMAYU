@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('page_osis_galery', function (Blueprint $table) {
             $table->uuid('page_osis_galery_id')->primary();
             $table->string('title_galery');
-            $table->string('name_file', 512);
+            $table->text('name_file');
             $table->uuid('connect_pgos_gal_id')->nullable();
             $table->boolean('is_published')->default(true);
             $table->timestamps();

@@ -8,6 +8,7 @@ use App\Models\UsersModels;
 use Illuminate\Http\Request;
 use PHPUnit\Framework\MockObject\Stub\ReturnStub;
 use illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Ramsey\Uuid\Uuid;
 
 class UsersModelsController extends Controller
@@ -130,6 +131,45 @@ class UsersModelsController extends Controller
     public function update(Request $request, UsersModels $usersModels)
     {
         //
+    }
+    
+    public function authenticate(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+
+        $authenticated = Auth::attempt($credentials);
+        
+        if ($authenticated) {
+            $request->session()->regenerate();
+            return redirect('/')->intended('status');
+        } else {
+            return redirect()->back()->with('message', 'Username atau password salah.');
+        }
+        
+        
+        // $credentials = $request->only('email', 'password');
+
+        // if (Auth::attempt($credentials)) {
+        //     echo 'login succeed';
+        //     $request->session()->regenerate();
+        //     return redirect()->intended('status');
+        // } else {
+        //     echo 'login failed';
+        //     // return redirect()->back()->with('message', 'Username atau password salah.');
+        // }
+
+    }
+    public function logout(Request $request)
+    {
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/');
     }
 
     /**

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create("users_roles", function(Blueprint $table){
             $table->uuid("user_id")->nullable();
             $table->foreign("user_id")->references("user_id")->on("users")->onDelete("cascade");
-            $table->string("roles", 25);
+            $table->enum("roles", ['Superadmin', 'Admin', 'Moderator', 'User'])->default('User');
             $table->timestamps();
         });
     }

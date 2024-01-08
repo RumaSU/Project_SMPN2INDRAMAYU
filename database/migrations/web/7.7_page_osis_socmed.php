@@ -11,11 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('page_osis', function (Blueprint $table) {
-            $table->uuid('page_osis_id')->primary();
-            $table->text('page_logo')->nullable()->default('default.png');
-            $table->string('page_description', 1024)->nullable();
-            $table->text('page_strct_img')->nullable();
+        Schema::create('page_osis_socmed', function (Blueprint $table) {
+            $table->text('facebook')->nullable();
+            $table->text('instagram')->nullable();
+            $table->text('twitter')->nullable();
+            $table->text('tiktok')->nullable();
+            $table->text('youtube')->nullable();
             $table->timestamps();
         });
     }

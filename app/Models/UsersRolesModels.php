@@ -9,8 +9,14 @@ class UsersRolesModels extends Model
 {
     use HasFactory;
     protected $table="users_roles";
+    protected $casts = [
+        'user_id' => 'string',
+    ];
     protected $fillable=["user_id", "roles"];
+    // public function user() {
+    //     return $this -> belongsToMany(UsersModels::class, 'user_id');
+    // }
     public function user() {
-        return $this -> belongsToMany(UsersModels::class, 'user_id');
+        return $this->belongsTo(UsersModels::class, 'user_id');
     }
 }
